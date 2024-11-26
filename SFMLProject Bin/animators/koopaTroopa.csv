@@ -1,0 +1,7 @@
+KoopaTroopa,ANIMAIONID
+,
+animations/KoopaTroopa/koopaTroopaIdle.csv,koopaTroopaIdle
+animations/KoopaTroopa/koopaTroopaMove.csv,koopaTroopaMove
+animations/KoopaTroopa/koopaTroopaScout.csv,koopaTroopaScout
+animations/KoopaTroopa/koopaTroopaGroggy.csv,koopaTroopaGroggy
+animations/KoopaTroopa/koopaTroopaDead.csv,koopaTroopaDead

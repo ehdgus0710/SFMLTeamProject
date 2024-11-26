@@ -1,0 +1,5 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+enemies,koopaTroopaGroggy,0,,,,,
+,,,,,,,
+,64,64,160,16,16,16,0.1
+,64,64,176,16,16,16,0.1

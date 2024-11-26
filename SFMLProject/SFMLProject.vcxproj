@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{95d39517-447b-4a0a-a073-3f410708624d}</ProjectGuid>
+    <RootNamespace>SFMLProject</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\$(ProjectName) Bin\</OutDir>
+    <TargetName>$(ProjectName)-d</TargetName>
+    <PublicIncludeDirectories>
+    </PublicIncludeDirectories>
+    <AllProjectIncludesArePublic>false</AllProjectIncludesArePublic>
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
+    <IncludePath>.\SFML-2.6.1\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>.\SFML-2.6.1\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\$(ProjectName) Bin\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\SFML-2.6.1\include;.\imgui</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>.\SFML-2.6.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-network-d.lib;sfml-audio-d.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>..\SFMLProject Bin\SFMLProject-d.pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\SFML-2.6.1\include;.\imgui</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>.\SFML-2.6.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-network.lib;sfml-audio.lib;%(AdditionalDependencies);opengl32.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationGUI.cpp" />
+    <ClCompile Include="AnimationToolGUI.cpp" />
+    <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="BackgroundColorBox.cpp" />
+    <ClCompile Include="BaseState.cpp" />
+    <ClCompile Include="BlockGUI.cpp" />
+    <ClCompile Include="BlockObject.cpp" />
+    <ClCompile Include="BlockSaveData.cpp" />
+    <ClCompile Include="BrickBlockObject.cpp" />
+    <ClCompile Include="BrickBlockParticle.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManger.cpp" />
+    <ClCompile Include="CoinObject.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="ColliderGUI.cpp" />
+    <ClCompile Include="ColliderManager.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionCircle.cpp" />
+    <ClCompile Include="CollisionPoint.cpp" />
+    <ClCompile Include="CollisionRectangle.cpp" />
+    <ClCompile Include="ComponentGUI.cpp" />
+    <ClCompile Include="CreateObjectTool.cpp" />
+    <ClCompile Include="DataTable.cpp" />
+    <ClCompile Include="DataTableManager.cpp" />
+    <ClCompile Include="EndingCreditTimeLine.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBaseState.cpp" />
+    <ClCompile Include="EnemyFSM.cpp" />
+    <ClCompile Include="EnemySaveData.cpp" />
+    <ClCompile Include="EnemySpawner.cpp" />
+    <ClCompile Include="EnemySpawnerGUI.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="FireBullet.cpp" />
+    <ClCompile Include="FlowerObject.cpp" />
+    <ClCompile Include="Framework.cpp" />
+    <ClCompile Include="FSMController.cpp" />
+    <ClCompile Include="GameClearObject.cpp" />
+    <ClCompile Include="GameClearPointGUI.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectSaveData.cpp" />
+    <ClCompile Include="FadeOutUI.cpp" />
+    <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="GoombaDeadState.cpp" />
+    <ClCompile Include="GoombaFSM.cpp" />
+    <ClCompile Include="GoombaIdleState.cpp" />
+    <ClCompile Include="GoombaScoutState.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="HierachyGUI.cpp" />
+    <ClCompile Include="ImguiManger.cpp" />
+    <ClCompile Include="imgui\imgui-SFML.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="InGameScoreUI.cpp" />
+    <ClCompile Include="InGameUIHub.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="InspectorGUI.cpp" />
+    <ClCompile Include="ItemBlockObject.cpp" />
+    <ClCompile Include="ItemObject.cpp" />
+    <ClCompile Include="KeyAction.cpp" />
+    <ClCompile Include="Koopa.cpp" />
+    <ClCompile Include="KoopaAttackState.cpp" />
+    <ClCompile Include="KoopaDeadState.cpp" />
+    <ClCompile Include="KoopaFireBullet.cpp" />
+    <ClCompile Include="KoopaFSM.cpp" />
+    <ClCompile Include="KoopaIdleState.cpp" />
+    <ClCompile Include="KooparHammerBullet.cpp" />
+    <ClCompile Include="KooparScaffoldingObject.cpp" />
+    <ClCompile Include="KoopaTroopa.cpp" />
+    <ClCompile Include="KoopaTroopaDeadState.cpp" />
+    <ClCompile Include="KoopaTroopaFSM.cpp" />
+    <ClCompile Include="KoopaTroopaGroggyState.cpp" />
+    <ClCompile Include="KoopaTroopaIdleState.cpp" />
+    <ClCompile Include="KoopaTroopaMoveState.cpp" />
+    <ClCompile Include="KoopaTroopaScoutState.cpp" />
+    <ClCompile Include="LabberObject.cpp" />
+    <ClCompile Include="LangugeStringTable.cpp" />
+    <ClCompile Include="MouseObject.cpp" />
+    <ClCompile Include="MushRoomObject.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAttackState.cpp" />
+    <ClCompile Include="PlayerBaseState.cpp" />
+    <ClCompile Include="PlayerBreakState.cpp" />
+    <ClCompile Include="PlayerDeadState.cpp" />
+    <ClCompile Include="PlayerDownState.cpp" />
+    <ClCompile Include="PlayerFSM.cpp" />
+    <ClCompile Include="PlayerGameClearState.cpp" />
+    <ClCompile Include="PlayerHitState.cpp" />
+    <ClCompile Include="PlayerIdleState.cpp" />
+    <ClCompile Include="PlayerJumpState.cpp" />
+    <ClCompile Include="PlayerRunState.cpp" />
+    <ClCompile Include="PlayerSaveData.cpp" />
+    <ClCompile Include="PlayerUpgradeState.cpp" />
+    <ClCompile Include="RectSpriteGameObject.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="SaveData.cpp" />
+    <ClCompile Include="SaveLoadManger.cpp" />
+    <ClCompile Include="SavePointGUI.cpp" />
+    <ClCompile Include="SavePointObject.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneDev1.cpp" />
+    <ClCompile Include="SceneDev2.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="SoundManger.cpp" />
+    <ClCompile Include="SpriteGameObject.cpp" />
+    <ClCompile Include="Stage1.cpp" />
+    <ClCompile Include="Stage2.cpp" />
+    <ClCompile Include="StarObject.cpp" />
+    <ClCompile Include="StartUIObject.cpp" />
+    <ClCompile Include="TextButton.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="StringTable.cpp" />
+    <ClCompile Include="TileMapControllerGUI.cpp" />
+    <ClCompile Include="TileMap.cpp" />
+    <ClCompile Include="TileMapController.cpp" />
+    <ClCompile Include="TileMapGUI.cpp" />
+    <ClCompile Include="TileMapSaveData.cpp" />
+    <ClCompile Include="TimeManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="TrickColliderObject.cpp" />
+    <ClCompile Include="TriggerObject.cpp" />
+    <ClCompile Include="UIAnimationObject.cpp" />
+    <ClCompile Include="UIButtonObject.cpp" />
+    <ClCompile Include="UICoinObject.cpp" />
+    <ClCompile Include="UIGameObject.cpp" />
+    <ClCompile Include="UITextGameObject.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Variables.cpp" />
+    <ClCompile Include="WallCollisionObject.cpp" />
+    <ClCompile Include="CollisionObjectEditor.cpp" />
+    <ClCompile Include="WallCollisionSaveData.cpp" />
+    <ClCompile Include="WindowManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationGUI.h" />
+    <ClInclude Include="AnimationToolGUI.h" />
+    <ClInclude Include="Animator.h" />
+    <ClInclude Include="BackgroundColorBox.h" />
+    <ClInclude Include="BaseState.h" />
+    <ClInclude Include="BlockGUI.h" />
+    <ClInclude Include="BlockObject.h" />
+    <ClInclude Include="BlockSaveData.h" />
+    <ClInclude Include="BrickBlockObject.h" />
+    <ClInclude Include="BrickBlockParticle.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManger.h" />
+    <ClInclude Include="CoinObject.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="ColliderGUI.h" />
+    <ClInclude Include="ColliderManager.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionCircle.h" />
+    <ClInclude Include="CollisionPoint.h" />
+    <ClInclude Include="CollisionRectangle.h" />
+    <ClInclude Include="ComponentGUI.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="CreateObjectTool.h" />
+    <ClInclude Include="DataTable.h" />
+    <ClInclude Include="DataTableManager.h" />
+    <ClInclude Include="Defines.h" />
+    <ClInclude Include="EndingCreditTimeLine.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBaseState.h" />
+    <ClInclude Include="EnemyFSM.h" />
+    <ClInclude Include="EnemySaveData.h" />
+    <ClInclude Include="EnemySpawner.h" />
+    <ClInclude Include="EnemySpawnerGUI.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="FireBullet.h" />
+    <ClInclude Include="Framework.h" />
+    <ClInclude Include="FSMController.h" />
+    <ClInclude Include="GameClearObject.h" />
+    <ClInclude Include="GameClearPointGUI.h" />
+    <ClInclude Include="GameInclude.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectSaveData.h" />
+    <ClInclude Include="FadeOutUI.h" />
+    <ClInclude Include="Goomba.h" />
+    <ClInclude Include="GoombaDeadState.h" />
+    <ClInclude Include="GoombaFSM.h" />
+    <ClInclude Include="GoombaIdleState.h" />
+    <ClInclude Include="GoombaScoutState.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="HierachyGUI.h" />
+    <ClInclude Include="ImguiManger.h" />
+    <ClInclude Include="imgui\imconfig-SFML.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui-SFML.h" />
+    <ClInclude Include="imgui\imgui-SFML_export.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="InGameScoreUI.h" />
+    <ClInclude Include="InGameUIHub.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="InspectorGUI.h" />
+    <ClInclude Include="ItemBlockObject.h" />
+    <ClInclude Include="ItemObject.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="KeyAction.h" />
+    <ClInclude Include="Koopa.h" />
+    <ClInclude Include="KoopaAttackState.h" />
+    <ClInclude Include="KoopaDeadState.h" />
+    <ClInclude Include="KoopaFireBullet.h" />
+    <ClInclude Include="KoopaFSM.h" />
+    <ClInclude Include="KoopaIdleState.h" />
+    <ClInclude Include="KooparHammerBullet.h" />
+    <ClInclude Include="KooparScaffoldingObject.h" />
+    <ClInclude Include="KoopaTroopa.h" />
+    <ClInclude Include="KoopaTroopaDeadState.h" />
+    <ClInclude Include="KoopaTroopaFSM.h" />
+    <ClInclude Include="KoopaTroopaGroggyState.h" />
+    <ClInclude Include="KoopaTroopaIdleState.h" />
+    <ClInclude Include="KoopaTroopaMoveState.h" />
+    <ClInclude Include="KoopaTroopaScoutState.h" />
+    <ClInclude Include="LabberObject.h" />
+    <ClInclude Include="LangugeStringTable.h" />
+    <ClInclude Include="MouseObject.h" />
+    <ClInclude Include="MushRoomObject.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAttackState.h" />
+    <ClInclude Include="PlayerBaseState.h" />
+    <ClInclude Include="PlayerBreakState.h" />
+    <ClInclude Include="PlayerDeadState.h" />
+    <ClInclude Include="PlayerDownState.h" />
+    <ClInclude Include="PlayerFSM.h" />
+    <ClInclude Include="PlayerGameClearState.h" />
+    <ClInclude Include="PlayerHitState.h" />
+    <ClInclude Include="PlayerIdleState.h" />
+    <ClInclude Include="PlayerJumpState.h" />
+    <ClInclude Include="PlayerRunState.h" />
+    <ClInclude Include="PlayerSaveData.h" />
+    <ClInclude Include="PlayerUpgradeState.h" />
+    <ClInclude Include="rapidcsv.h" />
+    <ClInclude Include="RectSpriteGameObject.h" />
+    <ClInclude Include="Resources.h" />
+    <ClInclude Include="ResourcesManager.h" />
+    <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="SaveData.h" />
+    <ClInclude Include="SaveLoadManger.h" />
+    <ClInclude Include="SavePointGUI.h" />
+    <ClInclude Include="SavePointObject.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneDev1.h" />
+    <ClInclude Include="SceneDev2.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SoundManger.h" />
+    <ClInclude Include="SpriteGameObject.h" />
+    <ClInclude Include="Stage1.h" />
+    <ClInclude Include="Stage2.h" />
+    <ClInclude Include="StarObject.h" />
+    <ClInclude Include="StartUIObject.h" />
+    <ClInclude Include="TextButton.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StringTable.h" />
+    <ClInclude Include="TileMapControllerGUI.h" />
+    <ClInclude Include="TileMap.h" />
+    <ClInclude Include="TileMapController.h" />
+    <ClInclude Include="TileMapGUI.h" />
+    <ClInclude Include="TileMapSaveData.h" />
+    <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TrickColliderObject.h" />
+    <ClInclude Include="TriggerObject.h" />
+    <ClInclude Include="UIAnimationObject.h" />
+    <ClInclude Include="UIButtonObject.h" />
+    <ClInclude Include="UICoinObject.h" />
+    <ClInclude Include="UIGameObject.h" />
+    <ClInclude Include="UITextGameObject.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Variables.h" />
+    <ClInclude Include="WallCollisionObject.h" />
+    <ClInclude Include="CollisionObjectEditor.h" />
+    <ClInclude Include="WallCollisionSaveData.h" />
+    <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="FlowerObject.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

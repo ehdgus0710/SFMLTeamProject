@@ -1,0 +1,4 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false)
+enemies,enemyDead,0
+
+,64,64,32,16,16,16,0.100000

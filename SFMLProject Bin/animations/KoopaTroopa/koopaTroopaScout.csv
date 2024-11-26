@@ -1,0 +1,5 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+enemies,koopaTroopaScout,0,,,,,
+,,,,,,,
+,96,96,96,8,16,24,0.1
+,96,96,112,8,16,24,0.1

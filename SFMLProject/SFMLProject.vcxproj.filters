@@ -1,0 +1,1128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{cbb9e0a6-6624-4e04-835b-0c7ee13d6398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\1. Singleton">
+      <UniqueIdentifier>{7d2f06e4-5843-42c9-9145-4c902b01e58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\4. TimeManager">
+      <UniqueIdentifier>{a29a16d0-0031-4b0e-927b-5e102c918f8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\3. ResourcesManager">
+      <UniqueIdentifier>{ee12dc71-27b9-4bab-942a-c8d3b4d51134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\2. InputManager">
+      <UniqueIdentifier>{29e1335b-618f-4430-8a16-6607cdfd8653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{f2828a87-ba93-4592-a082-eb587de7f2b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\EventManager">
+      <UniqueIdentifier>{4744bf83-38b2-49b5-87d9-4e69b57f8e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\5. SceneManager">
+      <UniqueIdentifier>{5d357d44-568b-4b78-9601-eec285bb1b82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utils">
+      <UniqueIdentifier>{42ae1fc0-c546-4d7b-aa1a-a72cf1c8dcc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\6. ColliderManager">
+      <UniqueIdentifier>{6d72ffce-95d8-4075-a8cc-e41e777a23ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\7. WindowManager">
+      <UniqueIdentifier>{8e589d71-a8af-4d2a-bce8-e56e50c5dd16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\0. define">
+      <UniqueIdentifier>{9fd34642-d56e-4549-9d57-bb1c19c91e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\1. Entity">
+      <UniqueIdentifier>{3594ac28-1dfb-46fb-9661-4e1dfbc195b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\2. KeyAction">
+      <UniqueIdentifier>{cce3386d-a812-44c1-8842-ee9d608a4eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\3. Resources">
+      <UniqueIdentifier>{0eb9f089-86ee-4ef3-b53d-a2b9dc4f54c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\5. Scene">
+      <UniqueIdentifier>{a88923db-d80c-40e0-a228-7c5f3e66d9b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants">
+      <UniqueIdentifier>{06ae2c78-007e-4287-94cb-32fae660e895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\0. Framework">
+      <UniqueIdentifier>{79b74483-ecd5-4f20-b650-51e47259682e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\8. CameraManger">
+      <UniqueIdentifier>{eee04735-de0f-4a1b-9551-147ee5ca8c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\4. Camera">
+      <UniqueIdentifier>{fd05910c-2fb7-4a23-b75e-cf9799320468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet">
+      <UniqueIdentifier>{32ec8558-52b2-43f8-b4fb-7c56474dfd21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet\5. RigidBody">
+      <UniqueIdentifier>{75ffb0b5-7bb4-4645-9ad2-0f2fb8f977bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet\1. Collision">
+      <UniqueIdentifier>{d6fa543b-33b9-4d42-b3e9-bd1ce6ac07d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet\2. Animator">
+      <UniqueIdentifier>{df6e0ab0-842d-4276-8b32-06bfc53a5a6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet\3. Animation">
+      <UniqueIdentifier>{82137c88-2e27-4dfc-81e2-d51228666c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet\4. TileMap">
+      <UniqueIdentifier>{ab0f8422-5e7b-4fde-9da8-c1d882237edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\9. SoundManager">
+      <UniqueIdentifier>{1677db5b-3c36-4031-9022-76f0e4764844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\DataTable">
+      <UniqueIdentifier>{d597fdd6-0819-4f1a-a773-cb961666a786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\6. Componet\6. FSM">
+      <UniqueIdentifier>{ebcba802-bd5b-4e08-91c7-cd2275d2796c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\7. Object">
+      <UniqueIdentifier>{e6f70e50-bc42-4c8c-b753-49d6737d51b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\7. Object\UI">
+      <UniqueIdentifier>{3ca163a0-826a-44b2-9c7f-b72e53eed20d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor">
+      <UniqueIdentifier>{6bd09cdf-4de3-4d6e-9cdf-46d0a2f8dd42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui">
+      <UniqueIdentifier>{51854395-6994-4a28-bd5d-fdc7dc2a0aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\Manager">
+      <UniqueIdentifier>{3667d6e6-7402-404b-8531-30b2222210ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\Imgui">
+      <UniqueIdentifier>{ed4f0fab-0a30-46fb-8649-6cb007e59dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI">
+      <UniqueIdentifier>{713e8d12-4f10-4eb4-9065-5ef9604eb924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI">
+      <UniqueIdentifier>{b9dc1d48-3997-44e7-be3d-f1b70e8df08b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapGUI">
+      <UniqueIdentifier>{a3b44a0f-4d62-42d1-b098-78378f919c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\Animation">
+      <UniqueIdentifier>{af08c791-0bbc-4b89-b4a0-3afbb309faef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\Collider">
+      <UniqueIdentifier>{16d3f5f7-6a89-4b03-a13c-ae553f603be8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapController">
+      <UniqueIdentifier>{c2dba539-2631-4ab4-9169-2a89a1e46df7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI">
+      <UniqueIdentifier>{15688ea8-ffde-4a40-91d4-9e956e650649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI">
+      <UniqueIdentifier>{79a13105-8a71-431f-b414-4261d3c3fc56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI\AnimationTool">
+      <UniqueIdentifier>{183904c9-e381-40a4-96bc-60a23d1db1fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\Block">
+      <UniqueIdentifier>{3c7d1991-839a-4a41-877d-8e4bcbffe3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\10. SaveLoadManger">
+      <UniqueIdentifier>{df57a131-b81b-4d00-94cb-8957cf4ac4ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Utlies">
+      <UniqueIdentifier>{9c5b177c-e851-4939-9863-2c5c20623ef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Utlies\SaveData">
+      <UniqueIdentifier>{a8a2c5cf-732c-45e8-9bb8-6dde62c938ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Manager">
+      <UniqueIdentifier>{e8909f7a-09fc-4a4f-8786-5f74ca9a364b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Manager\GameManager">
+      <UniqueIdentifier>{e7744c4f-c73f-4294-8183-443a33a87a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object">
+      <UniqueIdentifier>{6550af19-a05a-4085-ba3c-600fe71afa5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Block">
+      <UniqueIdentifier>{a2dc21ae-d5e8-4f71-a6fd-ac08af4cb4c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy">
+      <UniqueIdentifier>{1c83ccda-ed0b-4b66-8422-47d42f8fa963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Goomba">
+      <UniqueIdentifier>{1b2d5268-5696-482f-845a-20132ac3d47c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Goomba\FSM">
+      <UniqueIdentifier>{7da3955a-0a2d-46d1-985d-5f6ecaf5174e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Goomba\State">
+      <UniqueIdentifier>{9ee46451-75ea-4bf3-a0b9-5101761e9e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player">
+      <UniqueIdentifier>{da450f9f-2676-436b-8904-480965c27d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\PlayerState">
+      <UniqueIdentifier>{6f9243a3-ec4b-41e5-8989-63b1ce601bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\FSM">
+      <UniqueIdentifier>{9ee87c8a-ce22-425f-b436-0692dc5cfee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\WallCollisionObject">
+      <UniqueIdentifier>{1df1e9f9-6715-4536-afae-ad96420b1c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Scene">
+      <UniqueIdentifier>{5b44f181-ee93-430b-ab29-a59debb90143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Scene\ContantsScene">
+      <UniqueIdentifier>{bd39b06c-b371-4751-803b-5c4e5c8fe3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\TileMapController">
+      <UniqueIdentifier>{72c7193e-6851-435a-bcc9-9b8e1053271f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\GameObject">
+      <UniqueIdentifier>{2bf2f865-c382-47d6-8da9-93b6060f9507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI\Object">
+      <UniqueIdentifier>{7590d7cc-3fb9-45a9-afef-e97d7206b01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Item">
+      <UniqueIdentifier>{f4c23842-0835-4d39-b0cd-24e16caf10d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\KoopaTroopa">
+      <UniqueIdentifier>{40b08f56-3ffb-405d-b9d6-26ec9969b8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\UI">
+      <UniqueIdentifier>{ee90e4bd-8f59-47c9-9add-c1e1e0a4129c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint">
+      <UniqueIdentifier>{b5b7f332-e4e8-43d7-9461-fda75c0926d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint">
+      <UniqueIdentifier>{17f4816a-041e-4f96-b3d9-cb0e0edcf1a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\KoopaTroopa\FSM">
+      <UniqueIdentifier>{b2e848a1-cecd-4644-a418-dc16ddd9db06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\KoopaTroopa\State">
+      <UniqueIdentifier>{d2b09a16-e030-4a76-852f-751577b7fc95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI">
+      <UniqueIdentifier>{0d590010-913d-4c7e-8170-c59b5002eaf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Koopa">
+      <UniqueIdentifier>{61a10dcc-d518-42b0-bfbe-f8e6d8d28851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Koopa\FSM">
+      <UniqueIdentifier>{71e6ee16-e709-48a7-b10a-c0178cdde8de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Koopa\State">
+      <UniqueIdentifier>{16d5f5bb-8bb8-4bc5-8f9b-a5752e09696c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Bullet">
+      <UniqueIdentifier>{93792c18-37bb-48ca-91dc-8ff4c8e807c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Manager\2. InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>Manager\4. TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Core\1. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Core\7. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Manager\7. WindowManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Manager\1. Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources.cpp">
+      <Filter>Core\3. Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyAction.cpp">
+      <Filter>Core\2. KeyAction</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionCircle.cpp">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionPoint.cpp">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionRectangle.cpp">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="UITextGameObject.cpp">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIGameObject.cpp">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Core\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Core\0. define</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Manager\5. SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Contants\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Core\5. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderManager.cpp">
+      <Filter>Manager\6. ColliderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Core\6. Componet\3. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Core\6. Componet\2. Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManger.cpp">
+      <Filter>Manager\8. CameraManger</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Core\4. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Core\6. Componet\4. TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDev1.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDev2.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>Core\6. Componet\5. RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="ImguiManger.cpp">
+      <Filter>Contants\0. Editor\Imgui\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui-SFML.cpp">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="HierachyGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationToolGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\AnimationTool</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManger.cpp">
+      <Filter>Manager\9. SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTableManager.cpp">
+      <Filter>Manager\DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="StringTable.cpp">
+      <Filter>Manager\DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTable.cpp">
+      <Filter>Manager\DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="LangugeStringTable.cpp">
+      <Filter>Manager\DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="Variables.cpp">
+      <Filter>Core\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBreakState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDeadState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerIdleState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerJumpState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRunState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseState.cpp">
+      <Filter>Core\6. Componet\6. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="FSMController.cpp">
+      <Filter>Core\6. Componet\6. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHitState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Contants\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapController.cpp">
+      <Filter>Contants\Object\TileMapController</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapControllerGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapController</Filter>
+    </ClCompile>
+    <ClCompile Include="WallCollisionObject.cpp">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionObjectEditor.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFSM.cpp">
+      <Filter>Contants\Object\Player\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBaseState.cpp">
+      <Filter>Contants\Object\Player\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFSM.cpp">
+      <Filter>Contants\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBaseState.cpp">
+      <Filter>Contants\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Contants\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GoombaDeadState.cpp">
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
+    </ClCompile>
+    <ClCompile Include="GoombaIdleState.cpp">
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
+    </ClCompile>
+    <ClCompile Include="GoombaScoutState.cpp">
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
+    </ClCompile>
+    <ClCompile Include="GoombaFSM.cpp">
+      <Filter>Contants\Object\Enemy\Goomba\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="Goomba.cpp">
+      <Filter>Contants\Object\Enemy\Goomba</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockObject.cpp">
+      <Filter>Contants\Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemBlockObject.cpp">
+      <Filter>Contants\Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickBlockObject.cpp">
+      <Filter>Contants\Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoadManger.cpp">
+      <Filter>Manager\10. SaveLoadManger</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Contants\Manager\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="WallCollisionSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="TrickColliderObject.cpp">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateObjectTool.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUpgradeState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework.cpp">
+      <Filter>Manager\0. Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttackState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MushRoomObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="StarObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGameObject.cpp">
+      <Filter>Contants\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopa.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundColorBox.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButtonObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextButton.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePointObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="RectSpriteGameObject.cpp">
+      <Filter>Contants\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePointGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearPointGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGameClearState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameUIHub.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeOutUI.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIAnimationObject.cpp">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UICoinObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaFSM.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaGroggyState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaIdleState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaMoveState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaScoutState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaDeadState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawnerGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Koopa.cpp">
+      <Filter>Contants\Object\Enemy\Koopa</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaFSM.cpp">
+      <Filter>Contants\Object\Enemy\Koopa\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaAttackState.cpp">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaIdleState.cpp">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaFireBullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="LabberObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaDeadState.cpp">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KooparHammerBullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="StartUIObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameScoreUI.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickBlockParticle.cpp">
+      <Filter>Contants\Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="KooparScaffoldingObject.cpp">
+      <Filter>Contants\Object\Enemy\Koopa</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDownState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingCreditTimeLine.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Singleton.h">
+      <Filter>Manager\1. Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Manager\2. InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesManager.h">
+      <Filter>Manager\3. ResourcesManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>Manager\4. TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Core\1. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Core\7. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Manager\7. WindowManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Core\3. Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyAction.h">
+      <Filter>Core\2. KeyAction</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionPoint.h">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionCircle.h">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionRectangle.h">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Core\6. Componet\1. Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="UITextGameObject.h">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIGameObject.h">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Core\0. define</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Core\0. define</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Manager\5. SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Contants\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Core\5. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>Manager\6. ColliderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>Core\0. define</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Core\6. Componet\3. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Core\6. Componet\2. Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManger.h">
+      <Filter>Manager\8. CameraManger</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Core\4. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Core\6. Componet\4. TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev1.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev2.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>Core\6. Componet\5. RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="ImguiManger.h">
+      <Filter>Contants\0. Editor\Imgui\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imconfig.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imconfig-SFML.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_internal.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui-SFML.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui-SFML_export.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_rectpack.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_textedit.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_truetype.h">
+      <Filter>Contants\0. Editor\Imgui\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="HierachyGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationToolGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\AnimationTool</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManger.h">
+      <Filter>Manager\9. SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTableManager.h">
+      <Filter>Manager\DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable.h">
+      <Filter>Manager\DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTable.h">
+      <Filter>Manager\DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidcsv.h">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LangugeStringTable.h">
+      <Filter>Manager\DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Variables.h">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRunState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBreakState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDeadState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIdleState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJumpState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseState.h">
+      <Filter>Core\6. Componet\6. FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMController.h">
+      <Filter>Core\6. Componet\6. FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHitState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Contants\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapController.h">
+      <Filter>Contants\Object\TileMapController</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapControllerGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapController</Filter>
+    </ClInclude>
+    <ClInclude Include="WallCollisionObject.h">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionObjectEditor.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="InspectorGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFSM.h">
+      <Filter>Contants\Object\Player\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBaseState.h">
+      <Filter>Contants\Object\Player\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFSM.h">
+      <Filter>Contants\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBaseState.h">
+      <Filter>Contants\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Contants\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GoombaScoutState.h">
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
+    </ClInclude>
+    <ClInclude Include="GoombaDeadState.h">
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
+    </ClInclude>
+    <ClInclude Include="GoombaIdleState.h">
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
+    </ClInclude>
+    <ClInclude Include="GoombaFSM.h">
+      <Filter>Contants\Object\Enemy\Goomba\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>Contants\Object\Enemy\Goomba</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockObject.h">
+      <Filter>Contants\Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickBlockObject.h">
+      <Filter>Contants\Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBlockObject.h">
+      <Filter>Contants\Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoadManger.h">
+      <Filter>Manager\10. SaveLoadManger</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Contants\Manager\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="WallCollisionSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="TrickColliderObject.h">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateObjectTool.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUpgradeState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework.h">
+      <Filter>Manager\0. Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttackState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="StarObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="MushRoomObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGameObject.h">
+      <Filter>Contants\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopa.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundColorBox.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButtonObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextButton.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePointObject.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="RectSpriteGameObject.h">
+      <Filter>Contants\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearObject.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePointGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearPointGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGameClearState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeOutUI.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameUIHub.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAnimationObject.h">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UICoinObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaFSM.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaScoutState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaGroggyState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaIdleState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaMoveState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaDeadState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawnerGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Koopa.h">
+      <Filter>Contants\Object\Enemy\Koopa</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaFSM.h">
+      <Filter>Contants\Object\Enemy\Koopa\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaAttackState.h">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaIdleState.h">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaFireBullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="LabberObject.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaDeadState.h">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KooparHammerBullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInclude.h">
+      <Filter>Contants</Filter>
+    </ClInclude>
+    <ClInclude Include="StartUIObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameScoreUI.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickBlockParticle.h">
+      <Filter>Contants\Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="KooparScaffoldingObject.h">
+      <Filter>Contants\Object\Enemy\Koopa</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDownState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingCreditTimeLine.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerObject.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

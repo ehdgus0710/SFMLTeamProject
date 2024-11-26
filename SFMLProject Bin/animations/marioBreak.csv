@@ -1,0 +1,4 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+mario_bros,marioBreak,0,,,,,
+,,,,,,,
+mario_bros,64,128,128,0,16,32,0.1

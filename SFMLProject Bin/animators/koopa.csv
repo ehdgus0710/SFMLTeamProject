@@ -1,0 +1,4 @@
+ANIMATIONCSVPATH,ANIMAIONID
+,
+animations/Koopa/koopaIdle.csv,koopaIdle
+animations/Koopa/koopaAttack.csv,koopaAttack

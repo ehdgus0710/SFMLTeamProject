@@ -1,0 +1,5 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+enemies,koopaTroopaIdle,0,,,,,
+,,,,,,,
+,128,128,96,8,16,24,0.1
+,128,128,112,8,16,24,0.1

@@ -60,7 +60,7 @@ void PlayerRunState::Update(float deltaTime)
 {
 	horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
 
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Space) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f))
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space))
 	{
 		if (rigidbody->IsGround())
 		{
@@ -72,16 +72,7 @@ void PlayerRunState::Update(float deltaTime)
 	if (horizontal == 0)
 	{
 		fsm->ChangeState(PlayerStateType::Idle);
-		rigidbody->SetVelocity({ 0.f,rigidbody->GetCurrentVelocity().y });
-	}
-	else if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Right) && isLeftRun)
-	{
-		fsm->ChangeState(PlayerStateType::Break);
-		return;
-	}
-	else if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Left) && !isLeftRun)
-	{
-		fsm->ChangeState(PlayerStateType::Break);
+		rigidbody->SetVelocity({ 0.f, rigidbody->GetCurrentVelocity().y });
 	}
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
@@ -92,5 +83,5 @@ void PlayerRunState::Update(float deltaTime)
 
 void PlayerRunState::FixedUpdate(float fixedDeltaTime)
 {
-	rigidbody->SetVelocity({InputManager::GetInstance().GetAxis(Axis::Horizontal) * player->GetSpeed() , rigidbody->GetCurrentVelocity().y});
+	rigidbody->SetVelocity({ player->GetSpeed() , rigidbody->GetCurrentVelocity().y});
 }

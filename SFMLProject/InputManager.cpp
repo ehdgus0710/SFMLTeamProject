@@ -102,10 +102,14 @@ void InputManager::Init()
 	BindKey(sf::Keyboard::Right);
 	BindKey(sf::Keyboard::Left);
 	BindKey(sf::Keyboard::Space);
-	BindKey(sf::Keyboard::Z);
-
 	BindKey(sf::Keyboard::LShift);
+
+	BindKey(sf::Keyboard::Z);
+	BindKey(sf::Keyboard::X);
+	BindKey(sf::Keyboard::C);
+
 	BindKey(sf::Keyboard::A);
+
 	BindKey(sf::Keyboard::F11);
 	BindKey(sf::Keyboard::F3);
 	BindKey(sf::Keyboard::F2);

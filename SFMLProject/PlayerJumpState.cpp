@@ -27,18 +27,17 @@ void PlayerJumpState::Enter()
 	
 	// player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
+	
 	player->SetIsJump(true);
 	rigidbody->SetGround(false);
-
-	if(InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)
-		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -850.f });
-	else
-		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -500.f });
+	rigidbody->ResetDropSpeed();
+	rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -800.f });
 }
 
 void PlayerJumpState::Exit()
 {
 	PlayerBaseState::Exit();
+	horizontal = 0.f;
 }
 
 void PlayerJumpState::Update(float deltaTime)
@@ -48,17 +47,41 @@ void PlayerJumpState::Update(float deltaTime)
 		fsm->ChangeState(PlayerStateType::Idle);
 		return;
 	}
-	float horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
-	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))
-		player->OnFlipX();
+	
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
+	{
+		horizontal = -1.f;
+	}
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	{
+		horizontal = 1.f;
+	}
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Left) || 
+		InputManager::GetInstance().GetKeyUp(sf::Keyboard::Right))
+	{
+		horizontal = 0.f;
+	}
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
 	{
 		player->Attack();
 	}
+	if (player->IsJump())
+	{
+		if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
+		{
+			player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
+			fsm->ChangeState(PlayerStateType::Jump);
+		}
+
+	}
+
+
+	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))
+		player->OnFlipX();
 }
 
 void PlayerJumpState::FixedUpdate(float fixedDeltaTime)
 {
-	rigidbody->SetVelocity({ InputManager::GetInstance().GetAxis(Axis::Horizontal) * player->GetSpeed() , rigidbody->GetCurrentVelocity().y });
+	rigidbody->SetVelocity({ horizontal * player->GetSpeed() , rigidbody->GetCurrentVelocity().y });
 }

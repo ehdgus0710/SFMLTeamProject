@@ -226,6 +226,7 @@
     <ClCompile Include="PlayerAttackState.cpp" />
     <ClCompile Include="PlayerBaseState.cpp" />
     <ClCompile Include="PlayerDeadState.cpp" />
+    <ClCompile Include="PlayerFallingState.cpp" />
     <ClCompile Include="PlayerFSM.cpp" />
     <ClCompile Include="PlayerHitState.cpp" />
     <ClCompile Include="PlayerIdleState.cpp" />
@@ -340,6 +341,7 @@
     <ClInclude Include="PlayerAttackState.h" />
     <ClInclude Include="PlayerBaseState.h" />
     <ClInclude Include="PlayerDeadState.h" />
+    <ClInclude Include="PlayerFallingState.h" />
     <ClInclude Include="PlayerFSM.h" />
     <ClInclude Include="PlayerHitState.h" />
     <ClInclude Include="PlayerIdleState.h" />

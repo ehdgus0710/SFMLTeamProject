@@ -15,6 +15,9 @@ protected:
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
 
+	int				jumpCount;
+	int				currentJumpCount;
+
 	float			hitTime;
 	float			currentHitTime;
 	float			reloadTime;
@@ -39,8 +42,13 @@ public:
 public:
 	bool IsHit() const { return isHit; }
 	void SetIsJump(bool jump) { isJump = jump; }
+
+	bool IsJump() const { return isJump; }
 	float GetCurrentHP() const { return currentStatus.hp; }
 	float GetSpeed() { return currentStatus.speed; }
+	int GetJumpCount() { return jumpCount; }
+	void SetCurrentJumpCount(int count) { currentJumpCount = count; }
+	int GetCurrentJumpCount() { return currentJumpCount; }
 
 	void SetHp(float hp) { currentStatus.hp = hp; }
 public:

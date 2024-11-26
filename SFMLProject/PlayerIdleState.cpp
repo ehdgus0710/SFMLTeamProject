@@ -24,7 +24,6 @@ void PlayerIdleState::Start()
 void PlayerIdleState::Enter()
 {
 	PlayerBaseState::Enter();
-
 	// player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 }
 
@@ -38,10 +37,11 @@ void PlayerIdleState::Update(float deltaTime)
 	if (InputManager::GetInstance().GetAxis(Axis::Horizontal) != 0.f)
 		fsm->ChangeState(PlayerStateType::Run);
 
-	if ((InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Space) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)))
+	if ((InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::C) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)))
 	{
-		if(rigidbody->IsGround())
-			fsm->ChangeState(PlayerStateType::Jump);
+		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
+
+		fsm->ChangeState(PlayerStateType::Jump);
 	}
 }
 

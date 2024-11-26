@@ -22,6 +22,8 @@ Player::Player(const std::string& name)
 	, isReload(false)
 	, isAttack(false)
 	, isDead(false)
+	, jumpCount(2)
+	, currentJumpCount(0)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -129,6 +131,7 @@ void Player::OnCollisionEnd(Collider* target)
 			{
 				isGround = true;
 				isJump = false;
+
 				break;
 			}
 
@@ -137,6 +140,9 @@ void Player::OnCollisionEnd(Collider* target)
 		if (!isGround)
 		{
 			rigidBody->SetGround(false);
+			currentJumpCount = 1;
+			if(rigidBody->GetCurrentVelocity().y >= 0.f)
+				fsm.ChangeState(PlayerStateType::Falling);
 		}
 	}
 	

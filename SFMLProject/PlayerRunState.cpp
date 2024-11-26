@@ -9,9 +9,6 @@ PlayerRunState::PlayerRunState(PlayerFSM* fsm)
 	, horizontal(0.f)
 	, isLeftRun(false)
 {
-	animationKeys.push_back("marioSmallRun");
-	animationKeys.push_back("marioRun");
-	animationKeys.push_back("marioFireRun");
 }
 
 PlayerRunState::~PlayerRunState()
@@ -43,8 +40,8 @@ void PlayerRunState::Start()
 void PlayerRunState::Enter()
 {
 	PlayerBaseState::Enter();
-	animationKeyIndex = player->GetCurrentHP() - 1;
-	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
+
+	// animator->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 
 	horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);

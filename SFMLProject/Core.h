@@ -72,7 +72,6 @@ enum class ColliderLayer
 {
 	Default,
 	Wall,
-	Block,
 	Item,
 	Player,
 	Enemy,
@@ -104,9 +103,6 @@ enum class PlayerStateType
 	Jump,
 	Hit,
 	Dead,
-	Upgrade,
-	GameClear,
-	Down,
 	End
 };
 
@@ -129,29 +125,12 @@ enum class ObjectType
 	Item,
 };
 
-enum class BlockType
-{
-	Default,
-	Item,
-	Brick,
-	Secret,
-	ItemBrick,
-};
-
 enum class ItemType
 {
-	Coin,
-	MushRoom,
-	Flower,
-	Star,
-
 	End
 };
 
 enum class EnemyType
 {
-	Goomba,
-	KoopaTroopa,
-	Koopa,
 	End
 };

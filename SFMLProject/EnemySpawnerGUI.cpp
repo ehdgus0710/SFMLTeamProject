@@ -22,9 +22,7 @@ void EnemySpawnerGUI::Update()
 
 	static const EnemySpawnerTypeEnum objectEnum[] =
 	{
-		{ EnemyType::Goomba , "Goomba"}
-		,{ EnemyType::KoopaTroopa , "KoopaTroopa"}
-		,{ EnemyType::Koopa , "Koopa"}
+		{ EnemyType::End , "End"}
 	};
 
 	int idx;

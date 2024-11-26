@@ -1,8 +1,12 @@
 #pragma once
 #include "PlayerBaseState.h"
+
+class AttackObject;
+
 class PlayerHitState : public PlayerBaseState
 {
 private:
+	AttackObject* attack;
 	sf::Vector2f changePosition;
 	sf::Vector2f originalPosition;
 	float	currentTime;

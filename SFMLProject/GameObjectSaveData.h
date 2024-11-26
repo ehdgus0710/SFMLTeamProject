@@ -25,21 +25,6 @@ struct SavePointSaveData
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SavePointSaveData, gameObjectSaveData, restartPosition);
 };
 
-
-struct GameClearSaveData
-{
-	GameObjectSaveData	gameObjectSaveData;
-	sf::Vector2f maxStartPosition;
-	sf::Vector2f destinationPosition;
-	sf::Vector2f endMovePosition;
-
-	float endMoveTime;
-	float moveTime;
-
-
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameClearSaveData, gameObjectSaveData, maxStartPosition, destinationPosition, endMovePosition, endMoveTime, moveTime);
-};
-
 struct EnemySpawnerSaveData
 {
 	GameObjectSaveData	gameObjectSaveData;

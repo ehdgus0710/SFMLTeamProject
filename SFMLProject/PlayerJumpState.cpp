@@ -6,9 +6,6 @@
 PlayerJumpState::PlayerJumpState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Jump)
 {
-	animationKeys.push_back("marioSmallJump");
-	animationKeys.push_back("marioJump");
-	animationKeys.push_back("marioFireJump");
 }
 
 PlayerJumpState::~PlayerJumpState()
@@ -28,25 +25,15 @@ void PlayerJumpState::Enter()
 {
 	PlayerBaseState::Enter();	
 	
-	animationKeyIndex = player->GetCurrentHP() - 1;
-	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
+	// player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 	player->SetIsJump(true);
 	rigidbody->SetGround(false);
-
-	if(animationKeyIndex == 0)
-		SoundManger::GetInstance().PlaySfx("SmallJump");
-	else
-		SoundManger::GetInstance().PlaySfx("BigJump");
-
 
 	if(InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -850.f });
 	else
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -500.f });
-
-	if(player->IsRun())
-		rigidbody->AddVelocity(sf::Vector2f::up * 100.f);
 }
 
 void PlayerJumpState::Exit()

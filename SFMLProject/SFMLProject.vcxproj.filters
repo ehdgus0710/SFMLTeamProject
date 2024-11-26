@@ -145,9 +145,6 @@
     <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI\AnimationTool">
       <UniqueIdentifier>{183904c9-e381-40a4-96bc-60a23d1db1fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\Block">
-      <UniqueIdentifier>{3c7d1991-839a-4a41-877d-8e4bcbffe3fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\10. SaveLoadManger">
       <UniqueIdentifier>{df57a131-b81b-4d00-94cb-8957cf4ac4ac}</UniqueIdentifier>
     </Filter>
@@ -166,20 +163,8 @@
     <Filter Include="Contants\Object">
       <UniqueIdentifier>{6550af19-a05a-4085-ba3c-600fe71afa5c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Object\Block">
-      <UniqueIdentifier>{a2dc21ae-d5e8-4f71-a6fd-ac08af4cb4c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contants\Object\Enemy">
       <UniqueIdentifier>{1c83ccda-ed0b-4b66-8422-47d42f8fa963}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\Goomba">
-      <UniqueIdentifier>{1b2d5268-5696-482f-845a-20132ac3d47c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\Goomba\FSM">
-      <UniqueIdentifier>{7da3955a-0a2d-46d1-985d-5f6ecaf5174e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\Goomba\State">
-      <UniqueIdentifier>{9ee46451-75ea-4bf3-a0b9-5101761e9e43}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contants\Object\Player">
       <UniqueIdentifier>{da450f9f-2676-436b-8904-480965c27d5d}</UniqueIdentifier>
@@ -211,38 +196,20 @@
     <Filter Include="Contants\Object\Item">
       <UniqueIdentifier>{f4c23842-0835-4d39-b0cd-24e16caf10d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Object\Enemy\KoopaTroopa">
-      <UniqueIdentifier>{40b08f56-3ffb-405d-b9d6-26ec9969b8cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contants\UI">
       <UniqueIdentifier>{ee90e4bd-8f59-47c9-9add-c1e1e0a4129c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint">
       <UniqueIdentifier>{b5b7f332-e4e8-43d7-9461-fda75c0926d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint">
-      <UniqueIdentifier>{17f4816a-041e-4f96-b3d9-cb0e0edcf1a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\KoopaTroopa\FSM">
-      <UniqueIdentifier>{b2e848a1-cecd-4644-a418-dc16ddd9db06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\KoopaTroopa\State">
-      <UniqueIdentifier>{d2b09a16-e030-4a76-852f-751577b7fc95}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI">
       <UniqueIdentifier>{0d590010-913d-4c7e-8170-c59b5002eaf2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Object\Enemy\Koopa">
-      <UniqueIdentifier>{61a10dcc-d518-42b0-bfbe-f8e6d8d28851}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\Koopa\FSM">
-      <UniqueIdentifier>{71e6ee16-e709-48a7-b10a-c0178cdde8de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Enemy\Koopa\State">
-      <UniqueIdentifier>{16d5f5bb-8bb8-4bc5-8f9b-a5752e09696c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contants\Object\Bullet">
       <UniqueIdentifier>{93792c18-37bb-48ca-91dc-8ff4c8e807c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\UtilsObject">
+      <UniqueIdentifier>{cef4d39c-c355-4911-918f-b73fcb1e8fac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -402,9 +369,6 @@
     <ClCompile Include="Variables.cpp">
       <Filter>Core\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBreakState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerDeadState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
@@ -456,33 +420,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Contants\Object\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="GoombaDeadState.cpp">
-      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
-    </ClCompile>
-    <ClCompile Include="GoombaIdleState.cpp">
-      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
-    </ClCompile>
-    <ClCompile Include="GoombaScoutState.cpp">
-      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
-    </ClCompile>
-    <ClCompile Include="GoombaFSM.cpp">
-      <Filter>Contants\Object\Enemy\Goomba\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="Goomba.cpp">
-      <Filter>Contants\Object\Enemy\Goomba</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockObject.cpp">
-      <Filter>Contants\Object\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemBlockObject.cpp">
-      <Filter>Contants\Object\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="BrickBlockObject.cpp">
-      <Filter>Contants\Object\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="BlockGUI.cpp">
-      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
-    </ClCompile>
     <ClCompile Include="SaveLoadManger.cpp">
       <Filter>Manager\10. SaveLoadManger</Filter>
     </ClCompile>
@@ -507,17 +444,11 @@
     <ClCompile Include="EnemySaveData.cpp">
       <Filter>Contants\Utlies\SaveData</Filter>
     </ClCompile>
-    <ClCompile Include="BlockSaveData.cpp">
-      <Filter>Contants\Utlies\SaveData</Filter>
-    </ClCompile>
     <ClCompile Include="TrickColliderObject.cpp">
       <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClCompile>
     <ClCompile Include="CreateObjectTool.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerUpgradeState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="Framework.cpp">
       <Filter>Manager\0. Framework</Filter>
@@ -525,29 +456,8 @@
     <ClCompile Include="PlayerAttackState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="CoinObject.cpp">
-      <Filter>Contants\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="FlowerObject.cpp">
-      <Filter>Contants\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="MushRoomObject.cpp">
-      <Filter>Contants\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="StarObject.cpp">
-      <Filter>Contants\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemObject.cpp">
-      <Filter>Contants\Object\Item</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaTroopa.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa</Filter>
-    </ClCompile>
-    <ClCompile Include="BackgroundColorBox.cpp">
-      <Filter>Contants\Object</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>Contants\Scene\ContantsScene</Filter>
@@ -561,26 +471,11 @@
     <ClCompile Include="TextButton.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="SavePointObject.cpp">
-      <Filter>Contants\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="FireBullet.cpp">
-      <Filter>Contants\Object\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="RectSpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="GameClearObject.cpp">
-      <Filter>Contants\Object</Filter>
-    </ClCompile>
     <ClCompile Include="SavePointGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint</Filter>
-    </ClCompile>
-    <ClCompile Include="GameClearPointGUI.cpp">
-      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerGameClearState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="InGameUIHub.cpp">
       <Filter>Contants\UI</Filter>
@@ -594,55 +489,10 @@
     <ClCompile Include="UICoinObject.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="KoopaTroopaFSM.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaTroopaGroggyState.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaTroopaIdleState.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaTroopaMoveState.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaTroopaScoutState.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaTroopaDeadState.cpp">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemySpawner.cpp">
-      <Filter>Contants\Object\WallCollisionObject</Filter>
-    </ClCompile>
     <ClCompile Include="EnemySpawnerGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
     </ClCompile>
-    <ClCompile Include="Koopa.cpp">
-      <Filter>Contants\Object\Enemy\Koopa</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaFSM.cpp">
-      <Filter>Contants\Object\Enemy\Koopa\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaAttackState.cpp">
-      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaIdleState.cpp">
-      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaFireBullet.cpp">
-      <Filter>Contants\Object\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Contants\Object\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="LabberObject.cpp">
-      <Filter>Contants\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="KoopaDeadState.cpp">
-      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KooparHammerBullet.cpp">
       <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="StartUIObject.cpp">
@@ -651,26 +501,26 @@
     <ClCompile Include="InGameScoreUI.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="BrickBlockParticle.cpp">
-      <Filter>Contants\Object\Block</Filter>
-    </ClCompile>
     <ClCompile Include="Stage2.cpp">
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClCompile>
     <ClCompile Include="Stage1.cpp">
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClCompile>
-    <ClCompile Include="KooparScaffoldingObject.cpp">
-      <Filter>Contants\Object\Enemy\Koopa</Filter>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Contants\UtilsObject</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerDownState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+    <ClCompile Include="BackgroundColorBox.cpp">
+      <Filter>Contants\UtilsObject</Filter>
     </ClCompile>
     <ClCompile Include="EndingCreditTimeLine.cpp">
-      <Filter>Contants\Object</Filter>
+      <Filter>Contants\UtilsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePointObject.cpp">
+      <Filter>Contants\UtilsObject</Filter>
     </ClCompile>
     <ClCompile Include="TriggerObject.cpp">
-      <Filter>Contants\Object</Filter>
+      <Filter>Contants\UtilsObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -848,9 +698,6 @@
     <ClInclude Include="PlayerRunState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerBreakState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerDeadState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
@@ -902,33 +749,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Contants\Object\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="GoombaScoutState.h">
-      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
-    </ClInclude>
-    <ClInclude Include="GoombaDeadState.h">
-      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
-    </ClInclude>
-    <ClInclude Include="GoombaIdleState.h">
-      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
-    </ClInclude>
-    <ClInclude Include="GoombaFSM.h">
-      <Filter>Contants\Object\Enemy\Goomba\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="Goomba.h">
-      <Filter>Contants\Object\Enemy\Goomba</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockObject.h">
-      <Filter>Contants\Object\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="BrickBlockObject.h">
-      <Filter>Contants\Object\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemBlockObject.h">
-      <Filter>Contants\Object\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockGUI.h">
-      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
-    </ClInclude>
     <ClInclude Include="SaveLoadManger.h">
       <Filter>Manager\10. SaveLoadManger</Filter>
     </ClInclude>
@@ -942,9 +762,6 @@
       <Filter>Contants\Manager\GameManager</Filter>
     </ClInclude>
     <ClInclude Include="WallCollisionSaveData.h">
-      <Filter>Contants\Utlies\SaveData</Filter>
-    </ClInclude>
-    <ClInclude Include="BlockSaveData.h">
       <Filter>Contants\Utlies\SaveData</Filter>
     </ClInclude>
     <ClInclude Include="EnemySaveData.h">
@@ -965,38 +782,14 @@
     <ClInclude Include="CreateObjectTool.h">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerUpgradeState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClInclude>
     <ClInclude Include="Framework.h">
       <Filter>Manager\0. Framework</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAttackState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="StarObject.h">
-      <Filter>Contants\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="CoinObject.h">
-      <Filter>Contants\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="FlowerObject.h">
-      <Filter>Contants\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemObject.h">
-      <Filter>Contants\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="MushRoomObject.h">
-      <Filter>Contants\Object\Item</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaTroopa.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa</Filter>
-    </ClInclude>
-    <ClInclude Include="BackgroundColorBox.h">
-      <Filter>Contants\Object</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
       <Filter>Contants\Scene\ContantsScene</Filter>
@@ -1010,26 +803,11 @@
     <ClInclude Include="TextButton.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="SavePointObject.h">
-      <Filter>Contants\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="FireBullet.h">
-      <Filter>Contants\Object\Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="RectSpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameClearObject.h">
-      <Filter>Contants\Object</Filter>
-    </ClInclude>
     <ClInclude Include="SavePointGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint</Filter>
-    </ClInclude>
-    <ClInclude Include="GameClearPointGUI.h">
-      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerGameClearState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="FadeOutUI.h">
       <Filter>Contants\UI</Filter>
@@ -1043,55 +821,10 @@
     <ClInclude Include="UICoinObject.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="KoopaTroopaFSM.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaTroopaScoutState.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaTroopaGroggyState.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaTroopaIdleState.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaTroopaMoveState.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaTroopaDeadState.h">
-      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemySpawner.h">
-      <Filter>Contants\Object\WallCollisionObject</Filter>
-    </ClInclude>
     <ClInclude Include="EnemySpawnerGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
     </ClInclude>
-    <ClInclude Include="Koopa.h">
-      <Filter>Contants\Object\Enemy\Koopa</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaFSM.h">
-      <Filter>Contants\Object\Enemy\Koopa\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaAttackState.h">
-      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaIdleState.h">
-      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Contants\Object\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaFireBullet.h">
-      <Filter>Contants\Object\Bullet</Filter>
-    </ClInclude>
-    <ClInclude Include="LabberObject.h">
-      <Filter>Contants\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="KoopaDeadState.h">
-      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
-    </ClInclude>
-    <ClInclude Include="KooparHammerBullet.h">
       <Filter>Contants\Object\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="GameInclude.h">
@@ -1103,26 +836,26 @@
     <ClInclude Include="InGameScoreUI.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="BrickBlockParticle.h">
-      <Filter>Contants\Object\Block</Filter>
-    </ClInclude>
     <ClInclude Include="Stage1.h">
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClInclude>
     <ClInclude Include="Stage2.h">
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClInclude>
-    <ClInclude Include="KooparScaffoldingObject.h">
-      <Filter>Contants\Object\Enemy\Koopa</Filter>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Contants\UtilsObject</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerDownState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+    <ClInclude Include="BackgroundColorBox.h">
+      <Filter>Contants\UtilsObject</Filter>
     </ClInclude>
     <ClInclude Include="EndingCreditTimeLine.h">
-      <Filter>Contants\Object</Filter>
+      <Filter>Contants\UtilsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePointObject.h">
+      <Filter>Contants\UtilsObject</Filter>
     </ClInclude>
     <ClInclude Include="TriggerObject.h">
-      <Filter>Contants\Object</Filter>
+      <Filter>Contants\UtilsObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

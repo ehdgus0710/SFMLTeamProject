@@ -6,7 +6,6 @@
 #include "Rigidbody.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "StarObject.h"
 
 int WallCollisionObject::wallID = 0;
 
@@ -61,7 +60,7 @@ void WallCollisionObject::Start()
 
 void WallCollisionObject::OnCollisionEnter(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
+	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy)
 	{
 		GameObject* object = target->GetOwner();
 
@@ -73,34 +72,16 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
-			if (target->GetColliderLayer() == ColliderLayer::Item)
-			{
-				StarObject* targetStar = dynamic_cast<StarObject*>(target->GetOwner());
-				if (targetStar != nullptr)
-				{
-					targetStar->GetRigidbody()->ResetDropSpeed();
-					targetStar->GetRigidbody()->SetGround(false);
-					targetStar->GetRigidbody()->SetVelocity({ targetStar->GetRigidbody()->GetCurrentVelocity().x, -500.f });
-				}
-				else
-				{
-					object->GetRigidbody()->SetGround(true);
-					object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
-				}
-			}
-			else
-			{
-				object->GetRigidbody()->SetGround(true);
-				object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
-			}
 
+			object->GetRigidbody()->SetGround(true);
+			object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
 		}
 	}
 }
 
 void WallCollisionObject::OnCollisionStay(Collider * target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
+	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy)
 	{
 		GameObject* object = target->GetOwner();
 		Rigidbody* targetRigidbody = target->GetOwner()->GetRigidbody();

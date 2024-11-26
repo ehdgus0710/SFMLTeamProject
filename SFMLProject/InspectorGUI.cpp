@@ -4,18 +4,14 @@
 #include "imgui.h"
 #include "TileMap.h"
 #include "TileMapController.h"
-#include "BlockObject.h"
 #include "SavePointObject.h"
-#include "GameClearObject.h"
 
 #include "ComponentGUI.h"
 #include "TileMapControllerGUI.h"
 #include "TileMapGUI.h"
 #include "ColliderGUI.h"
 #include "AnimationGUI.h"
-#include "BlockGUI.h"
 #include "SavePointGUI.h"
-#include "GameClearPointGUI.h"
 #include "EnemySpawner.h"
 #include "EnemySpawnerGUI.h"
 
@@ -42,9 +38,7 @@ void InspectorGUI::Init()
 	componetGUIvector.push_back(new ColliderGUI);
 	componetGUIvector.push_back(new TileMapGUI);
 	componetGUIvector.push_back(new TileMapControllerGUI);
-	componetGUIvector.push_back(new BlockGUI);
 	componetGUIvector.push_back(new SavePointGUI);
-	componetGUIvector.push_back(new GameClearPointGUI);
 	componetGUIvector.push_back(new EnemySpawnerGUI);
 }
 
@@ -103,21 +97,11 @@ void InspectorGUI::SetObject(GameObject* object)
 		componetGUIvector[(int)ComponentGUIType::TileMapController]->SetObject(targetObject);
 	else
 		componetGUIvector[(int)ComponentGUIType::TileMapController]->SetObject(nullptr);
-
-	if (dynamic_cast<BlockObject*>(targetObject) != nullptr)
-		componetGUIvector[(int)ComponentGUIType::Block]->SetObject(targetObject);
-	else
-		componetGUIvector[(int)ComponentGUIType::Block]->SetObject(nullptr);
-
 	if (dynamic_cast<SavePointObject*>(targetObject) != nullptr)
 		componetGUIvector[(int)ComponentGUIType::SavePoint]->SetObject(targetObject);
 	else
 		componetGUIvector[(int)ComponentGUIType::SavePoint]->SetObject(nullptr);
 
-	if (dynamic_cast<GameClearObject*>(targetObject) != nullptr)
-		componetGUIvector[(int)ComponentGUIType::GameClearPoint]->SetObject(targetObject);
-	else
-		componetGUIvector[(int)ComponentGUIType::GameClearPoint]->SetObject(nullptr);
 	if (dynamic_cast<EnemySpawner*>(targetObject) != nullptr)
 		componetGUIvector[(int)ComponentGUIType::EnemySpawner]->SetObject(targetObject);
 	else

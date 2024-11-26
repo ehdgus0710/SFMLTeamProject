@@ -5,7 +5,6 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Animation.h"
-#include "FireBullet.h"
 
 #include "GameManager.h"
 #include "Camera.h"
@@ -23,32 +22,12 @@ Player::Player(const std::string& name)
 	, currentReloadTime(0.f)
 	, isReload(false)
 	, isAttack(false)
-	, currentStarState(0.f)
-	, starStateTime(9.f)
-	, isStarState(false)
-	, colorChangeTime(0.1f)
-	, currentColorTime(0.f)
-	, currentColorIndex(0)
 	, isDead(false)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
 	CreateAnimator();
-	animator->LoadCsv("animators/mario.csv");
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
-
-	defaultColor = sprite.getColor();
-	effectColor = defaultColor;
-	effectColor.a = 120;
-
-	animator->GetAnimation("marioFireIdleAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
-	animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 1);
-	animator->GetAnimation("marioFireJumpAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
-
-	starStateChangeColors[0] = { 230,230,230,255 };
-	starStateChangeColors[1] = { 230,200,20,255 };
-	starStateChangeColors[2] = { 58,132,0,255 };
-	starStateChangeColors[3] = { 230,156,33,255 };
 }
 
 Player::~Player()
@@ -72,13 +51,6 @@ void Player::ChangeMario(int hp)
 		collider->SetScale({ 64.f, 128.f });
 		fsm.ChangeState(PlayerStateType::Idle);
 	}
-}
-
-void Player::OnStarState()
-{
-	isStarState = true;
-	currentStarState = 0.f;
-	SoundManger::GetInstance().PlayBgm("Invincible");
 }
 
 void Player::Awake()
@@ -124,7 +96,6 @@ void Player::TakeDamage()
 	else
 	{ 
 		fsm.ChangeState(PlayerStateType::Hit);
-		sprite.setColor(effectColor);
 	}
 
 	currentHitTime = hitTime;
@@ -140,111 +111,13 @@ void Player::OnFlipX()
 
 void Player::AddItem(ItemType itemType)
 {
-	switch (itemType)
-	{
-	case ItemType::Coin:
-		GameManager::GetInstance().HaveCoin();
-		break;
-	case ItemType::MushRoom:
-		if (currentStatus.hp == 1)
-		{
-			fsm.ChangeState(PlayerStateType::Upgrade);
-		}
-		else if (currentStatus.hp > 1)
-		{
-			GameManager::GetInstance().OnLifeUp();
-
-			InGameScoreUI* inGameScoreUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new InGameScoreUI("DungGeunMo", "MushRoomScore", 30), LayerType::InGameUI);
-			inGameScoreUI->SetString("1UP");
-			inGameScoreUI->SetPosition(position + sf::Vector2f::up * 20.f);
-			inGameScoreUI->Start();
-			SoundManger::GetInstance().PlaySfx("OneUp");
-		}
-		break;
-	case ItemType::Flower:
-		if(currentStatus.hp < 3)
-			fsm.ChangeState(PlayerStateType::Upgrade);
-		break;
-	case ItemType::Star:
-	{
-		OnStarState();
-	}
-		break;
-	case ItemType::End:
-		break;
-	default:
-		break;
-	}
 }
-void Player::TakeUpgrade()
-{
-	// fsm.ChangeState(PlayerStateType::Upgrade);
-}
-
 void Player::Attack()
 {
-	if ( isAttack || isReload || isStarState || currentStatus.hp < 3)
-		return;
-
-	if (!(fsm.GetCurrentStateType() == PlayerStateType::Idle || fsm.GetCurrentStateType() == PlayerStateType::Jump || fsm.GetCurrentStateType() == PlayerStateType::Run))
-		return;
-
-	FireBullet* bullet = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FireBullet(), LayerType::PlayerBullet);
-
-	sf::Vector2f direciton;
-	
-	if (isFlipX)
-	{
-		direciton = sf::Vector2f::left;
-		bullet->SetPosition(position + sf::Vector2f::left * 32.f);
-	}
-	else
-	{
-		direciton = sf::Vector2f::right;
-		bullet->SetPosition(position + sf::Vector2f::right * 32.f);
-	}
-
-	direciton.Normalized();
-
-	bullet->SetMoveDirection(direciton);
-	bullet->GetRigidbody()->SetVelocity({ 0.f, 0.f });
-	
-	bullet->Awake();
-	bullet->Start();
-
-	if (fsm.GetCurrentStateType() == PlayerStateType::Idle)
-	{
-		animator->ChangeAnimation("marioFireIdleAttack");
-	}
-	else if (fsm.GetCurrentStateType() == PlayerStateType::Jump)
-	{
-		animator->ChangeAnimation("marioFireJumpAttack");
-	}
-	else if (fsm.GetCurrentStateType() == PlayerStateType::Run)
-	{
-		animator->ChangeAnimation("marioFireRunAttack");
-	}
-
-	SoundManger::GetInstance().PlaySfx("Fireball");
 }
 
 void Player::OnAttackEnd()
 {
-	isAttack = false;
-	isReload = true;
-
-	if (fsm.GetCurrentStateType() == PlayerStateType::Idle)
-	{
-		animator->ChangeAnimation("marioFireIdle", true);
-	}
-	else if (fsm.GetCurrentStateType() == PlayerStateType::Jump)
-	{
-		animator->ChangeAnimation("marioFireJump", true);
-	}
-	else if (fsm.GetCurrentStateType() == PlayerStateType::Run)
-	{
-		animator->ChangeAnimation("marioFireRun", true);
-	}
 }
 
 
@@ -259,7 +132,6 @@ void Player::Update(const float& deltaTime)
  
 		if (currentHitTime <= 0.f)
 		{
-			sprite.setColor(defaultColor);
 			isHit = false;
 			currentHitTime = 0.f;
 		}
@@ -288,28 +160,6 @@ void Player::Update(const float& deltaTime)
 		position.x = mainCamera->GetCameraLeftPosition() + abs(collider->GetScale().x * 0.5f);
 		SetPosition(position);
 	}
-	if (isStarState)
-	{
-		currentStarState += deltaTime;
-		currentColorTime += deltaTime;
-
-		if (currentColorTime >= colorChangeTime)
-		{
-			sprite.setColor(starStateChangeColors[currentColorIndex]);
-			currentColorTime = 0.f;
-
-			currentColorIndex = currentColorIndex == 3 ? 0 : currentColorIndex + 1;
-		}
-
-		if (currentStarState >= starStateTime)
-		{
-			currentStarState = 0.f;
-			isStarState = false;
-			sprite.setColor(defaultColor);
-			SoundManger::GetInstance().PlayBgm("MainTheme");
-		}
-	}
-
 	if (isReload)
 	{
 		currentReloadTime += deltaTime;
@@ -325,19 +175,6 @@ void Player::FixedUpdate(const float& deltaTime)
 {
 	fsm.FixedUpdate(deltaTime);
 	rigidBody->FixedUpdate(deltaTime); 
-
-	/*if (!isHit)
-	{
-		if (position.y >= 0.f)
-		{
-			isJump = false;
-			position.y = 0.f;
-
-			rigidBody->SetGround(true);
-			SetPosition(position);
-		}
-	}*/
-	
 }
 
 void Player::LateUpdate(const float& deltaTime)
@@ -358,7 +195,7 @@ void Player::OnCollisionStay(Collider* target)
 }
 void Player::OnCollisionEnd(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Block)
+	if (target->GetColliderLayer() == ColliderLayer::Wall)
 	{
 		auto& targets = collider->GetCollisionTargets();
 		bool isGround = false;

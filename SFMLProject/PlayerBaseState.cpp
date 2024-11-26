@@ -14,7 +14,7 @@ PlayerBaseState::~PlayerBaseState()
 
 void PlayerBaseState::Awake()
 {
-
+	animator = player->GetAnimator();
 }
 
 void PlayerBaseState::Start()

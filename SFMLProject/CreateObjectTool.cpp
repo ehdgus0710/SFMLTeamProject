@@ -3,13 +3,8 @@
 #include "imgui.h"
 
 #include "Scene.h"
-#include "Goomba.h"
-#include "BlockObject.h"
-#include "ItemBlockObject.h"
-#include "BrickBlockObject.h"
-#include "GameClearObject.h"
 #include "EnemySpawner.h"
-#include "KoopaTroopa.h"
+#include "Enemy.h"
 
 #include "SavePointObject.h"
 
@@ -54,10 +49,8 @@ void CreateObjectTool::Update()
 	static const CreateObjectTypeEnum objectEnum[] =
 	{
 		{ CreateObjectType::Enemy , "Enemy"}
-		,{ CreateObjectType::Block , "Block"}
 		,{ CreateObjectType::Item , "Item"}
 		, { CreateObjectType::SavePoint , "SavePoint"}
-		, { CreateObjectType::GameClear , "GameClear"}
 		, { CreateObjectType::EnemySpawner , "EnemySpawner"}
 	};
 
@@ -95,14 +88,10 @@ void CreateObjectTool::Update()
 
 	if (currentType == CreateObjectType::Enemy)
 		OnEnemy();
-	else if (currentType == CreateObjectType::Block)
-		OnBlock();
 	else if (currentType == CreateObjectType::Item)
 		OnItem();
 	else if (currentType == CreateObjectType::SavePoint)
 		OnSavePoint();
-	else if (currentType == CreateObjectType::GameClear)
-		OnGameClearPoint();
 	else if (currentType == CreateObjectType::EnemySpawner)
 		OnEnemySpawner();
 
@@ -147,18 +136,6 @@ void CreateObjectTool::OnEnemy()
 			{
 				Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
 				Enemy* enemy = nullptr;
-				if (currentIndex == 0)
-				{
-					enemy = currentScene->AddGameObject(new Goomba, LayerType::Enemy);
-					enemy->Awake();
-					enemy->Start();
-				}
-				else if (currentIndex == 1)
-				{
-					enemy = currentScene->AddGameObject(new KoopaTroopa, LayerType::Enemy);
-					enemy->Awake();
-					enemy->Start();
-				}
 
 				if (enemy != nullptr)
 				{
@@ -179,84 +156,6 @@ void CreateObjectTool::OnEnemy()
 	ImGui::EndChild();
 }
 
-void CreateObjectTool::OnBlock()
-{
-	ImGui::BeginChild("Block");
-	int index = (int)blockTextureRects.size();
-
-	ImVec4			bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
-	ImVec4			tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-
-	for (int i = 0; i < index; ++i)
-	{
-		sprite.setTextureRect(blockTextureRects[i]);
-		ImGui::SameLine();
-		if (ImGui::ImageButton(("Block" + std::to_string(i)).c_str(), sprite, { 32.f, 32.f }))
-		{
-			currentIndex = i;
-			blockSelect = true;
-		}
-	}
-
-	ImGui::Text("Select Block");
-	sprite.setTextureRect(blockTextureRects[currentIndex]);
-	ImGui::Image(sprite, { 32.f, 32.f });
-
-	if (blockSelect)
-	{
-		if (activeBlockCreate)
-		{
-			ImGui::Text("Select Block");
-
-			if (InputManager::GetInstance().GetKeyUp(sf::Mouse::Left))
-			{
-				Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
-				BlockObject* block = nullptr;
-				if (currentIndex == 1 || currentIndex == 2)
-				{
-					block = currentScene->AddGameObject(new BrickBlockObject(resoureceVector[1]), LayerType::Block);
-				}
-				else if (currentIndex == 7)
-				{
-					block = currentScene->AddGameObject(new ItemBlockObject(ItemType::Coin, resoureceVector[1], resoureceVector[1]), LayerType::Block);
-				}
-				else
-					block = currentScene->AddGameObject(new BlockObject(BlockType::Default, resoureceVector[1]), LayerType::Block);
-
-				if (block != nullptr)
-				{
-					sf::Vector2f pos;
-
-					if (currentScene->IsFreeView())
-						pos = currentScene->ScreenToFreeViewWorld(InputManager::GetInstance().GetMousePosition());
-					else
-						pos = currentScene->ScreenToWorld(InputManager::GetInstance().GetMousePosition());
-
-					int posX = (int)(pos.x / block->GetRectSize().x) + 1;
-					int posY = (int)(pos.y / block->GetRectSize().y) + 1;
-
-					pos = { block->GetRectSize().x * (posX), block->GetRectSize().y * (posY) };
-					pos -= (block->GetRectSize() * 0.5f);
-					block->SetPosition(pos);
-
-					block->SetUVRect(blockTextureRects[currentIndex]);
-					block->Awake();
-					block->Start();
-				}
-			}
-		}
-
-		if (ImGui::Button("Active Create Block", { 50, 20 }))
-			activeBlockCreate = !activeBlockCreate;
-
-		if (InputManager::GetInstance().GetKeyUp(sf::Mouse::Right))
-		{
-			activeBlockCreate = false;
-		}
-	}
-	ImGui::EndChild();
-}
-
 void CreateObjectTool::OnItem()
 {
 	ImGui::BeginChild("Item");
@@ -271,17 +170,6 @@ void CreateObjectTool::OnSavePoint()
 	if (ImGui::Button("Create SavePoint", { 50, 20 }))
 	{
 		SavePointObject* savePointObject = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new SavePointObject(), LayerType::Default);
-	}
-	ImGui::EndChild();
-}
-
-void CreateObjectTool::OnGameClearPoint()
-{
-	ImGui::BeginChild("ClearObject");
-
-	if (ImGui::Button("Create ClearObject", { 50, 20 }))
-	{
-		GameClearObject* gameClearObject = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new GameClearObject(), LayerType::CleraPoint);
 	}
 	ImGui::EndChild();
 }

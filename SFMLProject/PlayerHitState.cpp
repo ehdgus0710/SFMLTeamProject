@@ -8,8 +8,6 @@ PlayerHitState::PlayerHitState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Hit)
 	, currentTime(0.f)
 {
-	animationKeys.push_back("marioSmallHit");
-	animationKeys.push_back("marioHit");
 }
 
 PlayerHitState::~PlayerHitState()
@@ -20,29 +18,21 @@ void PlayerHitState::StartEffect()
 {
 	if (player->GetCurrentHP() == 1)
 	{
-		sf::Vector2f currentOrigin = player->GetOrigin();
-		player->SetOrigin(Origins::BottomCenter);
-		currentOrigin = player->GetOrigin();
-		currentOrigin.y = 152.f * 0.5f;
-		//player->SetPosition(player->GetPosition() + currentOrigin);
+		// 공격 애니메이션으로 변경
 		player->GetAnimator()->ChangeAnimation("marioHit", true, true);
 		player->GetCollider()->SetScale(player->GetCollider()->GetScale() * 0.5f);
 
+		
+		// 현재 애니메이션은 공격 애니메이션으로 변경 됨
 		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
 		
+		// 현재 애니메이션을 가져와서 공격 이벤트를 넣어주는 상태
 		animation->SetAnimationStartEvent(std::bind(&PlayerHitState::ChangePosition ,this ), 2);
 		animation->SetAnimationStartEvent(std::bind(&PlayerHitState::ChangePosition, this), 5);
 
 		animation->SetAnimationEndEvent(std::bind(&PlayerHitState::ReturnPosition, this), 2);
 		animation->SetAnimationEndEvent(std::bind(&PlayerHitState::ReturnPosition, this), 5);
-
-		originalPosition = player->GetPosition();
-		changePosition = originalPosition;
-		changePosition.y += (animation->GetFrameInfo()[0].rectSize.y - animation->GetFrameInfo()[2].rectSize.y) * 0.5f;
 	}
-
-
-	//player->SetOrigin(Origins::MiddleCenter);
 }
 
 void PlayerHitState::ChangePosition()
@@ -66,25 +56,13 @@ void PlayerHitState::Start()
 void PlayerHitState::Enter()
 {
 	PlayerBaseState::Enter();
-
-	currentTime = 0.f;
-
-	StartEffect();
-
-	SoundManger::GetInstance().PlaySfx("PowerUpAppears");
-
-	player->SetOrigin(Origins::MiddleCenter);
-	player->GetCollider()->SetActive(false);
-	TimeManager::GetInstance().SetTimeScale(0.f);
 }
 
 void PlayerHitState::Exit()
 {
 	PlayerBaseState::Exit();
-	TimeManager::GetInstance().SetTimeScale(1.f);
-	player->GetCollider()->SetActive(true);
 
-	if (player->GetCurrentHP() == 1)
+	/*if (player->GetCurrentHP() == 1)
 	{
 		player->SetPosition(changePosition);
 		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
@@ -92,7 +70,7 @@ void PlayerHitState::Exit()
 		animation->ClearEndEvent(2);
 		animation->ClearStartEvent(5);
 		animation->ClearEndEvent(5);
-	}
+	}*/
 }
 
 void PlayerHitState::Update(float deltaTime)

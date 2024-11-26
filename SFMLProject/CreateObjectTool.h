@@ -5,10 +5,8 @@
 enum class CreateObjectType
 {
     Enemy,
-    Block,
     Item,
     SavePoint,
-    GameClear,
     EnemySpawner,
     End
 };
@@ -45,10 +43,8 @@ public:
     void Update() override;
 
     void OnEnemy();
-    void OnBlock();
     void OnItem();
     void OnSavePoint();
-    void OnGameClearPoint();
     void OnEnemySpawner();
 public:
     CreateObjectTool();

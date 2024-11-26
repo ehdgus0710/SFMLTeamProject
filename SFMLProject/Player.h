@@ -16,16 +16,10 @@ protected:
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
 
-	sf::Color		effectColor;
-	sf::Color		defaultColor;
-
 	float			hitTime;
 	float			currentHitTime;
 	float			reloadTime;
 	float			currentReloadTime;
-
-	float			currentStarState;
-	float			starStateTime;
 
 	bool			isJump;
 	bool			isHit;
@@ -34,22 +28,13 @@ protected:
 
 	bool			isReload;
 	bool			isAttack;
-	bool			isStarState;
 	bool			isRun;
-
-	int				currentColorIndex;
-	float			colorChangeTime;
-	float			currentColorTime;
-
-	sf::Color		starStateChangeColors[4];
 
 public:
 	void TakeDamage();
 	void OnFlipX();
 	bool IsFlipX() { return isFlipX; }
-	void AddHp() { ++currentStatus.hp; }
 	void AddItem(ItemType itemType);
-	void TakeUpgrade();
 	void Attack();
 	void OnAttackEnd();
 
@@ -68,15 +53,13 @@ public:
 
 	bool IsRun() { return isRun; }
 	bool IsHit() const { return isHit; }
-	bool IsStarState() { return isStarState; }
 	void SetIsJump(bool jump) { isJump = jump; }
 	int GetCurrentHP() const { return currentStatus.hp; }
-	float GetSpeed() { return currentStatus.speed + (isRun ? 300.f : 0.f); }
+	float GetSpeed() { return currentStatus.speed; }
 
 	void SetHp(int hp) { currentStatus.hp = hp; }
 	void ChangeSmallMario();
 	void ChangeMario(int hp);
-	void OnStarState();
 
 public:
 	void Awake() override;

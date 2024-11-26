@@ -16,8 +16,6 @@ Bullet::Bullet(ColliderLayer type, const std::string& texId, const std::string& 
 	, currentLifeTime(0.f)
 {
 	CreateCollider(ColliderType::Rectangle, type);
-	/*CreateAnimator();
-	animator->LoadCsv("animators/attackFire.csv");*/
 }
 
 
@@ -28,10 +26,7 @@ void Bullet::Start()
 	SetRotation(rotation);
 
 	SetOrigin(originPreset);
-	// animator->Start();
 	collider->Reset();
-	// collider->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
-	// animator->ChangeAnimation("attackFire", true);
 }
 
 void Bullet::SetOrigin(Origins preset)
@@ -112,8 +107,6 @@ void Bullet::Update(const float& deltaTime)
 
 void Bullet::FixedUpdate(const float& deltaTime)
 {
-	// rigidBody->SetVelocity({ speed * moveDirection.x, rigidBody->GetCurrentVelocity().y });
-	// rigidBody->FixedUpdate(deltaTime);
 }
 
 void Bullet::Render(sf::RenderWindow& renderWindow)

@@ -14,7 +14,7 @@ EnemySpawner::EnemySpawner(const std::string& name)
 	, currentSpawnTime(0.f)
 	, spawnActiveDistance(3000.f)
 	, spawnTime(10.f)
-	, spawnerType(EnemyType::Goomba)
+	, spawnerType(EnemyType::End)
 {
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::SavePoint);
 }
@@ -25,28 +25,6 @@ void EnemySpawner::SpawnEnemy()
 
 	switch (spawnerType)
 	{
-	case EnemyType::Goomba:
-	{
-		for (auto& pos : spawnPositions)
-		{
-			Enemy* enemy = currentScene->AddGameObject(new Goomba(), LayerType::Enemy);
-			enemy->SetPosition(pos);
-			enemy->Awake();
-			enemy->Start();
-		}
-	}
-		break;
-	case EnemyType::KoopaTroopa:
-		for (auto& pos : spawnPositions)
-		{
-			Enemy* enemy = currentScene->AddGameObject(new KoopaTroopa(), LayerType::Enemy);
-			enemy->SetPosition(pos);
-			enemy->Awake();
-			enemy->Start();
-		}
-		break;
-	case EnemyType::Koopa:
-		break;
 	case EnemyType::End:
 		break;
 	default:

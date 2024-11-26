@@ -4,17 +4,17 @@
 #include "Player.h"
 #include "PlayerFSM.h"
 
+class Animator;
+
 class PlayerBaseState : public BaseState<PlayerStateType>
 {
 protected:
 	Player*		player;
 	PlayerFSM*	fsm;
+	Animator*	animator;
 
 	std::vector<std::function<void()>>	stateStartEvents;
 	std::vector<std::function<void()>>	stateEndEvents;
-
-	std::vector<std::string>	animationKeys;
-	int							animationKeyIndex;
 
 public:
 	void Awake() override;

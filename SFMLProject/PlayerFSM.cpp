@@ -2,15 +2,11 @@
 #include "PlayerFSM.h"
 
 #include "PlayerIdleState.h"
-#include "PlayerBreakState.h"
 #include "PlayerRunState.h"
 #include "PlayerJumpState.h"
 #include "PlayerDeadState.h"
 #include "PlayerBaseState.h"
 #include "PlayerHitState.h"
-#include "PlayerUpgradeState.h"
-#include "PlayerGameClearState.h"
-#include "PlayerDownState.h"
 
 PlayerFSM::PlayerFSM(Player* owner)
 	: owner(owner)
@@ -58,15 +54,6 @@ void PlayerFSM::CreateAllState()
 		case PlayerStateType::Dead:
 			AddState(PlayerStateType::Dead);
 			break;
-		case PlayerStateType::Upgrade:
-			AddState(PlayerStateType::Upgrade);
-			break;
-		case PlayerStateType::GameClear:
-			AddState(PlayerStateType::GameClear);
-			break;
-		case PlayerStateType::Down:
-			AddState(PlayerStateType::Down);
-			break;
 		case PlayerStateType::End:
 			break;
 		default:
@@ -87,9 +74,6 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 	case PlayerStateType::Run:
 		state = new PlayerRunState(this);
 		break;
-	case PlayerStateType::Break:
-		state = new PlayerBreakState(this);
-		break;
 	case PlayerStateType::Jump:
 		state = new PlayerJumpState(this);
 		break;
@@ -98,15 +82,6 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 		break;
 	case PlayerStateType::Dead:
 		state = new PlayerDeadState(this);
-		break;
-	case PlayerStateType::Upgrade:
-		state = new PlayerUpgradeState(this);
-		break;
-	case PlayerStateType::GameClear:
-		state = new PlayerGameClearState(this);
-		break;
-	case PlayerStateType::Down:
-		state = new PlayerDownState(this);
 		break;
 	case PlayerStateType::End:
 		break;

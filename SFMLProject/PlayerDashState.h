@@ -11,7 +11,10 @@ protected:
 	sf::Vector2f	dashEndPos;
 	sf::Vector2f	dashStartPos;
 	float			dashTime;
-	float			currenttime;
+	float			currentTime;
+
+	bool			extraDash;
+	int				dashCount;
 public:
 	void Awake() override;
 	void Start() override;

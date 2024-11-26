@@ -2,6 +2,17 @@
 #include "PlayerDashState.h"
 #include "Rigidbody.h"
 
+PlayerDashState::PlayerDashState(PlayerFSM* fsm)
+	: PlayerBaseState(fsm, PlayerStateType::Dash)
+	, extraDash(false)
+	, dashCount(0)
+{
+}
+
+PlayerDashState::~PlayerDashState()
+{
+}
+
 void PlayerDashState::Awake()
 {
 }
@@ -18,10 +29,11 @@ void PlayerDashState::Enter()
 	rigidbody->ResetVelocity();
 	rigidbody->Disable();
 	dashTime = 0.5f;
-	currenttime = 0.f;
+	currentTime = 0.f;
 
 	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 500.f;
 	dashStartPos = player->GetPosition();
+	dashCount = 1;
 
 	player->OnDash();
 
@@ -37,13 +49,29 @@ void PlayerDashState::Exit()
 void PlayerDashState::Update(float deltaTime)
 {
  	PlayerBaseState::Update(deltaTime);
-	currenttime += deltaTime;
-	player->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currenttime / dashTime));
+	currentTime += deltaTime;
+	player->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currentTime / dashTime));
 
-	if (currenttime >= dashTime)
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
 	{
-		fsm->ChangeState(PlayerStateType::Idle);
+		extraDash = true;
 	}
+
+	if (currentTime >= dashTime)
+	{
+		if (extraDash && dashCount == 1)
+		{
+			dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 500.f;
+			dashStartPos = player->GetPosition();
+			currentTime = 0.f;
+			++dashCount;
+			extraDash = false;
+		}
+		else
+			fsm->ChangeState(PlayerStateType::Idle);
+	}
+
+	
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
 	{
@@ -55,13 +83,4 @@ void PlayerDashState::Update(float deltaTime)
 void PlayerDashState::FixedUpdate(float fixedDeltaTime)
 {
 	PlayerBaseState::FixedUpdate(fixedDeltaTime);
-}
-
-PlayerDashState::PlayerDashState(PlayerFSM* fsm)
-	: PlayerBaseState(fsm, PlayerStateType::Dash)
-{
-}
-
-PlayerDashState::~PlayerDashState()
-{
 }

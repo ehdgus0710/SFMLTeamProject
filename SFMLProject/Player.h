@@ -12,12 +12,16 @@ protected:
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
 
-	sf::Vector2f	moveDirection;
+	float		moveDirectionX;
 	DefaultStatus	currentStatus;
 
 	int				jumpCount;
 	int				currentJumpCount;
+	int				dashCount;
+	int				currentDashCount;
 
+	float			dashDelayTime;
+	float			currentDashDelayTime;
 	float			hitTime;
 	float			currentHitTime;
 	float			reloadTime;
@@ -36,7 +40,8 @@ public:
 	void Attack();
 	void OnAttackEnd();
 
-	const sf::Vector2f& GetMoveDirection() { return moveDirection; }
+	void SetMoveDirection(float direction) { moveDirectionX = direction; }
+	const float& GetMoveDirection() { return moveDirectionX; }
 
 	PlayerFSM& GetFSM() { return fsm; }
 public:
@@ -49,6 +54,9 @@ public:
 	int GetJumpCount() { return jumpCount; }
 	void SetCurrentJumpCount(int count) { currentJumpCount = count; }
 	int GetCurrentJumpCount() { return currentJumpCount; }
+	int GetDashCount() { return dashCount; }
+	void SetCurrentDashCount(int count) { currentDashCount = count; }
+	int GetCurrentDashCount() { return currentDashCount; }
 
 	void SetHp(float hp) { currentStatus.hp = hp; }
 public:

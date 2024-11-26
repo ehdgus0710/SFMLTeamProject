@@ -24,6 +24,8 @@ Player::Player(const std::string& name)
 	, isDead(false)
 	, jumpCount(2)
 	, currentJumpCount(0)
+	, dashCount(2)
+	, currentDashCount(0)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -71,6 +73,8 @@ void Player::OnAttackEnd()
 void Player::Awake()
 {
 	AnimationGameObject::Awake();
+	currentDashCount = dashCount;
+	dashDelayTime = 1.f;
 }
 
 void Player::Start()
@@ -83,6 +87,7 @@ void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
+	currentDashCount += deltaTime;
 
 	if (isHit)
 	{
@@ -93,6 +98,16 @@ void Player::Update(const float& deltaTime)
 			isHit = false;
 			currentHitTime = 0.f;
 		}
+	}
+
+	if (currentDashCount == 0.f)
+	{
+		currentDashDelayTime += deltaTime;
+		if (currentDashDelayTime > dashDelayTime)
+		{
+			currentDashCount = dashCount;
+		}
+		currentDashDelayTime = 0.f;
 	}
 }
 
@@ -141,7 +156,7 @@ void Player::OnCollisionEnd(Collider* target)
 		{
 			rigidBody->SetGround(false);
 			currentJumpCount = 1;
-			if(rigidBody->GetCurrentVelocity().y >= 0.f)
+			if(fsm.GetCurrentStateType() != PlayerStateType::Dash && rigidBody->GetCurrentVelocity().y > 0.f)
 				fsm.ChangeState(PlayerStateType::Falling);
 		}
 	}

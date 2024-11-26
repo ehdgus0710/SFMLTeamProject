@@ -18,11 +18,32 @@ PlayerRunState::~PlayerRunState()
 
 void PlayerRunState::InputMove()
 {
+	horizontal = player->GetMoveDirection();
+
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) &&
+		InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	{
+		horizontal = 0.f;
+	}
+	else if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
+	{
+		horizontal = -1.f;
+	}
+	else if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	{
+		horizontal = 1.f;
+	}
+	else
+		horizontal = 0.f;
+
+	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))
+		player->OnFlipX();
+	player->SetMoveDirection(horizontal);
 }
 
 void PlayerRunState::InputJump()
 {
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Space))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Jump);
 	}
@@ -48,7 +69,7 @@ void PlayerRunState::Enter()
 	//isLeftRun = horizontal > 0.f ? false : true;
 
 
-	if((isLeftRun && !player->IsFlipX()) || (!isLeftRun && player->IsFlipX()))
+	if ((isLeftRun && !player->IsFlipX()) || (!isLeftRun && player->IsFlipX()))
 		player->OnFlipX();
 }
 
@@ -60,19 +81,8 @@ void PlayerRunState::Exit()
 
 void PlayerRunState::Update(float deltaTime)
 {
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
-	{
-		horizontal = -1.f;
-	}
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
-	{
-		horizontal = 1.f;
-	}
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Left) || 
-		InputManager::GetInstance().GetKeyUp(sf::Keyboard::Right))
-	{
-		horizontal = 0.f;
-	}
+	InputMove();
+
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C))
 	{
 		if (rigidbody->IsGround())
@@ -90,7 +100,7 @@ void PlayerRunState::Update(float deltaTime)
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
 	{
-		player->Attack();
+		fsm->ChangeState(PlayerStateType::Dash);
 	}
 }
 

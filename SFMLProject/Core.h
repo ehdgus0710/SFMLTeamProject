@@ -104,6 +104,7 @@ enum class PlayerStateType
 	Hit,
 	Dead,
 	Falling,
+	Dash,
 	End
 };
 

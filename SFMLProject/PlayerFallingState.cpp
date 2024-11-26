@@ -65,9 +65,8 @@ void PlayerFallingState::Update(float deltaTime)
 	{
 		player->OnFlipX();
 	}
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0);
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
 	{
-		player->OnDash();
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
 	PlayerBaseState::Update(deltaTime);

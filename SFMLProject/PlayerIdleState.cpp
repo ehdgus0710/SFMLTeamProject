@@ -67,7 +67,6 @@ void PlayerIdleState::Update(float deltaTime)
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
 	{
-		player->OnDash();
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
 }

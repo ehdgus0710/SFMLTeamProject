@@ -68,7 +68,6 @@ void PlayerJumpState::Update(float deltaTime)
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
 	{
-		player->OnDash();
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
 	if (player->IsJump())

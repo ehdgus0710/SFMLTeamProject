@@ -26,8 +26,6 @@ void EndingCreditTimeLine::Update(const float& deltaTime)
 		if (currentTime >= endTime)
 		{
 			SetActive(false);
-			GameManager::GetInstance().SetGameClear();
-			GameManager::GetInstance().SetEndAdjustment(true);
 			InputManager::GetInstance().SetInputable(false);
 		}
 	}

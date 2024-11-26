@@ -18,30 +18,6 @@ void SceneDev1::Enter()
 	CameraManger::GetInstance().SetCamera(uICamera);
 	LoadResources();
 
-	GameManager::GetInstance().SetWorldName("1-1");
-
-	StartUIObject* startUIObject = AddGameObject(new StartUIObject(), LayerType::UI);
-	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
-
-	backgroundColorBox = AddGameObject(new BackgroundColorBox(), LayerType::Default);
-	backgroundColorBox->SetScale({ 2000.f, 1300.f });
-	backgroundColorBox->SetColor(sf::Color(85, 151, 248));
-
-	CollisitionCheck();
-	
-	if (!GameManager::GetInstance().IsRestart())
-	{
-		Load(loadPath);
-		player->ChangeSmallMario();
-		GameManager::GetInstance().OnSavePoint(player->GetPosition());
-	}
-	Scene::Enter();
-
-	GameManager::GetInstance().SetTimerUI(uiHub->GetTextGameObject("TimerUI"));
-	GameManager::GetInstance().SetCoinUI(uiHub->GetTextGameObject("CoinUI"));
-	GameManager::GetInstance().SetScoreUI(uiHub->GetTextGameObject("ScoreUI"));
-	uiHub->GetTextGameObject("WorldUI")->SetString(GameManager::GetInstance().GetWorldName());
-
 	GameManager::GetInstance().GameStartInit();
 
 	// startUIObject->Start();
@@ -63,44 +39,6 @@ void SceneDev1::Release()
 void SceneDev1::Update(float dt)
 {
 	Scene::Update(dt);
-
-	if (GameManager::GetInstance().IsRestart())
-	{
-		ColliderManager::GetInstance().Clear();
-		GameManager::GetInstance().ReStart();
-
-		if (GameManager::GetInstance().IsGameOver())
-		{
-			mainCamera->SetFollowTarget(nullptr);
-			player = nullptr;
-			return;
-		}
-
-		player = (Player*)GetObjectVector(LayerType::Player)[0];
-	}
-	else if (GameManager::GetInstance().IsEndAdjustment())
-	{
-		GameManager::GetInstance().SetMarioHp(player->GetCurrentHP());
-		ColliderManager::GetInstance().Clear();
-		GameManager::GetInstance().NextStage();
-		mainCamera->SetFollowTarget(nullptr);
-		return;
-	}
-	else
-	{
-		backgroundColorBox->SetPosition(mainCamera->GetCameraPosition());
-		GameManager::GetInstance().Update(dt);
-	}
-
-	if (player != nullptr)
-	{
-		if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
-		{
-			currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
-			mainCamera->SetCameraLimitRect(currentCameraLimitRect);
-		}
-		
-	}
 
 
 }

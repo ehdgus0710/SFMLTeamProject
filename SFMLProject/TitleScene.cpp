@@ -21,7 +21,6 @@ void TitleScene::Init()
 
 void TitleScene::Enter()
 {
-	GameManager::GetInstance().Reset();
 
 	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
 	ResourcesManager<sf::Texture>::GetInstance().Load("title_screen", "graphics/title_screen.png", true);

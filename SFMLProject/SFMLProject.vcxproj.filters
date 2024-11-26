@@ -516,6 +516,9 @@
     <ClCompile Include="TriggerObject.cpp">
       <Filter>Contants\UtilsObject</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationGameObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -844,6 +847,9 @@
     </ClInclude>
     <ClInclude Include="TriggerObject.h">
       <Filter>Contants\UtilsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationGameObject.h">
+      <Filter>Contants\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

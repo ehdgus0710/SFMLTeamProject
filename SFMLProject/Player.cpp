@@ -11,11 +11,10 @@
 #include "InGameScoreUI.h"
 
 Player::Player(const std::string& name)
-	: GameObject(name)
+	: AnimationGameObject(name)
 	, fsm(this)
 	, isJump(false)
 	, currentStatus(2, 500.f, 200.f, 350.f)
-	, isFlipX(false)
 	, hitTime(2.f)
 	, currentHitTime(0.f)
 	, reloadTime(0.2f)
@@ -33,52 +32,6 @@ Player::Player(const std::string& name)
 Player::~Player()
 {
 }
-
-void Player::ChangeSmallMario()
-{
-	currentStatus.hp = 1;
-	collider->SetScale({32.f, 64.f});
-	fsm.ChangeState(PlayerStateType::Idle);
-}
-
-void Player::ChangeMario(int hp)
-{
-	currentStatus.hp = hp;
-	if (hp == 1)
-		ChangeSmallMario();
-	else
-	{
-		collider->SetScale({ 64.f, 128.f });
-		fsm.ChangeState(PlayerStateType::Idle);
-	}
-}
-
-void Player::Awake()
-{
-}
-
-void Player::Start()
-{
-	SetScale(scale);
-	SetPosition(position);
-	SetRotation(rotation);
-
-	SetOrigin(originPreset);
-	animator->Start();
-	collider->Reset();
-
-	fsm.Start();
-	fsm.ChangeState(PlayerStateType::Idle);
-
-	if(currentStatus.hp == 1)
-		GetCollider()->SetScale({ 32.f, 64});
-	else
-		GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
-
-	mainCamera = SceneManager::GetInstance().GetCurrentScene()->GetMainCamera();
-
-}
-
 void Player::TakeDamage()
 {
 	if (isHit)
@@ -101,14 +54,6 @@ void Player::TakeDamage()
 	currentHitTime = hitTime;
 }
 
-void Player::OnFlipX()
-{
-	isFlipX = !isFlipX;
-
-	scale.x *= -1.f;
-	SetScale(scale);
-}
-
 void Player::AddItem(ItemType itemType)
 {
 }
@@ -120,6 +65,16 @@ void Player::OnAttackEnd()
 {
 }
 
+
+void Player::Awake()
+{
+	AnimationGameObject::Awake();
+}
+
+void Player::Start()
+{
+	AnimationGameObject::Start();
+}
 
 void Player::Update(const float& deltaTime)
 {
@@ -182,11 +137,6 @@ void Player::LateUpdate(const float& deltaTime)
 	fsm.LateUpdate(deltaTime);
 }
 
-void Player::Render(sf::RenderWindow& renderWindow)
-{
-	animator->Render(renderWindow);
-	collider->Render(renderWindow);
-}
 void Player::OnCollisionEnter(Collider* target)
 {
 }
@@ -225,60 +175,6 @@ void Player::OnCollisionEnd(Collider* target)
 		}
 	}
 	
-}
-void Player::SetPosition(const sf::Vector2f& pos)
-{
-	position = pos;
-	sprite.setPosition(pos);
-	collider->SetPosition(pos);
-}
-
-void Player::SetScale(const sf::Vector2f& scale)
-{
-	this->scale = scale;
-
-	animator->SetScale(scale);
-	collider->SetOwnerScale(scale);
-}
-
-void Player::SetRotation(float angle)
-{
-	rotation = angle;
-	sprite.rotate(angle);
-	collider->SetRotation(angle);
-}
-
-void Player::SetOrigin(Origins preset)
-{
-	originPreset = preset;
-	origin = Utils::SetOrigin(sprite, preset);
-	collider->SetOrigin(preset);
-}
-
-void Player::SetOrigin(const sf::Vector2f& newOrigin)
-{
-	originPreset = Origins::Custom;
-	origin = newOrigin;
-	sprite.setOrigin(origin);	
-	collider->SetOrigin(newOrigin);
-}
-
-void Player::CreateAnimator()
-{
-	if (animator != nullptr)
-		return;
-
-	animator = new Animator(this, sprite);
-}
-
-sf::FloatRect Player::GetLocalBounds() const
-{
-	return sprite.getLocalBounds();
-}
-
-sf::FloatRect Player::GetGlobalBounds() const
-{
-	return sprite.getGlobalBounds();
 }
 
 PlayerSaveData Player::GetPlayerSaveData() const

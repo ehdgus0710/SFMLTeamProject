@@ -10,18 +10,6 @@ class InGameUIHub : public GameObject
 protected:
 	std::unordered_map<std::string, UITextGameObject*> uiTextGameObjectMaps;
 
-	UITextGameObject*	scoreNameUI;
-	UITextGameObject*	worldNameUI;
-	UITextGameObject*	timeNameUI;
-	UITextGameObject*	marioNameUI;
-	UITextGameObject*	scoreUI;
-	UITextGameObject*	worldUI;
-	UITextGameObject*	timerUI;
-	UITextGameObject*	coinUI;
-	UICoinObject*		coinAnimationUI;
-	std::string			fontId;
-
-
 
 private:
 	void PushBackObject();

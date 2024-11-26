@@ -25,6 +25,5 @@
 
 #include "InGameUIHub.h"
 #include "EnemySpawner.h"
-#include "StartUIObject.h"
 #include "EndingCreditTimeLine.h"
 #include "TriggerObject.h"

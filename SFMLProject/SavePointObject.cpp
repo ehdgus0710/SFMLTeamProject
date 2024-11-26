@@ -68,7 +68,7 @@ void SavePointObject::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
-		GameManager::GetInstance().OnSavePoint(restartPosition);
+		// GameManager::GetInstance().OnSavePoint(restartPosition);
 		SetDestory(true);
 	}
 }

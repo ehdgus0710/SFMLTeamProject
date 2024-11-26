@@ -247,7 +247,6 @@
     <ClCompile Include="SpriteGameObject.cpp" />
     <ClCompile Include="Stage1.cpp" />
     <ClCompile Include="Stage2.cpp" />
-    <ClCompile Include="StartUIObject.cpp" />
     <ClCompile Include="TextButton.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="StringTable.cpp" />
@@ -264,7 +263,6 @@
     <ClCompile Include="TriggerObject.cpp" />
     <ClCompile Include="UIAnimationObject.cpp" />
     <ClCompile Include="UIButtonObject.cpp" />
-    <ClCompile Include="UICoinObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UITextGameObject.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -364,7 +362,6 @@
     <ClInclude Include="SpriteGameObject.h" />
     <ClInclude Include="Stage1.h" />
     <ClInclude Include="Stage2.h" />
-    <ClInclude Include="StartUIObject.h" />
     <ClInclude Include="TextButton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringTable.h" />
@@ -379,7 +376,6 @@
     <ClInclude Include="TriggerObject.h" />
     <ClInclude Include="UIAnimationObject.h" />
     <ClInclude Include="UIButtonObject.h" />
-    <ClInclude Include="UICoinObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />
     <ClInclude Include="Utils.h" />

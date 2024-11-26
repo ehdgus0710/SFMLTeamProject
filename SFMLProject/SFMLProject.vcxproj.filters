@@ -486,17 +486,11 @@
     <ClCompile Include="UIAnimationObject.cpp">
       <Filter>Core\7. Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UICoinObject.cpp">
-      <Filter>Contants\UI</Filter>
-    </ClCompile>
     <ClCompile Include="EnemySpawnerGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Contants\Object\Bullet</Filter>
-    </ClCompile>
-    <ClCompile Include="StartUIObject.cpp">
-      <Filter>Contants\UI</Filter>
     </ClCompile>
     <ClCompile Include="InGameScoreUI.cpp">
       <Filter>Contants\UI</Filter>
@@ -818,9 +812,6 @@
     <ClInclude Include="UIAnimationObject.h">
       <Filter>Core\7. Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UICoinObject.h">
-      <Filter>Contants\UI</Filter>
-    </ClInclude>
     <ClInclude Include="EnemySpawnerGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
     </ClInclude>
@@ -829,9 +820,6 @@
     </ClInclude>
     <ClInclude Include="GameInclude.h">
       <Filter>Contants</Filter>
-    </ClInclude>
-    <ClInclude Include="StartUIObject.h">
-      <Filter>Contants\UI</Filter>
     </ClInclude>
     <ClInclude Include="InGameScoreUI.h">
       <Filter>Contants\UI</Filter>

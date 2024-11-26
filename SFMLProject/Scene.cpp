@@ -130,8 +130,8 @@ void Scene::Update(float deltaTime)
 					++iter;
 					continue;
 				}
-				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 300.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
-					(*iter)->Update(deltaTime);
+				
+				(*iter)->Update(deltaTime);
 
 				++iter;
 			}
@@ -202,21 +202,8 @@ void Scene::Update(float deltaTime)
 
 void Scene::FixedUpdate(float fixedDeltaTime)
 {
-	/*for (auto& objectVector : gameObjectVectors)
+	for (int i = 0; i < (int)LayerType::End; ++i)
 	{
-		for (auto& object : objectVector)
-		{
-			if (!object->IsActive())
-				continue;
-
-			object->FixedUpdate(fixedDeltaTime);
-		}
-	}*/
-	for (int i = 0; i < (int)LayerType::UI; ++i)
-	{
-		const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
-		auto cameraSize = mainCamera->GetView().getSize();
-
 		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
 		{
 			if ((*iter)->GetDestory())
@@ -230,30 +217,7 @@ void Scene::FixedUpdate(float fixedDeltaTime)
 					++iter;
 					continue;
 				}
-				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 300.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
-					(*iter)->FixedUpdate(fixedDeltaTime);
-
-				++iter;
-			}
-		}
-	}
-
-	for (int i = (int)LayerType::UI; i < (int)LayerType::End; ++i)
-	{
-		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
-		{
-
-			if ((*iter)->GetDestory())
-			{
-				iter = gameObjectVectors[i].erase(iter);
-			}
-			else
-			{
-				if (!(*iter)->IsActive())
-				{
-					++iter;
-					continue;
-				}
+				
 				(*iter)->FixedUpdate(fixedDeltaTime);
 
 				++iter;
@@ -289,34 +253,15 @@ void Scene::Render(sf::RenderWindow& window)
 		const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
 		auto cameraSize = mainCamera->GetView().getSize();
 
-		for (auto& object : gameObjectVectors[0])
+		for (int i = (int)LayerType::Default; i < (int)LayerType::InGameUI; ++i)
 		{
-			if (!object->IsActive())
-				continue;
-			if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
-				&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))
-				object->Render(window);
-		}
+			std::sort(gameObjectVectors[i].begin(), gameObjectVectors[i].end(), DrawOrderComparer());
 
-		for (auto& object : gameObjectVectors[(int)LayerType::TileMap])
-		{
-			if (!object->IsActive())
-				continue;
-			TileMap* tileMap = ((TileMap*)object);
-			if ((cameraSize.x + tileMap->GetRealScale().x) * 0.5f > abs(cameraPosition.x - tileMap->GetRealPosition().x)
-				&& (cameraSize.y + tileMap->GetRealScale().y) * 0.5f > abs(cameraPosition.y - tileMap->GetRealPosition().y))
-				object->Render(window);
-		}
-
-		for (int i = (int)LayerType::Wall; i < (int)LayerType::UI; ++i)
-		{
 			for (auto& object : gameObjectVectors[i])
 			{
 				if (!object->IsActive())
 					continue;
-				if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
-					&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))
-					object->Render(window);
+				object->Render(window);
 			}
 		}
 	}

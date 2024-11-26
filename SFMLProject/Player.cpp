@@ -74,6 +74,7 @@ void Player::Awake()
 void Player::Start()
 {
 	AnimationGameObject::Start();
+	fsm.Start();
 }
 
 void Player::Update(const float& deltaTime)
@@ -89,39 +90,6 @@ void Player::Update(const float& deltaTime)
 		{
 			isHit = false;
 			currentHitTime = 0.f;
-		}
-	}
-
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::LShift))
-	{
-		isRun = true;
-		animator->SetAnimationSpeed(2.f);
-	}
-	else
-	{
-		isRun = false;
-		animator->SetAnimationSpeed(1.f);
-	}
-
-
-	if (!isDead && position.y >= 3000.f)
-	{
-		fsm.ChangeState(PlayerStateType::Dead);
-		isDead = true;
-	}
-
-	if (position.x - abs(collider->GetScale().x * 0.5f) < mainCamera->GetCameraLeftPosition())
-	{
-		position.x = mainCamera->GetCameraLeftPosition() + abs(collider->GetScale().x * 0.5f);
-		SetPosition(position);
-	}
-	if (isReload)
-	{
-		currentReloadTime += deltaTime;
-		if (currentReloadTime >= reloadTime)
-		{
-			currentReloadTime = 0.f;
-			isReload = false;
 		}
 	}
 }
@@ -168,9 +136,6 @@ void Player::OnCollisionEnd(Collider* target)
 
 		if (!isGround)
 		{
-			if(!isJump)
-				rigidBody->AddDropSpeed(30.f);
-
 			rigidBody->SetGround(false);
 		}
 	}

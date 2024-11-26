@@ -6,9 +6,7 @@ enum class ComponentGUIType
 	Collider,
 	TileMap,
 	TileMapController,
-	Block,
 	SavePoint,
-	GameClearPoint,
 	EnemySpawner,
 	End
 };

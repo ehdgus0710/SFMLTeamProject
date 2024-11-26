@@ -78,15 +78,15 @@ void InspectorGUI::SetObject(GameObject* object)
 	if (targetObject == nullptr)
 		return;
 
-	if (targetObject->GetCollider() != nullptr)
-		componetGUIvector[(int)ComponentGUIType::Collider]->SetObject(targetObject);
-	else
-		componetGUIvector[(int)ComponentGUIType::Collider]->SetObject(nullptr);
-
 	if (targetObject->GetAnimator() != nullptr)
 		componetGUIvector[(int)ComponentGUIType::Animator]->SetObject(targetObject);
 	else
 		componetGUIvector[(int)ComponentGUIType::Animator]->SetObject(nullptr);
+
+	if (targetObject->GetCollider() != nullptr)
+		componetGUIvector[(int)ComponentGUIType::Collider]->SetObject(targetObject);
+	else
+		componetGUIvector[(int)ComponentGUIType::Collider]->SetObject(nullptr);
 
 	if (dynamic_cast<TileMap*>(targetObject) != nullptr)
 		componetGUIvector[(int)ComponentGUIType::TileMap]->SetObject(targetObject);

@@ -17,7 +17,7 @@ protected:
 	bool	isActive;
 public:
 	void SetVelocity(const sf::Vector2f& velocity);
-	sf::Vector2f GetCurrentVelocity() const { return velocity; }
+ 	sf::Vector2f GetCurrentVelocity() const { return velocity; }
 
 	void AddVelocity(const sf::Vector2f& velocity);
 

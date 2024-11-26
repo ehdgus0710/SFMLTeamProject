@@ -53,12 +53,12 @@ void TimeManager::Update()
 	realTime += realDeltatime;
 	time += deltaTime;
 
-	// FrameCheck();
+	FrameCheck();
 }
 
 void TimeManager::Render(sf::RenderWindow& renderWindow)
 {
-	// renderWindow.draw(frameText);
+	renderWindow.draw(frameText);
 }
 
 void TimeManager::FrameCheck()

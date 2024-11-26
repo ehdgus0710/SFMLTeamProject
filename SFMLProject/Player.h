@@ -11,7 +11,6 @@ class Player : public AnimationGameObject
 protected:
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
-	Camera*		mainCamera;
 
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
@@ -27,7 +26,6 @@ protected:
 
 	bool			isReload;
 	bool			isAttack;
-	bool			isRun;
 
 public:
 	void TakeDamage();
@@ -39,7 +37,6 @@ public:
 
 	PlayerFSM& GetFSM() { return fsm; }
 public:
-	bool IsRun() { return isRun; }
 	bool IsHit() const { return isHit; }
 	void SetIsJump(bool jump) { isJump = jump; }
 	float GetCurrentHP() const { return currentStatus.hp; }

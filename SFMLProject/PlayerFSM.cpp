@@ -42,9 +42,6 @@ void PlayerFSM::CreateAllState()
 		case PlayerStateType::Run:
 			AddState(PlayerStateType::Run);
 			break;
-		case PlayerStateType::Break:
-			AddState(PlayerStateType::Break);
-			break;
 		case PlayerStateType::Jump:
 			AddState(PlayerStateType::Jump);
 			break;

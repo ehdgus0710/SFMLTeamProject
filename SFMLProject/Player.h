@@ -55,7 +55,10 @@ public:
 	void SetCurrentJumpCount(int count) { currentJumpCount = count; }
 	int GetCurrentJumpCount() { return currentJumpCount; }
 	int GetDashCount() { return dashCount; }
-	void SetCurrentDashCount(int count) { currentDashCount = count; }
+
+
+
+	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }
 
 	void SetHp(float hp) { currentStatus.hp = hp; }

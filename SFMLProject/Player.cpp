@@ -25,7 +25,7 @@ Player::Player(const std::string& name)
 	, jumpCount(2)
 	, currentJumpCount(0)
 	, dashCount(2)
-	, currentDashCount(0)
+	, currentDashCount(2)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -87,7 +87,6 @@ void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-	currentDashCount += deltaTime;
 
 	if (isHit)
 	{
@@ -100,14 +99,14 @@ void Player::Update(const float& deltaTime)
 		}
 	}
 
-	if (currentDashCount == 0.f)
+	if (currentDashCount < dashCount)
 	{
 		currentDashDelayTime += deltaTime;
 		if (currentDashDelayTime > dashDelayTime)
-		{
-			currentDashCount = dashCount;
+		{ 
+			++currentDashCount;
+			currentDashDelayTime = 0.f;
 		}
-		currentDashDelayTime = 0.f;
 	}
 }
 

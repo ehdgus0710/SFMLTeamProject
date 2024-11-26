@@ -15,17 +15,22 @@ void PlayerDashState::Enter()
 {
 	PlayerBaseState::Enter();
 	rigidbody->ResetDropSpeed();
+	rigidbody->ResetVelocity();
 	rigidbody->Disable();
 	dashTime = 0.5f;
 	currenttime = 0.f;
 
 	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 500.f;
 	dashStartPos = player->GetPosition();
+
+	player->OnDash();
+
 }
 
 void PlayerDashState::Exit()
 {
 	rigidbody->SetActive(true);
+
 	PlayerBaseState::Exit();
 }
 

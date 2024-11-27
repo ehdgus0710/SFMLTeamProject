@@ -37,6 +37,9 @@ void SceneDev3::Enter()
 
 	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
 	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
+	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
+	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
+	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
 
 	CollisitionCheck();
 

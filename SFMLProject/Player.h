@@ -41,6 +41,7 @@ protected:
 
 public:
 	void TakeDamage();
+	void TakeDamage(float damage);
 	void AddItem(ItemType itemType);
 	void Attack();
 	void OnAttackEnd();

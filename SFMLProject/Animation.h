@@ -41,13 +41,6 @@ protected:
 	bool						isRepeat;
 
 public:
-
-	typedef std::function<void()> Event;
-	std::function<void()> functest;
-	//void(Animator::* onFunc)();
-	//std::function<void(Animator&)> func;
-
-public:
 	void Play(float speed, bool isRepeat = false);
 	void Stop();
 	void Reset();

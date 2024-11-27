@@ -69,7 +69,6 @@ void Player::OnAttackEnd()
 {
 }
 
-
 void Player::Awake()
 {
 	AnimationGameObject::Awake();

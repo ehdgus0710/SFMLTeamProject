@@ -2,7 +2,7 @@
 #include "ChimeraDropPoisonState.h"
 
 ChimeraDropPoisonState::ChimeraDropPoisonState(ChimeraFSM* fsm)
-
+	:ChimeraBaseState(fsm,ChimeraStateType::DropPoison)
 {
 }
 

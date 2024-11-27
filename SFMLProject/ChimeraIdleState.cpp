@@ -2,7 +2,7 @@
 #include "ChimeraIdleState.h"
 
 ChimeraIdleState::ChimeraIdleState(ChimeraFSM* fsm)
-	:
+	: ChimeraBaseState(fsm,ChimeraStateType::Idle)
 {
 }
 

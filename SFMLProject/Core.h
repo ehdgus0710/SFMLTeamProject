@@ -108,6 +108,21 @@ enum class PlayerStateType
 	End
 };
 
+enum class ChimeraStateType
+{
+	Idle,
+	NomalAttack,
+	GroundAttack,
+	VomitAttack,
+	Pong,
+	DropGlass,
+	DropBall,
+	DropPoison,
+	Dead,
+
+	End
+};
+
 enum class EnemyStateType
 {
 	Idle, 

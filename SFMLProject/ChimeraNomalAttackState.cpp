@@ -2,7 +2,7 @@
 #include "ChimeraNomalAttackState.h"
 
 ChimeraNomalAttackState::ChimeraNomalAttackState(ChimeraFSM* fsm)
-	:ChimeraBaseState()
+	: ChimeraBaseState(fsm, ChimeraStateType::NomalAttack)
 {
 }
 

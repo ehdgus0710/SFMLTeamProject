@@ -2,7 +2,7 @@
 #include "ColliderGUI.h"
 #include "Collider.h"
 #include "imgui.h"
-
+#include "InspectorGUI.h"
 
 ColliderGUI::ColliderGUI()
 	: ComponentGUI(ComponentGUIType::Collider)
@@ -54,61 +54,46 @@ void ColliderGUI::Update()
 		collider->SetScale(colliderScale);
 	}
 
-	ImGui::Text("Origin"); ImGui::SameLine();
-
 	if (ImGui::InputFloat2("##Origin", originArr))
 	{
 		origin = { originArr[0], originArr[1] };
 		collider->SetOrigin(origin);
 	}
-	//ImGui::Text("Rotation"); ImGui::SameLine();
-	//if (ImGui::InputFloat("##Rotation", &rotation))
-	//{
-	//	targetObject->SetRotation(rotation);
-	//}
 
-	//ImGui::Text("Origin"); ImGui::SameLine();
+	static const OriginEnumDesc originEnum[] =
+	{
+		{ Origins::TopLeft , "TopLeft"}
+		,{ Origins::TopCenter , "TopCenter"}
+		,{ Origins::TopRight , "TopRight"}
+		,{ Origins::MiddleLeft , "MiddleLeft"}
+		,{ Origins::MiddleCenter , "MiddleCenter"}
+		, { Origins::MiddleRight , "MiddleRight"}
+		,{ Origins::BottomLeft , "BottomLeft"}
+		,{ Origins::BottomCenter , "BottomCenter"}
+		,{ Origins::BottomRight , "BottomRight"}
+		,{ Origins::Custom , "Custom"}
+	};
 
-	//if (ImGui::InputFloat2("##Origin", originArr))
-	//{
-	//	origin = { originArr[0], originArr[1] };
-	//	collider->SetOrigin(origin);
-	//}
+	int idx;
+	for (idx = 0; idx < (int)Origins::Custom; ++idx)
+	{
+		if (originEnum[idx].origin == (target->GetOrigins()))
+			break;
+	}
 
-	//static const OriginEnumDesc originEnum[] =
-	//{
-	//	{ Origins::TopLeft , "TopLeft"}
-	//	,{ Origins::TopCenter , "TopCenter"}
-	//	,{ Origins::TopRight , "TopRight"}
-	//	,{ Origins::MiddleLeft , "MiddleLeft"}
-	//	,{ Origins::MiddleCenter , "MiddleCenter"}
-	//	, { Origins::MiddleRight , "MiddleRight"}
-	//	,{ Origins::BottomLeft , "BottomLeft"}
-	//	,{ Origins::BottomCenter , "BottomCenter"}
-	//	,{ Origins::BottomRight , "BottomRight"}
-	//	,{ Origins::Custom , "Custom"}
-	//};
+	bool isSelect = false;
+	if (ImGui::BeginCombo("CurrentOrigin", originEnum[idx].originID.c_str()))
+	{
+		for (int n = 0; n < (int)Origins::Custom; n++)
+		{
+			if (ImGui::Selectable(originEnum[n].originID.c_str(), idx == n))
+			{
+				target->SetOrigin(originEnum[n].origin);
+			}
+		}
 
-	//int idx;
-	//for (idx = 0; idx < (int)Origins::Custom; ++idx)
-	//{
-	//	if (originEnum[idx].origin == (targetObject->GetOrigins()))
-	//		break;
-	//}
-
-	//bool isSelect = false;
-	//if (ImGui::BeginCombo("CurrentOrigin", originEnum[idx].originID.c_str()))
-	//{
-	//	for (int n = 0; n < (int)Origins::Custom; n++)
-	//	{
-	//		if (ImGui::Selectable(originEnum[n].originID.c_str(), idx == n))
-	//		{
-	//			targetObject->SetOrigin(originEnum[n].origin);
-	//		}
-	//	}
-
-	//	ImGui::EndCombo();
-	//}
+		ImGui::EndCombo();
+	}
 	ImGui::EndChild();
 }
 

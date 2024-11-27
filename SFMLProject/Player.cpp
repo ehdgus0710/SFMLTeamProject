@@ -29,8 +29,9 @@ Player::Player(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateAnimator();
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
+
+	animator->LoadCsv("animators/noheadlittlebone.csv");
 }
 
 Player::~Player()
@@ -81,6 +82,7 @@ void Player::Start()
 {
 	AnimationGameObject::Start();
 	fsm.Start();
+	animator->ChangeAnimation("noheadlittleboneIdle", true);
 }
 
 void Player::Update(const float& deltaTime)

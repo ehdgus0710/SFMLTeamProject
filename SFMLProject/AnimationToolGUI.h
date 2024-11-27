@@ -24,6 +24,9 @@ private:
     bool                        isButton;
     bool                        isAtlasTextrue;
 
+    int startPositionX;
+    int startPositionY;
+
 public:
     void Update() override;
 

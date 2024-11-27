@@ -1,0 +1,7 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+LittleBone_NonHead,noheadlittleboneIdle,0,,,,,
+,,,,,,,
+,128,128,0,0,128,128,0.1
+,128,128,128,0,128,128,0.1
+,128,128,256,0,128,128,0.1
+,128,128,384,0,128,128,0.1

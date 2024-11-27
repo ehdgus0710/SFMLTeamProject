@@ -14,6 +14,7 @@ PlayerJumpState::~PlayerJumpState()
 
 void PlayerJumpState::Awake()
 {
+	PlayerBaseState::Awake();
 }
 
 void PlayerJumpState::Start()
@@ -25,8 +26,7 @@ void PlayerJumpState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	// player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
-
+	animator->ChangeAnimation("noheadlittleboneJump", false);
 
 	player->SetIsJump(true);
 	rigidbody->SetGround(false);

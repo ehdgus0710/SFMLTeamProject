@@ -256,6 +256,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
     <ClCompile Include="SceneDev2.cpp" />
+    <ClCompile Include="SceneDev3.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="SoundManger.cpp" />
@@ -386,6 +387,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneDev2.h" />
+    <ClInclude Include="SceneDev3.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundManger.h" />

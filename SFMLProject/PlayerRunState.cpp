@@ -51,6 +51,7 @@ void PlayerRunState::InputJump()
 
 void PlayerRunState::Awake()
 {
+	PlayerBaseState::Awake();
 }
 
 void PlayerRunState::Start()

@@ -9,6 +9,7 @@ AnimationGameObject::AnimationGameObject(const std::string& name)
 	: GameObject(name)
 	, isFlipX(false)
 {
+	CreateAnimator();
 }
 
 AnimationGameObject::~AnimationGameObject()

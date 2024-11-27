@@ -197,6 +197,8 @@ void SceneDev1::CollisitionCheck()
 
 void SceneDev1::LoadResources()
 {
+	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
+	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
 }
 
 SceneDev1::SceneDev1()

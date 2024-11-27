@@ -1,0 +1,10 @@
+ANIMATIONCSVPATH,ANIMAIONID
+,
+animations/Skul/noheadlittleboneIdle.csv,noheadlittleboneIdle
+animations/Skul/noheadlittleboneJump.csv,noheadlittleboneJump
+animations/Skul/noheadlittleboneRun.csv,noheadlittleboneRun
+animations/Skul/noheadlittleboneAttack1.csv,noheadlittleboneAttack1
+animations/Skul/noheadlittleboneAttack2.csv,noheadlittleboneAttack2
+animations/Skul/noheadlittleboneDash.csv,noheadlittleboneDash
+animations/Skul/noheadlittleboneFalling.csv,noheadlittleboneFalling
+animations/Skul/noheadlittleboneJumpAttack.csv,noheadlittleboneJumpAttack

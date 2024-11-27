@@ -5,10 +5,15 @@
 
 class Camera;
 class Rigidbody;
+class Head;
+class GameObject;
 
 class Player : public AnimationGameObject
 {
 protected:
+	Head*		head;
+	GameObject* gameObject;
+
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
 

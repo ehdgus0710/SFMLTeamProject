@@ -186,6 +186,7 @@
     <ClCompile Include="GameObjectSaveData.cpp" />
     <ClCompile Include="FadeOutUI.cpp" />
     <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="Head.cpp" />
     <ClCompile Include="HierachyGUI.cpp" />
     <ClCompile Include="ImguiManger.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp">
@@ -318,6 +319,7 @@
     <ClInclude Include="GameObjectSaveData.h" />
     <ClInclude Include="FadeOutUI.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="Head.h" />
     <ClInclude Include="HierachyGUI.h" />
     <ClInclude Include="ImguiManger.h" />
     <ClInclude Include="imgui\imconfig-SFML.h" />

@@ -3,7 +3,6 @@
 
 #include "GameInclude.h"
 
-
 void SceneDev1::Init()
 {
 	Scene::Init();

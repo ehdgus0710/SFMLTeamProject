@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PlayerFallingState.h"
 #include "Rigidbody.h"
+#include "Animator.h"
 
 void PlayerFallingState::Awake()
 {
@@ -16,7 +17,7 @@ void PlayerFallingState::Start()
 void PlayerFallingState::Enter()
 {
 	PlayerBaseState::Enter();
-
+	animator->ChangeAnimation("noheadlittleboneFalling", false);
 }
 
 void PlayerFallingState::Exit()

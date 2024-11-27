@@ -16,6 +16,12 @@ PlayerFSM::PlayerFSM(Player* owner)
 	CreateAllState();
 }
 
+PlayerFSM::PlayerFSM(Head* owner)
+	: head(owner)
+{
+	CreateAllState();
+}
+
 PlayerFSM::~PlayerFSM()
 {
 }

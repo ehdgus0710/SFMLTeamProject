@@ -9,6 +9,7 @@
 #include "GameManager.h"
 #include "Camera.h"
 #include "InGameScoreUI.h"
+#include "Head.h"
 
 Player::Player(const std::string& name)
 	: AnimationGameObject(name)
@@ -84,6 +85,11 @@ void Player::Start()
 	AnimationGameObject::Start();
 	fsm.Start();
 	animator->ChangeAnimation("noheadlittleboneIdle", true);
+
+	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
+	head->Awake();
+	head->SetPosition({ 0, -500.f });
+	head->GetCollider()->SetScale({ 100.f,100.f });
 }
 
 void Player::Update(const float& deltaTime)
@@ -111,6 +117,10 @@ void Player::Update(const float& deltaTime)
 			currentDashDelayTime = 0.f;
 		}
 	}
+
+
+	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetCurrentVelocity().y > 0.f)
+		fsm.ChangeState(PlayerStateType::Falling);
 }
 
 void Player::FixedUpdate(const float& deltaTime)
@@ -156,8 +166,6 @@ void Player::OnCollisionEnd(Collider* target)
 		{
 			rigidBody->SetGround(false);
 			currentJumpCount = 1;
-			if(fsm.GetCurrentStateType() != PlayerStateType::Dash && rigidBody->GetCurrentVelocity().y > 0.f)
-				fsm.ChangeState(PlayerStateType::Falling);
 		}
 	}
 	

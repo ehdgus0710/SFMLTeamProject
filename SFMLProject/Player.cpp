@@ -23,7 +23,7 @@ Player::Player(const std::string& name)
 	, isAttack(false)
 	, isDead(false)
 	, jumpCount(2)
-	, currentJumpCount(0)
+	, currentJumpCount(2)
 	, dashCount(2)
 	, currentDashCount(2)
 {
@@ -74,7 +74,8 @@ void Player::Awake()
 {
 	AnimationGameObject::Awake();
 	currentDashCount = dashCount;
-	dashDelayTime = 1.f;
+	currentJumpCount = jumpCount;
+	dashDelayTime = 1.3f;
 }
 
 void Player::Start()
@@ -99,12 +100,12 @@ void Player::Update(const float& deltaTime)
 		}
 	}
 
-	if (currentDashCount < dashCount)
+	if (currentDashCount <= 0)
 	{
 		currentDashDelayTime += deltaTime;
 		if (currentDashDelayTime > dashDelayTime)
-		{ 
-			++currentDashCount;
+		{
+			currentDashCount = dashCount;
 			currentDashDelayTime = 0.f;
 		}
 	}
@@ -145,10 +146,8 @@ void Player::OnCollisionEnd(Collider* target)
 			{
 				isGround = true;
 				isJump = false;
-
 				break;
 			}
-
 		}
 
 		if (!isGround)

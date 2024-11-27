@@ -83,22 +83,23 @@ void PlayerRunState::Update(float deltaTime)
 {
 	InputMove();
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
 	{
-		if (rigidbody->IsGround())
-		{
-			fsm->ChangeState(PlayerStateType::Jump);
-			return;
-		}
+		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
+
+		fsm->ChangeState(PlayerStateType::Jump);
 	}
 
 	if (horizontal == 0)
 	{
-		fsm->ChangeState(PlayerStateType::Idle);
-		rigidbody->SetVelocity({ 0.f, rigidbody->GetCurrentVelocity().y });
+		if (rigidbody->GetCurrentVelocity().y == 0.f)
+		{
+			fsm->ChangeState(PlayerStateType::Idle);
+			rigidbody->SetVelocity({ 0.f, rigidbody->GetCurrentVelocity().y });
+		}
 	}
 
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}

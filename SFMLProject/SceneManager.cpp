@@ -3,6 +3,7 @@
 
 #include "SceneDev1.h"
 #include "SceneDev2.h"
+#include "SceneDev3.h"
 #include "TitleScene.h"
 
 #include "Stage1.h"
@@ -12,8 +13,8 @@ void SceneManager::Init()
 {
 	sceneVec.push_back(new SceneDev1());
 	sceneVec.push_back(new SceneDev2());
+	sceneVec.push_back(new SceneDev3());
 	sceneVec.push_back(new TitleScene());
-	sceneVec.push_back(new SceneDev2());
 	sceneVec.push_back(new Stage2());
 
 	for (auto& scene : sceneVec)
@@ -22,7 +23,7 @@ void SceneManager::Init()
 	}
 
 	currentScene = startScene;
-	currentScene = SceneIds::SceneDev1;
+	currentScene = SceneIds::SceneDev3;
 	sceneVec[(int)currentScene]->Enter();
 }
 

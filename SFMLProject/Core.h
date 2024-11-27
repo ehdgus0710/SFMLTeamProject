@@ -33,6 +33,7 @@ enum class SceneIds
 	None = -1,
 	SceneDev1,
 	SceneDev2,
+	SceneDev3,
 	TitleScene,
 	Stage1,
 	Stage2,

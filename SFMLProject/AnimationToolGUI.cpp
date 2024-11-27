@@ -19,6 +19,8 @@ AnimationToolGUI::AnimationToolGUI()
     , texture(nullptr)
     , isButton(false)
     , isAtlasTextrue(false)
+    , startPositionX(0)
+    , startPositionY(0)
 
 {
 }
@@ -50,6 +52,8 @@ void AnimationToolGUI::Update()
         textureVector.push_back(iter.second->GetKey());
     }
 
+    if (textureVector.size() == 0)
+        return;
 
     if (ImGui::BeginCombo("##Texture", textureVector[itemCurrentIndex].c_str(), flags))
     {
@@ -272,7 +276,7 @@ void AnimationToolGUI::AnimationLoad()
 
 void AnimationToolGUI::AnimationPlay(int& iFrmID)
 {
-    accTime += TimeManager::GetInstance().GetDeletaTime();
+    accTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
     if (accTime >= animInfoVector[iFrmID].duration)
     {
         accTime -= animInfoVector[iFrmID++].duration;
@@ -327,17 +331,36 @@ void AnimationToolGUI::AtlasTextrue()
         animInfoVector[frameID].rectSize;
     }
 
+
+    int startArr[2] = { startPositionX, startPositionY };
+    if (ImGui::InputInt2("StartPos", startArr))
+    {
+        startPositionX = startArr[0];
+        startPositionY = startArr[1];
+    }
+
+
     if (ImGui::Button("SetDefalutRectSize", { 200, 20 }) && atlasRectSize.x != 0 && atlasRectSize.y != 0)
     {
         int size = (int)animInfoVector.size();
+
+        auto textureSize = texture->getSize();
         for (int i = 0; i < size; ++i)
         {
             animInfoVector[i].rectSize = atlasRectSize;
-            animInfoVector[i].uvRect.left = i * atlasRectSize.x;
-            animInfoVector[i].uvRect.top = i * atlasRectSize.y;
+            animInfoVector[i].uvRect.left = startPositionX * atlasRectSize.x;
+            animInfoVector[i].uvRect.top = startPositionY * atlasRectSize.y;
 
             animInfoVector[i].uvRect.width = atlasRectSize.x;
             animInfoVector[i].uvRect.height = atlasRectSize.y;
+
+            ++startPositionX;
+
+            if (textureSize.x <= startPositionX * atlasRectSize.x)
+            {
+                startPositionX = 0;
+                ++startPositionY;
+            }
         }
     }
     if (isButton)

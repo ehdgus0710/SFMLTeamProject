@@ -9,7 +9,7 @@ class Animator;
 class ChimeraBaseState : public BaseState<ChimeraStateType>
 {
 protected:
-	Chimera* Chimera;
+	Chimera* chimera;
 	ChimeraFSM* fsm;
 	Animator* animator;
 

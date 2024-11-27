@@ -5,7 +5,18 @@
 class ChimeraGroundAttackState : public ChimeraBaseState
 {
 protected:
+	sf::Vector2f startPosition;
+	sf::Vector2f endPosition;
 
+	sf::Vector2f moveDistance = {500.f,500.f};
+	sf::Vector2f saveEndPos;
+	sf::Vector2f saveStartPos;
+
+
+	float moveTime = 2.f;
+	float currentTime = 0.f;
+
+	bool playComplete = false;
 public:
 	void Awake() override;
 	void Start() override;

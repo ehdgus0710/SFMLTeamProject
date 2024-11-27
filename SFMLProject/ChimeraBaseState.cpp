@@ -4,7 +4,7 @@
 ChimeraBaseState::ChimeraBaseState(ChimeraFSM* fsm, ChimeraStateType stateType)
 	: BaseState<ChimeraStateType>(stateType)
 	, fsm(fsm)
-	, Chimera(fsm->GetChimera())
+	, chimera(fsm->GetChimera())
 {
 }
 
@@ -14,7 +14,7 @@ ChimeraBaseState::~ChimeraBaseState()
 
 void ChimeraBaseState::Awake()
 {
-	animator = Chimera->GetAnimator();
+	animator = chimera->GetAnimator();
 }
 
 void ChimeraBaseState::Start()

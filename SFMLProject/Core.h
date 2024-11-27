@@ -60,6 +60,7 @@ enum class LayerType
 	Enemy,
 	PlayerBullet,
 	EnemyBullet,
+	Chimera,
 
 	CleraPoint,
 	InGameUI,

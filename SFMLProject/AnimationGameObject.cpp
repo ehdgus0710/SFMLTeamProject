@@ -74,7 +74,7 @@ void AnimationGameObject::SetScale(const sf::Vector2f& scale)
 void AnimationGameObject::SetRotation(float angle)
 {
 	rotation = angle;
-	sprite.rotate(angle);
+	sprite.setRotation(angle);
 	collider->SetRotation(angle);
 }
 

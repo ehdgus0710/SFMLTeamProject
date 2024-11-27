@@ -187,6 +187,7 @@
     <ClCompile Include="FadeOutUI.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="HierachyGUI.cpp" />
+    <ClCompile Include="HitBoxObject.cpp" />
     <ClCompile Include="ImguiManger.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -319,6 +320,7 @@
     <ClInclude Include="FadeOutUI.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="HierachyGUI.h" />
+    <ClInclude Include="HitBoxObject.h" />
     <ClInclude Include="ImguiManger.h" />
     <ClInclude Include="imgui\imconfig-SFML.h" />
     <ClInclude Include="imgui\imconfig.h" />

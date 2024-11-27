@@ -39,6 +39,7 @@ Player::~Player()
 }
 void Player::TakeDamage()
 {
+
 	if (isHit)
 		return;
 
@@ -57,6 +58,10 @@ void Player::TakeDamage()
 	}
 
 	currentHitTime = hitTime;
+}
+
+void Player::TakeDamage(float damage)
+{
 }
 
 void Player::AddItem(ItemType itemType)

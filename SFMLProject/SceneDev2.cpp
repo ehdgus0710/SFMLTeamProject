@@ -22,6 +22,13 @@ void SceneDev2::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
 }
 
+void SceneDev2::LoadResources()
+{
+	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
+	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
+	TEXTURE_MANAGER.Load("ChimeraIdle", "graphics/Chimera/idle.png");
+}
+
 void SceneDev2::Init()
 {
 	cameraLimitRect = { 0.f,13440.f,-500.f, 700.f };
@@ -34,30 +41,28 @@ void SceneDev2::Enter()
 {
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
+	LoadResources();
+	CollisitionCheck();
 
-	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
-	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
-	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
-	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
-	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
-	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
-	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
 
-	Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
+	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();
 	mainCamera->SetFollowTarget(testPlayer, true);
+	testPlayer->SetPosition({ 0, -500.f });
+	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
+
+	Chimera* testChimera = AddGameObject(new Chimera("Chimera"), LayerType::Chimera);
+	testChimera->Awake();
+	testChimera->SetPosition({ 1000.f,-500.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });
 	wallCollision->SetPosition({ 0, 100.f });
+
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
 	background->SetScale({ 2000.f, 1300.f });
 	background->SetColor(sf::Color(85, 151, 248));
 
-	EnemySpawner* enemySpawner = AddGameObject(new EnemySpawner(), LayerType::Default);
-	enemySpawner->SetPosition({ 2000.f, 1300.f });
-
-	CollisitionCheck();
 
 	Scene::Enter();
 }

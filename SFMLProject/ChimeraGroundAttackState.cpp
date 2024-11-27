@@ -11,6 +11,27 @@ ChimeraGroundAttackState::~ChimeraGroundAttackState()
 {
 }
 
+void ChimeraGroundAttackState::StartMove()
+{
+	chimera->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentTime / moveTime));
+	if (currentTime > moveTime)
+	{
+		playComplete = true;
+		currentTime = 0;
+	}
+
+}
+
+void ChimeraGroundAttackState::ReturnMove()
+{
+	chimera->SetPosition(sf::Vector2f::Lerp(saveStartPos, saveEndPos, currentTime / moveTime));
+	if (currentTime > moveTime)
+	{
+		playComplete = false;
+		currentTime = 0;
+	}
+}
+
 void ChimeraGroundAttackState::Awake()
 {
 }
@@ -26,8 +47,11 @@ void ChimeraGroundAttackState::Enter()
 	currentTime = 0.f;
 	playComplete = false;
 
-	endPosition = chimera->GetPosition() + sf::Vector2f::right * moveDistance;
 	startPosition = chimera->GetPosition();
+	endPosition = chimera->GetPosition() + sf::Vector2f::right * moveDistance*2.f;
+
+	saveEndPos = startPosition;
+	saveStartPos = endPosition;
 }
 
 void ChimeraGroundAttackState::Exit()
@@ -39,20 +63,15 @@ void ChimeraGroundAttackState::Update(float deltaTime)
 {
 	ChimeraBaseState::Update(deltaTime);
 	currentTime += deltaTime;
-	chimera->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentTime / moveTime));
-	if (playComplete && currentTime > moveTime)
-	{
-		return;
-	}
-	else if (currentTime > moveTime)
-	{
-		saveEndPos = startPosition;
-		saveStartPos = endPosition;
-		startPosition = saveEndPos;
-		endPosition = saveStartPos;
-		playComplete = true;
-	}
 
+	if (!playComplete)
+	{
+		StartMove();
+	}
+	else
+	{
+		ReturnMove();
+	}
 }
 
 void ChimeraGroundAttackState::FixedUpdate(float fixedDeltaTime)

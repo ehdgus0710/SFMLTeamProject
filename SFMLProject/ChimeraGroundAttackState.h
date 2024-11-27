@@ -15,8 +15,14 @@ protected:
 
 	float moveTime = 2.f;
 	float currentTime = 0.f;
+	float damage = 20.f;
 
 	bool playComplete = false;
+
+private:
+	void StartMove();
+	void ReturnMove();
+
 public:
 	void Awake() override;
 	void Start() override;

@@ -8,16 +8,10 @@ class Rigidbody;
 class Chimera : public AnimationGameObject
 {
 protected:
-	sf::Sprite	sprite;
 	ChimeraFSM	fsm;
-
 	DefaultStatus	currentStatus;
 
-	float			patternDelay;
-	float			delayTime;
-
-	float			hitTime;
-	bool			isHit;
+	bool			isHit = false;
 
 public:
 	void TakeDamage();

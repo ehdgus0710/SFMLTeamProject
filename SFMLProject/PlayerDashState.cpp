@@ -17,31 +17,42 @@ void PlayerDashState::Enter()
 	rigidbody->ResetDropSpeed();
 	rigidbody->ResetVelocity();
 	rigidbody->Disable();
-	dashTime = 0.5f;
-	currenttime = 0.f;
+	dashTime = 0.3f;
+	currentTime = 0.f;
+	player->OnDash();
 
-	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 500.f;
+
+	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
 	dashStartPos = player->GetPosition();
 
-	player->OnDash();
+	
 
 }
 
 void PlayerDashState::Exit()
 {
 	rigidbody->SetActive(true);
-
 	PlayerBaseState::Exit();
 }
 
 void PlayerDashState::Update(float deltaTime)
 {
  	PlayerBaseState::Update(deltaTime);
-	currenttime += deltaTime;
-	player->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currenttime / dashTime));
-
-	if (currenttime >= dashTime)
+	currentTime += deltaTime;
+	player->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currentTime / dashTime));
+	if (currentTime <= dashTime)
 	{
+		if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
+		{
+			dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
+			dashStartPos = player->GetPosition();
+			currentTime = 0.f;
+			player->OnDash();
+		}
+	}
+	else
+	{
+		player->OnDash();
 		fsm->ChangeState(PlayerStateType::Idle);
 	}
 
@@ -59,6 +70,7 @@ void PlayerDashState::FixedUpdate(float fixedDeltaTime)
 
 PlayerDashState::PlayerDashState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dash)
+	, extraDash(false)
 {
 }
 

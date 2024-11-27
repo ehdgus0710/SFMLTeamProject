@@ -23,11 +23,11 @@ void PlayerJumpState::Start()
 
 void PlayerJumpState::Enter()
 {
-	PlayerBaseState::Enter();	
-	
+	PlayerBaseState::Enter();
+
 	// player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
-	
+
 	player->SetIsJump(true);
 	rigidbody->SetGround(false);
 	rigidbody->ResetDropSpeed();
@@ -70,13 +70,13 @@ void PlayerJumpState::Update(float deltaTime)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
-	if (player->IsJump())
+	//if (player->IsJump())
+	//{
+	//}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
 	{
-		if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
-		{
-			player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
-			fsm->ChangeState(PlayerStateType::Jump);
-		}
+		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
+		fsm->ChangeState(PlayerStateType::Jump);
 	}
 
 

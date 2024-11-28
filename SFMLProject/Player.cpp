@@ -54,7 +54,7 @@ void Player::TakeDamage()
 		return;
 	}
 	else
-	{ 
+	{
 		fsm.ChangeState(PlayerStateType::Hit);
 	}
 
@@ -93,19 +93,29 @@ void Player::Start()
 
 	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
 	head->Awake();
-	head->SetPosition({ 0, -500.f });
-	head->GetCollider()->SetScale({ 100.f,100.f });
+	head->GetCollider()->SetScale({ 50.f,50.f });
+	head->SetHeadSkillOn(false);
+
+	skill1OnTime =0.2f;
+
 }
 
 void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
+	currentTime += deltaTime;
+	head->SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
+
+	if (!head->GetHeadSkillOn())
+	{
+		head->SetPosition(GetPosition());
+	}
 
 	if (isHit)
 	{
 		currentHitTime -= deltaTime;
- 
+
 		if (currentHitTime <= 0.f)
 		{
 			isHit = false;
@@ -123,6 +133,19 @@ void Player::Update(const float& deltaTime)
 		}
 	}
 
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	{
+		skillEndPos = GetPosition() + (IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
+		skill1StartPos = GetPosition();
+		head->SetHeadSkillOn(true);
+		currentTime = 0.f;
+	}
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::X))
+	{
+		head->SetHeadSkillOn(false);
+		SetPosition(head->GetPosition());
+	}
 
 	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
@@ -131,7 +154,7 @@ void Player::Update(const float& deltaTime)
 void Player::FixedUpdate(const float& deltaTime)
 {
 	fsm.FixedUpdate(deltaTime);
-	rigidBody->FixedUpdate(deltaTime); 
+	rigidBody->FixedUpdate(deltaTime);
 }
 
 void Player::LateUpdate(const float& deltaTime)
@@ -172,13 +195,17 @@ void Player::OnCollisionEnd(Collider* target)
 			rigidBody->SetGround(false);
 			currentJumpCount = 1;
 		}
+		else
+		{
+			currentJumpCount = jumpCount;
+		}
 	}
-	
+
 }
 
 PlayerSaveData Player::GetPlayerSaveData() const
 {
-	return PlayerSaveData({this->GetGameObjectSaveData(), currentStatus});
+	return PlayerSaveData({ this->GetGameObjectSaveData(), currentStatus });
 }
 
 void Player::LoadData(const PlayerSaveData& data)

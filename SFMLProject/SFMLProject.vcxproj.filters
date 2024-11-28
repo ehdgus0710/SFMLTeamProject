@@ -519,6 +519,24 @@
     <ClCompile Include="AnimationGameObject.cpp">
       <Filter>Contants\Object</Filter>
     </ClCompile>
+    <ClCompile Include="HitBoxObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDev3.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Head.cpp">
+      <Filter>Contants\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDashState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFallingState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill1Sate.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -850,6 +868,24 @@
     </ClInclude>
     <ClInclude Include="AnimationGameObject.h">
       <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="HitBoxObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev3.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Head.h">
+      <Filter>Contants\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDashState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFallingState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill1Sate.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

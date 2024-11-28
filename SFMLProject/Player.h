@@ -20,6 +20,12 @@ protected:
 	float		moveDirectionX;
 	DefaultStatus	currentStatus;
 
+	sf::Vector2f skill1StartPos;
+	sf::Vector2f skillEndPos;
+
+	float		skill1OnTime;
+	float		currentTime;
+
 	int				jumpCount;
 	int				currentJumpCount;
 	int				dashCount;

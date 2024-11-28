@@ -10,6 +10,8 @@
 #include "Camera.h"
 #include "InGameScoreUI.h"
 
+#include "Player.h"
+
 Head::Head(const std::string& name)
 	: AnimationGameObject(name)
 	, skillOn(false)
@@ -31,6 +33,7 @@ void Head::Awake()
 void Head::Start()
 {
 	AnimationGameObject::Start();
+	
 }
 
 void Head::Update(const float& deltaTime)
@@ -80,6 +83,10 @@ void Head::OnCollisionEnd(Collider* target)
 			rigidBody->SetGround(false);
 		}
 	}
+}
+
+void Head::fire()
+{
 }
 
 PlayerSaveData Head::GetPlayerSaveData() const

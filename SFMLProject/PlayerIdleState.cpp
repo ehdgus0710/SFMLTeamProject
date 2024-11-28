@@ -25,7 +25,6 @@ void PlayerIdleState::Start()
 void PlayerIdleState::Enter()
 {
 	PlayerBaseState::Enter();
-	player->SetCurrentJumpCount(player->GetJumpCount());
 	animator->ChangeAnimation("noheadlittleboneIdle", true);
 }
 

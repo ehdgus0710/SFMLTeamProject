@@ -16,6 +16,11 @@ public:
 	static sf::Vector2f RandomOnUnitCircle();
 	static sf::Vector2f RandomInUnitCircle();
 
+	static float RadianToDegree(float radian);
+	static float DegreeToRadian(float degree);
+	static float AngleRadian(const sf::Vector2f& vec);
+	static float Angle(const sf::Vector2f& vec);
+
 	static float Max(float a, float b);
 	static float Min(float a, float b);
 

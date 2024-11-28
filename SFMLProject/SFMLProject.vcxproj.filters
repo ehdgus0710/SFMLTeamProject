@@ -531,7 +531,7 @@
     <ClCompile Include="ReianaDropAttackState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaDropGlassState.cpp">
+    <ClCompile Include="ReianaKnifeState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ReianaDimensionState.cpp">
@@ -565,6 +565,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Dimension.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Knife.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -911,7 +914,7 @@
     <ClInclude Include="ReianaDropAttackState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaDropGlassState.h">
+    <ClInclude Include="ReianaKnifeState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ReianaDimensionState.h">
@@ -945,6 +948,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Dimension.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Knife.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

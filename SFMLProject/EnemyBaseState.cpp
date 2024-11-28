@@ -15,7 +15,6 @@ EnemyBaseState::~EnemyBaseState()
 
 
 void EnemyBaseState::Awake()
-	
 {
 }
 

@@ -161,11 +161,12 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="Dimension.cpp" />
+    <ClCompile Include="Knife.cpp" />
     <ClCompile Include="Reiana.cpp" />
     <ClCompile Include="ReianaBaseState.cpp" />
     <ClCompile Include="ReianaDeadState.cpp" />
     <ClCompile Include="ReianaDropAttackState.cpp" />
-    <ClCompile Include="ReianaDropGlassState.cpp" />
+    <ClCompile Include="ReianaKnifeState.cpp" />
     <ClCompile Include="ReianaDimensionState.cpp" />
     <ClCompile Include="ReianaFSM.cpp" />
     <ClCompile Include="ReianaGroundAttackState.cpp" />
@@ -303,11 +304,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="Dimension.h" />
+    <ClInclude Include="Knife.h" />
     <ClInclude Include="Reiana.h" />
     <ClInclude Include="ReianaBaseState.h" />
     <ClInclude Include="ReianaDeadState.h" />
     <ClInclude Include="ReianaDropAttackState.h" />
-    <ClInclude Include="ReianaDropGlassState.h" />
+    <ClInclude Include="ReianaKnifeState.h" />
     <ClInclude Include="ReianaDimensionState.h" />
     <ClInclude Include="ReianaFSM.h" />
     <ClInclude Include="ReianaGroundAttackState.h" />

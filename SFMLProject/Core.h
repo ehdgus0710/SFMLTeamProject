@@ -117,7 +117,7 @@ enum class ReianaStateType
 	GroundAttack,
 	ThreeSword,
 	Pong,
-	DropGlass,
+	Knife,
 	Dimension,
 	DropAttack,
 	Dead,

@@ -1,0 +1,13 @@
+ANIMATIONCSVPATH,ANIMAIONID
+,
+animations/Skul/littleboneAttack1.csv,littleboneAttack1
+animations/Skul/littleboneAttack2.csv,littleboneAttack2
+animations/Skul/littleboneDash.csv,littleboneDash
+animations/Skul/littleboneFalling.csv,littleboneFalling
+animations/Skul/littleboneIdle.csv,littleboneIdle
+animations/Skul/littleboneJump.csv,littleboneJump
+animations/Skul/littleboneRestart.csv,littleboneRestart
+animations/Skul/littleboneRun.csv,littleboneRun
+animations/Skul/littleboneSkillMove.csv,littleboneSkillMove
+animations/Skul/littleboneSwapAttack.csv,littleboneSwapAttack
+animations/Skul/littleboneThrowHead.csv,littleboneThrowHead

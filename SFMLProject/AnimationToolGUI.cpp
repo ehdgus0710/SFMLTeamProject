@@ -21,7 +21,10 @@ AnimationToolGUI::AnimationToolGUI()
     , isAtlasTextrue(false)
     , startPositionX(0)
     , startPositionY(0)
-
+    , widthSize(0)
+    , heightSize(0)
+    , offsetX(0)
+    , offsetY(0)
 {
 }
 
@@ -90,9 +93,44 @@ void AnimationToolGUI::Update()
     }
 
     if (texture)
-        ImGui::Image(tex_id, ImVec2(resolution), uv_min, uv_max, tint_col, border_col);
+    {
+        if (!isAtlasTextrue)
+            ImGui::Image(tex_id, ImVec2(resolution), uv_min, uv_max, tint_col, border_col);
+        else
+        {
+            sf::Vector2u size = texture->getSize();
+
+            if (rectSize.y == 0)
+                rectSize.y = size.y;
+            if (rectSize.x == 0)
+                rectSize.x = size.x;
+            int heightCount = size.y / rectSize.y;
+            int widthCount = size.x / rectSize.x;
 
 
+            for (int i = 0; i < heightCount; ++i)
+            {
+                for (int j = 0; j < widthCount; ++j)
+                {
+                    ImGui::PushID((i * widthCount) + j);
+                    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.f, 1.f));
+
+                    if (ImGui::ImageButton((std::to_string((i * widthCount) + j)).c_str(), texture->getNativeHandle(), { (float)rectSize.x, (float)rectSize.y },
+                        { ((float)rectSize.x * j) / (float)size.x ,((float)rectSize.y * i) / (float)size.y }, { ((float)rectSize.x * (j + 1)) / (float)size.x ,((float)rectSize.y * (i + 1)) / (float)size.y }))
+                    {
+                        // sf::Vector2f mousePosition = SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(ImGui::GetMousePos());
+                    }
+
+                    if (j != widthCount - 1)
+                        ImGui::SameLine();
+
+                    ImGui::PopStyleVar();
+                    ImGui::PopID();
+
+                }
+            }
+        }
+    }
     int index = frameID;
     sf::Vector2f leftTop = {};
     sf::Vector2f frameSize = {};
@@ -160,8 +198,10 @@ void AnimationToolGUI::Update()
 
         sprite.setTextureRect(animInfoVector[frameID].uvRect);
 
-        if (nullptr != texture) 
+        if (nullptr != texture)
+        {
             ImGui::ImageButton(textureVector[itemCurrentIndex].c_str(), sprite, { (float)animInfoVector[frameID].rectSize.x, (float)animInfoVector[frameID].rectSize.y });
+        }
 
         if (ImGui::Button("Play", { 100,30 }))
         {
@@ -317,18 +357,16 @@ void AnimationToolGUI::AtlasTextrue()
 
     ImGui::Text("RectSize");
 
-    int rectSizeArr[2] = { (int)animInfoVector[frameID].rectSize.x, (int)animInfoVector[frameID].rectSize.y };
+    int rectSizeArr[2] = { rectSize.x, rectSize.y };
 
     if (ImGui::DragInt2("##DragRectSize", rectSizeArr, 0.3f, 0, 5000))
     {
-        animInfoVector[frameID].rectSize = { (unsigned int)rectSizeArr[0],(unsigned int)rectSizeArr[1] };
-        animInfoVector[frameID].rectSize;
+        rectSize = { (unsigned int)rectSizeArr[0],(unsigned int)rectSizeArr[1] };
     }
 
     if (ImGui::SliderInt2("##SlideRectSize", rectSizeArr, 0, 1000))
     {
-        animInfoVector[frameID].rectSize = { (unsigned int)rectSizeArr[0],(unsigned int)rectSizeArr[1] };
-        animInfoVector[frameID].rectSize;
+        rectSize = { (unsigned int)rectSizeArr[0],(unsigned int)rectSizeArr[1] };
     }
 
 
@@ -339,6 +377,19 @@ void AnimationToolGUI::AtlasTextrue()
         startPositionY = startArr[1];
     }
 
+    int widthHeightArr[2] = { widthSize, heightSize };
+    if (ImGui::InputInt2("Widht,Height", widthHeightArr))
+    {
+        widthSize = widthHeightArr[0];
+        heightSize = widthHeightArr[1];
+    }
+
+    int offSetSize[2] = { offsetX, offsetY };
+    if (ImGui::InputInt2("offsetX,offsetY", offSetSize))
+    {
+        offsetX = offSetSize[0];
+        offsetY = offSetSize[1];
+    }
 
     if (ImGui::Button("SetDefalutRectSize", { 200, 20 }) && atlasRectSize.x != 0 && atlasRectSize.y != 0)
     {
@@ -347,12 +398,12 @@ void AnimationToolGUI::AtlasTextrue()
         auto textureSize = texture->getSize();
         for (int i = 0; i < size; ++i)
         {
-            animInfoVector[i].rectSize = atlasRectSize;
-            animInfoVector[i].uvRect.left = startPositionX * atlasRectSize.x;
-            animInfoVector[i].uvRect.top = startPositionY * atlasRectSize.y;
+            animInfoVector[i].rectSize = rectSize;
+            animInfoVector[i].uvRect.left = startPositionX * atlasRectSize.x + offsetX;
+            animInfoVector[i].uvRect.top = startPositionY * atlasRectSize.y + offsetY;
 
-            animInfoVector[i].uvRect.width = atlasRectSize.x;
-            animInfoVector[i].uvRect.height = atlasRectSize.y;
+            animInfoVector[i].uvRect.width = widthSize;
+            animInfoVector[i].uvRect.height = heightSize;
 
             ++startPositionX;
 

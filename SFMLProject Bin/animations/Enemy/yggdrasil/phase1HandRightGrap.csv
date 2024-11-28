@@ -1,0 +1,5 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+YggdrasilRightHand,phase1HandRightGrap,0,,,,,
+,,,,,,,
+,200,200,0,800,200,200,0.1
+,200,200,200,800,200,200,0.1

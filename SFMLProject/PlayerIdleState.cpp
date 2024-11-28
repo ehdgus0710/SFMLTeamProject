@@ -65,10 +65,17 @@ void PlayerIdleState::Update(float deltaTime)
 		fsm->ChangeState(PlayerStateType::Attack);
 	}
 
-	if ((InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player ->GetCurrentJumpCount() > 0))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C))
 	{
-		fsm->ChangeState(PlayerStateType::Jump);
+		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Down))
+			player->OnDownJump();
+		else if (player->GetCurrentJumpCount() > 0)
+		{
+			fsm->ChangeState(PlayerStateType::Jump);
+		}
 	}
+
+	
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
 	{

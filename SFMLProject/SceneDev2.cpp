@@ -35,7 +35,6 @@ void SceneDev2::Enter()
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
 
-	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
 	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
 	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");

@@ -73,6 +73,7 @@ enum class ColliderLayer
 {
 	Default,
 	Wall,
+	Scaffolding,
 	Item,
 	Player,
 	Enemy,

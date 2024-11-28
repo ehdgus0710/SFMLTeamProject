@@ -53,6 +53,7 @@ public:
 	void AddItem(ItemType itemType);
 	void Attack();
 	void OnAttackEnd();
+	void OnDownJump();
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }

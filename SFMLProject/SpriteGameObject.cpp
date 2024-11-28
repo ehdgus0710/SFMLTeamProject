@@ -46,16 +46,16 @@ void SpriteGameObject::Render(sf::RenderWindow& renderWindow)
 
 void SpriteGameObject::Start()
 {
-	SetScale(scale);
-	SetPosition(position);
-	SetRotation(rotation);
-
-	SetOrigin(originPreset);
-
 	if (animator)
 		animator->Start();
 	else
 		sprite.setTexture(ResourcesManager<sf::Texture>::GetInstance().Get(textureId));
+
+	SetScale(scale);
+	SetPosition(position);
+	SetRotation(rotation);
+	SetOrigin(originPreset);
+
 
 	if (collider != nullptr)
 		collider->Reset();

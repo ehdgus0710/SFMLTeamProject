@@ -76,6 +76,34 @@ void Player::OnAttackEnd()
 {
 }
 
+void Player::OnDownJump()
+{
+	auto& targets = collider->GetCollisionTargets();
+	bool isGround = false;
+	for (auto& targetCollsion : targets)
+	{
+		if (targetCollsion->GetColliderLayer() == ColliderLayer::Wall)
+		{
+			Rectangle rect(collider->GetPosition(), collider->GetScale());
+			Rectangle targetRect(targetCollsion->GetPosition(), targetCollsion->GetScale());
+
+			if (rect.bottomPosition == targetRect.topPosition)
+			{
+				isGround = true;
+				isJump = false;
+				break;
+			}
+		}
+
+	}
+
+	if (!isGround)
+	{
+		rigidBody->SetGround(false);
+		fsm.ChangeState(PlayerStateType::Falling);
+	}
+}
+
 
 void Player::SetHeadPosition(sf::Vector2f pos)
 {
@@ -198,7 +226,7 @@ void Player::OnCollisionStay(Collider* target)
 }
 void Player::OnCollisionEnd(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Wall)
+	if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Scaffolding)
 	{
 		auto& targets = collider->GetCollisionTargets();
 		bool isGround = false;

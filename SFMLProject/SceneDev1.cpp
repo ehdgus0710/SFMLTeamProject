@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SceneDev1.h"
 
+#include "ScaffoldingObject.h"
 #include "GameInclude.h"
 
 void SceneDev1::Init()
@@ -28,6 +29,9 @@ void SceneDev1::Enter()
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });
 	wallCollision->SetPosition({ 0, 100.f });
+
+	ScaffoldingObject* scaffoldingObject = AddGameObject(new ScaffoldingObject("LittleBone_NonHead"), LayerType::Wall);
+	scaffoldingObject->SetPosition({ 0, 400.f });
 
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
 	background->SetScale({ 2000.f, 1300.f });
@@ -185,6 +189,7 @@ void SceneDev1::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
 
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Scaffolding, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
 

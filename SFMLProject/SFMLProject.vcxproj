@@ -244,6 +244,7 @@
     <ClCompile Include="SaveLoadManger.cpp" />
     <ClCompile Include="SavePointGUI.cpp" />
     <ClCompile Include="SavePointObject.cpp" />
+    <ClCompile Include="ScaffoldingObject.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
     <ClCompile Include="SceneDev2.cpp" />
@@ -366,6 +367,7 @@
     <ClInclude Include="SaveLoadManger.h" />
     <ClInclude Include="SavePointGUI.h" />
     <ClInclude Include="SavePointObject.h" />
+    <ClInclude Include="ScaffoldingObject.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneDev2.h" />

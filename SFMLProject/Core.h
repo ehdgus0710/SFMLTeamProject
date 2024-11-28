@@ -59,6 +59,7 @@ enum class LayerType
 	Block,
 	Player,
 	Enemy,
+	Boss,
 	PlayerBullet,
 	EnemyBullet,
 
@@ -112,6 +113,21 @@ enum class PlayerStateType
 	End
 };
 
+enum class ReianaStateType
+{
+	Idle,
+	NomalAttack,
+	GroundAttack,
+	ThreeSword,
+	Pong,
+	Knife,
+	Dimension,
+	DropAttack,
+	Dead,
+
+	End
+};
+
 enum class EnemyStateType
 {
 	Idle, 
@@ -138,5 +154,6 @@ enum class ItemType
 
 enum class EnemyType
 {
+	Reiana,
 	End
 };

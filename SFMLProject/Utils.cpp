@@ -39,6 +39,27 @@ sf::Vector2f Utils::RandomInUnitCircle()
 	return RandomOnUnitCircle() * RandomValue();
 }
 
+float Utils::RadianToDegree(float radian)
+{
+	return radian * (180.f / PI);
+}
+
+float Utils::DegreeToRadian(float degree)
+{
+	return degree * (PI / 180.f);
+}
+
+float Utils::AngleRadian(const sf::Vector2f& vec)
+{
+	return std::atan2(vec.y, vec.x);
+}
+
+float Utils::Angle(const sf::Vector2f& vec)
+{
+	return RadianToDegree(AngleRadian(vec));
+}
+
+
 float Utils::Max(float a, float b)
 {
 	return (a > b) ? a : b;

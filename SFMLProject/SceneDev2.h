@@ -2,15 +2,18 @@
 #include "Scene.h"
 
 class Player;
+class Reiana;
 
 class SceneDev2 : public Scene
 {
 private:
 	Player* player;
+	Reiana* reiana;
 	Rectangle	cameraLimitRect;
 	Rectangle	currentCameraLimitRect;
 public:
 	void CollisitionCheck();
+	void LoadResources();
 
 public:
 	void Init() override;

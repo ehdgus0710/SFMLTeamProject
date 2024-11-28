@@ -5,6 +5,7 @@
 class ReianaDimensionState : public ReianaBaseState
 {
 protected:
+	void CreateDimension();
 
 public:
 	void Awake() override;

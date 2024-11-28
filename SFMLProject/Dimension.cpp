@@ -21,9 +21,9 @@ Dimension::Dimension(ColliderLayer type, const std::string& texId, const std::st
 
 void Dimension::Start()
 {
-	Player* player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
-	auto playerPos = player->GetPosition();
-	SetPosition(playerPos);
+	TEXTURE_MANAGER.Load("MenuBar", "graphics/MenuBar_Unselected.png");
+	sprite.setTexture(TEXTURE_MANAGER.Get(textureID));
+	SetPosition(position);
 	SetScale(scale);
 	SetRotation(rotation);
 	SetOrigin(originPreset);

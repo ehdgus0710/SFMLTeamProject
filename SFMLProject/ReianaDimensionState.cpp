@@ -13,6 +13,16 @@ ReianaDimensionState::~ReianaDimensionState()
 {
 }
 
+void ReianaDimensionState::CreateDimension()
+{
+	Dimension* dimension = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Dimension(ColliderLayer::EnemyBullet,"MenuBar"), LayerType::EnemyBullet);
+	dimension->SetActive(true);
+	dimension->SetPosition(reiana->GetPlayer()->GetPosition());
+	dimension->Awake();
+	dimension->Start();
+	dimension->SetRotation(Utils::RandomRange(1,180));
+}
+
 void ReianaDimensionState::Awake()
 {
 }
@@ -24,8 +34,8 @@ void ReianaDimensionState::Start()
 void ReianaDimensionState::Enter()
 {
 	ReianaBaseState::Enter();	
-	auto dimension = dynamic_cast<Dimension*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("dimension", LayerType::EnemyBullet));
-	dimension->SetActive(true);
+
+	CreateDimension();
 }
 
 void ReianaDimensionState::Exit()

@@ -5,7 +5,7 @@ protected:
 	sf::Sprite			sprite;
 
 	sf::IntRect			textureUVRect;
-	std::string			textureID;
+	std::string			textureID ;
 	sf::Vector2f		rectSize;
 	sf::Vector2f		moveDirection;
 

@@ -31,6 +31,7 @@ void Reiana::Start()
 {
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad1);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad2);
+	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad3);
 
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
@@ -51,6 +52,10 @@ void Reiana::Update(const float& deltaTime)
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad2))
 	{
 		fsm.ChangeState(ReianaStateType::GroundAttack);
+	}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad3))
+	{
+		fsm.ChangeState(ReianaStateType::Dimension);
 	}
 }
 

@@ -15,6 +15,7 @@
 #include "TileMapController.h"
 #include "Collider.h"
 #include "Reiana.h"
+#include "Dimension.h"
 
 #include "PlayerSaveData.h"
 #include "WallCollisionSaveData.h"

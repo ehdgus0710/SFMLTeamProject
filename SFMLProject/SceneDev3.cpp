@@ -27,6 +27,12 @@ void SceneDev3::LoadResources()
 
 void SceneDev3::Init()
 {
+	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
+	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
+	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
+	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
+	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
+
 	Scene::Init();
 }
 
@@ -35,11 +41,16 @@ void SceneDev3::Enter()
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
 
-	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
-	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
-	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
-	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
-	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
+	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
+	TEXTURE_MANAGER.Load("YggdrasilHead", "graphics/boss/Yggdrasil/Head.png");
+	TEXTURE_MANAGER.Load("YggdrasilMouth", "graphics/boss/Yggdrasil/Mouth.png");
+	TEXTURE_MANAGER.Load("YggdrasilRightHand", "graphics/boss/Yggdrasil/Right_Hand.png");
+	TEXTURE_MANAGER.Load("YggdrasilLeftHand", "graphics/boss/Yggdrasil/Left_Hand.png");
+	TEXTURE_MANAGER.Load("YggdrasilbossBackground1", "graphics/boss/Yggdrasil/backgrounds/bossBackground1.png");
+	TEXTURE_MANAGER.Load("YggdrasilbossBackground2", "graphics/boss/Yggdrasil/backgrounds/bossBackground2.png");
+	TEXTURE_MANAGER.Load("YggdrasilGrogy", "graphics/boss/Yggdrasil/effects/Grogy.png");
+	TEXTURE_MANAGER.Load("YggdrasilHandSlam", "graphics/boss/Yggdrasil/effects/HandSlam.png");
+	TEXTURE_MANAGER.Load("YggdrasilHandSlamBoom", "graphics/boss/Yggdrasil/effects/HandSlam_Boom.png");
 
 	CollisitionCheck();
 

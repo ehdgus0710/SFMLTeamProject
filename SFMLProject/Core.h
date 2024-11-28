@@ -59,9 +59,9 @@ enum class LayerType
 	Block,
 	Player,
 	Enemy,
+	Boss,
 	PlayerBullet,
 	EnemyBullet,
-	Reiana,
 
 	CleraPoint,
 	InGameUI,
@@ -115,10 +115,10 @@ enum class ReianaStateType
 	Idle,
 	NomalAttack,
 	GroundAttack,
-	VomitAttack,
+	ThreeSword,
 	Pong,
 	DropGlass,
-	DropPoison,
+	Dimension,
 	DropAttack,
 	Dead,
 
@@ -151,5 +151,6 @@ enum class ItemType
 
 enum class EnemyType
 {
+	Reiana,
 	End
 };

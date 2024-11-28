@@ -52,7 +52,7 @@ void SceneDev2::Enter()
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
-	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Reiana);
+	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
 	testReiana->Awake();
 	testReiana->SetPosition({ 1700.f,-500.f });
 

@@ -4,10 +4,10 @@
 #include "ReianaIdleState.h"
 #include "ReianaGroundAttackState.h"
 #include "ReianaNomalAttackState.h"
-#include "ReianaVomitAttackState.h"
+#include "ReianaThreeSwordState.h"
 #include "ReianaDropAttackState.h"
 #include "ReianaDropGlassState.h"
-#include "ReianaDropPoisonState.h"
+#include "ReianaDimensionState.h"
 #include "ReianaPongState.h"
 #include "ReianaDeadState.h"
 
@@ -48,8 +48,8 @@ void ReianaFsm::CreateAllState()
 		case ReianaStateType::GroundAttack:
 			AddState(ReianaStateType::GroundAttack);
 			break;
-		case ReianaStateType::VomitAttack:
-			AddState(ReianaStateType::VomitAttack);
+		case ReianaStateType::ThreeSword:
+			AddState(ReianaStateType::ThreeSword);
 			break;
 		case ReianaStateType::Pong:
 			AddState(ReianaStateType::Pong);
@@ -60,8 +60,8 @@ void ReianaFsm::CreateAllState()
 		case ReianaStateType::DropAttack:
 			AddState(ReianaStateType::DropAttack);
 			break;
-		case ReianaStateType::DropPoison:
-			AddState(ReianaStateType::DropPoison);
+		case ReianaStateType::Dimension:
+			AddState(ReianaStateType::Dimension);
 			break;
 		case ReianaStateType::Dead:
 			AddState(ReianaStateType::Dead);
@@ -89,8 +89,8 @@ BaseState<ReianaStateType>* ReianaFsm::CreateState(ReianaStateType type)
 	case ReianaStateType::GroundAttack:
 		state = new ReianaGroundAttackState(this);
 		break;
-	case ReianaStateType::VomitAttack:
-		state = new ReianaVomitAttackState(this);
+	case ReianaStateType::ThreeSword:
+		state = new ReianaThreeSwordState(this);
 		break;
 	case ReianaStateType::Pong:
 		state = new ReianaPongState(this);
@@ -101,8 +101,8 @@ BaseState<ReianaStateType>* ReianaFsm::CreateState(ReianaStateType type)
 	case ReianaStateType::DropAttack:
 		state = new ReianaDropAttackState(this);
 		break;
-	case ReianaStateType::DropPoison:
-		state = new ReianaDropPoisonState(this);
+	case ReianaStateType::Dimension:
+		state = new ReianaDimensionState(this);
 		break;
 	case ReianaStateType::Dead:
 		state = new ReianaDeadState(this);

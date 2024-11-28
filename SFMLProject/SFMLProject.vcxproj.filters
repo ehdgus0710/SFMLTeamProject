@@ -534,7 +534,7 @@
     <ClCompile Include="ReianaDropGlassState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaDropPoisonState.cpp">
+    <ClCompile Include="ReianaDimensionState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ReianaFSM.cpp">
@@ -552,7 +552,7 @@
     <ClCompile Include="ReianaPongState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaVomitAttackState.cpp">
+    <ClCompile Include="ReianaThreeSwordState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PlayerDashState.cpp">
@@ -562,6 +562,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SceneDev3.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Dimension.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -911,7 +914,7 @@
     <ClInclude Include="ReianaDropGlassState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaDropPoisonState.h">
+    <ClInclude Include="ReianaDimensionState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ReianaFSM.h">
@@ -929,7 +932,7 @@
     <ClInclude Include="ReianaPongState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaVomitAttackState.h">
+    <ClInclude Include="ReianaThreeSwordState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PlayerDashState.h">
@@ -939,6 +942,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SceneDev3.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Dimension.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "PlayerHitState.h"
 #include "PlayerFallingState.h"
 #include "PlayerDashState.h"
+#include "PlayerAttackState.h"
 
 PlayerFSM::PlayerFSM(Player* owner)
 	: owner(owner)
@@ -65,6 +66,9 @@ void PlayerFSM::CreateAllState()
 		case PlayerStateType::Dash:
 			AddState(PlayerStateType::Dash);
 			break;
+		case PlayerStateType::Attack:
+			AddState(PlayerStateType::Attack);
+			break;
 		case PlayerStateType::End:
 			break;
 		default:
@@ -99,6 +103,9 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 		break;
 	case PlayerStateType::Dash:
 		state = new PlayerDashState(this);
+		break;
+	case PlayerStateType::Attack:
+		state = new PlayerAttackState(this);
 		break;
 	case PlayerStateType::End:
 		break;

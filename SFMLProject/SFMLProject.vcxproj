@@ -236,7 +236,6 @@
     <ClCompile Include="PlayerJumpState.cpp" />
     <ClCompile Include="PlayerRunState.cpp" />
     <ClCompile Include="PlayerSaveData.cpp" />
-    <ClCompile Include="PlayerSkill1Sate.cpp" />
     <ClCompile Include="RectSpriteGameObject.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
@@ -356,7 +355,6 @@
     <ClInclude Include="PlayerJumpState.h" />
     <ClInclude Include="PlayerRunState.h" />
     <ClInclude Include="PlayerSaveData.h" />
-    <ClInclude Include="PlayerSkill1Sate.h" />
     <ClInclude Include="rapidcsv.h" />
     <ClInclude Include="RectSpriteGameObject.h" />
     <ClInclude Include="Resources.h" />

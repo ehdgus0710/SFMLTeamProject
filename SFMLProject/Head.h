@@ -26,6 +26,8 @@ public:
 
 	void fire();
 
+	void SetPlayer(Player* player);
+
 	bool GetHeadSkillOn() { return skillOn; }
 	void SetHeadSkillOn(bool onoff) { skillOn = onoff; }
 

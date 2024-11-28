@@ -17,14 +17,16 @@ protected:
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
 
-	float		moveDirectionX;
-	DefaultStatus	currentStatus;
-
 	sf::Vector2f skill1StartPos;
 	sf::Vector2f skillEndPos;
 
 	float		skill1OnTime;
 	float		currentTime;
+
+	float		moveDirectionX;
+	DefaultStatus	currentStatus;
+
+
 
 	int				jumpCount;
 	int				currentJumpCount;
@@ -68,7 +70,10 @@ public:
 	int GetCurrentJumpCount() { return currentJumpCount; }
 	int GetDashCount() { return dashCount; }
 
-
+	void SetHeadPosition(sf::Vector2f pos);
+	sf::Vector2f GetHeadPosition();
+	void SetOnHeadSkill1(bool onoff);
+	bool GetOnHeadSkill1();
 
 	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }

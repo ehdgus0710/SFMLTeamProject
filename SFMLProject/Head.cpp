@@ -38,6 +38,7 @@ void Head::Start()
 
 void Head::Update(const float& deltaTime)
 {
+	rigidBody->Update(deltaTime);
 }
 
 void Head::FixedUpdate(const float& deltaTime)
@@ -87,6 +88,11 @@ void Head::OnCollisionEnd(Collider* target)
 
 void Head::fire()
 {
+}
+
+void Head::SetPlayer(Player* player)
+{
+	this->player = player;
 }
 
 PlayerSaveData Head::GetPlayerSaveData() const

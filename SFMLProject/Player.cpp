@@ -77,6 +77,26 @@ void Player::OnAttackEnd()
 }
 
 
+void Player::SetHeadPosition(sf::Vector2f pos)
+{
+	head->SetPosition(pos);
+}
+
+sf::Vector2f Player::GetHeadPosition()
+{
+	return head->GetPosition();
+}
+
+void Player::SetOnHeadSkill1(bool onoff)
+{
+	head->SetHeadSkillOn(onoff);
+}
+
+bool Player::GetOnHeadSkill1()
+{
+	return head->GetHeadSkillOn();
+}
+
 void Player::Awake()
 {
 	AnimationGameObject::Awake();
@@ -92,12 +112,12 @@ void Player::Start()
 	animator->ChangeAnimation("noheadlittleboneIdle", true);
 
 	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
+	head->SetPlayer(this);
 	head->Awake();
 	head->GetCollider()->SetScale({ 50.f,50.f });
 	head->SetHeadSkillOn(false);
 
-	skill1OnTime =0.2f;
-
+	skill1OnTime = 0.2f;
 }
 
 void Player::Update(const float& deltaTime)
@@ -105,9 +125,16 @@ void Player::Update(const float& deltaTime)
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
 	currentTime += deltaTime;
-	head->SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
+	if (head->GetHeadSkillOn())
+	{
 
-	if (!head->GetHeadSkillOn())
+		if(currentTime >= skill1OnTime)
+			head->GetRigidbody()->SetActive(true);
+		else
+			head->SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
+
+	}
+	else
 	{
 		head->SetPosition(GetPosition());
 	}
@@ -138,10 +165,11 @@ void Player::Update(const float& deltaTime)
 		skillEndPos = GetPosition() + (IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
 		skill1StartPos = GetPosition();
 		head->SetHeadSkillOn(true);
+		head->GetRigidbody()->SetActive(false);
 		currentTime = 0.f;
 	}
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::X))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
 	{
 		head->SetHeadSkillOn(false);
 		SetPosition(head->GetPosition());
@@ -198,6 +226,7 @@ void Player::OnCollisionEnd(Collider* target)
 		else
 		{
 			currentJumpCount = jumpCount;
+			head->SetHeadSkillOn(false);
 		}
 	}
 

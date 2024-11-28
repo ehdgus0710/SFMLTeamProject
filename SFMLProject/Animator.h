@@ -30,6 +30,7 @@ public:
 	void AddAnimation(Animation* animation, const std::string& animationName);
 
 	void ChangeAnimation(const std::string& animationName, bool isRepeat = false, bool isUnscale = false);
+	void ChangeAnimation(const std::string& animationName, unsigned int index = 0,bool isRepeat = false, bool isUnscale = false);
 	void Render(sf::RenderWindow& renderWindow);
 	void SetCurrentFrameRect(const sf::IntRect& rect);
 	void SetCurrentFrameInfo(const sf::Vector2u& size, const sf::IntRect& rect);
@@ -44,6 +45,7 @@ public:
 	sf::Vector2f GetScale() { return rectSize;	}
 
 	void SetPlaying(bool isPlay) { isPlaying = isPlay; }
+	void SetPlaying(Animation* animation, bool isPlay);
 	bool IsPlaying() { return isPlaying; }
 
 	sf::FloatRect GetLocalBounds() const;

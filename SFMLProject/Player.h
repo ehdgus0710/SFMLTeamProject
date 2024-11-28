@@ -26,8 +26,6 @@ protected:
 	float		moveDirectionX;
 	DefaultStatus	currentStatus;
 
-
-
 	int				jumpCount;
 	int				currentJumpCount;
 	int				dashCount;

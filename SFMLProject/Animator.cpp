@@ -95,6 +95,21 @@ void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat, 
 	currentAnimation->SetUnScaleUpdate(isUnscale);
 }
 
+void Animator::ChangeAnimation(const std::string& animationName, unsigned int index, bool isRepeat, bool isUnscale)
+{
+	auto animation = animationMap.find(animationName);
+	if (animationMap.end() == animation)
+		return;
+
+	isPlaying = true;
+	currentAnimation->SetRepeat(false);
+	currentAnimation = animation->second;
+
+	sprite->setTexture(*currentAnimation->GetTexture());
+	currentAnimation->Play(animationSpeed, isRepeat);
+	currentAnimation->SetUnScaleUpdate(isUnscale);
+}
+
 void Animator::StartAnimation(Animation* animation, bool isRepeat)
 {
 	isPlaying = true;
@@ -111,11 +126,6 @@ void Animator::Render(sf::RenderWindow& renderWindow)
 void Animator::SetCurrentFrameRect(const sf::IntRect& rect)
 {
 	uvRect = rect;
-
-
-	// owner->GetScale() * 
-	// sprite->setScale()
-	// Utils::SetOrigin(*sprite, uvRect, owner->GetOrigins());
 	sprite->setTextureRect(uvRect);
 }
 
@@ -153,6 +163,13 @@ void Animator::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale * rectSize;
 	sprite->setScale(this->scale);
+}
+
+
+void Animator::SetPlaying(Animation* animation, bool isPlay)
+{
+	if (currentAnimation == animation)
+		isPlaying = isPlay;
 }
 
 sf::FloatRect Animator::GetLocalBounds() const

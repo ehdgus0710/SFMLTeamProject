@@ -6,6 +6,8 @@
 PlayerJumpState::PlayerJumpState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Jump)
 {
+	animationKeys.push_back("littleboneJump");
+	animationKeys.push_back("noheadlittleboneJump");
 }
 
 PlayerJumpState::~PlayerJumpState()
@@ -26,7 +28,7 @@ void PlayerJumpState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	animator->ChangeAnimation("noheadlittleboneJump", false);
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex], false);
 
 	player->SetIsJump(true);
 	rigidbody->SetGround(false);
@@ -69,14 +71,14 @@ void PlayerJumpState::Update(float deltaTime)
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
+		return;
 	}
-	//if (player->IsJump())
-	//{
-	//}
+
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
+		return;
 	}
 
 

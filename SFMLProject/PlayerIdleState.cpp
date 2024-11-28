@@ -6,6 +6,8 @@
 PlayerIdleState::PlayerIdleState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Idle)
 {
+	animationKeys.push_back("littleboneIdle");
+	animationKeys.push_back("noheadlittleboneIdle");
 }
 
 PlayerIdleState::~PlayerIdleState()
@@ -25,7 +27,7 @@ void PlayerIdleState::Start()
 void PlayerIdleState::Enter()
 {
 	PlayerBaseState::Enter();
-	animator->ChangeAnimation("noheadlittleboneIdle", true);
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex], true);
 }
 
 void PlayerIdleState::Exit()

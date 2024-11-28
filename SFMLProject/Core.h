@@ -110,6 +110,7 @@ enum class PlayerStateType
 	Dash,
 	Attack,
 	Skill1,
+	Skill2,
 	End
 };
 

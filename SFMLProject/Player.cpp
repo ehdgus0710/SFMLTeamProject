@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "InGameScoreUI.h"
 #include "Head.h"
+#include "PlayerBaseState.h"
 
 Player::Player(const std::string& name)
 	: AnimationGameObject(name)
@@ -32,6 +33,7 @@ Player::Player(const std::string& name)
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
 
+	animator->LoadCsv("animators/littlebone.csv");
 	animator->LoadCsv("animators/noheadlittlebone.csv");
 }
 
@@ -220,6 +222,10 @@ void Player::LateUpdate(const float& deltaTime)
 
 void Player::OnCollisionEnter(Collider* target)
 {
+	if (target->GetOwner() == head)
+	{
+		fsm.GetCurrentState()->SetChangeAnimationKey(0);
+	}
 }
 void Player::OnCollisionStay(Collider* target)
 {

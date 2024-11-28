@@ -3,6 +3,18 @@
 #include "Rigidbody.h"
 #include "Animator.h"
 
+
+PlayerFallingState::PlayerFallingState(PlayerFSM* fsm)
+	: PlayerBaseState(fsm, PlayerStateType::Falling)
+{
+	animationKeys.push_back("littleboneFalling");
+	animationKeys.push_back("noheadlittleboneFalling");
+}
+
+PlayerFallingState::~PlayerFallingState()
+{
+}
+
 void PlayerFallingState::Awake()
 {
 	PlayerBaseState::Awake();
@@ -17,7 +29,7 @@ void PlayerFallingState::Start()
 void PlayerFallingState::Enter()
 {
 	PlayerBaseState::Enter();
-	animator->ChangeAnimation("noheadlittleboneFalling", false);
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex], false);
 }
 
 void PlayerFallingState::Exit()
@@ -85,13 +97,4 @@ void PlayerFallingState::FixedUpdate(float fixedDeltaTime)
 void PlayerFallingState::LateUpdate(float deltaTime)
 {
 	PlayerBaseState::LateUpdate(deltaTime);
-}
-
-PlayerFallingState::PlayerFallingState(PlayerFSM* fsm)
-	: PlayerBaseState(fsm, PlayerStateType::Falling)
-{
-}
-
-PlayerFallingState::~PlayerFallingState()
-{
 }

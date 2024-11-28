@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationBullet.cpp" />
     <ClCompile Include="AnimationGameObject.cpp" />
     <ClCompile Include="AnimationGUI.cpp" />
     <ClCompile Include="AnimationToolGUI.cpp" />
@@ -282,6 +283,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationBullet.h" />
     <ClInclude Include="AnimationGameObject.h" />
     <ClInclude Include="AnimationGUI.h" />
     <ClInclude Include="AnimationToolGUI.h" />

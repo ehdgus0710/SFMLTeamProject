@@ -3,7 +3,7 @@
 class AnimationGameObject : public GameObject
 {
 protected:
-	sf::Sprite	sprite;
+	sf::Sprite		sprite;
 	bool			isFlipX;
 
 public:

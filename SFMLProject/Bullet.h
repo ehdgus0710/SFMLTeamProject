@@ -1,5 +1,8 @@
 #pragma once
-class Bullet : public GameObject
+
+#include "HitBoxObject.h"
+
+class Bullet : public HitBoxObject
 {
 protected:
 	sf::Sprite			sprite;
@@ -12,8 +15,11 @@ protected:
 	float				lifeTime;
 	float				currentLifeTime;
 	float				speed;
+	bool				isShoot;
 
 public:
+	void Shoot();
+
 	void SetUVRect(const sf::IntRect uvRect);
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetRotation(float angle) override;
@@ -35,7 +41,6 @@ public:
 public:
 	void Start() override;
 	void Update(const float& deltaTime) override;
-	void FixedUpdate(const float& deltaTime) override;
 	void Render(sf::RenderWindow& renderWindow) override;
 
 	void OnCollisionEnter(Collider* target) override;
@@ -50,7 +55,7 @@ public:
 	bool LoadCsv(const std::string& filePath) override;
 
 public:
-	Bullet(ColliderLayer type, const std::string& texId, const std::string& name = "Bullet");
+	Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name = "Bullet");
 	virtual ~Bullet() = default;
 	Bullet& operator= (const Bullet& other) = delete;
 };

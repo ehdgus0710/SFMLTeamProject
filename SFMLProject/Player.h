@@ -5,15 +5,28 @@
 
 class Camera;
 class Rigidbody;
+class Head;
+class GameObject;
 
 class Player : public AnimationGameObject
 {
 protected:
+	Head*		head;
+	GameObject* gameObject;
+
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
 
+	sf::Vector2f skill1StartPos;
+	sf::Vector2f skillEndPos;
+
+	float		skill1OnTime;
+	float		currentTime;
+
 	float		moveDirectionX;
 	DefaultStatus	currentStatus;
+
+
 
 	int				jumpCount;
 	int				currentJumpCount;
@@ -36,6 +49,7 @@ protected:
 
 public:
 	void TakeDamage();
+	void TakeDamage(float damage);
 	void AddItem(ItemType itemType);
 	void Attack();
 	void OnAttackEnd();
@@ -56,7 +70,10 @@ public:
 	int GetCurrentJumpCount() { return currentJumpCount; }
 	int GetDashCount() { return dashCount; }
 
-
+	void SetHeadPosition(sf::Vector2f pos);
+	sf::Vector2f GetHeadPosition();
+	void SetOnHeadSkill1(bool onoff);
+	bool GetOnHeadSkill1();
 
 	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }

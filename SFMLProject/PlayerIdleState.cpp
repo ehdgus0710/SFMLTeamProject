@@ -25,7 +25,6 @@ void PlayerIdleState::Start()
 void PlayerIdleState::Enter()
 {
 	PlayerBaseState::Enter();
-	player->SetCurrentJumpCount(player->GetJumpCount());
 	animator->ChangeAnimation("noheadlittleboneIdle", true);
 }
 
@@ -61,6 +60,11 @@ void PlayerIdleState::Update(float deltaTime)
 		horizontal = 0.f;
 	player->SetMoveDirection(horizontal);
 
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::X))
+	{
+		fsm->ChangeState(PlayerStateType::Attack);
+	}
+
 	if ((InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player ->GetCurrentJumpCount() > 0))
 	{
 		fsm->ChangeState(PlayerStateType::Jump);
@@ -70,6 +74,8 @@ void PlayerIdleState::Update(float deltaTime)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
+	
+	
 }
 
 void PlayerIdleState::FixedUpdate(float fixedDeltaTime)

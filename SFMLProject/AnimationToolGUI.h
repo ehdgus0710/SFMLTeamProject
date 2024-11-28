@@ -17,12 +17,20 @@ private:
     sf::Vector2u                rectSize;
     sf::Vector2u                atlasRectSize;
 
+    int                         widthSize;
+    int                         heightSize;
+    int                         offsetX;
+    int                         offsetY;
+    int                         startPosX;
+    int                         startPosY;
+
     static int                  frameID;
     float                       accTime;
     bool                        isPlay;
     bool                        isRepeat;
     bool                        isButton;
     bool                        isAtlasTextrue;
+    bool                        isSkulTexture;
 
     int startPositionX;
     int startPositionY;

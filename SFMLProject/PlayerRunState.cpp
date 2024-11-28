@@ -63,6 +63,8 @@ void PlayerRunState::Enter()
 {
 	PlayerBaseState::Enter();
 
+	animator->ChangeAnimation("noheadlittleboneRun", true);
+
 	// animator->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 

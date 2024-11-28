@@ -3,11 +3,13 @@
 #include "FSMController.h"
 
 class Player;
+class Head;
 
 class PlayerFSM : public FSMController<PlayerStateType>
 {
 protected:
 	Player* owner;
+	Head*	head;
 
 private:
 	void CreateAllState();
@@ -26,6 +28,7 @@ public:
 
 public:
 	PlayerFSM(Player* owner);
+	PlayerFSM(Head* owner);
 	virtual  ~PlayerFSM();
 };
 

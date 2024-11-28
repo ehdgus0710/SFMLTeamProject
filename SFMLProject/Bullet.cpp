@@ -8,14 +8,15 @@
 #include "Rigidbody.h"
 
 
-Bullet::Bullet(ColliderLayer type, const std::string& texId, const std::string& name)
-	: GameObject(name)
+Bullet::Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name)
+	: HitBoxObject(owner, thisLayerType, targetLayer,name)
 	, textureID(texId)
 	, speed(700.f)
 	, lifeTime(2.f)
 	, currentLifeTime(0.f)
+	, isShoot(false)
 {
-	CreateCollider(ColliderType::Rectangle, type);
+	CreateCollider(ColliderType::Rectangle, thisLayerType);
 }
 
 
@@ -55,6 +56,11 @@ void Bullet::SetMoveDirection(const sf::Vector2f& direction)
 	}
 }
 
+
+void Bullet::Shoot()
+{
+	isShoot = true;
+}
 
 void Bullet::SetUVRect(const sf::IntRect uvRect)
 {
@@ -97,16 +103,15 @@ void Bullet::Update(const float& deltaTime)
 	if(animator != nullptr)
 		animator->Update(deltaTime);
 
+	if (!isShoot)
+		return;
+
 	SetPosition(position + speed * moveDirection * deltaTime);
 
 	currentLifeTime += deltaTime;
 
 	if (currentLifeTime >= lifeTime)
 		SetDestory(true);
-}
-
-void Bullet::FixedUpdate(const float& deltaTime)
-{
 }
 
 void Bullet::Render(sf::RenderWindow& renderWindow)

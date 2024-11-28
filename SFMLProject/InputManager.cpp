@@ -109,6 +109,7 @@ void InputManager::Init()
 	BindKey(sf::Keyboard::C);
 
 	BindKey(sf::Keyboard::A);
+	BindKey(sf::Keyboard::S);
 
 	BindKey(sf::Keyboard::F11);
 	BindKey(sf::Keyboard::F3);

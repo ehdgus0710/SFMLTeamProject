@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationBullet.cpp" />
     <ClCompile Include="AnimationGameObject.cpp" />
     <ClCompile Include="AnimationGUI.cpp" />
     <ClCompile Include="AnimationToolGUI.cpp" />
@@ -200,7 +201,9 @@
     <ClCompile Include="GameObjectSaveData.cpp" />
     <ClCompile Include="FadeOutUI.cpp" />
     <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="Head.cpp" />
     <ClCompile Include="HierachyGUI.cpp" />
+    <ClCompile Include="HitBoxObject.cpp" />
     <ClCompile Include="ImguiManger.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -294,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationBullet.h" />
     <ClInclude Include="AnimationGameObject.h" />
     <ClInclude Include="AnimationGUI.h" />
     <ClInclude Include="AnimationToolGUI.h" />
@@ -346,7 +350,9 @@
     <ClInclude Include="GameObjectSaveData.h" />
     <ClInclude Include="FadeOutUI.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="Head.h" />
     <ClInclude Include="HierachyGUI.h" />
+    <ClInclude Include="HitBoxObject.h" />
     <ClInclude Include="ImguiManger.h" />
     <ClInclude Include="imgui\imconfig-SFML.h" />
     <ClInclude Include="imgui\imconfig.h" />

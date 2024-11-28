@@ -107,6 +107,8 @@ enum class PlayerStateType
 	Dead,
 	Falling,
 	Dash,
+	Attack,
+	Skill1,
 	End
 };
 

@@ -9,6 +9,7 @@
 #include "GameManager.h"
 #include "Camera.h"
 #include "InGameScoreUI.h"
+#include "Head.h"
 
 Player::Player(const std::string& name)
 	: AnimationGameObject(name)
@@ -39,6 +40,7 @@ Player::~Player()
 }
 void Player::TakeDamage()
 {
+
 	if (isHit)
 		return;
 
@@ -52,11 +54,15 @@ void Player::TakeDamage()
 		return;
 	}
 	else
-	{ 
+	{
 		fsm.ChangeState(PlayerStateType::Hit);
 	}
 
 	currentHitTime = hitTime;
+}
+
+void Player::TakeDamage(float damage)
+{
 }
 
 void Player::AddItem(ItemType itemType)
@@ -68,6 +74,27 @@ void Player::Attack()
 
 void Player::OnAttackEnd()
 {
+}
+
+
+void Player::SetHeadPosition(sf::Vector2f pos)
+{
+	head->SetPosition(pos);
+}
+
+sf::Vector2f Player::GetHeadPosition()
+{
+	return head->GetPosition();
+}
+
+void Player::SetOnHeadSkill1(bool onoff)
+{
+	head->SetHeadSkillOn(onoff);
+}
+
+bool Player::GetOnHeadSkill1()
+{
+	return head->GetHeadSkillOn();
 }
 
 void Player::Awake()
@@ -83,17 +110,39 @@ void Player::Start()
 	AnimationGameObject::Start();
 	fsm.Start();
 	animator->ChangeAnimation("noheadlittleboneIdle", true);
+
+	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
+	head->SetPlayer(this);
+	head->Awake();
+	head->GetCollider()->SetScale({ 50.f,50.f });
+	head->SetHeadSkillOn(false);
+
+	skill1OnTime = 0.2f;
 }
 
 void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
+	currentTime += deltaTime;
+	if (head->GetHeadSkillOn())
+	{
+
+		if(currentTime >= skill1OnTime)
+			head->GetRigidbody()->SetActive(true);
+		else
+			head->SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
+
+	}
+	else
+	{
+		head->SetPosition(GetPosition());
+	}
 
 	if (isHit)
 	{
 		currentHitTime -= deltaTime;
- 
+
 		if (currentHitTime <= 0.f)
 		{
 			isHit = false;
@@ -110,12 +159,30 @@ void Player::Update(const float& deltaTime)
 			currentDashDelayTime = 0.f;
 		}
 	}
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	{
+		skillEndPos = GetPosition() + (IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
+		skill1StartPos = GetPosition();
+		head->SetHeadSkillOn(true);
+		head->GetRigidbody()->SetActive(false);
+		currentTime = 0.f;
+	}
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
+	{
+		head->SetHeadSkillOn(false);
+		SetPosition(head->GetPosition());
+	}
+
+	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetCurrentVelocity().y > 0.f)
+		fsm.ChangeState(PlayerStateType::Falling);
 }
 
 void Player::FixedUpdate(const float& deltaTime)
 {
 	fsm.FixedUpdate(deltaTime);
-	rigidBody->FixedUpdate(deltaTime); 
+	rigidBody->FixedUpdate(deltaTime);
 }
 
 void Player::LateUpdate(const float& deltaTime)
@@ -155,16 +222,19 @@ void Player::OnCollisionEnd(Collider* target)
 		{
 			rigidBody->SetGround(false);
 			currentJumpCount = 1;
-			if(fsm.GetCurrentStateType() != PlayerStateType::Dash && rigidBody->GetCurrentVelocity().y > 0.f)
-				fsm.ChangeState(PlayerStateType::Falling);
+		}
+		else
+		{
+			currentJumpCount = jumpCount;
+			head->SetHeadSkillOn(false);
 		}
 	}
-	
+
 }
 
 PlayerSaveData Player::GetPlayerSaveData() const
 {
-	return PlayerSaveData({this->GetGameObjectSaveData(), currentStatus});
+	return PlayerSaveData({ this->GetGameObjectSaveData(), currentStatus });
 }
 
 void Player::LoadData(const PlayerSaveData& data)

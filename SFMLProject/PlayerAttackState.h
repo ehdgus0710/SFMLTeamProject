@@ -8,6 +8,7 @@ protected:
 	Rigidbody*		rigidbody;
 	float			horizontal;
 	bool			isMoveDirectionLeft;
+	bool			sequenceAttack;
 public:
 	void Awake() override;
 	void Start() override;
@@ -16,6 +17,9 @@ public:
 	void Exit() override;
 	void Update(float deltaTime) override;
 	void FixedUpdate(float fixedDeltaTime) override;
+
+	void EndAttack();
+	void SequenceAttack();
 public:
 	PlayerAttackState(PlayerFSM* fsm);
 	~PlayerAttackState();

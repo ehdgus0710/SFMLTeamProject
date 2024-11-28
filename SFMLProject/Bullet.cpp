@@ -12,7 +12,7 @@ Bullet::Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer tar
 	: HitBoxObject(owner, thisLayerType, targetLayer,name)
 	, textureID(texId)
 	, speed(700.f)
-	, lifeTime(2.f)
+	, lifeTime(10.f)
 	, currentLifeTime(0.f)
 	, isShoot(false)
 {

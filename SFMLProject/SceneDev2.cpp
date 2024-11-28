@@ -26,7 +26,6 @@ void SceneDev2::LoadResources()
 {
 	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
 	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
-	TEXTURE_MANAGER.Load("ChimeraIdle", "graphics/player.png");
 }
 
 void SceneDev2::Init()

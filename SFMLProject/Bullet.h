@@ -6,7 +6,6 @@ class Bullet : public HitBoxObject
 {
 protected:
 	sf::Sprite			sprite;
-
 	sf::IntRect			textureUVRect;
 	std::string			textureID;
 	sf::Vector2f		rectSize;

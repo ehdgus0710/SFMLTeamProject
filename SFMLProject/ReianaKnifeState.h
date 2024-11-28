@@ -11,6 +11,7 @@ public:
 	void Awake() override;
 	void Start() override;
 
+	void CreateDimension();
 	void Enter() override;
 	void Exit() override;
 	void Update(float deltaTime) override;

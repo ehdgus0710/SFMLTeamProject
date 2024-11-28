@@ -2,7 +2,7 @@
 #include "GameObject.h"
 class HitBoxObject : public GameObject
 {
-private:
+protected:
 	GameObject*							owner;
 	ColliderLayer						targetLayer;
 	uint64_t							hitLayer;

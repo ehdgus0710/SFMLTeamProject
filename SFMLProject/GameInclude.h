@@ -14,7 +14,7 @@
 #include "Player.h"
 #include "TileMapController.h"
 #include "Collider.h"
-#include "Chimera.h"
+#include "Reiana.h"
 
 #include "PlayerSaveData.h"
 #include "WallCollisionSaveData.h"

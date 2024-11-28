@@ -61,7 +61,7 @@ enum class LayerType
 	Enemy,
 	PlayerBullet,
 	EnemyBullet,
-	Chimera,
+	Reiana,
 
 	CleraPoint,
 	InGameUI,
@@ -110,7 +110,7 @@ enum class PlayerStateType
 	End
 };
 
-enum class ChimeraStateType
+enum class ReianaStateType
 {
 	Idle,
 	NomalAttack,
@@ -118,8 +118,8 @@ enum class ChimeraStateType
 	VomitAttack,
 	Pong,
 	DropGlass,
-	DropBall,
 	DropPoison,
+	DropAttack,
 	Dead,
 
 	End

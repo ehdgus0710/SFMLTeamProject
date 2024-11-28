@@ -26,12 +26,12 @@ void SceneDev2::LoadResources()
 {
 	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
 	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
-	TEXTURE_MANAGER.Load("ChimeraIdle", "graphics/Chimera/idle.png");
+	TEXTURE_MANAGER.Load("ChimeraIdle", "graphics/player.png");
 }
 
 void SceneDev2::Init()
 {
-	cameraLimitRect = { 0.f,13440.f,-500.f, 700.f };
+	cameraLimitRect = { 0.f, 1920.f, -880.f, 200.f };
 	currentCameraLimitRect = cameraLimitRect;
 
 	Scene::Init();
@@ -48,12 +48,13 @@ void SceneDev2::Enter()
 	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();
 	mainCamera->SetFollowTarget(testPlayer, true);
+	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
-	Chimera* testChimera = AddGameObject(new Chimera("Chimera"), LayerType::Chimera);
-	testChimera->Awake();
-	testChimera->SetPosition({ 1000.f,-500.f });
+	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Reiana);
+	testReiana->Awake();
+	testReiana->SetPosition({ 1700.f,-500.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });

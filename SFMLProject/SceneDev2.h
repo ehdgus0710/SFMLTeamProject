@@ -2,13 +2,13 @@
 #include "Scene.h"
 
 class Player;
-class Chimera;
+class Reiana;
 
 class SceneDev2 : public Scene
 {
 private:
 	Player* player;
-	Chimera* chimera;
+	Reiana* reiana;
 	Rectangle	cameraLimitRect;
 	Rectangle	currentCameraLimitRect;
 public:

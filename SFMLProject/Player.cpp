@@ -28,7 +28,15 @@ Player::Player(const std::string& name)
 	, currentJumpCount(2)
 	, dashCount(2)
 	, currentDashCount(2)
-{
+	, isNoneHead(false)
+	, currentSkill1CoolTime(0.f)
+	, currentSkill2CoolTime(0.f)
+	, skill1CoolTime(2.f)
+	, skill2CoolTime(2.f)
+	, isSkll1CoolTime(false)
+	, isSkll2CoolTime(false)
+	
+{	
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
@@ -106,6 +114,25 @@ void Player::OnDownJump()
 	}
 }
 
+void Player::OnThrowHead()
+{
+	head->ThrowHead();
+	head->SetActive(true);
+	isNoneHead = true;
+}
+
+void Player::OnSkill1CoolTime()
+{
+	isSkll1CoolTime = true;
+	currentSkill1CoolTime = 0.f;
+}
+
+void Player::OnSkill2CoolTime()
+{
+	isSkll2CoolTime = true;
+	currentSkill2CoolTime = 0.f;
+}
+
 
 void Player::SetHeadPosition(sf::Vector2f pos)
 {
@@ -116,17 +143,6 @@ sf::Vector2f Player::GetHeadPosition()
 {
 	return head->GetPosition();
 }
-
-void Player::SetOnHeadSkill1(bool onoff)
-{
-	head->SetHeadSkillOn(onoff);
-}
-
-bool Player::GetOnHeadSkill1()
-{
-	return head->GetHeadSkillOn();
-}
-
 void Player::Awake()
 {
 	AnimationGameObject::Awake();
@@ -145,29 +161,13 @@ void Player::Start()
 	head->SetPlayer(this);
 	head->Awake();
 	head->GetCollider()->SetScale({ 50.f,50.f });
-	head->SetHeadSkillOn(false);
-
-	skill1OnTime = 0.2f;
+	head->SetActive(false);
 }
 
 void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-	currentTime += deltaTime;
-	if (head->GetHeadSkillOn())
-	{
-
-		if(currentTime >= skill1OnTime)
-			head->GetRigidbody()->SetActive(true);
-		else
-			head->SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
-
-	}
-	else
-	{
-		head->SetPosition(GetPosition());
-	}
 
 	if (isHit)
 	{
@@ -190,22 +190,35 @@ void Player::Update(const float& deltaTime)
 		}
 	}
 
+	if (isSkll1CoolTime)
+	{
+		currentSkill1CoolTime += deltaTime;
+
+		if (currentSkill1CoolTime >= skill1CoolTime)
+			isSkll1CoolTime = false;
+	}
+
+	if (isSkll2CoolTime)
+	{
+		currentSkill2CoolTime += deltaTime;
+
+		if (currentSkill2CoolTime >= skill2CoolTime)
+			isSkll2CoolTime = false;
+	}
+
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
-		skillEndPos = GetPosition() + (IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
-		skill1StartPos = GetPosition();
-		head->SetHeadSkillOn(true);
-		head->GetRigidbody()->SetActive(false);
-		currentTime = 0.f;
+		if(fsm.GetCurrentStateType() != PlayerStateType::Skill1 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
+			fsm.ChangeState(PlayerStateType::Skill1);
 	}
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
 	{
-		head->SetHeadSkillOn(false);
-		SetPosition(head->GetPosition());
+		if (fsm.GetCurrentStateType() != PlayerStateType::Skill2 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
+			fsm.ChangeState(PlayerStateType::Skill2);
 	}
 
-	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetCurrentVelocity().y > 0.f)
+	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
 }
 
@@ -222,8 +235,10 @@ void Player::LateUpdate(const float& deltaTime)
 
 void Player::OnCollisionEnter(Collider* target)
 {
-	if (target->GetOwner() == head)
+	if (target->GetOwner() == head && !head->IsThrow())
 	{
+		head->SetActive(false);
+		isNoneHead = false;
 		fsm.GetCurrentState()->SetChangeAnimationKey(0);
 	}
 }
@@ -260,10 +275,8 @@ void Player::OnCollisionEnd(Collider* target)
 		else
 		{
 			currentJumpCount = jumpCount;
-			head->SetHeadSkillOn(false);
 		}
 	}
-
 }
 
 PlayerSaveData Player::GetPlayerSaveData() const

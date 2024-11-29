@@ -17,12 +17,6 @@ protected:
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
 
-	sf::Vector2f skill1StartPos;
-	sf::Vector2f skillEndPos;
-
-	float		skill1OnTime;
-	float		currentTime;
-
 	float		moveDirectionX;
 	DefaultStatus	currentStatus;
 
@@ -38,13 +32,18 @@ protected:
 	float			reloadTime;
 	float			currentReloadTime;
 
+	float			currentSkill1CoolTime;
+	float			currentSkill2CoolTime;
+	float			skill1CoolTime;
+	float			skill2CoolTime;
+	bool			isSkll1CoolTime;
+	bool			isSkll2CoolTime;
 	bool			isJump;
 	bool			isHit;
 	bool			isDead;
-
 	bool			isReload;
 	bool			isAttack;
-
+	bool			isNoneHead;
 public:
 	void TakeDamage();
 	void TakeDamage(float damage);
@@ -52,12 +51,19 @@ public:
 	void Attack();
 	void OnAttackEnd();
 	void OnDownJump();
+	void OnThrowHead();
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }
 
 	PlayerFSM& GetFSM() { return fsm; }
 public:
+	void OnSkill1CoolTime();
+	void OnSkill2CoolTime();
+
+	void OnNoneHead() { isNoneHead = true; }
+	bool IsNoneHead() { return isNoneHead; }
+
 	bool IsHit() const { return isHit; }
 	void SetIsJump(bool jump) { isJump = jump; }
 
@@ -71,8 +77,6 @@ public:
 
 	void SetHeadPosition(sf::Vector2f pos);
 	sf::Vector2f GetHeadPosition();
-	void SetOnHeadSkill1(bool onoff);
-	bool GetOnHeadSkill1();
 
 	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }

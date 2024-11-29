@@ -3,7 +3,10 @@
 class PlayerSkill1State : public PlayerBaseState
 {
 public:
-	void Awake() override;
+	void OnThrowHead();
+	void OnEndAniamtion();
+
+public:
 	void Start() override;
 
 	void Enter() override;

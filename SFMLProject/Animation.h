@@ -73,6 +73,7 @@ public:
 	const std::string& GetTextureID() { return textureID; }
 	const std::vector<AnimationInfo>& GetFrameInfo() { return frameInfoVector; }
 
+	int GetFrameCount() { return frameCount; }
 	int GetCurrentIndex() { return currentIndex; }
 	bool IsRepeat() { return isRepeat; }
 	bool IsUnScale() { return isUnscale; }

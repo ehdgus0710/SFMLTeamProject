@@ -32,7 +32,8 @@ void PlayerRunState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex], true);
+
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], true);
 }
 
 void PlayerRunState::Exit()

@@ -11,8 +11,20 @@ protected:
 	Player* player;
 
 
-	float		moveDirectionX;
-	bool		skillOn;
+	sf::Vector2f	skill1StartPos;
+	sf::Vector2f	skillEndPos;
+
+	float			skill1OnTime;
+	float			currentTime;
+
+	float			moveDirectionX;
+	bool			isThrow;
+
+public:
+	void ThrowHead();
+	void SetPlayer(Player* player);
+
+	bool IsThrow() { return isThrow; }
 public:
 	void Awake() override;
 	void Start() override;
@@ -23,13 +35,6 @@ public:
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
 	void OnCollisionEnd(Collider* target) override;
-
-	void fire();
-
-	void SetPlayer(Player* player);
-
-	bool GetHeadSkillOn() { return skillOn; }
-	void SetHeadSkillOn(bool onoff) { skillOn = onoff; }
 
 	PlayerSaveData GetPlayerSaveData() const;
 	void LoadData(const PlayerSaveData& data);

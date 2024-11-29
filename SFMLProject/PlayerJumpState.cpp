@@ -28,7 +28,7 @@ void PlayerJumpState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex], false);
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], false);
 
 	player->SetIsJump(true);
 	rigidbody->SetGround(false);

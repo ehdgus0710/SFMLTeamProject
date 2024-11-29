@@ -36,7 +36,7 @@ void PlayerDashState::Enter()
 	currentTime = 0.f;
 	player->OnDash();
 
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex], false);
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], false);
 
 	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
 	dashStartPos = player->GetPosition();

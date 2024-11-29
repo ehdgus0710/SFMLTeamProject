@@ -14,9 +14,11 @@
 
 Head::Head(const std::string& name)
 	: AnimationGameObject(name)
-	, skillOn(false)
 	, isThrow(false)
 	, skill1OnTime(0.2f)
+	, player(nullptr)
+	, moveDirectionX(0)
+	, currentTime(0.f)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -29,7 +31,6 @@ Head::~Head()
 void Head::Awake()
 {
 	AnimationGameObject::Awake();
-	skillOn = false;
 }
 
 void Head::Start()
@@ -112,7 +113,6 @@ void Head::ThrowHead()
 
 	skill1StartPos = player->GetPosition();
 	skillEndPos = skill1StartPos + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
-	SetHeadSkillOn(true);
 	rigidBody->SetActive(false);
 	currentTime = 0.f;
 }

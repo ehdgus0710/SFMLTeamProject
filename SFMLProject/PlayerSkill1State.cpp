@@ -48,6 +48,8 @@ void PlayerSkill1State::Enter()
 {
 	PlayerBaseState::Enter();
 
+	player->OnSkill1CoolTime();
+
 	animator->ChangeAnimation("littleboneThrowHead");
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->SetAnimationStartEvent(std::bind(&PlayerSkill1State::OnThrowHead, this), 1);
@@ -59,6 +61,10 @@ void PlayerSkill1State::Enter()
 void PlayerSkill1State::Exit()
 {
 	PlayerBaseState::Exit();
+
+	Animation* animation = animator->GetCurrentAnimation();
+	animation->ClearEndEvent(1);
+	animation->ClearEndEvent(animation->GetFrameCount() - 1);
 }
 
 void PlayerSkill1State::Update(float deltaTime)

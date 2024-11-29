@@ -2,8 +2,12 @@
 #include "PlayerBaseState.h"
 class PlayerSkill2State : public PlayerBaseState
 {
+
+private:
+	void OnEndAniamtion();
+
 public:
-	void Awake() override;
+
 	void Start() override;
 
 	void Enter() override;

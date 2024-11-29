@@ -32,10 +32,15 @@ protected:
 	float			reloadTime;
 	float			currentReloadTime;
 
+	float			currentSkill1CoolTime;
+	float			currentSkill2CoolTime;
+	float			skill1CoolTime;
+	float			skill2CoolTime;
+	bool			isSkll1CoolTime;
+	bool			isSkll2CoolTime;
 	bool			isJump;
 	bool			isHit;
 	bool			isDead;
-
 	bool			isReload;
 	bool			isAttack;
 	bool			isNoneHead;
@@ -53,6 +58,8 @@ public:
 
 	PlayerFSM& GetFSM() { return fsm; }
 public:
+	void OnSkill1CoolTime();
+	void OnSkill2CoolTime();
 
 	void OnNoneHead() { isNoneHead = true; }
 	bool IsNoneHead() { return isNoneHead; }
@@ -70,8 +77,6 @@ public:
 
 	void SetHeadPosition(sf::Vector2f pos);
 	sf::Vector2f GetHeadPosition();
-	void SetOnHeadSkill1(bool onoff);
-	bool GetOnHeadSkill1();
 
 	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }

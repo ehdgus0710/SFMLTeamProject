@@ -19,18 +19,12 @@ protected:
 
 	float			moveDirectionX;
 	bool			isThrow;
-	bool			skillOn;
 
 public:
 	void ThrowHead();
 	void SetPlayer(Player* player);
 
-	bool GetHeadSkillOn() { return skillOn; }
-	void SetHeadSkillOn(bool onoff) { skillOn = onoff; }
-	
 	bool IsThrow() { return isThrow; }
-
-
 public:
 	void Awake() override;
 	void Start() override;

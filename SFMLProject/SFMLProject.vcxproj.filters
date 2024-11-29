@@ -223,6 +223,9 @@
     <Filter Include="Contants\Object\Reiana\Object">
       <UniqueIdentifier>{45c30282-2d78-466d-b68a-377703963e37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Yggdrasil">
+      <UniqueIdentifier>{26b4d15c-4aee-4fd8-9430-8addf02ca386}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -593,6 +596,18 @@
     </ClCompile>
     <ClCompile Include="Knife.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationHitBox.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill2State.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill1State.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilBaseState.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -988,6 +1003,18 @@
     </ClInclude>
     <ClInclude Include="Knife.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHitBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill2State.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill1State.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilBaseState.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -298,6 +298,7 @@
     <ClCompile Include="WindowManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="YggdrasilBaseState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -434,6 +435,7 @@
     <ClInclude Include="CollisionObjectEditor.h" />
     <ClInclude Include="WallCollisionSaveData.h" />
     <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="YggdrasilBaseState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

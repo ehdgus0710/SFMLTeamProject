@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Rigidbody.h"
 #include "Dimension.h"
+#include "Animator.h"
 
 ReianaDimensionState::ReianaDimensionState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm,ReianaStateType::Dimension)
@@ -25,16 +26,18 @@ void ReianaDimensionState::CreateDimension()
 
 void ReianaDimensionState::Awake()
 {
+	ReianaBaseState::Awake();
 }
 
 void ReianaDimensionState::Start()
 {
+	ReianaBaseState::Start();
 }
 
 void ReianaDimensionState::Enter()
 {
 	ReianaBaseState::Enter();	
-
+	animator->ChangeAnimation("dimensionPierceAttack", false);
 	CreateDimension();
 }
 

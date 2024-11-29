@@ -15,7 +15,11 @@ Reiana::Reiana(const std::string& name)
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
 
-	animator->CreateAnimation("ReianaIdle", "ReianaIdle", { 150, 192 }, 1, 0.1f, true);
+
+	animator->LoadCsv("animators/rayanna.csv");
+	animator->ChangeAnimation("meteorAttack", false);
+
+	// animator->CreateAnimation("ReianaIdle", "ReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
 Reiana::~Reiana()
@@ -33,6 +37,8 @@ void Reiana::Start()
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad2);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad3);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad4);
+	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad5);
+
 
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
@@ -62,6 +68,12 @@ void Reiana::Update(const float& deltaTime)
 	{
 		fsm.ChangeState(ReianaStateType::ThreeSword);
 	}
+	
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad5))
+	{
+		fsm.ChangeState(ReianaStateType::Dash);
+	}
+
 }
 
 void Reiana::FixedUpdate(const float& deltaTime)

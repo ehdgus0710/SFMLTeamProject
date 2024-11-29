@@ -9,6 +9,8 @@ protected:
 	sf::Vector2f startPosition;
 	sf::Vector2f endPosition;
 	sf::Vector2f moveDistance = { 0, 1000.f };
+	sf::Vector2f waitStartPos = { 0, 800.f };
+	sf::Vector2f waitEndPos;
 
 	float waitTime = 0.5f;
 	float currentWaitTime = 0.f;

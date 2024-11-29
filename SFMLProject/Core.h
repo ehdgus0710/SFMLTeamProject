@@ -123,6 +123,7 @@ enum class ReianaStateType
 	Aruond,
 	Knife,
 	Dimension,
+	Dash,
 	DropAttack,
 	Dead,
 

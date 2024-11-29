@@ -2,6 +2,8 @@
 #include "ReianaDropAttackState.h"
 #include "Player.h"
 #include "Rigidbody.h"
+#include "Animator.h"
+#include "Animation.h"
 
 ReianaDropAttackState::ReianaDropAttackState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm, ReianaStateType::DropAttack)
@@ -33,17 +35,19 @@ void ReianaDropAttackState::Drop(float deltaTime)
 
 void ReianaDropAttackState::Awake()
 {
+	ReianaBaseState::Awake();
 }
 
 void ReianaDropAttackState::Start()
 {
+	ReianaBaseState::Start();
 }
 
 void ReianaDropAttackState::Enter()
 {
 	ReianaBaseState::Enter();
-
 	rigidbody = reiana->GetRigidbody();
+	animator->ChangeAnimation("goldMeteorAttack", true);
 
 	currentDropTime = 0.f;
 	currentWaitTime = 0.f;
@@ -54,6 +58,10 @@ void ReianaDropAttackState::Enter()
 	playerPos -= moveDistance;
 	startPosition = playerPos;
 
+	playerPos = reiana->GetPlayer()->GetPosition();
+	
+	
+
 	reiana->SetPosition(startPosition);
 	rigidbody->SetActive(false);
 }
@@ -61,6 +69,7 @@ void ReianaDropAttackState::Enter()
 void ReianaDropAttackState::Exit()
 {
 	ReianaBaseState::Exit();
+	rigidbody->SetActive(true);
 }
 
 void ReianaDropAttackState::Update(float deltaTime)

@@ -5,7 +5,15 @@
 class ReianaAroundDimensionState : public ReianaBaseState
 {
 protected:
+	sf::Vector2f leftPos{ -45.f,0.f };
+	sf::Vector2f rigthPos{ 45.f,0.f };
 
+	float delay;
+	float currentDelay;
+	int count;
+
+	void CreateLeftDimension();
+	void CreateRigthDimension();
 public:
 	void Awake() override;
 	void Start() override;

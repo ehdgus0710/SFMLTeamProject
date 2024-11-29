@@ -594,6 +594,24 @@
     <ClCompile Include="Knife.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationHitBox.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AroundDimention.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill2State.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill1State.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaBackStap.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaDashState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -988,6 +1006,24 @@
     </ClInclude>
     <ClInclude Include="Knife.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHitBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AroundDimention.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill2State.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill1State.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaBackStap.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaDashState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

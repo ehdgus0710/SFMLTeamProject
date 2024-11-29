@@ -6,7 +6,7 @@
 ReianaThreeSwordState::ReianaThreeSwordState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm,ReianaStateType::ThreeSword)
 	,currentDelay(0.f)
-	,delayTime(2.f)
+	,delayTime(0.5f)
 	,fix(false)
 {
 }
@@ -26,7 +26,25 @@ void ReianaThreeSwordState::Start()
 void ReianaThreeSwordState::CreateKnife()
 {
 	Knife* knife = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Knife(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "MenuBar"), LayerType::EnemyBullet);
-	knife->SetPosition(reiana->GetPosition());
+
+	switch ((ReianaThreeSwordState::Pos)count)
+	{
+	case ReianaThreeSwordState::Pos::POS1:
+		knife->SetPosition(reiana->GetPosition() + plusPos1);
+		knife->setDelay(1.f);
+		break;
+	case ReianaThreeSwordState::Pos::POS2:
+		knife->SetPosition(reiana->GetPosition() + plusPos2);
+		knife->setDelay(1.5f);
+		break;
+	case ReianaThreeSwordState::Pos::POS3:
+		knife->SetPosition(reiana->GetPosition() + plusPos3);
+		knife->setDelay(2.f);
+		break;
+	default:
+		break;
+	}
+	count++;
 	knife->Awake();
 	knife->Start();
 }
@@ -34,6 +52,7 @@ void ReianaThreeSwordState::CreateKnife()
 void ReianaThreeSwordState::Enter()
 {
 	ReianaBaseState::Enter();
+	count = 1;
 	currentDelay = 0.f;
 	fix = false;
 	CreateKnife();
@@ -42,7 +61,6 @@ void ReianaThreeSwordState::Enter()
 void ReianaThreeSwordState::Exit()
 {
 	ReianaBaseState::Exit();
-
 }
 
 void ReianaThreeSwordState::Update(float deltaTime)

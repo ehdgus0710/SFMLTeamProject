@@ -157,6 +157,7 @@
     <ClCompile Include="AnimationHitBox.cpp" />
     <ClCompile Include="AnimationToolGUI.cpp" />
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AroundDimention.cpp" />
     <ClCompile Include="BackgroundColorBox.cpp" />
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -167,7 +168,9 @@
     <ClCompile Include="PlayerSkill2State.cpp" />
     <ClCompile Include="PlayerSkill1State.cpp" />
     <ClCompile Include="Reiana.cpp" />
+    <ClCompile Include="ReianaBackStap.cpp" />
     <ClCompile Include="ReianaBaseState.cpp" />
+    <ClCompile Include="ReianaDashState.cpp" />
     <ClCompile Include="ReianaDeadState.cpp" />
     <ClCompile Include="ReianaDropAttackState.cpp" />
     <ClCompile Include="ReianaKnifeState.cpp" />
@@ -307,6 +310,7 @@
     <ClInclude Include="AnimationHitBox.h" />
     <ClInclude Include="AnimationToolGUI.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="AroundDimention.h" />
     <ClInclude Include="BackgroundColorBox.h" />
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="Bullet.h" />
@@ -317,7 +321,9 @@
     <ClInclude Include="PlayerSkill2State.h" />
     <ClInclude Include="PlayerSkill1State.h" />
     <ClInclude Include="Reiana.h" />
+    <ClInclude Include="ReianaBackStap.h" />
     <ClInclude Include="ReianaBaseState.h" />
+    <ClInclude Include="ReianaDashState.h" />
     <ClInclude Include="ReianaDeadState.h" />
     <ClInclude Include="ReianaDropAttackState.h" />
     <ClInclude Include="ReianaKnifeState.h" />

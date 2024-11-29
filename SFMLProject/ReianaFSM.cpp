@@ -10,6 +10,7 @@
 #include "ReianaDimensionState.h"
 #include "ReianaAroundDimensionState.h"
 #include "ReianaDeadState.h"
+#include "ReianaDashState.h"
 
 ReianaFsm::ReianaFsm(Reiana* owner)
 	: owner(owner)
@@ -63,6 +64,9 @@ void ReianaFsm::CreateAllState()
 		case ReianaStateType::Dimension:
 			AddState(ReianaStateType::Dimension);
 			break;
+		case ReianaStateType::Dash:
+			AddState(ReianaStateType::Dash);
+			break;
 		case ReianaStateType::Dead:
 			AddState(ReianaStateType::Dead);
 			break;
@@ -103,6 +107,9 @@ BaseState<ReianaStateType>* ReianaFsm::CreateState(ReianaStateType type)
 		break;
 	case ReianaStateType::Dimension:
 		state = new ReianaDimensionState(this);
+		break;
+	case ReianaStateType::Dash:
+		state = new ReianaDashState(this);
 		break;
 	case ReianaStateType::Dead:
 		state = new ReianaDeadState(this);

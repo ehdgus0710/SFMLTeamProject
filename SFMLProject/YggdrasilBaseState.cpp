@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "YggdrasilBaseState.h"
+#include "Yggdrasil.h"
 
+#include "Scene.h"
+#include "Player.h"
 
 YggdrasilBaseState::YggdrasilBaseState(YggdrasilFSM* fsm, YggdrasilStateType stateType)
 	: BaseState<YggdrasilStateType>(stateType)
 	, fsm(fsm)
-	, reiana(fsm->GetChimera())
+	, yggdrasil(fsm->GetChimera())
 {
 }
 
@@ -15,11 +18,12 @@ YggdrasilBaseState::~YggdrasilBaseState()
 
 void YggdrasilBaseState::Awake()
 {
-	animator = Yggdrasil->GetAnimator();
+	animator = yggdrasil->GetAnimator();
 }
 
 void YggdrasilBaseState::Start()
 {
+	player = static_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 }
 
 void YggdrasilBaseState::Enter()

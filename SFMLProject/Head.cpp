@@ -6,10 +6,6 @@
 #include "Collider.h"
 #include "Animation.h"
 
-#include "GameManager.h"
-#include "Camera.h"
-#include "InGameScoreUI.h"
-
 #include "Player.h"
 
 Head::Head(const std::string& name)

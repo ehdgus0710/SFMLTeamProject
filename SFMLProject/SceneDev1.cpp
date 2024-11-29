@@ -4,6 +4,8 @@
 #include "ScaffoldingObject.h"
 #include "GameInclude.h"
 
+#include "Yggdrasil.h"
+
 void SceneDev1::Init()
 {
 	Scene::Init();
@@ -25,6 +27,11 @@ void SceneDev1::Enter()
 	mainCamera->SetFollowTarget(testPlayer, true);
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
+
+	Yggdrasil* testYggdrasil = AddGameObject(new Yggdrasil("Yggdrasil"), LayerType::Enemy);
+	testYggdrasil->Awake();
+	testYggdrasil->SetPosition({ 0, -500.f });
+	testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });

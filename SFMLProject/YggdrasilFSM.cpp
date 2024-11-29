@@ -60,7 +60,7 @@ void YggdrasilFSM::CreateAllState()
 
 BaseState<YggdrasilStateType>* YggdrasilFSM::CreateState(YggdrasilStateType type)
 {
-	YggdrasilStateType* state = nullptr;
+	YggdrasilBaseState* state = nullptr;
 
 	switch (type)
 	{

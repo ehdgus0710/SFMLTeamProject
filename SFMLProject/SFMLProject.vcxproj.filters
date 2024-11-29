@@ -226,6 +226,12 @@
     <Filter Include="Contants\Object\Yggdrasil">
       <UniqueIdentifier>{26b4d15c-4aee-4fd8-9430-8addf02ca386}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Yggdrasil\FSM">
+      <UniqueIdentifier>{8234246c-5890-4b29-af8e-b88ee116cb9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Yggdrasil\YggdrasilState">
+      <UniqueIdentifier>{12c8a473-6beb-4f19-a02e-c590ccc6f2df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -607,7 +613,40 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="YggdrasilBaseState.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\Yggdrasil\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilFSM.cpp">
+      <Filter>Contants\Object\Yggdrasil\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilIdleState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilFistAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilSweepAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilEnergyBallAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilDeadState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="Yggdrasil.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilLeftHand.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilRightHand.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilBody.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilHead.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1014,7 +1053,40 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="YggdrasilBaseState.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\Yggdrasil\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilFSM.h">
+      <Filter>Contants\Object\Yggdrasil\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilIdleState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilFistAttackState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilSweepAttackState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilEnergyBallAttackState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilDeadState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="Yggdrasil.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilLeftHand.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilRightHand.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilBody.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilHead.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

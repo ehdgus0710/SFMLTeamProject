@@ -2,12 +2,15 @@
 #include "BaseState.h"
 #include "YggdrasilFSM.h"
 
+class Player;
+
 class YggdrasilBaseState : public BaseState<YggdrasilStateType>
 {
 protected:
-	Yggdrasil* reiana;
+	Yggdrasil* yggdrasil;
 	YggdrasilFSM* fsm;
 	Animator* animator;
+	Player* player;
 
 	std::vector<std::function<void()>>	stateStartEvents;
 	std::vector<std::function<void()>>	stateEndEvents;

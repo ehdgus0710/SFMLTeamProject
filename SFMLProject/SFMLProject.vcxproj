@@ -298,7 +298,18 @@
     <ClCompile Include="WindowManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Yggdrasil.cpp" />
     <ClCompile Include="YggdrasilBaseState.cpp" />
+    <ClCompile Include="YggdrasilBody.cpp" />
+    <ClCompile Include="YggdrasilDeadState.cpp" />
+    <ClCompile Include="YggdrasilEnergyBallAttackState.cpp" />
+    <ClCompile Include="YggdrasilFistAttackState.cpp" />
+    <ClCompile Include="YggdrasilFSM.cpp" />
+    <ClCompile Include="YggdrasilIdleState.cpp" />
+    <ClCompile Include="YggdrasilLeftHand.cpp" />
+    <ClCompile Include="YggdrasilHead.cpp" />
+    <ClCompile Include="YggdrasilRightHand.cpp" />
+    <ClCompile Include="YggdrasilSweepAttackState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -435,7 +446,18 @@
     <ClInclude Include="CollisionObjectEditor.h" />
     <ClInclude Include="WallCollisionSaveData.h" />
     <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="Yggdrasil.h" />
     <ClInclude Include="YggdrasilBaseState.h" />
+    <ClInclude Include="YggdrasilBody.h" />
+    <ClInclude Include="YggdrasilDeadState.h" />
+    <ClInclude Include="YggdrasilEnergyBallAttackState.h" />
+    <ClInclude Include="YggdrasilFistAttackState.h" />
+    <ClInclude Include="YggdrasilFSM.h" />
+    <ClInclude Include="YggdrasilIdleState.h" />
+    <ClInclude Include="YggdrasilLeftHand.h" />
+    <ClInclude Include="YggdrasilHead.h" />
+    <ClInclude Include="YggdrasilRightHand.h" />
+    <ClInclude Include="YggdrasilSweepAttackState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

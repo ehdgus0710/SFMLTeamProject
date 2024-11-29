@@ -154,6 +154,7 @@
     <ClCompile Include="AnimationBullet.cpp" />
     <ClCompile Include="AnimationGameObject.cpp" />
     <ClCompile Include="AnimationGUI.cpp" />
+    <ClCompile Include="AnimationHitBox.cpp" />
     <ClCompile Include="AnimationToolGUI.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="BackgroundColorBox.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="AnimationBullet.h" />
     <ClInclude Include="AnimationGameObject.h" />
     <ClInclude Include="AnimationGUI.h" />
+    <ClInclude Include="AnimationHitBox.h" />
     <ClInclude Include="AnimationToolGUI.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="BackgroundColorBox.h" />

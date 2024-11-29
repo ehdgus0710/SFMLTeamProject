@@ -29,7 +29,7 @@ void PlayerFallingState::Start()
 void PlayerFallingState::Enter()
 {
 	PlayerBaseState::Enter();
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex], false);
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], false);
 }
 
 void PlayerFallingState::Exit()

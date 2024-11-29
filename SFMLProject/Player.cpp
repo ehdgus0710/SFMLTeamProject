@@ -28,6 +28,7 @@ Player::Player(const std::string& name)
 	, currentJumpCount(2)
 	, dashCount(2)
 	, currentDashCount(2)
+	, isNoneHead(false)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -106,6 +107,13 @@ void Player::OnDownJump()
 	}
 }
 
+void Player::OnThrowHead()
+{
+	head->ThrowHead();
+	head->SetActive(true);
+	isNoneHead = true;
+}
+
 
 void Player::SetHeadPosition(sf::Vector2f pos)
 {
@@ -146,28 +154,12 @@ void Player::Start()
 	head->Awake();
 	head->GetCollider()->SetScale({ 50.f,50.f });
 	head->SetHeadSkillOn(false);
-
-	skill1OnTime = 0.2f;
 }
 
 void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-	currentTime += deltaTime;
-	if (head->GetHeadSkillOn())
-	{
-
-		if(currentTime >= skill1OnTime)
-			head->GetRigidbody()->SetActive(true);
-		else
-			head->SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
-
-	}
-	else
-	{
-		head->SetPosition(GetPosition());
-	}
 
 	if (isHit)
 	{
@@ -192,20 +184,17 @@ void Player::Update(const float& deltaTime)
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
-		skillEndPos = GetPosition() + (IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
-		skill1StartPos = GetPosition();
-		head->SetHeadSkillOn(true);
-		head->GetRigidbody()->SetActive(false);
-		currentTime = 0.f;
+		fsm.ChangeState(PlayerStateType::Skill1);
 	}
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
 	{
+		fsm.GetCurrentState()->SetChangeAnimationKey(0);
 		head->SetHeadSkillOn(false);
 		SetPosition(head->GetPosition());
 	}
 
-	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetCurrentVelocity().y > 0.f)
+	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
 }
 
@@ -222,8 +211,10 @@ void Player::LateUpdate(const float& deltaTime)
 
 void Player::OnCollisionEnter(Collider* target)
 {
-	if (target->GetOwner() == head)
+	if (target->GetOwner() == head && !head->IsThrow())
 	{
+		head->SetActive(false);
+		isNoneHead = false;
 		fsm.GetCurrentState()->SetChangeAnimationKey(0);
 	}
 }
@@ -263,7 +254,6 @@ void Player::OnCollisionEnd(Collider* target)
 			head->SetHeadSkillOn(false);
 		}
 	}
-
 }
 
 PlayerSaveData Player::GetPlayerSaveData() const

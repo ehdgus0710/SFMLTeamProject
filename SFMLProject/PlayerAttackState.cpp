@@ -54,14 +54,14 @@ void PlayerAttackState::FixedUpdate(float fixedDeltaTime)
 void PlayerAttackState::StartAttack()
 {
 	currentAttackCount = 1;
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex] + "1", false);
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "1", false);
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), endFrame);
 }
 
 void PlayerAttackState::NextAttack()
 {
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex] + "2", true);
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "2", true);
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), endFrame);
 }

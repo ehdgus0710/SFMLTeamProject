@@ -27,7 +27,7 @@ void PlayerIdleState::Start()
 void PlayerIdleState::Enter()
 {
 	PlayerBaseState::Enter();
-	animator->ChangeAnimation(animationKeys[currentAnimationIndex], true);
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], true);
 }
 
 void PlayerIdleState::Exit()

@@ -15,6 +15,8 @@
 Head::Head(const std::string& name)
 	: AnimationGameObject(name)
 	, skillOn(false)
+	, isThrow(false)
+	, skill1OnTime(0.2f)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -38,7 +40,23 @@ void Head::Start()
 
 void Head::Update(const float& deltaTime)
 {
-	rigidBody->Update(deltaTime);
+	if (isThrow)
+	{
+		currentTime += deltaTime;
+
+		if (currentTime >= skill1OnTime)
+		{
+			rigidBody->SetActive(true);
+			rigidBody->SetGround(false);
+			rigidBody->ResetDropSpeed();
+			rigidBody->ResetVelocity();
+			rigidBody->SetVelocity({ Utils::RandomRange(-50.f, 50.f), Utils::RandomRange(-800.f, -400.f)});
+			isThrow = false;
+		}
+		else
+			SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
+
+	}
 }
 
 void Head::FixedUpdate(const float& deltaTime)
@@ -52,6 +70,8 @@ void Head::LateUpdate(const float& deltaTime)
 
 void Head::OnCollisionEnter(Collider* target)
 {
+	if(target->GetColliderLayer() == ColliderLayer::Wall)
+		rigidBody->ResetVelocity();
 }
 
 void Head::OnCollisionStay(Collider* target)
@@ -86,8 +106,15 @@ void Head::OnCollisionEnd(Collider* target)
 	}
 }
 
-void Head::fire()
+void Head::ThrowHead()
 {
+	isThrow = true;
+
+	skill1StartPos = player->GetPosition();
+	skillEndPos = skill1StartPos + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
+	SetHeadSkillOn(true);
+	rigidBody->SetActive(false);
+	currentTime = 0.f;
 }
 
 void Head::SetPlayer(Player* player)

@@ -20,6 +20,7 @@ protected:
 	std::vector<std::function<void()>>	stateEndEvents;
 public:
 	virtual void SetChangeAnimationKey(int index);
+	int GetAnimationIndex();
 
 public:
 	void Awake() override;

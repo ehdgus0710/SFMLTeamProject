@@ -534,9 +534,6 @@
     <ClCompile Include="HitBoxObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SceneDev3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Head.cpp">
       <Filter>Contants\Object\Player</Filter>
     </ClCompile>
@@ -593,6 +590,18 @@
     </ClCompile>
     <ClCompile Include="Knife.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationHitBox.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDev3.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill2State.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill1State.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -929,9 +938,6 @@
     <ClInclude Include="HitBoxObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SceneDev3.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Head.h">
       <Filter>Contants\Object\Player</Filter>
     </ClInclude>
@@ -988,6 +994,18 @@
     </ClInclude>
     <ClInclude Include="Knife.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHitBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev3.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill1State.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill2State.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

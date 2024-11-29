@@ -17,12 +17,6 @@ protected:
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
 
-	sf::Vector2f skill1StartPos;
-	sf::Vector2f skillEndPos;
-
-	float		skill1OnTime;
-	float		currentTime;
-
 	float		moveDirectionX;
 	DefaultStatus	currentStatus;
 
@@ -44,7 +38,7 @@ protected:
 
 	bool			isReload;
 	bool			isAttack;
-
+	bool			isNoneHead;
 public:
 	void TakeDamage();
 	void TakeDamage(float damage);
@@ -52,12 +46,17 @@ public:
 	void Attack();
 	void OnAttackEnd();
 	void OnDownJump();
+	void OnThrowHead();
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }
 
 	PlayerFSM& GetFSM() { return fsm; }
 public:
+
+	void OnNoneHead() { isNoneHead = true; }
+	bool IsNoneHead() { return isNoneHead; }
+
 	bool IsHit() const { return isHit; }
 	void SetIsJump(bool jump) { isJump = jump; }
 

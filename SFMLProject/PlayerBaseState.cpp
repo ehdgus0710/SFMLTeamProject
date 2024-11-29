@@ -26,6 +26,12 @@ void PlayerBaseState::SetChangeAnimationKey(int index)
 	}
 }
 
+int PlayerBaseState::GetAnimationIndex()
+{
+	currentAnimationIndex = (player->IsNoneHead() ? 1 : 0);
+	return currentAnimationIndex;
+}
+
 void PlayerBaseState::Awake()
 {
 	animator = player->GetAnimator();

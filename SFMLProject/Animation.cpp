@@ -136,25 +136,20 @@ void Animation::CreateAnimationInfo(const sf::Texture* texture, const std::strin
 }
 
 
-void Animation::Play(float speed, bool isRepeat)
+void Animation::Play(float speed, bool isRepeat, unsigned int index)
 {
 	animationSpeed = speed;
 	Reset();
-	// animationStartEvnet;
 	this->isRepeat = isRepeat;
 	isPlaying = true;
 
-	animator->SetCurrentFrameInfo(frameInfoVector[0].rectSize, frameInfoVector[0].uvRect);
-	//if (animator != nullptr)
-	//{
-	//	//animator->SetCurrentFrameRect();
-	//}
+	animator->SetCurrentFrameInfo(frameInfoVector[index].rectSize, frameInfoVector[index].uvRect);
 }
 
 void Animation::Stop()
 {
 	isPlaying = false;
-	animator->SetPlaying(isPlaying);
+	animator->SetPlaying(this, isPlaying);
 }
 
 void Animation::Reset()

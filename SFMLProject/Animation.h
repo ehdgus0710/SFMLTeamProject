@@ -41,7 +41,7 @@ protected:
 	bool						isRepeat;
 
 public:
-	void Play(float speed, bool isRepeat = false);
+	void Play(float speed, bool isRepeat = false, unsigned int index = 0);
 	void Stop();
 	void Reset();
 
@@ -72,7 +72,9 @@ public:
 	const std::string& GetTextureID() { return textureID; }
 	const std::vector<AnimationInfo>& GetFrameInfo() { return frameInfoVector; }
 
+	int GetCurrentIndex() { return currentIndex; }
 	bool IsRepeat() { return isRepeat; }
+	bool IsUnScale() { return isUnscale; }
 public:
 	bool SaveCSV(const std::string& filePath);
 	bool loadFromFile(const std::string& filePath);

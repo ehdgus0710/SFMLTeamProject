@@ -2,6 +2,7 @@
 #include "SceneDev3.h"
 
 #include "GameInclude.h"
+#include "Animation.h"
 
 void SceneDev3::CollisitionCheck()
 {
@@ -51,8 +52,15 @@ void SceneDev3::Enter()
 	TEXTURE_MANAGER.Load("YggdrasilGrogy", "graphics/boss/Yggdrasil/effects/Grogy.png");
 	TEXTURE_MANAGER.Load("YggdrasilHandSlam", "graphics/boss/Yggdrasil/effects/HandSlam.png");
 	TEXTURE_MANAGER.Load("YggdrasilHandSlamBoom", "graphics/boss/Yggdrasil/effects/HandSlam_Boom.png");
+	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
 
 	CollisitionCheck();
+
+	AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
+	testPlayer->Awake();
+	testPlayer->SetPosition({ 500, 500.f });
+	testPlayer->GetAnimator()->LoadCsv("animators/rayanna.csv");
+	testPlayer->GetAnimator()->ChangeAnimation("awaken");
 
 	Scene::Enter();
 }

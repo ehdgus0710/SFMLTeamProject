@@ -13,8 +13,13 @@ protected:
 	PlayerFSM*	fsm;
 	Animator*	animator;
 
+	std::vector<std::string>			animationKeys;
+	int									currentAnimationIndex;
+
 	std::vector<std::function<void()>>	stateStartEvents;
 	std::vector<std::function<void()>>	stateEndEvents;
+public:
+	virtual void SetChangeAnimationKey(int index);
 
 public:
 	void Awake() override;

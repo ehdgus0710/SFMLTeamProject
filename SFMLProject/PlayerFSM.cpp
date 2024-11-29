@@ -117,6 +117,11 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 	return state;
 }
 
+PlayerBaseState* PlayerFSM::GetCurrentState()
+{ 
+	return (PlayerBaseState*)stateMap[currentStateType];
+}
+
 void PlayerFSM::Update(float deltaTime)
 {
 	stateMap[currentStateType]->Update(deltaTime);

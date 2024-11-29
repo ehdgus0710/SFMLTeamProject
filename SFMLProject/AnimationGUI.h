@@ -4,6 +4,7 @@
 class AnimationGUI : public ComponentGUI
 {
 protected:
+	std::vector<std::string> nameVectors;
 	Animator*			animator;
 	// AnimationToolGUI*	animationTool;
 	// bool				useAnimationTool;

@@ -36,6 +36,7 @@ void AnimationGameObject::Start()
 
 void AnimationGameObject::Update(const float& deltaTime)
 {
+	animator->Update(deltaTime);
 }
 
 void AnimationGameObject::FixedUpdate(const float& deltaTime)
@@ -75,7 +76,8 @@ void AnimationGameObject::SetRotation(float angle)
 {
 	rotation = angle;
 	sprite.setRotation(angle);
-	collider->SetRotation(angle);
+	if (collider != nullptr)
+		collider->SetRotation(angle);
 }
 
 void AnimationGameObject::SetOrigin(Origins preset)

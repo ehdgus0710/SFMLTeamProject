@@ -79,8 +79,7 @@ void Animator::AddAnimation(Animation* animation, const std::string& animationNa
 	if (currentAnimation == nullptr)
 		StartAnimation(animation, animation->IsRepeat());
 }
-
-void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat, bool isUnscale)
+void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat, bool isUnscale, unsigned int index)
 {
 	auto animation = animationMap.find(animationName);
 	if (animationMap.end() == animation)
@@ -111,11 +110,6 @@ void Animator::Render(sf::RenderWindow& renderWindow)
 void Animator::SetCurrentFrameRect(const sf::IntRect& rect)
 {
 	uvRect = rect;
-
-
-	// owner->GetScale() * 
-	// sprite->setScale()
-	// Utils::SetOrigin(*sprite, uvRect, owner->GetOrigins());
 	sprite->setTextureRect(uvRect);
 }
 
@@ -153,6 +147,13 @@ void Animator::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale * rectSize;
 	sprite->setScale(this->scale);
+}
+
+
+void Animator::SetPlaying(Animation* animation, bool isPlay)
+{
+	if (currentAnimation == animation)
+		isPlaying = isPlay;
 }
 
 sf::FloatRect Animator::GetLocalBounds() const

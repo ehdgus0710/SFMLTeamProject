@@ -4,6 +4,7 @@
 
 class Player;
 class Head;
+class PlayerBaseState;
 
 class PlayerFSM : public FSMController<PlayerStateType>
 {
@@ -16,6 +17,7 @@ private:
 
 public:
 	BaseState<PlayerStateType>* CreateState(PlayerStateType type);
+	PlayerBaseState* GetCurrentState();
 	Player* GetPlayer() { return owner; }
 
 public:

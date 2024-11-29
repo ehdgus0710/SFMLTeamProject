@@ -20,7 +20,7 @@ void ReianaDimensionState::CreateDimension()
 	dimension->SetPosition(reiana->GetPlayer()->GetPosition());
 	dimension->Awake();
 	dimension->Start();
-	dimension->SetRotation(Utils::RandomRange(1,180));
+	dimension->SetRotation((float)Utils::RandomRange(1,180));
 }
 
 void ReianaDimensionState::Awake()

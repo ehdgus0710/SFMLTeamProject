@@ -4,6 +4,17 @@
 #include "Animator.h"
 #include "Animation.h"
 
+PlayerAttackState::PlayerAttackState(PlayerFSM* fsm)
+	: PlayerBaseState(fsm, PlayerStateType::Attack)
+{
+	animationKeys.push_back("littleboneAttack");
+	animationKeys.push_back("noheadlittleboneAttack");
+}
+
+PlayerAttackState::~PlayerAttackState()
+{
+}
+
 void PlayerAttackState::Awake()
 {
 	PlayerBaseState::Awake();
@@ -18,10 +29,7 @@ void PlayerAttackState::Start()
 void PlayerAttackState::Enter()
 {
 	PlayerBaseState::Enter();
-	animator->ChangeAnimation("noheadlittleboneAttack1", false);
-
-	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
-	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&PlayerAttackState::SequenceAttack, this), endFrame);
+	StartAttack();
 }
 
 void PlayerAttackState::Exit()
@@ -43,26 +51,47 @@ void PlayerAttackState::FixedUpdate(float fixedDeltaTime)
 {
 }
 
-void PlayerAttackState::EndAttack()
+void PlayerAttackState::StartAttack()
 {
-	fsm->ChangeState(PlayerStateType::Idle);
-}
-
-void PlayerAttackState::SequenceAttack()
-{
-	if (sequenceAttack)
-	{
-		animator->ChangeAnimation("noheadlittleboneAttack2", false);
-	}
+	currentAttackCount = 1;
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex] + "1", false);
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), endFrame);
 }
 
-PlayerAttackState::PlayerAttackState(PlayerFSM* fsm)
-	: PlayerBaseState(fsm, PlayerStateType::Attack)
+void PlayerAttackState::NextAttack()
 {
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex] + "2", true);
+	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
+	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), endFrame);
 }
 
-PlayerAttackState::~PlayerAttackState()
+void PlayerAttackState::EndAttack()
 {
+	if (sequenceAttack)
+	{
+		SequenceAttack();
+	}
+	else
+	{
+		fsm->ChangeState(PlayerStateType::Idle);
+	}
+}
+
+void PlayerAttackState::SequenceAttack()
+{
+	if (currentAttackCount == 1)
+	{
+		int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
+		animator->GetCurrentAnimation()->ClearEndEvent(endFrame);
+		NextAttack();
+	}
+	else
+	{
+		int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
+		animator->GetCurrentAnimation()->ClearEndEvent(endFrame);
+		StartAttack();
+	}
+
+	sequenceAttack = false;
 }

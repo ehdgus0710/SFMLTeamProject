@@ -9,6 +9,8 @@ PlayerRunState::PlayerRunState(PlayerFSM* fsm)
 	, horizontal(0.f)
 	, isLeftRun(false)
 {
+	animationKeys.push_back("littleboneRun");
+	animationKeys.push_back("noheadlittleboneRun");
 }
 
 PlayerRunState::~PlayerRunState()
@@ -63,7 +65,7 @@ void PlayerRunState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	animator->ChangeAnimation("noheadlittleboneRun", true);
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex], true);
 
 	// animator->ChangeAnimation(animationKeys[animationKeyIndex], true);
 

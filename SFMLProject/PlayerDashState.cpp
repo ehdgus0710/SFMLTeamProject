@@ -3,6 +3,19 @@
 #include "Rigidbody.h"
 #include "Animator.h"
 
+
+PlayerDashState::PlayerDashState(PlayerFSM* fsm)
+	: PlayerBaseState(fsm, PlayerStateType::Dash)
+	, extraDash(false)
+{
+	animationKeys.push_back("littleboneDash");
+	animationKeys.push_back("noheadlittleboneDash");
+}
+
+PlayerDashState::~PlayerDashState()
+{
+}
+
 void PlayerDashState::Awake()
 {
 	PlayerBaseState::Awake();
@@ -23,13 +36,10 @@ void PlayerDashState::Enter()
 	currentTime = 0.f;
 	player->OnDash();
 
-	animator->ChangeAnimation("noheadlittleboneDash", false);
+	animator->ChangeAnimation(animationKeys[currentAnimationIndex], false);
 
 	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
 	dashStartPos = player->GetPosition();
-
-	
-
 }
 
 void PlayerDashState::Exit()
@@ -69,14 +79,4 @@ void PlayerDashState::Update(float deltaTime)
 void PlayerDashState::FixedUpdate(float fixedDeltaTime)
 {
 	PlayerBaseState::FixedUpdate(fixedDeltaTime);
-}
-
-PlayerDashState::PlayerDashState(PlayerFSM* fsm)
-	: PlayerBaseState(fsm, PlayerStateType::Dash)
-	, extraDash(false)
-{
-}
-
-PlayerDashState::~PlayerDashState()
-{
 }

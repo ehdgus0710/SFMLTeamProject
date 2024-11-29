@@ -2,9 +2,13 @@
 
 #include "ReianaBaseState.h"
 
+class HitBoxObject;
+
 class ReianaGroundAttackState : public ReianaBaseState
 {
 protected:
+	HitBoxObject* hitBox;
+
 	sf::Vector2f startPosition;
 	sf::Vector2f endPosition;
 
@@ -33,6 +37,8 @@ public:
 	void Update(float deltaTime) override;
 	void FixedUpdate(float fixedDeltaTime) override;
 	void LateUpdate(float deltaTime) override;
+	void OnCreateHitBox();
+	void OnDestoryHitBox();
 public:
 	ReianaGroundAttackState(ReianaFsm* fsm);
 	~ReianaGroundAttackState();

@@ -4,6 +4,7 @@
 #include "Rigidbody.h"
 #include "Animator.h"
 #include "Animation.h"
+#include "HitBoxObject.h"
 
 ReianaGroundAttackState::ReianaGroundAttackState(ReianaFsm* fsm)
 	: ReianaBaseState(fsm, ReianaStateType::GroundAttack)
@@ -26,7 +27,10 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime));
 
 	if (currentAttackTime > attackTime)
+	{
+		OnDestoryHitBox();
 		fsm->ChangeState(ReianaStateType::Idle);
+	}
 } 
 
 void ReianaGroundAttackState::Wait(float deltaTime)
@@ -34,7 +38,10 @@ void ReianaGroundAttackState::Wait(float deltaTime)
 	currentWaitTime += deltaTime;
 
 	if (currentWaitTime >= waitTime)
+	{
+		OnCreateHitBox();
 		action = true;
+	}
 }
 
 void ReianaGroundAttackState::ChangeReady2Animation()
@@ -72,7 +79,7 @@ void ReianaGroundAttackState::Enter()
 	auto playerPos = reiana->GetPlayer()->GetPosition();
 
 	startPosition = { 1700.f ,reiana->GetPosition().y };
-	reiana->SetPosition(startPosition);
+	reiana->SetPosition(startPosition);	
 }
 
 void ReianaGroundAttackState::Exit()
@@ -99,3 +106,19 @@ void ReianaGroundAttackState::LateUpdate(float deltaTime)
 {
 	ReianaBaseState::LateUpdate(deltaTime);
 }
+
+void ReianaGroundAttackState::OnCreateHitBox()
+{
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::Enemy, ColliderLayer::Player, true), LayerType::Enemy);
+	// hitBox->SetPosition(reiana->GetPosition() + );
+	hitBox->SetScale({ 100.f,50.f });
+	hitBox->SetDamage(1000);
+}
+
+void ReianaGroundAttackState::OnDestoryHitBox()
+{
+	hitBox->OnDestory();
+	hitBox->SetActive(false);
+	hitBox = nullptr;
+}
+

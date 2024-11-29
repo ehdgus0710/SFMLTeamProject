@@ -52,16 +52,8 @@ void PlayerAttackState::FixedUpdate(float fixedDeltaTime)
 
 void PlayerAttackState::EvenetClear()
 {
-	if (currentAttackCount == 2)
-	{
-		Animation* animation = animator->GetCurrentAnimation();
-		animator->GetCurrentAnimation()->ClearEndEvent(animation->GetFrameCount() - 1);
-	}
-	else
-	{
-		Animation* animation = animator->GetCurrentAnimation();
-		animator->GetCurrentAnimation()->ClearEndEvent(animation->GetFrameCount() - 1);
-	}
+	Animation* animation = animator->GetCurrentAnimation();
+	animator->GetCurrentAnimation()->ClearEndEvent(animation->GetFrameCount() - 1);
 }
 
 void PlayerAttackState::StartAttack()

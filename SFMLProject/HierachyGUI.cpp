@@ -42,6 +42,8 @@ void HierachyGUI::Init()
     createObjectTool = new CreateObjectTool;
 
     createObjectTool->Init();
+
+    timeScale = TimeManager::GetInstance().GetTimeScale();
 }
 
 void HierachyGUI::Update()
@@ -94,10 +96,6 @@ void HierachyGUI::Update()
         }
     }
 
-
-
-   
-
     if (ImGui::Button("OnAnimaitonToolEditor", { 100, 20.f }))
         isOnAnimationTool = !isOnAnimationTool;
 
@@ -129,6 +127,14 @@ void HierachyGUI::Update()
         SceneManager::GetInstance().GetCurrentScene()->Load(SceneManager::GetInstance().GetCurrentScene()->GetLoadPath());
 	}
 	ImGui::End();
+
+
+    if (ImGui::DragFloat("TimeScale", &timeScale,0.1f, 0.0f, 2.0f))
+    {
+        TimeManager::GetInstance().SetTimeScale(timeScale);
+        timeScale = TimeManager::GetInstance().GetTimeScale();
+    }
+
 }
 
 void HierachyGUI::Reset()

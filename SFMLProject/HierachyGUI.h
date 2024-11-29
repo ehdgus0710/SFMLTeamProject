@@ -13,6 +13,7 @@ protected:
 	GUI*					wallCollisionToolGUI;
 	GUI*					createObjectTool;
 
+	float					timeScale;
 	bool					isOnAnimationTool;
 	bool					isOnWallCollisionTool;
 	bool					isOnCreateObjectTool;

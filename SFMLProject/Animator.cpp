@@ -75,7 +75,7 @@ void Animator::AddAnimation(Animation* animation, const std::string& animationNa
 
 	animation->SetAnimator(this);
 	animationMap.insert({ animationName, animation });
-
+	animation->SetAnimationName(animationName);
 	if (currentAnimation == nullptr)
 		StartAnimation(animation, animation->IsRepeat());
 }

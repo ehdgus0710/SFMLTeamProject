@@ -59,11 +59,13 @@ public:
 	bool GetKeyDown(const sf::Keyboard::Key& key);
 	bool GetKeyPressed(const sf::Keyboard::Key& key);
 	bool GetKeyUp(const sf::Keyboard::Key& key);
+	bool GetKeyNone(const sf::Keyboard::Key& key);
 
 	bool GetKey(const sf::Mouse::Button& button);
 	bool GetKeyDown(const sf::Mouse::Button& button);
 	bool GetKeyPressed(const sf::Mouse::Button& button);
 	bool GetKeyUp(const sf::Mouse::Button& button);
+	bool GetKeyNone(const sf::Mouse::Button& button);
 
 	float GetAxisRaw(Axis axis);
 	float GetAxis(Axis axis);

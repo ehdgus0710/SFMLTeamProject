@@ -222,6 +222,11 @@ bool InputManager::GetKeyUp(const sf::Keyboard::Key& key)
 	return keyboardInputMap[key] == KeyState::KeyUp;
 }
 
+bool InputManager::GetKeyNone(const sf::Keyboard::Key& key)
+{
+	return keyboardInputMap[key] == KeyState::KeyNone;
+}
+
 bool InputManager::GetKey(const sf::Mouse::Button& button)
 {
 	return mouseInputMap.find(button) != mouseInputMap.end();
@@ -249,6 +254,11 @@ bool InputManager::GetKeyUp(const sf::Mouse::Button& button)
 		return false;
 
 	return mouseInputMap[button] == KeyState::KeyUp;
+}
+
+bool InputManager::GetKeyNone(const sf::Mouse::Button& button)
+{
+	return mouseInputMap[button] == KeyState::KeyNone;
 }
 
 float InputManager::GetAxisRaw(Axis axis)

@@ -61,6 +61,7 @@ public:
 
 	void SetAnimationStartEvent(std::function<void()>  event, unsigned int index);
 	void SetAnimationEndEvent(std::function<void()>  event, unsigned int index);
+	void SetAnimationName(const std::string name) { animationID = name; }
 	void ClearStartEvent(unsigned int index);
 	void ClearEndEvent(unsigned int index);
 	void SetAnimator(Animator* animator) { this->animator = animator; }

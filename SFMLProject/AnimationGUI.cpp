@@ -28,10 +28,10 @@ void AnimationGUI::Update()
     if (animation)
     {
         std::vector<AnimationInfo> AnimationInfoVecs = animation->GetFrameInfo();
-        // int iFrmID = pAnimation->GetFrmIdx();
-        // float fAccTime = pAnimation->GetAccTime();
-        // wstring wstrName = pAnimation->GetName();
-        // string strName = string(wstrName.begin(), wstrName.end());
+        int currentIndex = animation->GetCurrentIndex();
+
+        ImGui::Text(animation->GetAnimationName().c_str());
+        ImGui::InputInt("CurrentIndex", &currentIndex);
 
         static ImGuiComboFlags flags = 0;
 

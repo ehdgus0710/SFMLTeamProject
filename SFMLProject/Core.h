@@ -78,6 +78,7 @@ enum class ColliderLayer
 	Item,
 	Player,
 	Enemy,
+	Boss,
 	PlayerBullet,
 	EnemyBullet,
 	SavePoint,
@@ -109,6 +110,7 @@ enum class PlayerStateType
 	Falling,
 	Dash,
 	Attack,
+	JumpAttack,
 	Skill1,
 	Skill2,
 	End
@@ -156,6 +158,13 @@ enum class ItemType
 
 enum class EnemyType
 {
+	Reiana,
+	End
+};
+
+enum class BossType
+{
+	Yggdrasil,
 	Reiana,
 	End
 };

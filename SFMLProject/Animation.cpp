@@ -136,7 +136,7 @@ void Animation::CreateAnimationInfo(const sf::Texture* texture, const std::strin
 }
 
 
-void Animation::Play(float speed, unsigned int index, bool isRepeat)
+void Animation::Play(float speed, bool isRepeat, unsigned int index)
 {
 	animationSpeed = speed;
 	Reset();

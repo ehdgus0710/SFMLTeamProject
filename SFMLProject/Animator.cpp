@@ -79,23 +79,7 @@ void Animator::AddAnimation(Animation* animation, const std::string& animationNa
 	if (currentAnimation == nullptr)
 		StartAnimation(animation, animation->IsRepeat());
 }
-
-void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat, bool isUnscale)
-{
-	auto animation = animationMap.find(animationName);
-	if (animationMap.end() == animation)
-		return;
-
-	isPlaying = true;
-	currentAnimation->SetRepeat(false);
-	currentAnimation = animation->second;
-
-	sprite->setTexture(*currentAnimation->GetTexture());
-	currentAnimation->Play(animationSpeed, isRepeat);
-	currentAnimation->SetUnScaleUpdate(isUnscale);
-}
-
-void Animator::ChangeAnimation(const std::string& animationName, unsigned int index, bool isRepeat, bool isUnscale)
+void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat, bool isUnscale, unsigned int index)
 {
 	auto animation = animationMap.find(animationName);
 	if (animationMap.end() == animation)

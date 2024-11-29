@@ -2,6 +2,7 @@
 #include "SceneDev3.h"
 
 #include "GameInclude.h"
+#include "Animation.h"
 
 void SceneDev3::CollisitionCheck()
 {
@@ -54,6 +55,12 @@ void SceneDev3::Enter()
 	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
 
 	CollisitionCheck();
+
+	AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
+	testPlayer->Awake();
+	testPlayer->SetPosition({ 500, 500.f });
+	testPlayer->GetAnimator()->LoadCsv("animators/rayanna.csv");
+	testPlayer->GetAnimator()->ChangeAnimation("awaken");
 
 	Scene::Enter();
 }

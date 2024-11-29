@@ -41,7 +41,7 @@ protected:
 	bool						isRepeat;
 
 public:
-	void Play(float speed, unsigned int index = 0, bool isRepeat = false);
+	void Play(float speed, bool isRepeat = false, unsigned int index = 0);
 	void Stop();
 	void Reset();
 

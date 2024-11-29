@@ -211,6 +211,18 @@
     <Filter Include="Contants\UtilsObject">
       <UniqueIdentifier>{cef4d39c-c355-4911-918f-b73fcb1e8fac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Reiana">
+      <UniqueIdentifier>{8f9337a3-0a4c-42f8-b667-7167ec34d4a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Reiana\FSM">
+      <UniqueIdentifier>{f73898c9-80e9-4f61-8431-fceedf215f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Reiana\ReinaState">
+      <UniqueIdentifier>{8653a061-9bc8-41c8-ba2f-9372add71546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Reiana\Object">
+      <UniqueIdentifier>{45c30282-2d78-466d-b68a-377703963e37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -534,8 +546,53 @@
     <ClCompile Include="PlayerFallingState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerSkill1Sate.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+    <ClCompile Include="AnimationBullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaffoldingObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Reiana.cpp">
+      <Filter>Contants\Object\Reiana</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaBaseState.cpp">
+      <Filter>Contants\Object\Reiana\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaFSM.cpp">
+      <Filter>Contants\Object\Reiana\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaDeadState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaDimensionState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaDropAttackState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaGroundAttackState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaIdleState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaKnifeState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaNomalAttackState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaAroundDimensionState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaThreeSwordState.cpp">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="Dimension.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Knife.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -884,8 +941,53 @@
     <ClInclude Include="PlayerFallingState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerSkill1Sate.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+    <ClInclude Include="AnimationBullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaffoldingObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Reiana.h">
+      <Filter>Contants\Object\Reiana</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaFSM.h">
+      <Filter>Contants\Object\Reiana\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaBaseState.h">
+      <Filter>Contants\Object\Reiana\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaDeadState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaDimensionState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaDropAttackState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaGroundAttackState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaIdleState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaKnifeState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaNomalAttackState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaAroundDimensionState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaThreeSwordState.h">
+      <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="Dimension.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Knife.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

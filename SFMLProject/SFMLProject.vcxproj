@@ -173,7 +173,7 @@
     <ClCompile Include="ReianaGroundAttackState.cpp" />
     <ClCompile Include="ReianaIdleState.cpp" />
     <ClCompile Include="ReianaNomalAttackState.cpp" />
-    <ClCompile Include="ReianaPongState.cpp" />
+    <ClCompile Include="ReianaAroundDimensionState.cpp" />
     <ClCompile Include="ReianaThreeSwordState.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="ColliderGUI.cpp" />
@@ -320,7 +320,7 @@
     <ClInclude Include="ReianaGroundAttackState.h" />
     <ClInclude Include="ReianaIdleState.h" />
     <ClInclude Include="ReianaNomalAttackState.h" />
-    <ClInclude Include="ReianaPongState.h" />
+    <ClInclude Include="ReianaAroundDimensionState.h" />
     <ClInclude Include="ReianaThreeSwordState.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderGUI.h" />

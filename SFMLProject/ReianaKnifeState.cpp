@@ -20,19 +20,9 @@ void ReianaKnifeState::Start()
 {
 }
 
-void ReianaKnifeState::CreateDimension()
-{
-	Knife* knife = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Knife(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "MenuBar"), LayerType::EnemyBullet);
-	knife->SetPosition(reiana->GetPosition());
-	knife->Awake();
-	knife->Start();
-}
-
 void ReianaKnifeState::Enter()
 {
 	ReianaBaseState::Enter();
-
-	CreateDimension();
 }
 
 void ReianaKnifeState::Exit()
@@ -44,7 +34,6 @@ void ReianaKnifeState::Exit()
 void ReianaKnifeState::Update(float deltaTime)
 {
 	ReianaBaseState::Update(deltaTime);
-
 }
 
 void ReianaKnifeState::FixedUpdate(float fixedDeltaTime)

@@ -5,10 +5,15 @@
 class ReianaThreeSwordState : public ReianaBaseState
 {
 protected:
+	float delayTime;
+	float currentDelay;
 
+	bool fix;
 public:
 	void Awake() override;
 	void Start() override;
+
+	void CreateKnife();
 
 	void Enter() override;
 	void Exit() override;

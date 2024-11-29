@@ -119,7 +119,7 @@ enum class ReianaStateType
 	NomalAttack,
 	GroundAttack,
 	ThreeSword,
-	Pong,
+	Aruond,
 	Knife,
 	Dimension,
 	DropAttack,

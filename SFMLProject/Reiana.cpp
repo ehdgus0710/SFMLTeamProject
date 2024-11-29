@@ -60,7 +60,7 @@ void Reiana::Update(const float& deltaTime)
 	}
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad4))
 	{
-		fsm.ChangeState(ReianaStateType::Knife);
+		fsm.ChangeState(ReianaStateType::ThreeSword);
 	}
 }
 

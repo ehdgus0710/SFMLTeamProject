@@ -12,6 +12,7 @@
 #include "PlayerAttackState.h"
 #include "PlayerSkill1State.h"
 #include "PlayerSkill2State.h"
+#include "PlayerJumpAttackState.h"
 
 PlayerFSM::PlayerFSM(Player* owner)
 	: owner(owner)
@@ -71,6 +72,9 @@ void PlayerFSM::CreateAllState()
 		case PlayerStateType::Attack:
 			AddState(PlayerStateType::Attack);
 			break;
+		case PlayerStateType::JumpAttack:
+			AddState(PlayerStateType::JumpAttack);
+			break;
 		case PlayerStateType::Skill1:
 			AddState(PlayerStateType::Skill1);
 			break;
@@ -114,6 +118,9 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 		break;
 	case PlayerStateType::Attack:
 		state = new PlayerAttackState(this);
+		break;
+	case PlayerStateType::JumpAttack:
+		state = new PlayerJumpAttackState(this);
 		break;
 	case PlayerStateType::Skill1:
 		state = new PlayerSkill1State(this);

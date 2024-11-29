@@ -31,6 +31,7 @@ void PlayerSkill2State::Enter()
 	player->GetRigidbody()->SetActive(false);
 	player->SetPosition(player->GetHeadPosition());
 	player->OnSkill2CoolTime();
+	player->OnGetHead();
 }
 
 void PlayerSkill2State::Exit()

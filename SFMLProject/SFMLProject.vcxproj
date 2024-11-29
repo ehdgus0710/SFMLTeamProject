@@ -165,6 +165,7 @@
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="Dimension.cpp" />
     <ClCompile Include="Knife.cpp" />
+    <ClCompile Include="PlayerJumpAttackState.cpp" />
     <ClCompile Include="PlayerSkill2State.cpp" />
     <ClCompile Include="PlayerSkill1State.cpp" />
     <ClCompile Include="Reiana.cpp" />
@@ -318,6 +319,7 @@
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="Dimension.h" />
     <ClInclude Include="Knife.h" />
+    <ClInclude Include="PlayerJumpAttackState.h" />
     <ClInclude Include="PlayerSkill2State.h" />
     <ClInclude Include="PlayerSkill1State.h" />
     <ClInclude Include="Reiana.h" />

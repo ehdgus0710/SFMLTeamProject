@@ -85,6 +85,13 @@ void PlayerFallingState::Update(float deltaTime)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
+
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::X))
+	{
+		fsm->ChangeState(PlayerStateType::JumpAttack);
+		return;
+	}
+
 	PlayerBaseState::Update(deltaTime);
 }
 

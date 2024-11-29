@@ -52,6 +52,7 @@ public:
 	void OnAttackEnd();
 	void OnDownJump();
 	void OnThrowHead();
+	void OnGetHead();
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }

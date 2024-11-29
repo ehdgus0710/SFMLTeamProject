@@ -11,6 +11,7 @@
 #include "InGameScoreUI.h"
 
 #include "Player.h"
+#include "Enemy.h"
 
 Head::Head(const std::string& name)
 	: AnimationGameObject(name)
@@ -19,6 +20,7 @@ Head::Head(const std::string& name)
 	, player(nullptr)
 	, moveDirectionX(0)
 	, currentTime(0.f)
+	, onSkill(false)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -46,14 +48,7 @@ void Head::Update(const float& deltaTime)
 		currentTime += deltaTime;
 
 		if (currentTime >= skill1OnTime)
-		{
-			rigidBody->SetActive(true);
-			rigidBody->SetGround(false);
-			rigidBody->ResetDropSpeed();
-			rigidBody->ResetVelocity();
-			rigidBody->SetVelocity({ Utils::RandomRange(-50.f, 50.f), Utils::RandomRange(-800.f, -400.f)});
-			isThrow = false;
-		}
+			EndThrow();
 		else
 			SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
 
@@ -71,8 +66,18 @@ void Head::LateUpdate(const float& deltaTime)
 
 void Head::OnCollisionEnter(Collider* target)
 {
-	if(target->GetColliderLayer() == ColliderLayer::Wall)
-		rigidBody->ResetVelocity();
+	if (target->GetColliderLayer() == ColliderLayer::Wall)
+	{
+		if (isThrow)
+			EndThrow();
+		else
+			rigidBody->ResetVelocity();
+	}
+	else if (target->GetColliderLayer() == ColliderLayer::Enemy && isThrow)
+	{
+		((Enemy*)target->GetOwner())->TakeDamage(10);
+		EndThrow();
+	}
 }
 
 void Head::OnCollisionStay(Collider* target)
@@ -110,11 +115,23 @@ void Head::OnCollisionEnd(Collider* target)
 void Head::ThrowHead()
 {
 	isThrow = true;
+	onSkill = true;
 
 	skill1StartPos = player->GetPosition();
 	skillEndPos = skill1StartPos + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
 	rigidBody->SetActive(false);
 	currentTime = 0.f;
+}
+
+void Head::EndThrow()
+{
+	rigidBody->SetActive(true);
+	rigidBody->SetGround(false);
+	rigidBody->ResetDropSpeed();
+	rigidBody->ResetVelocity();
+	rigidBody->SetVelocity({ Utils::RandomRange(-50.f, 50.f), Utils::RandomRange(-800.f, -400.f) });
+	isThrow = false;
+	onSkill = false;
 }
 
 void Head::SetPlayer(Player* player)

@@ -121,6 +121,13 @@ void Player::OnThrowHead()
 	isNoneHead = true;
 }
 
+void Player::OnGetHead()
+{
+	head->SetActive(false);
+	isNoneHead = false;
+	fsm.GetCurrentState()->SetChangeAnimationKey(0);
+}
+
 void Player::OnSkill1CoolTime()
 {
 	isSkll1CoolTime = true;
@@ -218,7 +225,7 @@ void Player::Update(const float& deltaTime)
 			fsm.ChangeState(PlayerStateType::Skill2);
 	}
 
-	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
+	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && fsm.GetCurrentStateType() != PlayerStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
 }
 
@@ -235,12 +242,8 @@ void Player::LateUpdate(const float& deltaTime)
 
 void Player::OnCollisionEnter(Collider* target)
 {
-	if (target->GetOwner() == head && !head->IsThrow())
-	{
-		head->SetActive(false);
-		isNoneHead = false;
-		fsm.GetCurrentState()->SetChangeAnimationKey(0);
-	}
+	if (target->GetOwner() == head && !head->IsOnSkill())
+		OnGetHead();
 }
 void Player::OnCollisionStay(Collider* target)
 {

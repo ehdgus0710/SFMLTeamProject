@@ -16,6 +16,7 @@ protected:
 	float								currentLifeTime;
 	bool								useLifeTime;
 	bool								isOwnerFollow;
+	bool								isAutoDestory;
 
 protected:
 	void OwnerFollow();
@@ -24,6 +25,7 @@ public:
 	void SetOwner(GameObject* owner) { this->owner = owner; }
 	void SetDamage(float damage) { this->damage = damage; }
 	void UseLifeTime(float lifeTime) { this->lifeTime = lifeTime; useLifeTime = true; }
+	void OnAutoDestory() { isAutoDestory = true; }
 
 	void AddStartHitEvent(std::function<void()> hitEvent) { startHitEvents.push_back(hitEvent); }
 	void AddEndHitEvent(std::function<void()> hitEvent) { endHitEvents.push_back(hitEvent); }

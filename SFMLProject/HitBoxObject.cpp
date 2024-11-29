@@ -14,6 +14,7 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType,Collid
 	, currentLifeTime(0.f)
 	, useLifeTime(false)
 	, hitLayer(0)
+	, isAutoDestory(false)
 {
 	CreateCollider(ColliderType::Rectangle, thisLayerType);
 }
@@ -29,6 +30,7 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, Colli
 	, currentLifeTime(0.f)
 	, useLifeTime(false)
 	, hitLayer(0)
+	, isAutoDestory(false)
 {
 	CreateCollider(ColliderType::Rectangle, thisLayerType);
 }
@@ -138,6 +140,9 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 			if (hitEvent)
 				hitEvent();
 		}
+
+		if (isAutoDestory)
+			OnDestory();
 	}
 }
 

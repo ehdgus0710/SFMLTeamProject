@@ -4,12 +4,12 @@
 
 class Rigidbody;
 class Player;
+class HitBoxObject;
 
 class Head : public AnimationGameObject
 {
 protected:
-	Player* player;
-
+	Player*			player;
 
 	sf::Vector2f	skill1StartPos;
 	sf::Vector2f	skillEndPos;
@@ -19,12 +19,15 @@ protected:
 
 	float			moveDirectionX;
 	bool			isThrow;
+	bool			onSkill;
 
 public:
 	void ThrowHead();
+	void EndThrow();
 	void SetPlayer(Player* player);
 
 	bool IsThrow() { return isThrow; }
+	bool IsOnSkill() { return onSkill; }
 public:
 	void Awake() override;
 	void Start() override;

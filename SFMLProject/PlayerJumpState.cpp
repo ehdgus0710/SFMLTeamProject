@@ -80,7 +80,11 @@ void PlayerJumpState::Update(float deltaTime)
 		fsm->ChangeState(PlayerStateType::Jump);
 		return;
 	}
-
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::X))
+	{
+		fsm->ChangeState(PlayerStateType::JumpAttack);
+		return;
+	}
 
 	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))
 		player->OnFlipX();

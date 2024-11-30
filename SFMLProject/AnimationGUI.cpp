@@ -61,8 +61,8 @@ void AnimationGUI::Update()
             }
             ImGui::EndCombo();
         }
-        ImGui::EndChild();
     }
+    ImGui::EndChild();
 }
 
 void AnimationGUI::SetObject(GameObject* object)
@@ -76,6 +76,4 @@ void AnimationGUI::SetObject(GameObject* object)
 	}
 
 	animator = target->GetAnimator();
-	
-
 }

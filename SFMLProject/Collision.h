@@ -36,6 +36,8 @@ public:
 
 	virtual sf::FloatRect GetLocalBounds() = 0;
 	virtual sf::FloatRect GetGlobalBounds() = 0;
+
+	virtual sf::Vector2f GetRealPosition() const = 0;
 public:
 	virtual void Init() = 0;
 	virtual void Reset() = 0;

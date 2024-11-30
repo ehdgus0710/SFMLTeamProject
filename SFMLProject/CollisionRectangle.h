@@ -32,6 +32,8 @@ public:
 	float GetBottomPosition() { return position.y + rectanleRender.getSize().y * 0.5f; }
 
 	void SetOrigin(const Origins& origins) override;
+
+	sf::Vector2f GetRealPosition() const override { return rectanleRender.getPosition(); }
 public:
 	void Init() override;
 	void Reset() override;

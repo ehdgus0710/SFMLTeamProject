@@ -28,7 +28,7 @@ void ScaffoldingObject::OnCollisionEnter(Collider* target)
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
 			object->GetRigidbody()->SetGround(true);
-			object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+			object->SetPosition(sf::Vector2f{ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f } - target->GetOffsetPosition());
 		}
 	}
 }

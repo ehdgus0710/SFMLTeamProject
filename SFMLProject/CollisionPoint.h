@@ -15,6 +15,7 @@ public:
 
 	sf::FloatRect GetLocalBounds() { return vertexPoint.getBounds(); }
 	sf::FloatRect GetGlobalBounds() { return vertexPoint.getBounds(); }
+	sf::Vector2f GetRealPosition() const override { return vertexPoint[0].position; }
 public:
 	void Init() override;
 	void Reset() override;

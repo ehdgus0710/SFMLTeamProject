@@ -208,14 +208,14 @@ void ColliderManager::AddCollider(Collider* newCollision, ColliderLayer collider
 
 bool ColliderManager::IsPointToPointCollision(Collider* left, Collider* right)
 {
-    float distance = sf::Vector2f::Distance(left->GetCollision()->GetPosition(), right->GetCollision()->GetPosition());
+    float distance = sf::Vector2f::Distance(left->GetRealPosition(), right->GetRealPosition());
 
     return distance < 1.f ? true : false;
 }
 
 bool ColliderManager::IsCircleToCircleCollision(Collider* left, Collider* right)
 {
-    float distance = sf::Vector2f::Distance(left->GetCollision()->GetPosition(), right->GetCollision()->GetPosition());
+    float distance = sf::Vector2f::Distance(left->GetRealPosition(), right->GetRealPosition());
     float lenght = ((CollisionCircle*)left->GetCollision())->GetRadian() + ((CollisionCircle*)right->GetCollision())->GetRadian();
     return distance < lenght ? true : false;
 }
@@ -246,10 +246,10 @@ bool ColliderManager::IsRectToRectCollision(Collider* left, Collider* right)
 
     if (left->GetRotation() == 0.f && right->GetRotation() == 0.f)
     {
-        if ((left->GetScale().x + right->GetScale().x) * 0.5f < abs(left->GetPosition().x - right->GetPosition().x))
+        if ((left->GetScale().x + right->GetScale().x) * 0.5f < abs(left->GetRealPosition().x - right->GetRealPosition().x))
             return false;
 
-        if ((left->GetScale().y + right->GetScale().y) * 0.5f < abs(left->GetPosition().y - right->GetPosition().y))
+        if ((left->GetScale().y + right->GetScale().y) * 0.5f < abs(left->GetRealPosition().y - right->GetRealPosition().y))
             return false;
 
         return true;
@@ -262,8 +262,8 @@ bool ColliderManager::IsRectToRectCollision(Collider* left, Collider* right)
 }
 bool ColliderManager::IsCircleToRectCollision(Collider* left, Collider* right)
 {
-    sf::Vector2f circlePosition = left->GetCollision()->GetPosition();
-    sf::Vector2f rectanglePosition = right->GetCollision()->GetPosition();
+    sf::Vector2f circlePosition = left->GetRealPosition();
+    sf::Vector2f rectanglePosition = right->GetRealPosition();
     float radian = ((CollisionCircle*)left->GetCollision())->GetRadian();
     Rectangle rightRect = ((CollisionRectangle*)right->GetCollision())->GetRectangle();
 
@@ -306,7 +306,7 @@ bool ColliderManager::IsPointToRectCollision(Collider* left, Collider* right)
 
 bool ColliderManager::IsCircleToPointCollision(Collider* left, Collider* right)
 {
-    float distance = sf::Vector2f::Distance(left->GetCollision()->GetPosition(), right->GetCollision()->GetPosition());
+    float distance = sf::Vector2f::Distance(left->GetRealPosition(), right->GetRealPosition());
     float radian = ((CollisionCircle*)left->GetCollision())->GetRadian();
 
     return distance < radian ? true : false;

@@ -71,6 +71,8 @@ public:
 	virtual sf::FloatRect GetLocalBounds();
 	virtual sf::FloatRect GetGlobalBounds();
 
+	sf::Vector2f GetRealPosition() const;
+
 public:
 	void Reset();
 	void CreateCollision(ColliderType colliderType, sf::Vector2f offset = sf::Vector2f::zero, sf::Vector2f size = sf::Vector2f::one);

@@ -123,6 +123,17 @@ enum class PlayerStateType
 	End
 };
 
+enum class YggdrasilStateType
+{
+	Idle,
+	FistAttack,
+	SweepAttack,
+	EnergyBallAttack,
+	Dead,
+
+	End
+};
+
 enum class ReianaStateType
 {
 	Idle,

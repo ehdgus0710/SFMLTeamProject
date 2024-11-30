@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ReianaThreeSwordState.h"
-#include "ReianaKnifeState.h"
 #include "Knife.h"
 #include "Player.h"
 

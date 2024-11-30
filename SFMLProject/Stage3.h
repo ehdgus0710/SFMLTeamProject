@@ -1,16 +1,11 @@
 #pragma once
 #include "Scene.h"
-
-class Player;
-
-class Stage2 : public Scene
+class Stage3 :
+    public Scene
 {
 private:
-	Player* player;
 	Rectangle	cameraLimitRect;
-	Rectangle	bossClearCameraLimitRect;
 	Rectangle	currentCameraLimitRect;
-
 public:
 	void CollisitionCheck();
 	void LoadResources();
@@ -26,7 +21,7 @@ public:
 	void Save(const std::string& savePath) override;
 	void Load(const std::string& loadPath) override;
 public:
-	Stage2();
-	~Stage2();
+	Stage3();
+	~Stage3();
 };
 

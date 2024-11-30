@@ -8,6 +8,7 @@
 
 #include "Stage1.h"
 #include "Stage2.h"
+#include "Stage3.h"
 
 void SceneManager::Init()
 {
@@ -15,7 +16,9 @@ void SceneManager::Init()
 	sceneVec.push_back(new SceneDev2());
 	sceneVec.push_back(new SceneDev3());
 	sceneVec.push_back(new TitleScene());
+	sceneVec.push_back(new Stage1());
 	sceneVec.push_back(new Stage2());
+	sceneVec.push_back(new Stage3());
 
 	for (auto& scene : sceneVec)
 	{

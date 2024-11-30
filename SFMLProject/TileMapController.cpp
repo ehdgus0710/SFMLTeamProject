@@ -6,7 +6,7 @@
 
 TileMapController::TileMapController(const std::string& name)
     : GameObject(name)
-    , textureTileSize({16, 16})
+    , textureTileSize({32, 32 })
     , cellCount(30,20)
     , cellSize(64.f,64.f)
     , spriteSheetId("tiles")

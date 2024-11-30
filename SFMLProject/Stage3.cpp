@@ -1,75 +1,64 @@
 #include "stdafx.h"
-#include "Stage2.h"
+#include "Stage3.h"
 
 #include "GameInclude.h"
 #include "Animation.h"
-#include "BackgroundSprite.h"
 
-Stage2::Stage2()
-	: Scene(SceneIds::Stage2)
-	, player(nullptr)
+Stage3::Stage3()
+	: Scene(SceneIds::Stage3)
 {
-	savePath = "Stage2.json";
-	loadPath = "Stage2.json";
+	savePath = "Stage3.json";
+	loadPath = "Stage3.json";
 
-
-	cameraLimitRect = { 0.f, 3840.f, 0.f, 1080.f };
+	cameraLimitRect = { 0.f, 1920.f, 0.f, 1080.f };
 	currentCameraLimitRect = cameraLimitRect;
 }
 
-Stage2::~Stage2()
+Stage3::~Stage3()
 {
 }
 
-void Stage2::CollisitionCheck()
+void Stage3::CollisitionCheck()
 {
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
+
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet);
 
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
-
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
 }
 
-void Stage2::LoadResources()
+void Stage3::LoadResources()
 {
-	// Yggdrasil
-	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
-	TEXTURE_MANAGER.Load("YggdrasilHead", "graphics/boss/Yggdrasil/Head.png");
-	TEXTURE_MANAGER.Load("YggdrasilMouth", "graphics/boss/Yggdrasil/Mouth.png");
-	TEXTURE_MANAGER.Load("YggdrasilRightHand", "graphics/boss/Yggdrasil/Right_Hand.png");
-	TEXTURE_MANAGER.Load("YggdrasilLeftHand", "graphics/boss/Yggdrasil/Left_Hand.png");
 
+	// Rayanna
+	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
 
-	// Yggdrasil Background
-	TEXTURE_MANAGER.Load("YggdrasilbossBackground1", "graphics/boss/Yggdrasil/backgrounds/bossBackground1.png");
-	TEXTURE_MANAGER.Load("YggdrasilbossBackground2", "graphics/boss/Yggdrasil/backgrounds/bossBackground2.png");
+	// Rayanna Effects
+	TEXTURE_MANAGER.Load("AwakenedThunder", "graphics/boss/Rayanna/effects/AwakenedThunder.png");
+	TEXTURE_MANAGER.Load("DimensionPierce", "graphics/boss/Rayanna/effects/DimensionPierce.png");
+	TEXTURE_MANAGER.Load("DimensionPierceAttack", "graphics/boss/Rayanna/effects/DimensionPierceAttack.png");
+	TEXTURE_MANAGER.Load("DimensionPierceImpact", "graphics/boss/Rayanna/effects/DimensionPierceImpact.png");
+	TEXTURE_MANAGER.Load("goldMeteorLandingSmoke", "graphics/boss/Rayanna/effects/goldMeteorLandingSmoke.png");
+	TEXTURE_MANAGER.Load("HomingPierceReady", "graphics/boss/Rayanna/effects/HomingPierceReady.png");
+	TEXTURE_MANAGER.Load("IntroLandSmoke", "graphics/boss/Rayanna/effects/IntroLandSmoke.png");
+	TEXTURE_MANAGER.Load("MeteorGroundSmoke", "graphics/boss/Rayanna/effects/MeteorGroundSmoke.png");
+	TEXTURE_MANAGER.Load("RisingPierce", "graphics/boss/Rayanna/effects/RisingPierce.png");
+	TEXTURE_MANAGER.Load("RisingPierceReady", "graphics/boss/Rayanna/effects/RisingPierceReady.png");
+	TEXTURE_MANAGER.Load("TwinMeteor", "graphics/boss/Rayanna/effects/TwinMeteor.png");
+	TEXTURE_MANAGER.Load("TwinMeteorSign", "graphics/boss/Rayanna/effects/TwinMeteorSign.png");
 
-	// Yggdrasil Effects
-	TEXTURE_MANAGER.Load("YggdrasilGrogy", "graphics/boss/Yggdrasil/effects/Grogy.png");
-	TEXTURE_MANAGER.Load("YggdrasilHandSlam", "graphics/boss/Yggdrasil/effects/HandSlam.png");
-	TEXTURE_MANAGER.Load("YggdrasilHandSlamBoom", "graphics/boss/Yggdrasil/effects/HandSlam_Boom.png");
-	TEXTURE_MANAGER.Load("EnergyBomb", "graphics/boss/Yggdrasil/effects/EnergyBomb.png");
-	TEXTURE_MANAGER.Load("ChargingTrail", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsChargingTrail.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsExplosion", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsExplosion.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsProjectile", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsProjectile.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsProjectileEmerge", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsProjectileEmerge.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsSpark", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsSpark.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsStartImpact", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsStartImpact.png");
-
-	TEXTURE_MANAGER.Load("Stage1TileMap", "graphics/TileMap/1_Tile01.png");
+	TEXTURE_MANAGER.Load("Stage3TileMap", "graphics/TileMap/3_Tile03.png");
+	TEXTURE_MANAGER.Load("Background1", "graphics/boss/Rayanna/backgrounds/Background1.png");
+	TEXTURE_MANAGER.Load("Background2", "graphics/boss/Rayanna/backgrounds/Background2.png");
 }
 
-void Stage2::Init()
+void Stage3::Init()
 {
 	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
 	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
@@ -80,38 +69,46 @@ void Stage2::Init()
 	Scene::Init();
 }
 
-void Stage2::Enter()
+void Stage3::Enter()
 {
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
+
+	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+
 	LoadResources();
 	CollisitionCheck();
 
-	BackgroundSprite* backgroundObject = AddGameObject(new BackgroundSprite("YggdrasilbossBackground1", "YggdrasilBackground1"), LayerType::BackGround_Back);
+	SpriteGameObject* backgroundObject = AddGameObject(new SpriteGameObject("Background1", "Background1"), LayerType::BackGround_Back);
 
-	backgroundObject->SetCameraFollow(mainCamera);
-	backgroundObject->SetScale({ 3.f, 3.f });
+	backgroundObject->SetPosition({ 960.f, 500.f});
+	backgroundObject->SetScale({ 2.5f, 2.5f });
 	backgroundObject->SetOrigin(Origins::MiddleCenter);
 
-	/*TileMapController* tilemapController = AddGameObject(new TileMapController("Stage2"), LayerType::TileMap);
-	tilemapController->SetSpriteSheetId("Stage1TileMap");
+	SpriteGameObject* backgroundObject1 = AddGameObject(new SpriteGameObject("Background2", "Background2"), LayerType::BackGround_Back);
+
+	backgroundObject1->SetPosition({ 960.f, 500.f });
+	backgroundObject1->SetScale({ 2.5f, 2.5f });
+	backgroundObject1->SetOrigin(Origins::MiddleCenter);
+
+	/*TileMapController* tilemapController = AddGameObject(new TileMapController("Stage3"), LayerType::TileMap);
+	tilemapController->SetSpriteSheetId("Stage3TileMap");
 	tilemapController->SetCellSize({ 32.f,32.f });*/
 
-	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap","Stage1TileMap" ), LayerType::TileMap);
-	tileMap->LoadCsv("TileMap/Stage2Map1.csv");
+	TileMap* tileMap = AddGameObject(new TileMap("Stage3TileMap", "Stage3TileMap"), LayerType::TileMap);
+	tileMap->LoadCsv("TileMap/Stage3Map1.csv");
 
 	WallCollisionObject* wallObject = AddGameObject(new WallCollisionObject("Wall1"), LayerType::Wall);
-	wallObject->SetPosition({ 1182.f, 1408.f });
+	wallObject->SetPosition({ 1182.f, 1372.f });
 	wallObject->SetScale({ 3280.f, 960.f });
 	wallObject->SetOrigin(Origins::MiddleCenter);
+	
 
 	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
 
-	mainCamera->SetFollowTarget(testPlayer, true);
-	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 	/*AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 500, 500.f });
@@ -121,27 +118,27 @@ void Stage2::Enter()
 	Scene::Enter();
 }
 
-void Stage2::Exit()
+void Stage3::Exit()
 {
 	Scene::Exit();
 }
 
-void Stage2::Release()
+void Stage3::Release()
 {
 	Scene::Release();
 }
 
-void Stage2::Update(float dt)
+void Stage3::Update(float dt)
 {
 	Scene::Update(dt);
 }
 
-void Stage2::Render(sf::RenderWindow& window)
+void Stage3::Render(sf::RenderWindow& window)
 {
 	Scene::Render(window);
 }
 
-void Stage2::Save(const std::string& savePath)
+void Stage3::Save(const std::string& savePath)
 {
 	/*
 	SaveDataVC data;
@@ -190,7 +187,7 @@ void Stage2::Save(const std::string& savePath)
 	*/
 }
 
-void Stage2::Load(const std::string& loadPath)
+void Stage3::Load(const std::string& loadPath)
 {
 
 	/*

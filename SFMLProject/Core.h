@@ -37,6 +37,7 @@ enum class SceneIds
 	TitleScene,
 	Stage1,
 	Stage2,
+	Stage3,
 	Count,
 };
 
@@ -52,9 +53,10 @@ enum class Origins
 enum class LayerType
 {
 	Default,
+	BackGround_Back,
 	TileMap,
 	Wall,
-	BackGround,
+	BackGround_Forward,
 	Item,
 	Block,
 	Player,
@@ -63,7 +65,12 @@ enum class LayerType
 	PlayerBullet,
 	EnemyBullet,
 
+	Effect,
+	PlayerEffect,
+	EnemyEffect,
+
 	CleraPoint,
+
 	InGameUI,
 
 	UI,

@@ -9,7 +9,6 @@ class Knife : public AnimationBullet
 {
 protected:
 	Player* player;
-	HitBoxObject* hitBox;
 	float				delayTime = 1.0f;
 	float				currentDelay = 0.f;
 public:

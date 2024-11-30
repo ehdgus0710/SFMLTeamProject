@@ -11,6 +11,7 @@
 
 Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name)
 	: AnimationBullet(owner, thisLayerType, targetLayer, texId, name)
+	, player(nullptr)
 {
 	TEXTURE_MANAGER.Load("Knife", "graphics/HomingPierce_Ready_8.png");
 	animator->CreateAnimation("Knife", "idle", { 96,31 }, 1, 0.1f);
@@ -22,6 +23,9 @@ void Knife::Start()
 
 	AnimationBullet::Start();	
 	Bullet::SetSpeed(2000.f);
+
+	collider->SetActive(false);
+	collider->SetScale({ 100.f,50.f });
 
 	animator->ChangeAnimation("idle");
 } 
@@ -53,14 +57,12 @@ void Knife::setDelay(float delay)
 
 void Knife::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(this, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
-	hitBox->SetScale({ 100.f,50.f });
-	hitBox->SetDamage(1000);
+	collider->SetActive(true);
+	SetDamage(1000);
 }
 
 void Knife::OnDestoryHitBox()
 {
-	hitBox->OnDestory();
-	hitBox->SetActive(false);
-	hitBox = nullptr;
+	OnDestory();
+	SetActive(false);
 }

@@ -85,6 +85,7 @@ public:
 	Animation();
 	Animation(const sf::Texture* texture, const std::string& textureID, const std::string& animationName, const sf::Vector2u& rectSize, int frameCount ,float frameTime, bool isRepeat = false);
 	Animation(const Animation& other);
+	Animation(const std::string& filePath);
 	virtual ~Animation();
 };
 

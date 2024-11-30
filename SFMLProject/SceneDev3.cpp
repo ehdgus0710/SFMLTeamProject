@@ -89,48 +89,36 @@ void SceneDev3::Enter()
 
 	effect1->SetPosition(currentPos);
 
-	Animation* animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/AwakenedThunder.csv");
+	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenedThunder.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "AwakenedThunder");
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierce");
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceImpact.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceImpact.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceImpact");
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/goldMeteorLandingSmoke.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/goldMeteorLandingSmoke.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "goldMeteorLandingSmoke");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/HomingPierceReady.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/HomingPierceReady.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "HomingPierceReady");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/IntroLandSmoke.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/IntroLandSmoke.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "IntroLandSmoke");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/MeteorGroundSmoke.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/MeteorGroundSmoke.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "MeteorGroundSmoke");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "RisingPierce");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierceReady.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/RisingPierceReady.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "RisingPierceReady");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/TwinMeteor.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/TwinMeteor.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "TwinMeteor");
 
-	animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/TwinMeteorSign.csv");
+	animation = new Animation("animations/Enemy/Rayanna/Effects/TwinMeteorSign.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "TwinMeteorSign");
 
 	effect1->GetAnimator()->ChangeAnimation("AwakenedThunder", true);

@@ -83,6 +83,11 @@ Animation::Animation(const Animation& other)
 	}
 }
 
+Animation::Animation(const std::string& filePath)
+{
+	loadFromFile(filePath);
+}
+
 Animation::~Animation()
 {
 	frameInfoVector.clear();

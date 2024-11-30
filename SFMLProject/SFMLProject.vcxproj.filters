@@ -618,6 +618,15 @@
     <ClCompile Include="AnimationBullet.cpp">
       <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Stage3.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundSprite.cpp">
+      <Filter>Contants\UtilsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1033,6 +1042,15 @@
     </ClInclude>
     <ClInclude Include="AnimationBullet.h">
       <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundSprite.h">
+      <Filter>Contants\UtilsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,11 @@
 #pragma once
+
+class HitBoxObject;
+
 class Dimension : public GameObject
 {
 protected:
+	HitBoxObject* hitBox;
 	sf::Sprite			sprite;
 
 	sf::IntRect			textureUVRect;
@@ -36,6 +40,8 @@ public:
 
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;
+	void OnCreateHitBox();
+	void OnDestoryHitBox();
 public:
 	Dimension(ColliderLayer type, const std::string& texId, const std::string& name = "Dimension");
 	virtual ~Dimension() = default;

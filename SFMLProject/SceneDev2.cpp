@@ -72,9 +72,11 @@ void SceneDev2::TestEffect()
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
 	animation = new Animation();
+
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceImpact.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceImpact");
 	animation = new Animation();
+
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/goldMeteorLandingSmoke.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "goldMeteorLandingSmoke");
 
@@ -93,6 +95,7 @@ void SceneDev2::TestEffect()
 	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "RisingPierce");
+
 
 	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierceReady.csv");

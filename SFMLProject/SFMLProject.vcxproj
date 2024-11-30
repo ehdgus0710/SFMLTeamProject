@@ -174,7 +174,7 @@
     <ClCompile Include="ReianaDashState.cpp" />
     <ClCompile Include="ReianaDeadState.cpp" />
     <ClCompile Include="ReianaDropAttackState.cpp" />
-    <ClCompile Include="ReianaKnifeState.cpp" />
+    <ClCompile Include="ReianaRisingState.cpp" />
     <ClCompile Include="ReianaDimensionState.cpp" />
     <ClCompile Include="ReianaFSM.cpp" />
     <ClCompile Include="ReianaGroundAttackState.cpp" />
@@ -261,6 +261,8 @@
     <ClCompile Include="RectSpriteGameObject.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="Rising.cpp" />
+    <ClCompile Include="RisingReady.cpp" />
     <ClCompile Include="SaveData.cpp" />
     <ClCompile Include="SaveLoadManger.cpp" />
     <ClCompile Include="SavePointGUI.cpp" />
@@ -328,7 +330,7 @@
     <ClInclude Include="ReianaDashState.h" />
     <ClInclude Include="ReianaDeadState.h" />
     <ClInclude Include="ReianaDropAttackState.h" />
-    <ClInclude Include="ReianaKnifeState.h" />
+    <ClInclude Include="ReianaRisingState.h" />
     <ClInclude Include="ReianaDimensionState.h" />
     <ClInclude Include="ReianaFSM.h" />
     <ClInclude Include="ReianaGroundAttackState.h" />
@@ -402,9 +404,12 @@
     <ClInclude Include="PlayerSaveData.h" />
     <ClInclude Include="rapidcsv.h" />
     <ClInclude Include="RectSpriteGameObject.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesManager.h" />
     <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="Rising.h" />
+    <ClInclude Include="RisingReady.h" />
     <ClInclude Include="SaveData.h" />
     <ClInclude Include="SaveLoadManger.h" />
     <ClInclude Include="SavePointGUI.h" />
@@ -442,6 +447,9 @@
     <ClInclude Include="CollisionObjectEditor.h" />
     <ClInclude Include="WallCollisionSaveData.h" />
     <ClInclude Include="WindowManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFMLProject.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

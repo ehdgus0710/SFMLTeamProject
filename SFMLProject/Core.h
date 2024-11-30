@@ -123,7 +123,7 @@ enum class ReianaStateType
 	GroundAttack,
 	ThreeSword,
 	Aruond,
-	Knife,
+	Rising,
 	Dimension,
 	Dash,
 	DropAttack,

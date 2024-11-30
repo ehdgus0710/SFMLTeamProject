@@ -4,6 +4,7 @@
 #include "Rigidbody.h"
 #include "Animator.h"
 #include "Animation.h"
+#include "HitBoxObject.h"
 
 ReianaDropAttackState::ReianaDropAttackState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm, ReianaStateType::DropAttack)
@@ -19,7 +20,10 @@ void ReianaDropAttackState::Wait(float deltaTime)
 	currentWaitTime += deltaTime;
 
 	if (currentWaitTime >= waitTime)
+	{
 		action = true;
+		OnCreateHitBox();
+	}
 }
 
 void ReianaDropAttackState::Drop(float deltaTime)
@@ -29,7 +33,10 @@ void ReianaDropAttackState::Drop(float deltaTime)
 	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
 
 	if (currentDropTime > dropTime)
+	{
+		OnDestoryHitBox();
 		fsm->ChangeState(ReianaStateType::Idle);
+	}
 	
 }
 
@@ -79,7 +86,9 @@ void ReianaDropAttackState::Update(float deltaTime)
 	if (!action)
 		Wait(deltaTime);
 	else
+	{
 		Drop(deltaTime);
+	}
 }
 
 void ReianaDropAttackState::FixedUpdate(float fixedDeltaTime)
@@ -93,3 +102,19 @@ void ReianaDropAttackState::LateUpdate(float deltaTime)
 	ReianaBaseState::LateUpdate(deltaTime);
 
 }
+
+void ReianaDropAttackState::OnCreateHitBox()
+{
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::Enemy, ColliderLayer::Player, true), LayerType::Enemy);
+	hitBox->SetScale({ 50.f,100.f });
+	hitBox->SetDamage(1000);
+}
+
+void ReianaDropAttackState::OnDestoryHitBox()
+{
+	hitBox->OnDestory();
+	hitBox->SetActive(false);
+	hitBox = nullptr;
+}
+
+

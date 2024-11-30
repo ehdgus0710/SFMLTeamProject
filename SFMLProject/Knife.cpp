@@ -25,7 +25,7 @@ void Knife::Start()
 	Bullet::SetSpeed(2000.f);
 
 	collider->SetActive(false);
-	collider->SetScale({ 100.f,50.f });
+	collider->SetScale({ 80.f,30.f });
 
 	animator->ChangeAnimation("idle");
 } 

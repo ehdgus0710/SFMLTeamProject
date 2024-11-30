@@ -38,6 +38,7 @@ void Reiana::Start()
 	InputManager::GetInstance().BindKey(sf::Keyboard::E);
 	InputManager::GetInstance().BindKey(sf::Keyboard::R);
 	InputManager::GetInstance().BindKey(sf::Keyboard::T);
+	InputManager::GetInstance().BindKey(sf::Keyboard::Y);
 
 
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
@@ -45,7 +46,7 @@ void Reiana::Start()
 	animator->ChangeAnimation("ReianaIdle", true);
 	fsm.ChangeState(ReianaStateType::Idle);
 	collider->SetScale({ 150.f,192.f });
-
+	SetOrigin(Origins::BottomCenter);
 }
 
 void Reiana::Update(const float& deltaTime)
@@ -68,10 +69,13 @@ void Reiana::Update(const float& deltaTime)
 	{
 		fsm.ChangeState(ReianaStateType::ThreeSword);
 	}
-	
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::T))
 	{
 		fsm.ChangeState(ReianaStateType::Dash);
+	}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Y))
+	{
+		fsm.ChangeState(ReianaStateType::Rising);
 	}
 
 }

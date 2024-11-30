@@ -54,13 +54,13 @@ void ColliderGUI::Update()
 		collider->SetScale(colliderScale);
 	}
 
-	if (ImGui::InputFloat2("##Origin", originArr))
+	if (ImGui::InputFloat2("ColliderOrigin", originArr))
 	{
 		origin = { originArr[0], originArr[1] };
 		collider->SetOrigin(origin);
 	}
 
-	static const OriginEnumDesc originEnum[] =
+	static const OriginEnumDesc colliderOriginEnum[] =
 	{
 		{ Origins::TopLeft , "TopLeft"}
 		,{ Origins::TopCenter , "TopCenter"}
@@ -77,18 +77,18 @@ void ColliderGUI::Update()
 	int idx;
 	for (idx = 0; idx < (int)Origins::Custom; ++idx)
 	{
-		if (originEnum[idx].origin == (target->GetOrigins()))
+		if (colliderOriginEnum[idx].origin == (collider->GetOrigins()))
 			break;
 	}
 
 	bool isSelect = false;
-	if (ImGui::BeginCombo("CurrentOrigin", originEnum[idx].originID.c_str()))
+	if (ImGui::BeginCombo("CurrentColliderOrigin", colliderOriginEnum[idx].originID.c_str()))
 	{
 		for (int n = 0; n < (int)Origins::Custom; n++)
 		{
-			if (ImGui::Selectable(originEnum[n].originID.c_str(), idx == n))
+			if (ImGui::Selectable(colliderOriginEnum[n].originID.c_str(), idx == n))
 			{
-				target->SetOrigin(originEnum[n].origin);
+				collider->SetOrigin(colliderOriginEnum[n].origin);
 			}
 		}
 

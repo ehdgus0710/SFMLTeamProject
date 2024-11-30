@@ -102,6 +102,11 @@ sf::FloatRect Collider::GetGlobalBounds()
 	return collision->GetGlobalBounds();
 }
 
+sf::Vector2f Collider::GetRealPosition() const
+{
+	return collision->GetRealPosition();
+}
+
 sf::Vector2f Collider::GetPosition()
 {
 	return collision->GetPosition();

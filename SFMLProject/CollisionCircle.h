@@ -21,7 +21,7 @@ public:
 
 	sf::FloatRect GetLocalBounds() { return collisionCircle.getLocalBounds(); }
 	sf::FloatRect GetGlobalBounds() { return collisionCircle.getGlobalBounds(); }
-
+	sf::Vector2f GetRealPosition() const override { return collisionCircle.getPosition(); }
 public:
 	void Init() override;
 	void Reset() override;

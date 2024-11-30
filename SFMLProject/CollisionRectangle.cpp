@@ -17,6 +17,7 @@ CollisionRectangle::~CollisionRectangle()
 void CollisionRectangle::SetOrigin(const Origins& origins)
 {
 	originPosition = Utils::SetOrigin(rectanleRender, origins);
+	originsPreset = origins;
 }
 
 void CollisionRectangle::Init()

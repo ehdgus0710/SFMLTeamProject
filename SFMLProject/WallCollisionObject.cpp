@@ -66,7 +66,7 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 
 		sf::Vector2f targetPosition = target->GetPosition();
 
-		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle rect(collider->GetRealPosition(), collider->GetScale());
 		Rectangle targetRect(targetPosition, target->GetScale());
 		float prevPositionY = object->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
 
@@ -74,7 +74,7 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 		{
 
 			object->GetRigidbody()->SetGround(true);
-			object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+			object->SetPosition({ targetPosition.x - target->GetOffsetPosition().x, rect.topPosition - target->GetScale().y * 0.5f - target->GetOffsetPosition().y});
 		}
 	}
 }
@@ -86,8 +86,8 @@ void WallCollisionObject::OnCollisionStay(Collider * target)
 		GameObject* object = target->GetOwner();
 		Rigidbody* targetRigidbody = target->GetOwner()->GetRigidbody();
 
-		Rectangle rect(collider->GetPosition(), collider->GetScale());
-		Rectangle targetRect(target->GetPosition(), target->GetScale());
+		Rectangle rect(collider->GetRealPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetRealPosition(), target->GetScale());
 		
 		if (rect.topPosition == targetRect.bottomPosition)
 		{
@@ -103,19 +103,19 @@ void WallCollisionObject::OnCollisionStay(Collider * target)
 			{
 				if (rect.leftPosition > targetRect.leftPosition &&  rect.leftPosition < targetRect.rightPosition)
 				{
-					object->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
+					object->SetPosition(sf::Vector2f{ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y } - target->GetOffsetPosition());
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
 				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition > targetRect.leftPosition)
 				{
-					object->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y });
+					object->SetPosition(sf::Vector2f{ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y } - target->GetOffsetPosition());
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
 				else if (rect.rightPosition > targetRect.rightPosition && rect.leftPosition < targetRect.leftPosition
 					&& rect.topPosition < targetRect.bottomPosition && !object->GetRigidbody()->IsGround())
 				{
 					object->GetRigidbody()->SetGround(true);
-					object->SetPosition({ target->GetPosition().x , rect.topPosition - target->GetScale().y * 0.5f });
+					object->SetPosition(sf::Vector2f{ target->GetPosition().x , rect.topPosition - target->GetScale().y * 0.5f } - target->GetOffsetPosition());
 				}
 			}
 			

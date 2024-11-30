@@ -84,8 +84,6 @@ void AnimationGameObject::SetOrigin(Origins preset)
 {
 	originPreset = preset;
 	origin = Utils::SetOrigin(sprite, preset);
-	if (collider != nullptr)
-		collider->SetOrigin(preset);
 }
 
 void AnimationGameObject::SetOrigin(const sf::Vector2f& newOrigin)
@@ -93,8 +91,6 @@ void AnimationGameObject::SetOrigin(const sf::Vector2f& newOrigin)
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	sprite.setOrigin(origin);
-	if (collider != nullptr)
-		collider->SetOrigin(newOrigin);
 }
 
 void AnimationGameObject::OnFlipX()

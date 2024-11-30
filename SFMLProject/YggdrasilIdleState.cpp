@@ -32,12 +32,10 @@ void YggdrasilIdleState::Update(float deltaTime)
 	{
 		fsm->ChangeState(YggdrasilStateType::FistAttack);
 	}
-	fsm->Update(deltaTime);
 }
 
 void YggdrasilIdleState::FixedUpdate(float fixedDeltaTime)
 {
-	fsm->FixedUpdate(fixedDeltaTime);
 }
 
 YggdrasilIdleState::YggdrasilIdleState(YggdrasilFSM* fsm)

@@ -87,7 +87,6 @@ void YggdrasilFistAttackState::Awake()
 void YggdrasilFistAttackState::Start()
 {
 	YggdrasilBaseState::Start();
-	onAttack = true;
 }
 
 void YggdrasilFistAttackState::Enter()
@@ -101,6 +100,7 @@ void YggdrasilFistAttackState::Enter()
 	isRecovery = false;
 	isWait = false;
 	switchFist = false;
+	onAttack = true;
 
 	currentAttackDelay = 0.f;
 	currentAttackTime = 0.f;

@@ -226,6 +226,15 @@
     <Filter Include="Contants\Object\HitBox">
       <UniqueIdentifier>{6b2d7723-c761-4075-af44-6f229ad70085}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Yggdrasil">
+      <UniqueIdentifier>{4fcb29a1-d2f5-43bb-a0b8-812bbefff85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Yggdrasil\YggdrasilFSM">
+      <UniqueIdentifier>{0104de4b-4573-4283-a452-840413224682}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Yggdrasil\YggdrasilState">
+      <UniqueIdentifier>{96755567-46a6-4bd2-96eb-eeb4c2bd3aa9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -567,9 +576,6 @@
     <ClCompile Include="ReianaIdleState.cpp">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaKnifeState.cpp">
-      <Filter>Contants\Object\Reiana\ReinaState</Filter>
-    </ClCompile>
     <ClCompile Include="ReianaNomalAttackState.cpp">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClCompile>
@@ -626,6 +632,51 @@
     </ClCompile>
     <ClCompile Include="MenuGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaRisingState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Rising.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RisingReady.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Yggdrasil.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilBody.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilHead.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilLeftHand.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilRightHand.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilBaseState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilSweepAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilIdleState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilFistAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilEnergyBallAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilDeadState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilFSM.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilFSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -992,9 +1043,6 @@
     <ClInclude Include="ReianaIdleState.h">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaKnifeState.h">
-      <Filter>Contants\Object\Reiana\ReinaState</Filter>
-    </ClInclude>
     <ClInclude Include="ReianaNomalAttackState.h">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClInclude>
@@ -1052,5 +1100,58 @@
     <ClInclude Include="MenuGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="ReianaRisingState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Rising.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="RisingReady.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Yggdrasil.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilBody.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilHead.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilLeftHand.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilRightHand.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilBaseState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilSweepAttackState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilIdleState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilFistAttackState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilEnergyBallAttackState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilDeadState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilFSM.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilFSM</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFMLProject.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

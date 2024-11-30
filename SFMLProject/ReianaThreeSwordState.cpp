@@ -27,23 +27,45 @@ void ReianaThreeSwordState::Start()
 void ReianaThreeSwordState::CreateKnife()
 {
 	Knife* knife = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Knife(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "MenuBar"), LayerType::EnemyBullet);
-
-	switch ((ReianaThreeSwordState::Pos)count)
+	if (reiana->IsFlipX())
 	{
-	case ReianaThreeSwordState::Pos::POS1:
-		knife->SetPosition(reiana->GetPosition() + plusPos1);
-		knife->setDelay(1.f);
-		break;
-	case ReianaThreeSwordState::Pos::POS2:
-		knife->SetPosition(reiana->GetPosition() + plusPos2);
-		knife->setDelay(1.5f);
-		break;
-	case ReianaThreeSwordState::Pos::POS3:
-		knife->SetPosition(reiana->GetPosition() + plusPos3);
-		knife->setDelay(2.f);
-		break;
-	default:
-		break;
+		switch ((ReianaThreeSwordState::Pos)count)
+		{
+		case ReianaThreeSwordState::Pos::POS1:
+			knife->SetPosition(reiana->GetPosition() + plusPos1);
+			knife->setDelay(1.f);
+			break;
+		case ReianaThreeSwordState::Pos::POS2:
+			knife->SetPosition(reiana->GetPosition() + plusPos2);
+			knife->setDelay(1.5f);
+			break;
+		case ReianaThreeSwordState::Pos::POS3:
+			knife->SetPosition(reiana->GetPosition() + plusPos3);
+			knife->setDelay(2.f);
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch ((ReianaThreeSwordState::Pos)count)
+		{
+		case ReianaThreeSwordState::Pos::POS1:
+			knife->SetPosition(reiana->GetPosition() - plusFlipPos1);
+			knife->setDelay(1.f);
+			break;
+		case ReianaThreeSwordState::Pos::POS2:
+			knife->SetPosition(reiana->GetPosition() - plusFlipPos2);
+			knife->setDelay(1.5f);
+			break;
+		case ReianaThreeSwordState::Pos::POS3:
+			knife->SetPosition(reiana->GetPosition() - plusFlipPos3);
+			knife->setDelay(2.f);
+			break;
+		default:
+			break;
+		}
 	}
 	count++;
 	knife->Awake();
@@ -56,8 +78,6 @@ void ReianaThreeSwordState::Enter()
 	count = 1;
 	currentDelay = 0.f;
 	fix = false;
-	CreateKnife();
-
 	if (reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
 	{
 		reiana->OnFlipX();
@@ -66,6 +86,8 @@ void ReianaThreeSwordState::Enter()
 	{
 		reiana->OnFlipX();
 	}
+	CreateKnife();
+
 }
 
 void ReianaThreeSwordState::Exit()

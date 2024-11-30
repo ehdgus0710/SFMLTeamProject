@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Rigidbody.h"
 #include "Player.h"
+#include "HitBoxObject.h"
 
 Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name)
 	: AnimationBullet(owner, thisLayerType, targetLayer, texId, name)
@@ -36,7 +37,10 @@ void Knife::Update(const float& deltaTime)
 		SetRotation(Utils::Angle(moveDirection));
 
 		if (currentDelay >= delayTime)
+		{
+			OnCreateHitBox();
 			isShoot = true;
+		}
 	}
 
 	AnimationBullet::Update(deltaTime);
@@ -45,4 +49,18 @@ void Knife::Update(const float& deltaTime)
 void Knife::setDelay(float delay)
 {
 	delayTime = delay;
+}
+
+void Knife::OnCreateHitBox()
+{
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(this, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
+	hitBox->SetScale({ 100.f,50.f });
+	hitBox->SetDamage(1000);
+}
+
+void Knife::OnDestoryHitBox()
+{
+	hitBox->OnDestory();
+	hitBox->SetActive(false);
+	hitBox = nullptr;
 }

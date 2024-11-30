@@ -3,6 +3,7 @@
 #include "AnimationBullet.h"
 
 class Player;
+class HitBoxObject;
 
 class Knife : public AnimationBullet
 {
@@ -15,6 +16,9 @@ public:
 	void Update(const float& deltaTime) override;
 
 	void setDelay(float delay);
+
+	void OnCreateHitBox();
+	void OnDestoryHitBox();
 
 public:
 	Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name = "Knife");

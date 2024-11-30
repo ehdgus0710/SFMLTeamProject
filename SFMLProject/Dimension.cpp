@@ -12,7 +12,7 @@
 Dimension::Dimension(ColliderLayer type, const std::string& texId, const std::string& name)
 	: GameObject(name)
 	, textureID(texId)
-	, lifeTime(2.f)
+	, lifeTime(1.f)
 	, currentLifeTime(0.f)
 {
 }
@@ -20,13 +20,18 @@ Dimension::Dimension(ColliderLayer type, const std::string& texId, const std::st
 
 void Dimension::Start()
 {
-	TEXTURE_MANAGER.Load("MenuBar", "graphics/MenuBar_Unselected.png");
-	sprite.setTexture(TEXTURE_MANAGER.Get(textureID));
-	SetPosition(position);
-	SetScale(scale);
-	SetRotation(rotation);
-	SetOrigin(originPreset);
+	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
+	Animation* animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "RisingPierce");
+	effect1->GetAnimator()->ChangeAnimation("RisingPierce");
+	effect1->Awake();
+	effect1->Start();
+	effect1->SetPosition(position);
+	effect1->SetRotation(rotation+90.f);
 	OnCreateHitBox();
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
+	SetOrigin(originPreset);
 }
 
 void Dimension::SetOrigin(Origins preset)
@@ -58,10 +63,13 @@ void Dimension::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
 	if (animator != nullptr)
+	{
 		animator->SetScale(scale);
+	}
 	else
+	{
 		sprite.setScale(scale);
-	SetOrigin(originPreset);
+	}
 }
 
 void Dimension::SetRotation(float angle)

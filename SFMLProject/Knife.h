@@ -4,11 +4,13 @@
 
 class Player;
 class HitBoxObject;
+class AnimationGameObject;
 
 class Knife : public AnimationBullet
 {
 protected:
 	Player* player;
+	AnimationGameObject* effect1;
 	float				delayTime = 1.0f;
 	float				currentDelay = 0.f;
 public:

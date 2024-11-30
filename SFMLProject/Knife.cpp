@@ -24,8 +24,20 @@ void Knife::Start()
 	AnimationBullet::Start();	
 	Bullet::SetSpeed(2000.f);
 
+	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
+	Animation* animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/HomingPierceReady.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "HomingPierceReady");
+	effect1->GetAnimator()->ChangeAnimation("HomingPierceReady");
+	effect1->Awake();
+	effect1->Start();
+	OnCreateHitBox();
+	currentDelay = 0.f;
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
+
 	collider->SetActive(false);
 	collider->SetScale({ 80.f,30.f });
+	effect1->SetPosition(position);
 
 	animator->ChangeAnimation("idle");
 } 
@@ -37,6 +49,7 @@ void Knife::Update(const float& deltaTime)
 
 		moveDirection = player->GetPosition() - position;
 		moveDirection.Normalized();
+		effect1->SetRotation(Utils::Angle(moveDirection));
 
 		SetRotation(Utils::Angle(moveDirection));
 

@@ -1,10 +1,12 @@
 #pragma once
 
 class HitBoxObject;
+class AnimationGameObject;
 
 class Dimension : public GameObject
 {
 protected:
+	AnimationGameObject* effect1;
 	HitBoxObject* hitBox;
 	sf::Sprite			sprite;
 

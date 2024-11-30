@@ -591,9 +591,6 @@
     <ClCompile Include="Knife.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
-    <ClCompile Include="AroundDimention.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ReianaBackStap.cpp">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClCompile>
@@ -633,15 +630,6 @@
     <ClCompile Include="MenuGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaRisingState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Rising.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="RisingReady.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Yggdrasil.cpp">
       <Filter>Contants\Object\Yggdrasil</Filter>
     </ClCompile>
@@ -677,6 +665,18 @@
     </ClCompile>
     <ClCompile Include="YggdrasilFSM.cpp">
       <Filter>Contants\Object\Yggdrasil\YggdrasilFSM</Filter>
+    </ClCompile>
+    <ClCompile Include="RisingReady.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Rising.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaRisingState.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AroundDimention.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1058,9 +1058,6 @@
     <ClInclude Include="Knife.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
-    <ClInclude Include="AroundDimention.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ReianaBackStap.h">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClInclude>
@@ -1100,16 +1097,7 @@
     <ClInclude Include="MenuGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaRisingState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Rising.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="RisingReady.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Yggdrasil.h">
@@ -1147,6 +1135,18 @@
     </ClInclude>
     <ClInclude Include="YggdrasilFSM.h">
       <Filter>Contants\Object\Yggdrasil\YggdrasilFSM</Filter>
+    </ClInclude>
+    <ClInclude Include="RisingReady.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Rising.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaRisingState.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AroundDimention.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

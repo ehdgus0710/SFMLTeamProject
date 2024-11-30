@@ -223,6 +223,9 @@
     <Filter Include="Contants\Object\Reiana\Object">
       <UniqueIdentifier>{45c30282-2d78-466d-b68a-377703963e37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\HitBox">
+      <UniqueIdentifier>{6b2d7723-c761-4075-af44-6f229ad70085}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -531,12 +534,6 @@
     <ClCompile Include="AnimationGameObject.cpp">
       <Filter>Contants\Object</Filter>
     </ClCompile>
-    <ClCompile Include="HitBoxObject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneDev3.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Head.cpp">
       <Filter>Contants\Object\Player</Filter>
     </ClCompile>
@@ -545,12 +542,6 @@
     </ClCompile>
     <ClCompile Include="PlayerFallingState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationBullet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ScaffoldingObject.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Reiana.cpp">
       <Filter>Contants\Object\Reiana</Filter>
@@ -594,16 +585,7 @@
     <ClCompile Include="Knife.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationHitBox.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="AroundDimention.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSkill2State.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSkill1State.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ReianaBackStap.cpp">
@@ -611,6 +593,30 @@
     </ClCompile>
     <ClCompile Include="ReianaDashState.cpp">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDev3.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill2State.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkill1State.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerJumpAttackState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaffoldingObject.cpp">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationHitBox.cpp">
+      <Filter>Contants\Object\HitBox</Filter>
+    </ClCompile>
+    <ClCompile Include="HitBoxObject.cpp">
+      <Filter>Contants\Object\HitBox</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationBullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -944,12 +950,6 @@
     <ClInclude Include="AnimationGameObject.h">
       <Filter>Contants\Object</Filter>
     </ClInclude>
-    <ClInclude Include="HitBoxObject.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneDev3.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Head.h">
       <Filter>Contants\Object\Player</Filter>
     </ClInclude>
@@ -958,12 +958,6 @@
     </ClInclude>
     <ClInclude Include="PlayerFallingState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationBullet.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ScaffoldingObject.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Reiana.h">
       <Filter>Contants\Object\Reiana</Filter>
@@ -1007,16 +1001,7 @@
     <ClInclude Include="Knife.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationHitBox.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="AroundDimention.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSkill2State.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSkill1State.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ReianaBackStap.h">
@@ -1024,6 +1009,30 @@
     </ClInclude>
     <ClInclude Include="ReianaDashState.h">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev3.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill2State.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkill1State.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJumpAttackState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaffoldingObject.h">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHitBox.h">
+      <Filter>Contants\Object\HitBox</Filter>
+    </ClInclude>
+    <ClInclude Include="HitBoxObject.h">
+      <Filter>Contants\Object\HitBox</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

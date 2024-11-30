@@ -25,17 +25,90 @@ void SceneDev2::CollisitionCheck()
 
 void SceneDev2::LoadResources()
 {
-	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
-	TEXTURE_MANAGER.Load("YggdrasilHead", "graphics/boss/Yggdrasil/Head.png");
-	TEXTURE_MANAGER.Load("YggdrasilMouth", "graphics/boss/Yggdrasil/Mouth.png");
-	TEXTURE_MANAGER.Load("YggdrasilRightHand", "graphics/boss/Yggdrasil/Right_Hand.png");
-	TEXTURE_MANAGER.Load("YggdrasilLeftHand", "graphics/boss/Yggdrasil/Left_Hand.png");
-	TEXTURE_MANAGER.Load("YggdrasilbossBackground1", "graphics/boss/Yggdrasil/backgrounds/bossBackground1.png");
-	TEXTURE_MANAGER.Load("YggdrasilbossBackground2", "graphics/boss/Yggdrasil/backgrounds/bossBackground2.png");
-	TEXTURE_MANAGER.Load("YggdrasilGrogy", "graphics/boss/Yggdrasil/effects/Grogy.png");
-	TEXTURE_MANAGER.Load("YggdrasilHandSlam", "graphics/boss/Yggdrasil/effects/HandSlam.png");
-	TEXTURE_MANAGER.Load("YggdrasilHandSlamBoom", "graphics/boss/Yggdrasil/effects/HandSlam_Boom.png");
+	// ½ºÄÃ 
+	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
+	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
+	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
+	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
+	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
+
+	// Rayanna
 	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
+
+	// Rayanna Effects
+	TEXTURE_MANAGER.Load("AwakenedThunder", "graphics/boss/Rayanna/effects/AwakenedThunder.png");
+	TEXTURE_MANAGER.Load("DimensionPierce", "graphics/boss/Rayanna/effects/DimensionPierce.png");
+	TEXTURE_MANAGER.Load("DimensionPierceAttack", "graphics/boss/Rayanna/effects/DimensionPierceAttack.png");
+	TEXTURE_MANAGER.Load("DimensionPierceImpact", "graphics/boss/Rayanna/effects/DimensionPierceImpact.png");
+	TEXTURE_MANAGER.Load("goldMeteorLandingSmoke", "graphics/boss/Rayanna/effects/goldMeteorLandingSmoke.png");
+	TEXTURE_MANAGER.Load("HomingPierceReady", "graphics/boss/Rayanna/effects/HomingPierceReady.png");
+	TEXTURE_MANAGER.Load("IntroLandSmoke", "graphics/boss/Rayanna/effects/IntroLandSmoke.png");
+	TEXTURE_MANAGER.Load("MeteorGroundSmoke", "graphics/boss/Rayanna/effects/MeteorGroundSmoke.png");
+	TEXTURE_MANAGER.Load("RisingPierce", "graphics/boss/Rayanna/effects/RisingPierce.png");
+	TEXTURE_MANAGER.Load("RisingPierceReady", "graphics/boss/Rayanna/effects/RisingPierceReady.png");
+	TEXTURE_MANAGER.Load("TwinMeteor", "graphics/boss/Rayanna/effects/TwinMeteor.png");
+	TEXTURE_MANAGER.Load("TwinMeteorSign", "graphics/boss/Rayanna/effects/TwinMeteorSign.png");
+}
+
+void SceneDev2::TestEffect()
+{
+	AnimationGameObject* effect1 = AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::Player);
+	effect1->Awake();
+
+
+	sf::Vector2f currentPos = { 500, 500.f };
+	sf::Vector2f addPos = { 50, 50.f };
+
+	effect1->SetPosition(currentPos);
+
+	Animation* animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/AwakenedThunder.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "AwakenedThunder");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierce");
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceImpact.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceImpact");
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/goldMeteorLandingSmoke.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "goldMeteorLandingSmoke");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/HomingPierceReady.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "HomingPierceReady");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/IntroLandSmoke.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "IntroLandSmoke");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/MeteorGroundSmoke.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "MeteorGroundSmoke");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "RisingPierce");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierceReady.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "RisingPierceReady");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/TwinMeteor.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "TwinMeteor");
+
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/TwinMeteorSign.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "TwinMeteorSign");
+
+	effect1->GetAnimator()->ChangeAnimation("AwakenedThunder", true);
+	currentPos += addPos;
+
 }
 
 void SceneDev2::Init()

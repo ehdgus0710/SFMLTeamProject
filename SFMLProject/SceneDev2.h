@@ -14,6 +14,7 @@ private:
 public:
 	void CollisitionCheck();
 	void LoadResources();
+	void TestEffect();
 
 public:
 	void Init() override;

@@ -18,16 +18,19 @@ protected:
 
 	float		currentAttackDelay;
 	float		attackDelay;
+	float		switchFistDelay;
 
 	float		currentAttackTime;
 	float		attackTime;
 	float		recoveryTime;
 	float		currentRecoveryTime;
+	float		switchFistTime;
 	
 	bool		isWait;
 	bool		isAttack;
 	bool		isRecovery;
 	bool		onAttack;
+	bool		switchFist;
 
 private:
 	void StartAttack(float deltaTime);

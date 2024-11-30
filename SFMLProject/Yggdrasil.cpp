@@ -60,10 +60,10 @@ void Yggdrasil::Start()
 
 void Yggdrasil::Update(const float& deltaTime)
 {
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
-	{
-		fsm.ChangeState(YggdrasilStateType::FistAttack);
-	}
+	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
+	//{
+	//	fsm.ChangeState(YggdrasilStateType::FistAttack);
+	//}
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
 	{
 		fsm.ChangeState(YggdrasilStateType::SweepAttack);
@@ -131,7 +131,7 @@ Yggdrasil::Yggdrasil(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Enemy);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss);
 }
 
 Yggdrasil::~Yggdrasil()

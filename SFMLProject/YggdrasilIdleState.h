@@ -5,8 +5,8 @@
 class YggdrasilIdleState : public YggdrasilBaseState
 {
 public:
-	// void Awake() override;
-	// void Start() override;
+	void Awake() override;
+	void Start() override;
 
 	void Enter() override;
 	void Exit() override;

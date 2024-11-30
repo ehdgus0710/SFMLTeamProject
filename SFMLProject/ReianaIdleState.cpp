@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ReianaIdleState.h"
 #include "Animator.h"
+#include "Player.h"
 
 ReianaIdleState::ReianaIdleState(ReianaFsm* fsm)
 	: ReianaBaseState(fsm,ReianaStateType::Idle)
@@ -23,8 +24,15 @@ void ReianaIdleState::Start()
 void ReianaIdleState::Enter()
 {
 	ReianaBaseState::Enter();
-	if (!reiana->IsFlipX())
+
+	if (reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
+	{
 		reiana->OnFlipX();
+	}
+	if (!reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
+	{
+		reiana->OnFlipX();
+	}
 	animator->ChangeAnimation("idle", true);
 }
 

@@ -38,6 +38,14 @@ void ReianaDimensionState::Enter()
 {
 	ReianaBaseState::Enter();	
 	animator->ChangeAnimation("dimensionPierceAttack", false);
+	if (reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
+	{
+		reiana->OnFlipX();
+	}
+	if (!reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
+	{
+		reiana->OnFlipX();
+	}
 	CreateDimension();
 }
 

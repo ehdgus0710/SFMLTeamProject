@@ -2,6 +2,7 @@
 #include "ReianaThreeSwordState.h"
 #include "ReianaKnifeState.h"
 #include "Knife.h"
+#include "Player.h"
 
 ReianaThreeSwordState::ReianaThreeSwordState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm,ReianaStateType::ThreeSword)
@@ -56,6 +57,15 @@ void ReianaThreeSwordState::Enter()
 	currentDelay = 0.f;
 	fix = false;
 	CreateKnife();
+
+	if (reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
+	{
+		reiana->OnFlipX();
+	}
+	if (!reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
+	{
+		reiana->OnFlipX();
+	}
 }
 
 void ReianaThreeSwordState::Exit()

@@ -110,7 +110,6 @@ void ReianaGroundAttackState::LateUpdate(float deltaTime)
 void ReianaGroundAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::Enemy, ColliderLayer::Player, true), LayerType::Enemy);
-	// hitBox->SetPosition(reiana->GetPosition() + );
 	hitBox->SetScale({ 100.f,50.f });
 	hitBox->SetDamage(1000);
 }

@@ -33,11 +33,11 @@ void Reiana::Awake()
 
 void Reiana::Start()
 {
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad1);
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad2);
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad3);
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad4);
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad5);
+	InputManager::GetInstance().BindKey(sf::Keyboard::Q);
+	InputManager::GetInstance().BindKey(sf::Keyboard::W);
+	InputManager::GetInstance().BindKey(sf::Keyboard::E);
+	InputManager::GetInstance().BindKey(sf::Keyboard::R);
+	InputManager::GetInstance().BindKey(sf::Keyboard::T);
 
 
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
@@ -52,24 +52,24 @@ void Reiana::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad1))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
 		fsm.ChangeState(ReianaStateType::DropAttack);
 	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad2))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::W))
 	{
 		fsm.ChangeState(ReianaStateType::GroundAttack);
 	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad3))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::E))
 	{
 		fsm.ChangeState(ReianaStateType::Dimension);
 	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad4))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::R))
 	{
 		fsm.ChangeState(ReianaStateType::ThreeSword);
 	}
 	
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad5))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::T))
 	{
 		fsm.ChangeState(ReianaStateType::Dash);
 	}

@@ -159,12 +159,14 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AroundDimention.cpp" />
     <ClCompile Include="BackgroundColorBox.cpp" />
+    <ClCompile Include="BackgroundSprite.cpp" />
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="Dimension.cpp" />
     <ClCompile Include="Knife.cpp" />
+    <ClCompile Include="MenuGUI.cpp" />
     <ClCompile Include="PlayerJumpAttackState.cpp" />
     <ClCompile Include="PlayerSkill2State.cpp" />
     <ClCompile Include="PlayerSkill1State.cpp" />
@@ -276,6 +278,7 @@
     <ClCompile Include="SpriteGameObject.cpp" />
     <ClCompile Include="Stage1.cpp" />
     <ClCompile Include="Stage2.cpp" />
+    <ClCompile Include="Stage3.cpp" />
     <ClCompile Include="TextButton.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="StringTable.cpp" />
@@ -313,12 +316,14 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AroundDimention.h" />
     <ClInclude Include="BackgroundColorBox.h" />
+    <ClInclude Include="BackgroundSprite.h" />
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="Dimension.h" />
     <ClInclude Include="Knife.h" />
+    <ClInclude Include="MenuGUI.h" />
     <ClInclude Include="PlayerJumpAttackState.h" />
     <ClInclude Include="PlayerSkill2State.h" />
     <ClInclude Include="PlayerSkill1State.h" />
@@ -420,6 +425,7 @@
     <ClInclude Include="SpriteGameObject.h" />
     <ClInclude Include="Stage1.h" />
     <ClInclude Include="Stage2.h" />
+    <ClInclude Include="Stage3.h" />
     <ClInclude Include="TextButton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringTable.h" />

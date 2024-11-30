@@ -6,6 +6,7 @@
 
 #include "HierachyGUI.h"
 #include "InspectorGUI.h"
+#include "MenuGUI.h"
 
 bool ImguiManger::Init(sf::RenderWindow& window, bool loadDefaultFont)
 {
@@ -50,6 +51,10 @@ void ImguiManger::Release()
 
 void ImguiManger::CreateUI()
 {
+	MenuGUI* menuGUI = new MenuGUI("MenuGUI");
+	menuGUI->Init();
+	guiMap.insert({ menuGUI->GetName(), menuGUI });
+
 	HierachyGUI* hierachyGUI = new HierachyGUI("Hierachy");
 	hierachyGUI->Init();
 	guiMap.insert({ hierachyGUI->GetName(), hierachyGUI });
@@ -71,6 +76,7 @@ void ImguiManger::Update(sf::RenderWindow& window, sf::Time dt)
 	ImGui::SFML::Update(window, TimeManager::GetInstance().GetTime());
 
 	//ImGui::Begin("Window title");
+
 
 	for (const auto& pair : guiMap)
 	{

@@ -7,6 +7,7 @@ class Dimension : public GameObject
 {
 protected:
 	AnimationGameObject* effect1;
+	AnimationGameObject* effect2;
 	HitBoxObject* hitBox;
 	sf::Sprite			sprite;
 
@@ -18,6 +19,7 @@ protected:
 	float				lifeTime;
 	float				currentLifeTime;
 public:
+	void OnAttack();
 	void SetUVRect(const sf::IntRect uvRect);
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetRotation(float angle) override;

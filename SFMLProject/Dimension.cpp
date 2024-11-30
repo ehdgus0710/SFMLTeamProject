@@ -20,18 +20,19 @@ Dimension::Dimension(ColliderLayer type, const std::string& texId, const std::st
 
 void Dimension::Start()
 {
-	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
+	effect2 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
 	Animation* animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
-	effect1->GetAnimator()->AddAnimation(animation, "RisingPierce");
-	effect1->GetAnimator()->ChangeAnimation("RisingPierce");
-	effect1->Awake();
-	effect1->Start();
-	effect1->SetPosition(position);
-	effect1->SetRotation(rotation+90.f);
-	OnCreateHitBox();
-	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
+	effect2->GetAnimator()->AddAnimation(animation, "DimensionPierce");
+	effect2->GetAnimator()->ChangeAnimation("DimensionPierce");
+	effect2->Awake();
+	effect2->Start();
+	effect2->SetPosition(position);
+	effect2->SetRotation(rotation);
+	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetFrameCount() - 1);
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect2), animation->GetFrameCount() - 1);
 	SetOrigin(originPreset);
+
 }
 
 void Dimension::SetOrigin(Origins preset)
@@ -45,6 +46,22 @@ void Dimension::SetOrigin(const sf::Vector2f& newOrigin)
 	originPreset = Origins::Custom;
 	origin = newOrigin;
 	sprite.setOrigin(origin);
+}
+
+void Dimension::OnAttack()
+{
+	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
+	Animation* animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
+	effect1->GetAnimator()->ChangeAnimation("DimensionPierceAttack");
+	effect1->Awake();
+	effect1->Start();
+	effect1->SetPosition(position);
+	effect1->SetRotation(rotation + 90.f);
+	OnCreateHitBox();
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
+	SetOrigin(originPreset);
 }
 
 void Dimension::SetUVRect(const sf::IntRect uvRect)
@@ -95,7 +112,6 @@ void Dimension::Update(const float& deltaTime)
 	if (currentLifeTime >= lifeTime)
 	{
 		SetDestory(true);
-		OnDestoryHitBox();
 	}
 }
 

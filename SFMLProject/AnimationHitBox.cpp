@@ -20,6 +20,41 @@ void AnimationHitBox::Start()
 	collider->Reset();
 }
 
+void AnimationHitBox::SetScale(const sf::Vector2f& scale)
+{
+	this->scale = scale;
+	collider->SetOwnerScale(scale);
+}
+
+void AnimationHitBox::SetRotation(float angle)
+{
+	rotation = angle;
+	sprite.setRotation(rotation);
+	collider->SetRotation(rotation);
+}
+
+void AnimationHitBox::SetPosition(const sf::Vector2f& pos)
+{
+	position = pos;
+	sprite.setPosition(position);
+	collider->SetPosition(pos);
+}
+
+void AnimationHitBox::SetOrigin(Origins preset)
+{
+	originPreset = preset;
+	origin = Utils::SetOrigin(sprite, preset);
+	collider->SetOrigin(preset);
+}
+
+void AnimationHitBox::SetOrigin(const sf::Vector2f& newOrigin)
+{
+	originPreset = Origins::Custom;
+	origin = newOrigin;
+	sprite.setOrigin(origin);
+	collider->SetOrigin(newOrigin);
+}
+
 void AnimationHitBox::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);

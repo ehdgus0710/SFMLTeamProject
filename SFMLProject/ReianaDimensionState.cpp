@@ -16,7 +16,7 @@ ReianaDimensionState::~ReianaDimensionState()
 
 void ReianaDimensionState::CreateDimension()
 {
-	Dimension* dimension = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Dimension(ColliderLayer::EnemyBullet,"MenuBar"), LayerType::EnemyBullet);
+	Dimension* dimension = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Dimension(), LayerType::EnemyBullet);
 	dimension->SetActive(true);
 	dimension->SetPosition(reiana->GetPlayer()->GetPosition());
 	dimension->SetRotation((float)Utils::RandomRange(1,180));

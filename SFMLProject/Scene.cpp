@@ -97,6 +97,11 @@ void Scene::Enter()
 			object->Start();
 		}
 	}
+
+	for (int i = 0; i < (int)createGameObjectVectors.size(); i++)
+	{
+		createGameObjectVectors[i]->Start();
+	}
 }
 
 void Scene::Exit()
@@ -111,6 +116,11 @@ void Scene::Exit()
 
 void Scene::Update(float deltaTime)
 {
+	for (auto& object : createGameObjectVectors)
+	{
+		gameObjectVectors[(int)object->GetLayerType()].push_back(object);
+	}
+	createGameObjectVectors.clear();
 
 	for (int i = 0; i < (int)LayerType::UI; ++i)
 	{
@@ -350,7 +360,13 @@ GameObject* Scene::FindGameObject(const std::string& name, LayerType layer)
 			return object;
 		}
 	}
-
+	for (auto object : createGameObjectVectors)
+	{
+		if (object->GetName() == name)
+		{
+			return object;
+		}
+	}
 	return nullptr;
 }
 
@@ -367,6 +383,13 @@ int Scene::FindGameObjectAll(const std::string& name, std::vector<GameObject*>& 
 		}
 	}
 
+	for (auto object : createGameObjectVectors)
+	{
+		if (object->GetName() == name)
+		{
+			vector.push_back(object);
+		}
+	}
 	return (int)vector.size();
 }
 

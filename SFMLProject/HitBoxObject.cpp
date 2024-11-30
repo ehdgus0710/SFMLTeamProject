@@ -7,7 +7,7 @@
 HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType,ColliderLayer targetLayerType, const std::string& name)
 	: GameObject(name)
 	, owner(owner)
-	, targetLayer(targetLayer)
+	, targetLayer(targetLayerType)
 	, isOwnerFollow(false)
 	, damage(0.f)
 	, lifeTime(0.f)

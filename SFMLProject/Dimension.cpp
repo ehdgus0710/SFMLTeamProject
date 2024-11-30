@@ -3,159 +3,40 @@
 
 #include "Animation.h"
 #include "Animator.h"
-#include "Enemy.h"
-#include "Rigidbody.h"
-#include "Player.h"
-#include "HitBoxObject.h"
+#include "AnimationHitBox.h"
+#include "Collider.h"
 
-
-Dimension::Dimension(ColliderLayer type, const std::string& texId, const std::string& name)
-	: GameObject(name)
-	, textureID(texId)
-	, lifeTime(1.f)
-	, currentLifeTime(0.f)
+Dimension::Dimension(const std::string& name)
+	: AnimationGameObject("name")
 {
+	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
+	animator->AddAnimation(animation, "DimensionPierce");
+
+	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetEndFrameCount());
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
 
 
 void Dimension::Start()
 {
-	effect2 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
-	Animation* animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
-	effect2->GetAnimator()->AddAnimation(animation, "DimensionPierce");
-	effect2->GetAnimator()->ChangeAnimation("DimensionPierce");
-	effect2->Awake();
-	effect2->Start();
-	effect2->SetPosition(position);
-	effect2->SetRotation(rotation);
-	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetFrameCount() - 1);
-	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect2), animation->GetFrameCount() - 1);
-	SetOrigin(originPreset);
-
-}
-
-void Dimension::SetOrigin(Origins preset)
-{
-	originPreset = preset;
-	origin = Utils::SetOrigin(sprite, preset);
-}
-
-void Dimension::SetOrigin(const sf::Vector2f& newOrigin)
-{
-	originPreset = Origins::Custom;
-	origin = newOrigin;
-	sprite.setOrigin(origin);
+	AnimationGameObject::Start();
+	animator->ChangeAnimation("DimensionPierce");
 }
 
 void Dimension::OnAttack()
 {
-	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
-	Animation* animation = new Animation();
-	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
-	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
-	effect1->GetAnimator()->ChangeAnimation("DimensionPierceAttack");
-	effect1->Awake();
-	effect1->Start();
-	effect1->SetPosition(position);
-	effect1->SetRotation(rotation + 90.f);
-	OnCreateHitBox();
-	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
-	SetOrigin(originPreset);
-}
-
-void Dimension::SetUVRect(const sf::IntRect uvRect)
-{
-	textureUVRect = uvRect;
-	sprite.setTextureRect(textureUVRect);
-}
-
-void Dimension::SetPosition(const sf::Vector2f& pos)
-{
-	position = pos;
-	sprite.setPosition(position);
-}
-
-void Dimension::SetScale(const sf::Vector2f& scale)
-{
-	this->scale = scale;
-	if (animator != nullptr)
-	{
-		animator->SetScale(scale);
-	}
-	else
-	{
-		sprite.setScale(scale);
-	}
-}
-
-void Dimension::SetRotation(float angle)
-{
-	rotation = angle;
-	sprite.setRotation(angle);
-}
-
-sf::Vector2f Dimension::GetScale() const
-{
-	return scale;
-}
-
-void Dimension::Update(const float& deltaTime)
-{
-	if (animator != nullptr)
-	{
-		animator->Update(deltaTime);
-	}
-
-	currentLifeTime += deltaTime;
-
-	if (currentLifeTime >= lifeTime)
-	{
-		SetDestory(true);
-	}
-}
-
-void Dimension::FixedUpdate(const float& deltaTime)
-{
-}
-
-void Dimension::Render(sf::RenderWindow& renderWindow)
-{
-	renderWindow.draw(sprite);
-}
-
-void Dimension::OnCollisionEnter(Collider* target)
-{
-}
-
-void Dimension::CreateAnimator()
-{
-	if (animator == nullptr)
-	{
-		animator = new Animator(this, sprite);
-	}
-}
-
-sf::FloatRect Dimension::GetLocalBounds() const
-{
-	return sprite.getLocalBounds();
-}
-
-sf::FloatRect Dimension::GetGlobalBounds() const
-{
-	return sprite.getGlobalBounds();
-}
-void Dimension::OnCreateHitBox()
-{
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(this, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
-	hitBox->SetScale({ 100.f,50.f });
-	hitBox->SetRotation(rotation);
-	hitBox->SetDamage(1000);
-}
-
-void Dimension::OnDestoryHitBox()
-{
-	hitBox->OnDestory();
-	hitBox->SetActive(false);
-	hitBox = nullptr;
+	AnimationHitBox* animationHitBox = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationHitBox(nullptr, ColliderLayer::EnemyBullet, ColliderLayer::Player, "AwakenedThunder"), LayerType::EnemyBullet);
+	
+	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
+	animationHitBox->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
+	animationHitBox->GetAnimator()->ChangeAnimation("DimensionPierceAttack");
+	animationHitBox->SetPosition(position);
+	animationHitBox->SetRotation(rotation + 135.f);
+	animationHitBox->SetScale({ 2.f,2.f });
+	animationHitBox->GetCollider()->SetScale({ 150.f, 5.f });
+	animationHitBox->SetOrigin(originPreset);
+	animationHitBox->Awake();
+	animationHitBox->Start();
+	animationHitBox->GetCollider()->SetRotation(rotation);
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, animationHitBox), animation->GetEndFrameCount());
 }

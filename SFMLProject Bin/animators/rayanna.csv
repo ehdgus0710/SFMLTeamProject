@@ -24,3 +24,12 @@ animations/Enemy/Rayanna/meteorJump.csv,meteorJump
 animations/Enemy/Rayanna/meteorLanding.csv,meteorLanding
 animations/Enemy/Rayanna/meteorReady.csv,meteorReady
 animations/Enemy/Rayanna/idle.csv,idle
+animations/Enemy/Rayanna/risingPierce.csv,risingPierce
+animations/Enemy/Rayanna/risingPierceEnd.csv,risingPierceEnd
+animations/Enemy/Rayanna/risingPierceReady.csv,risingPierceReady
+animations/Enemy/Rayanna/rushA.csv,rushA
+animations/Enemy/Rayanna/rushB.csv,rushB
+animations/Enemy/Rayanna/rushC.csv,rushC
+animations/Enemy/Rayanna/rushEnd.csv,rushEnd
+animations/Enemy/Rayanna/rushReady.csv,rushReady
+animations/Enemy/Rayanna/twinMeteorAttack.csv,twinMeteorAttack

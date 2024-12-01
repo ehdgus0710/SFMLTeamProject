@@ -21,6 +21,7 @@ protected:
 	float currentAttackTime = 0.f;
 	float damage = 20.f;
 
+	bool start = false;
 	bool action = false;
 
 private:

@@ -12,7 +12,7 @@ Dimension::Dimension(const std::string& name)
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	animator->AddAnimation(animation, "DimensionPierce");
 
-	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetEndFrameCount());
+	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetEndFrameCount()-6);
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
 

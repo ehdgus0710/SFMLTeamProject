@@ -678,6 +678,12 @@
     <ClCompile Include="AroundDimention.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="IntroLandSmoke.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MeteorGroundSmoke.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1146,6 +1152,12 @@
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
     <ClInclude Include="AroundDimention.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroLandSmoke.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorGroundSmoke.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
   </ItemGroup>

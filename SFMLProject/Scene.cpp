@@ -278,7 +278,7 @@ void Scene::Render(sf::RenderWindow& window)
 
 	WindowManager::GetInstance().GetRenderWindow()->setView(uICamera->GetView());
 
-	for (int i = (int)LayerType::UI; i < (int)LayerType::End; ++i)
+	for (int i = (int)LayerType::InGameUI; i < (int)LayerType::End; ++i)
 	{
 		std::sort(gameObjectVectors[i].begin(), gameObjectVectors[i].end(), DrawOrderComparer());
 

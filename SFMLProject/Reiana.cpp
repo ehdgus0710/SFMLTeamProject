@@ -26,6 +26,18 @@ Reiana::~Reiana()
 {
 }
 
+void Reiana::TakeDamage(float damage)
+{
+	currentStatus.hp -= damage;
+
+	if (currentStatus.hp <= 0)
+		OnDead();
+}
+
+void Reiana::OnDead()
+{
+	// fsm.ChangeState(ReianaStateType::Dead);
+}
 void Reiana::Awake()
 {
 	AnimationGameObject::Awake();

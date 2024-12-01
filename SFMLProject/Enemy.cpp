@@ -31,7 +31,8 @@ void Enemy::TakeDamage(float damage)
     currentStatus.hp -= damage;
 
     if(currentStatus.hp <= 0)
-        OnDead();}
+        OnDead();
+}
 
 void Enemy::OnDead()
 {

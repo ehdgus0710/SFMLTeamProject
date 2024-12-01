@@ -19,6 +19,7 @@ protected:
 
 	GameObject*			gameObject;
 
+	DefaultStatus	currentStatus;
 	sf::Sprite			sprite;
 	YggdrasilFSM		fsm;
 
@@ -33,6 +34,9 @@ public:
 
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
+	
+	void TakeDamage(float damage);
+	void OnDead();
 
 	void SetLeftFistPos(sf::Vector2f pos);
 	void SetRightFistPos(sf::Vector2f pos);

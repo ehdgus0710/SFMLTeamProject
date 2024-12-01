@@ -4,6 +4,9 @@
 #include "Enemy.h"
 #include "Player.h"
 
+#include "Reiana.h"
+#include "Yggdrasil.h"
+
 HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType,ColliderLayer targetLayerType, const std::string& name)
 	: GameObject(name)
 	, owner(owner)
@@ -134,6 +137,22 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 		{
 			((Enemy*)target->GetOwner())->TakeDamage(damage);
 		}
+		else if (target->GetColliderLayer() == ColliderLayer::Boss)
+		{
+			// 임시 추가
+			Yggdrasil* yggdrasil = dynamic_cast<Yggdrasil*>(target->GetOwner());
+
+			if(yggdrasil)
+				yggdrasil->TakeDamage(damage);
+			else
+				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damage);
+		}
+		else if (target->GetColliderLayer() == ColliderLayer::Yggdrasil)
+		{
+			static_cast<Yggdrasil*>(target->GetOwner())->TakeDamage(damage);
+		}
+		else if (target->GetColliderLayer() == ColliderLayer::Reiana)
+			static_cast<Reiana*>(target->GetOwner())->TakeDamage(damage);
 
 		for (auto& hitEvent : startHitEvents)
 		{

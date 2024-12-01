@@ -170,6 +170,7 @@
     <ClCompile Include="PlayerJumpAttackState.cpp" />
     <ClCompile Include="PlayerSkill2State.cpp" />
     <ClCompile Include="PlayerSkill1State.cpp" />
+    <ClCompile Include="PlayerUIHub.cpp" />
     <ClCompile Include="Reiana.cpp" />
     <ClCompile Include="ReianaBackStap.cpp" />
     <ClCompile Include="ReianaBaseState.cpp" />
@@ -298,6 +299,7 @@
     <ClCompile Include="UIAnimationObject.cpp" />
     <ClCompile Include="UIButtonObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
+    <ClCompile Include="UISpriteGameObject.cpp" />
     <ClCompile Include="UITextGameObject.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Variables.cpp" />
@@ -341,6 +343,7 @@
     <ClInclude Include="PlayerJumpAttackState.h" />
     <ClInclude Include="PlayerSkill2State.h" />
     <ClInclude Include="PlayerSkill1State.h" />
+    <ClInclude Include="PlayerUIHub.h" />
     <ClInclude Include="Reiana.h" />
     <ClInclude Include="ReianaBackStap.h" />
     <ClInclude Include="ReianaBaseState.h" />
@@ -458,6 +461,7 @@
     <ClInclude Include="UIAnimationObject.h" />
     <ClInclude Include="UIButtonObject.h" />
     <ClInclude Include="UIGameObject.h" />
+    <ClInclude Include="UISpriteGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Variables.h" />

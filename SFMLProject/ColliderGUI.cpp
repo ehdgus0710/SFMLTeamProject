@@ -39,8 +39,8 @@ void ColliderGUI::Update()
 	float originArr[2] = { origin.x, origin.y };
 
 
-	ImGui::Text("Position"); ImGui::SameLine();
-	if (ImGui::InputFloat2("##Position", offsetPos))
+	ImGui::Text("OffsetPosition"); ImGui::SameLine();
+	if (ImGui::InputFloat2("##OffsetPosition", offsetPos))
 	{
 		offsetPosition.x = offsetPos[0];
 		offsetPosition.y = offsetPos[1];

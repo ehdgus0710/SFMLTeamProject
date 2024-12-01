@@ -15,11 +15,10 @@ protected:
 	bool			isHit = false;
 
 public:
-	void TakeDamage();
-	void AddItem(ItemType itemType);
+	void TakeDamage(float damage);
+	void OnDead();
 	void Attack();
 	void OnAttackEnd();
-
 
 	ReianaFsm& GetFSM() { return fsm; }
 	Player* GetPlayer() { return player; }

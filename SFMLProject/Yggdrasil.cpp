@@ -94,6 +94,19 @@ sf::Vector2f Yggdrasil::GetRightFistPos()
 	return sf::Vector2f(yggdrasilRightHand->GetPosition());
 }
 
+void Yggdrasil::TakeDamage(float damage)
+{
+	currentStatus.hp -= damage;
+
+	if (currentStatus.hp <= 0)
+		OnDead();
+}
+
+void Yggdrasil::OnDead()
+{
+	 //fsm.ChangeState(YggdrasilStateType::Dead);
+}
+
 void Yggdrasil::SetLeftFistPos(sf::Vector2f pos)
 {
 	yggdrasilLeftHand->SetPosition(pos);

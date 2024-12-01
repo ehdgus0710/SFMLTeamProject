@@ -30,6 +30,8 @@ class YggdrasilSweepAttackState : public YggdrasilBaseState
 	bool		onAttack;
 	bool		switchFist;
 
+	bool		isAttackWait;
+
 private:
 	void ReadyAttack(float deltaTime);
 	void StartLeftAttack(float deltaTime);

@@ -25,6 +25,16 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 	lStartPos = { yggdrasil->GetPosition().x + 1000.f, 0.f };
 	lEndPos = { yggdrasil->GetPosition().x - 1000.f, 0.f };
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
+
+	if (currentAttackTime >= attackTime)
+	{
+		if (switchFist)
+			onAttack = false;
+		else
+			switchFist = true;
+	
+		currentAttackTime = 0.f;
+	}
 }
 
 void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
@@ -33,6 +43,16 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	rStartPos = { yggdrasil->GetPosition().x - 1000.f, 0.f };
 	rEndPos = { yggdrasil->GetPosition().x + 1000.f, 0.f };
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
+
+	if (currentAttackTime >= attackTime)
+	{
+		if (switchFist)
+			onAttack = false;
+		else
+			switchFist = true;
+
+		currentAttackTime = 0.f;
+	}
 }
 
 void YggdrasilSweepAttackState::EndAttackWait(float deltaTime)
@@ -108,7 +128,7 @@ void YggdrasilSweepAttackState::Enter()
 	readyFistDelay = 0.f;
 
 	attackDelay = 2.f;
-	attackTime = 0.3f;
+	attackTime = 0.5f;
 	recoveryTime = 0.5f;
 	readyFistTime = 2.f;
 
@@ -121,6 +141,7 @@ void YggdrasilSweepAttackState::Exit()
 
 void YggdrasilSweepAttackState::Update(float deltaTime)
 {
+	// 휩쓸기 준비 모션
 	if (!readyAttack)
 	{
 		readyFistDelay += deltaTime;
@@ -135,39 +156,32 @@ void YggdrasilSweepAttackState::Update(float deltaTime)
 	}
 	else
 	{
-		readyFistDelay += deltaTime;
-		if (readyFistDelay > readyFistTime)
+		if (!switchFist)
 		{
-			currentAttackDelay += deltaTime;
-			if (currentAttackDelay > attackDelay)
+			if (whatFist == 1)
 			{
-				switchFist = true;
-				currentAttackTime = 0.f;
+				StartLeftAttack(deltaTime);
 			}
-			if (!switchFist)
+			else if (whatFist == 2)
 			{
-				if (whatFist == 1)
-				{
-					StartLeftAttack(deltaTime);
-				}
-				else if (whatFist == 2)
-				{
-					StartRightAttack(deltaTime);
-				}
+				StartRightAttack(deltaTime);
 			}
-			else
+		}
+		else
+		{
+			if (whatFist == 1)
 			{
-				if (whatFist == 1)
-				{
-					StartRightAttack(deltaTime);
-				}
-				else if (whatFist == 2)
-				{
-					StartLeftAttack(deltaTime);
-				}
+				StartRightAttack(deltaTime);
+			}
+			else if (whatFist == 2)
+			{
+				StartLeftAttack(deltaTime);
 			}
 		}
 	}
+
+	if(!onAttack)
+		fsm->ChangeState(YggdrasilStateType::Idle);
 
 	//if (currentAttackCount == attackCount)
 	//	onAttack = false;

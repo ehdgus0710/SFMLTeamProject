@@ -14,7 +14,7 @@ public:
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 public:
-	UIGameObject(const std::string& texId);
+	UIGameObject(const std::string& name);
 	virtual ~UIGameObject() = default;
 	UIGameObject& operator= (const UIGameObject& other) = delete;
 };

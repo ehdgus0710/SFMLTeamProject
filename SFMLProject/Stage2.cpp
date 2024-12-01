@@ -4,6 +4,7 @@
 #include "GameInclude.h"
 #include "Animation.h"
 #include "BackgroundSprite.h"
+#include "PlayerUIHub.h"
 
 Stage2::Stage2()
 	: Scene(SceneIds::Stage2)
@@ -42,6 +43,8 @@ void Stage2::CollisitionCheck()
 
 void Stage2::LoadResources()
 {
+	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
+
 	// Yggdrasil
 	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
 	TEXTURE_MANAGER.Load("YggdrasilHead", "graphics/boss/Yggdrasil/Head.png");
@@ -67,6 +70,10 @@ void Stage2::LoadResources()
 	TEXTURE_MANAGER.Load("P2EnergyCorpsStartImpact", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsStartImpact.png");
 
 	TEXTURE_MANAGER.Load("Stage1TileMap", "graphics/TileMap/1_Tile01.png");
+	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
+	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
+	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
+	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 }
 
 void Stage2::Init()
@@ -109,6 +116,12 @@ void Stage2::Enter()
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
+
+	PlayerUIHub* playerUIHub = AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
+
+	playerUIHub->SetOrigin(Origins::BottomLeft);
+	playerUIHub->SetScale({ 3.5f,3.5f });
+	playerUIHub->SetPosition({ 0, 1075.f });
 
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);

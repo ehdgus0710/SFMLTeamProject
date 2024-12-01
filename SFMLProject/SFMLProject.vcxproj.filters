@@ -235,6 +235,15 @@
     <Filter Include="Contants\Object\Yggdrasil\YggdrasilState">
       <UniqueIdentifier>{96755567-46a6-4bd2-96eb-eeb4c2bd3aa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\UI\PlayerUI">
+      <UniqueIdentifier>{cd29e0a7-1328-49de-8f5c-7c5f681c0263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\UI\Object">
+      <UniqueIdentifier>{ffb692ed-bec9-4dbd-9bc0-50e798a249b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\UI\HP">
+      <UniqueIdentifier>{e04963de-c073-4c3c-b3af-b2774ec6cfcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -486,15 +495,6 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClCompile>
-    <ClCompile Include="UIButtonObject.cpp">
-      <Filter>Contants\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseObject.cpp">
-      <Filter>Contants\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="TextButton.cpp">
-      <Filter>Contants\UI</Filter>
-    </ClCompile>
     <ClCompile Include="RectSpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
@@ -677,6 +677,30 @@
     </ClCompile>
     <ClCompile Include="AroundDimention.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUIHub.cpp">
+      <Filter>Contants\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="UISpriteGameObject.cpp">
+      <Filter>Contants\UI\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButtonObject.cpp">
+      <Filter>Contants\UI\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseObject.cpp">
+      <Filter>Contants\UI\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillFrameUI.cpp">
+      <Filter>Contants\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBarUI.cpp">
+      <Filter>Contants\UI\HP</Filter>
+    </ClCompile>
+    <ClCompile Include="TextButton.cpp">
+      <Filter>Contants\UI\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRectangleShapeObject.cpp">
+      <Filter>Core\7. Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -950,15 +974,6 @@
     <ClInclude Include="TitleScene.h">
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClInclude>
-    <ClInclude Include="UIButtonObject.h">
-      <Filter>Contants\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseObject.h">
-      <Filter>Contants\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="TextButton.h">
-      <Filter>Contants\UI</Filter>
-    </ClInclude>
     <ClInclude Include="RectSpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
@@ -1147,6 +1162,30 @@
     </ClInclude>
     <ClInclude Include="AroundDimention.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUIHub.h">
+      <Filter>Contants\UI\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UISpriteGameObject.h">
+      <Filter>Contants\UI\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButtonObject.h">
+      <Filter>Contants\UI\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseObject.h">
+      <Filter>Contants\UI\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillFrameUI.h">
+      <Filter>Contants\UI\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="HpBarUI.h">
+      <Filter>Contants\UI\HP</Filter>
+    </ClInclude>
+    <ClInclude Include="TextButton.h">
+      <Filter>Contants\UI\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRectangleShapeObject.h">
+      <Filter>Core\7. Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

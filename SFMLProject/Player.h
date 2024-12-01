@@ -11,13 +11,10 @@ class GameObject;
 class Player : public AnimationGameObject
 {
 protected:
-	Head*		head;
-	GameObject* gameObject;
+	Head*			head;
+	PlayerFSM		fsm;
 
-	sf::Sprite	sprite;
-	PlayerFSM	fsm;
-
-	float		moveDirectionX;
+	float			moveDirectionX;
 	DefaultStatus	currentStatus;
 
 	int				jumpCount;

@@ -14,6 +14,7 @@
 #include "YggdrasilHead.h"
 #include "YggdrasilLeftHand.h"
 #include "YggdrasilRightHand.h"
+#include "YggdrasilEnergyBallBig.h"
 #include "Player.h"
 
 void Yggdrasil::Awake()
@@ -29,26 +30,33 @@ void Yggdrasil::Start()
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad9);
 
-	yggdrasilHead = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilHead("YggdrasilHead"), LayerType::Enemy);
+	yggdrasilHead = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilHead("YggdrasilHead"), LayerType::Boss);
 	yggdrasilHead->SetYggdrasil(this);
 	yggdrasilHead->SetPosition({ 0.f, -600.f });
 	yggdrasilHead->Awake();
 	yggdrasilHead->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilHead->GetRigidbody()->SetActive(false);
 
-	yggdrasilLeftHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilLeftHand("yggdrasilLeftHand"), LayerType::Enemy);
+	yggdrasilLeftHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilLeftHand("yggdrasilLeftHand"), LayerType::Boss);
 	yggdrasilLeftHand->SetYggdrasil(this);
 	yggdrasilLeftHand->SetPosition({ 450.f, -350.f });
 	yggdrasilLeftHand->Awake();
 	yggdrasilLeftHand->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilLeftHand->GetRigidbody()->SetActive(false);
 
-	yggdrasilRightHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilRightHand("YggdrasilRightHand"), LayerType::Enemy);
+	yggdrasilRightHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilRightHand("YggdrasilRightHand"), LayerType::Boss);
 	yggdrasilRightHand->SetYggdrasil(this);
 	yggdrasilRightHand->SetPosition({ -450.f, -350.f });
 	yggdrasilRightHand->Awake();
 	yggdrasilRightHand->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilRightHand->GetRigidbody()->SetActive(false);
+
+	yggdrasilEnergyBallBig = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig("YggdrasilEnergyBallBig"), LayerType::Boss);
+	yggdrasilEnergyBallBig->SetYggdrasil(this);
+	yggdrasilEnergyBallBig->SetPosition(yggdrasilHead->GetPosition());
+	yggdrasilEnergyBallBig->Awake();
+	yggdrasilEnergyBallBig->GetCollider()->SetScale({ 150.f,150.f });
+	yggdrasilEnergyBallBig->GetRigidbody()->SetActive(false);
 
 	attackTime = 0;
 	attackDelay = 3.f;
@@ -84,6 +92,11 @@ void Yggdrasil::LateUpdate(const float& deltaTime)
 	fsm.LateUpdate(deltaTime);
 }
 
+sf::Vector2f Yggdrasil::GetHeadPos()
+{
+	return sf::Vector2f(yggdrasilHead->GetPosition());
+}
+
 sf::Vector2f Yggdrasil::GetLeftFistPos()
 {
 	return sf::Vector2f(yggdrasilLeftHand->GetPosition());
@@ -92,6 +105,11 @@ sf::Vector2f Yggdrasil::GetLeftFistPos()
 sf::Vector2f Yggdrasil::GetRightFistPos()
 {
 	return sf::Vector2f(yggdrasilRightHand->GetPosition());
+}
+
+void Yggdrasil::SetHeadPos(sf::Vector2f pos)
+{
+	yggdrasilHead->SetPosition(pos);
 }
 
 void Yggdrasil::SetLeftFistPos(sf::Vector2f pos)

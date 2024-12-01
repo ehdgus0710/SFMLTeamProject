@@ -312,6 +312,7 @@
     <ClCompile Include="YggdrasilBody.cpp" />
     <ClCompile Include="YggdrasilDeadState.cpp" />
     <ClCompile Include="YggdrasilEnergyBallAttackState.cpp" />
+    <ClCompile Include="YggdrasilEnergyBallBig.cpp" />
     <ClCompile Include="YggdrasilFistAttackState.cpp" />
     <ClCompile Include="YggdrasilFSM.cpp" />
     <ClCompile Include="YggdrasilIdleState.cpp" />
@@ -470,6 +471,7 @@
     <ClInclude Include="YggdrasilBody.h" />
     <ClInclude Include="YggdrasilDeadState.h" />
     <ClInclude Include="YggdrasilEnergyBallAttackState.h" />
+    <ClInclude Include="YggdrasilEnergyBallBig.h" />
     <ClInclude Include="YggdrasilFistAttackState.h" />
     <ClInclude Include="YggdrasilFSM.h" />
     <ClInclude Include="YggdrasilIdleState.h" />

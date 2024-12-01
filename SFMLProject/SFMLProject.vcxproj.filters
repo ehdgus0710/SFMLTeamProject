@@ -678,6 +678,9 @@
     <ClCompile Include="AroundDimention.cpp">
       <Filter>Contants\Object\Reiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="YggdrasilEnergyBallBig.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1147,6 +1150,9 @@
     </ClInclude>
     <ClInclude Include="AroundDimention.h">
       <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilEnergyBallBig.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

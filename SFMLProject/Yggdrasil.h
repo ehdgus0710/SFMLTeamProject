@@ -6,24 +6,26 @@ class YggdrasilBody;
 class YggdrasilHead;
 class YggdrasilLeftHand;
 class YggdrasilRightHand;
+class YggdrasilEnergyBallBig;
 class Player;
 
 class Yggdrasil : public AnimationGameObject
 {
 protected:
-	Player*				player;
-	YggdrasilBody*		yggdrasilBody;
-	YggdrasilHead*		yggdrasilHead;
-	YggdrasilLeftHand*	yggdrasilLeftHand;
-	YggdrasilRightHand* yggdrasilRightHand;
+	Player*					player;
+	YggdrasilBody*			yggdrasilBody;
+	YggdrasilHead*			yggdrasilHead;
+	YggdrasilLeftHand*		yggdrasilLeftHand;
+	YggdrasilRightHand*		yggdrasilRightHand;
+	YggdrasilEnergyBallBig* yggdrasilEnergyBallBig;
 
-	GameObject*			gameObject;
+	GameObject*				gameObject;
 
-	sf::Sprite			sprite;
-	YggdrasilFSM		fsm;
+	sf::Sprite				sprite;
+	YggdrasilFSM			fsm;
 
-	float				attackTime;
-	float				attackDelay;
+	float					attackTime;
+	float					attackDelay;
 public:
 	void Awake() override;
 	void Start() override;
@@ -31,9 +33,11 @@ public:
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;
 
+	sf::Vector2f GetHeadPos();
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
 
+	void SetHeadPos(sf::Vector2f pos);
 	void SetLeftFistPos(sf::Vector2f pos);
 	void SetRightFistPos(sf::Vector2f pos);
 

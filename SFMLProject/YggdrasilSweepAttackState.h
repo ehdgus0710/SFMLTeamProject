@@ -4,6 +4,9 @@
 
 class YggdrasilSweepAttackState : public YggdrasilBaseState
 {
+	sf::Vector2f	lFirstPos;
+	sf::Vector2f	rFirstPos;
+
 	sf::Vector2f	lStartPos;
 	sf::Vector2f	lEndPos;
 	sf::Vector2f	rStartPos;

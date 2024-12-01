@@ -11,8 +11,6 @@ protected:
 	sf::Vector2f	startPos;
 	sf::Vector2f	endPos;
 
-	sf::Vector2f	firstPos;
-	
 	int			attackCount;
 	int			currentAttackCount;
 

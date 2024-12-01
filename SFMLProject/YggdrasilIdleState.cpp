@@ -32,6 +32,10 @@ void YggdrasilIdleState::Update(float deltaTime)
 	{
 		fsm->ChangeState(YggdrasilStateType::FistAttack);
 	}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
+	{
+		fsm->ChangeState(YggdrasilStateType::SweepAttack);
+	}
 }
 
 void YggdrasilIdleState::FixedUpdate(float fixedDeltaTime)

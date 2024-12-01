@@ -64,10 +64,10 @@ void Yggdrasil::Update(const float& deltaTime)
 	//{
 	//	fsm.ChangeState(YggdrasilStateType::FistAttack);
 	//}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
-	{
-		fsm.ChangeState(YggdrasilStateType::SweepAttack);
-	}
+	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
+	//{
+	//	fsm.ChangeState(YggdrasilStateType::SweepAttack);
+	//}
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
 	{
 		fsm.ChangeState(YggdrasilStateType::EnergyBallAttack);

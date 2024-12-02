@@ -120,6 +120,11 @@ void Yggdrasil::OnDead()
 	 //fsm.ChangeState(YggdrasilStateType::Dead);
 }
 
+void Yggdrasil::SetHeadPos(sf::Vector2f pos)
+{
+	yggdrasilHead->SetPosition(pos);
+}
+
 void Yggdrasil::SetLeftFistPos(sf::Vector2f pos)
 {
 	yggdrasilLeftHand->SetPosition(pos);

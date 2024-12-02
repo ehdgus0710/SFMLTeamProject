@@ -6,8 +6,6 @@ class YggdrasilMouth;
 class YggdrasilHead;
 class YggdrasilLeftHand;
 class YggdrasilRightHand;
-class YggdrasilEnergyBallBig;
-class YggdrasilEnergyBallSmall;
 class Player;
 
 class Yggdrasil : public AnimationGameObject
@@ -18,8 +16,6 @@ protected:
 	YggdrasilHead*				yggdrasilHead;
 	YggdrasilLeftHand*			yggdrasilLeftHand;
 	YggdrasilRightHand*			yggdrasilRightHand;
-	YggdrasilEnergyBallBig*		yggdrasilEnergyBallBig;
-	YggdrasilEnergyBallSmall*	yggdrasilEnergyBallSmall[8];
 
 	GameObject*					gameObject;
 
@@ -36,8 +32,6 @@ public:
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;
 
-	sf::Vector2f GetEnergyBallBigPos();
-	sf::Vector2f GetEnergyBallSmallPos(int i);
 	sf::Vector2f GetHeadPos();
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
@@ -45,14 +39,9 @@ public:
 	void TakeDamage(float damage);
 	void OnDead();
 
-	void SetAnimeEnergyBallBig(std::string name, bool loop);
-	void SetAnimeEnergyBallSmall(std::string name, bool loop);
 	void SetAnimeLeftHand(std::string name, bool loop);
 	void SetAnimeRightHand(std::string name, bool loop);
 
-
-	void SetEnergyBallBigPos(sf::Vector2f pos);
-	void SetEnergyBallSmallPos(sf::Vector2f pos, int i);
 	void SetHeadPos(sf::Vector2f pos);
 	void SetLeftFistPos(sf::Vector2f pos);
 	void SetRightFistPos(sf::Vector2f pos);
@@ -63,6 +52,11 @@ public:
 
 	PlayerSaveData GetPlayerSaveData() const;
 	void LoadData(const PlayerSaveData& data);
+
+	YggdrasilMouth* GetYggdrasilMouth() { return yggdrasilMouth; }
+	YggdrasilHead* GetYggdrasilHead() { return yggdrasilHead; }
+	YggdrasilLeftHand* GetYggdrasilLeftHand() { return yggdrasilLeftHand; }
+	YggdrasilRightHand* GetYggdrasilRightHand() { return yggdrasilRightHand; }
 
 public:
 	Yggdrasil(const std::string& name = "Player");

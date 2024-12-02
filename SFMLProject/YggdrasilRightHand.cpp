@@ -88,7 +88,7 @@ YggdrasilRightHand::YggdrasilRightHand(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Enemy, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
 }
 
 YggdrasilRightHand::~YggdrasilRightHand()

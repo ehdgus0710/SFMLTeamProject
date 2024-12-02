@@ -94,7 +94,7 @@ YggdrasilBody::YggdrasilBody(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player, sf::Vector2f(10.f, 10.f), sf::Vector2f(100.f, 100.f));
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f(10.f, 10.f), sf::Vector2f(100.f, 100.f));
 }
 
 YggdrasilBody::~YggdrasilBody()

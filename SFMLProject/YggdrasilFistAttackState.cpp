@@ -9,14 +9,30 @@
 
 void YggdrasilFistAttackState::StartAttack(float deltaTime)
 {
-	currentAttackTime += deltaTime;
-	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
-
-	if (currentAttackTime >= attackTime)
+	switchFistDelay = 0.f;
+	if (!switchFist)
 	{
-		currentAttackTime = 0.f;
-		currentAttackDelay = 0.f;
-		isWait = true;
+		currentAttackTime += deltaTime;
+		yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
+
+		if (currentAttackTime >= attackTime)
+		{
+			currentAttackTime = 0.f;
+			currentAttackDelay = 0.f;
+			isWait = true;
+		}
+	}
+	else
+	{
+		currentAttackTime += deltaTime;
+		yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
+
+		if (currentAttackTime >= attackTime)
+		{
+			currentAttackTime = 0.f;
+			currentAttackDelay = 0.f;
+			isWait = true;
+		}
 	}
 }
 
@@ -34,15 +50,31 @@ void YggdrasilFistAttackState::EndAttackWait(float deltaTime)
 
 void YggdrasilFistAttackState::Recovery(float deltaTime)
 {
-	currentRecoveryTime += deltaTime;
-	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(endPos, startPos, currentRecoveryTime / recoveryTime));
-
-	if (currentRecoveryTime >= recoveryTime)
+	if (!switchFist)
 	{
-		isAttack = false;
-		isRecovery = false;
-		currentRecoveryTime = 0.f;
-		++currentAttackCount;
+		currentRecoveryTime += deltaTime;
+		yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(endPos, startPos, currentRecoveryTime / recoveryTime));
+
+		if (currentRecoveryTime >= recoveryTime)
+		{
+			isAttack = false;
+			isRecovery = false;
+			currentRecoveryTime = 0.f;
+			++currentAttackCount;
+		}
+	}
+	else
+	{
+		currentRecoveryTime += deltaTime;
+		yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(endPos, startPos, currentRecoveryTime / recoveryTime));
+
+		if (currentRecoveryTime >= recoveryTime)
+		{
+			isAttack = false;
+			isRecovery = false;
+			currentRecoveryTime = 0.f;
+			++currentAttackCount;
+		}
 	}
 }
 
@@ -55,7 +87,6 @@ void YggdrasilFistAttackState::Awake()
 void YggdrasilFistAttackState::Start()
 {
 	YggdrasilBaseState::Start();
-	onAttack = true;
 }
 
 void YggdrasilFistAttackState::Enter()
@@ -68,19 +99,23 @@ void YggdrasilFistAttackState::Enter()
 	isAttack = false;
 	isRecovery = false;
 	isWait = false;
+	switchFist = false;
+	onAttack = true;
 
 	currentAttackDelay = 0.f;
 	currentAttackTime = 0.f;
 	currentRecoveryTime = 0.f;
+	switchFistDelay = 2.8f;
 
-	attackDelay = 1.f;
-	attackTime = 1.f;
-	recoveryTime = 1.f;
+	attackDelay = 2.f;
+	attackTime = 0.3f;
+	recoveryTime = 0.5f;
+	switchFistTime = 2.8f;
 
-	endPos = player->GetPosition();
-	startPos = yggdrasil->GetLeftFistPos();
-	firstPos = yggdrasil->GetLeftFistPos();
-	
+	endPos = { player->GetPosition().x, 0.f };
+	//startPos = yggdrasil->GetLeftFistPos();
+	//firstPos = yggdrasil->GetLeftFistPos();
+
 }
 
 void YggdrasilFistAttackState::Exit()
@@ -90,34 +125,75 @@ void YggdrasilFistAttackState::Exit()
 
 void YggdrasilFistAttackState::Update(float deltaTime)
 {
-
-	if (!isAttack)
+	switchFistDelay += deltaTime;
+	if (player->GetPosition().x > yggdrasil->GetPosition().x && switchFistDelay >= switchFistTime)
 	{
-		currentAttackDelay += deltaTime;
-
-		if (currentAttackDelay >= attackDelay)
-		{
-			isAttack = true;
-			currentAttackTime = 0.f;
-
-			endPos = player->GetPosition();
-		}
+		switchFist = false;
 	}
-	else
+	else if (player->GetPosition().x < yggdrasil->GetPosition().x && switchFistDelay >= switchFistTime)
 	{
-		if (isRecovery)
+		switchFist = true;
+	}
+	if (!switchFist)
+	{
+		if (!isAttack)
 		{
-			Recovery(deltaTime);
+			currentAttackDelay += deltaTime;
+
+			if (currentAttackDelay >= attackDelay)
+			{
+				startPos = yggdrasil->GetLeftFistPos();
+				isAttack = true;
+				currentAttackTime = 0.f;
+
+				endPos = { player->GetPosition().x, 0.f };
+			}
 		}
 		else
 		{
-			if (!isWait)
-				StartAttack(deltaTime);
+			if (isRecovery)
+			{
+				Recovery(deltaTime);
+			}
 			else
-				EndAttackWait(deltaTime);
+			{
+				if (!isWait)
+					StartAttack(deltaTime);
+				else
+					EndAttackWait(deltaTime);
+			}
 		}
 	}
+	if (switchFist)
+	{
+		if (!isAttack)
+		{
+			currentAttackDelay += deltaTime;
 
+			if (currentAttackDelay >= attackDelay)
+			{
+				startPos = yggdrasil->GetRightFistPos();
+				isAttack = true;
+				currentAttackTime = 0.f;
+
+				endPos = { player->GetPosition().x, 0.f };
+			}
+		}
+		else
+		{
+			if (isRecovery)
+			{
+				Recovery(deltaTime);
+			}
+			else
+			{
+				if (!isWait)
+					StartAttack(deltaTime);
+				else
+					EndAttackWait(deltaTime);
+			}
+		}
+	}
 
 
 	if (currentAttackCount == attackCount)

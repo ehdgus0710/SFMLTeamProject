@@ -11,23 +11,24 @@ protected:
 	sf::Vector2f	startPos;
 	sf::Vector2f	endPos;
 
-	sf::Vector2f	firstPos;
-	
 	int			attackCount;
 	int			currentAttackCount;
 
 	float		currentAttackDelay;
 	float		attackDelay;
+	float		switchFistDelay;
 
 	float		currentAttackTime;
 	float		attackTime;
 	float		recoveryTime;
 	float		currentRecoveryTime;
+	float		switchFistTime;
 	
 	bool		isWait;
 	bool		isAttack;
 	bool		isRecovery;
 	bool		onAttack;
+	bool		switchFist;
 
 private:
 	void StartAttack(float deltaTime);

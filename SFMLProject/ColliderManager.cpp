@@ -227,7 +227,8 @@ bool ColliderManager::IsRectToRectCollision(Collider* left, Collider* right)
     //
     //sf::Vector2f leftRectangleRightVector = leftRectangleCollision->GetLeftTopPosition() - leftRectangleCollision->GetRightTopPosition();
     //sf::Vector2f leftRectangleDirVector = leftRectangleCollision->GetLeftTopPosition() - leftRectangleCollision->GetPosition();
-    //leftRectangleDirVector.Normalized();
+    //leftRectangleDirVector.
+    // zed();
     //float dot = sf::Vector2f::Dot(leftRectangleRightVector, leftRectangleDirVector);
     //
     //sf::Vector2f rightRectangleUpVector = rightRectangleCollision->GetLeftTopPosition() - rightRectangleCollision->GetRightTopPosition();

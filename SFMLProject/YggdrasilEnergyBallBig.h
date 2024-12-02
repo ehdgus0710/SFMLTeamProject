@@ -23,7 +23,9 @@ public:
 
 	void fire();
 
-	void SetYggdrasil(Yggdrasil* player);
+	void SetAniEnergyBallBig(std::string name, bool loop);
+
+	void SetYggdrasil(Yggdrasil* yggdrasil);
 	void SetPlayer(Player* player);
 
 

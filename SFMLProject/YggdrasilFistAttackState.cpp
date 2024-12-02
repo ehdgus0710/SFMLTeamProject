@@ -19,10 +19,10 @@ void YggdrasilFistAttackState::ReadyFist(float deltaTime)
 
 
 
-	if (currentAttackTime > readyDelay)
+	if (currentAttackTime > readyDelay * 2.f)
 	{
-		startPos = endPos;
-		endPos = { player->GetPosition().x, 0.f };
+		//startPos = endPos;
+		//endPos = { player->GetPosition().x, 0.f };
 		currentAttackTime = 0.f;
 	}
 
@@ -178,6 +178,7 @@ void YggdrasilFistAttackState::Update(float deltaTime)
 		if (readyTime > readyDelay)
 		{
 			readyFist = true;
+			currentAttackTime = 0.f;
 		}
 	}
 	else

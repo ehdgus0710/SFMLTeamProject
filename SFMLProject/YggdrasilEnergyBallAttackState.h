@@ -23,6 +23,7 @@ protected:
 
 private:
 	void EnergyBallFire(sf::Vector2f pos, sf::Vector2f dir, float speed, float deltaTime);
+	void SetEnergySmallBallPos();
 
 public:
 	void Awake() override;

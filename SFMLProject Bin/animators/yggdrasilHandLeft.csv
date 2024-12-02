@@ -1,0 +1,10 @@
+ANIMATIONCSVPATH,ANIMAIONID
+,
+animations/Enemy/yggdrasil/phase1HandLeftGrap.csv,phase1HandLeftGrap
+animations/Enemy/yggdrasil/phase1HandLeftIdle.csv,phase1HandLeftIdle
+animations/Enemy/yggdrasil/phase1HandLeftSweep.csv,phase1HandLeftSweep
+animations/Enemy/yggdrasil/phase1HandLeftTakedown.csv,phase1HandLeftTakedown
+animations/Enemy/yggdrasil/phase2HandLeftGrap.csv,phase2HandLeftGrap
+animations/Enemy/yggdrasil/phase2HandLeftIdle.csv,phase2HandLeftIdle
+animations/Enemy/yggdrasil/phase2HandLeftSweep.csv,phase2HandLeftSweep
+animations/Enemy/yggdrasil/phase2HandLeftTakedown.csv,phase2HandLeftTakedown

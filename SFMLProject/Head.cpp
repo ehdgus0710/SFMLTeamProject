@@ -71,7 +71,7 @@ void Head::OnCollisionEnter(Collider* target)
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy && isThrow)
 	{
-		((Enemy*)target->GetOwner())->TakeDamage(10);
+		// ((Enemy*)target->GetOwner())->TakeDamage(10);
 		EndThrow();
 	}
 }

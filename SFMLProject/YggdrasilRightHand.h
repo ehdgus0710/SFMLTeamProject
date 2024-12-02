@@ -26,9 +26,10 @@ public:
 
 	void fire();
 
+	void SetAniRightHand(std::string name, bool loop);
+
 	void SetYggdrasil(Yggdrasil* yggdrasil);
 	void SetPlayer(Player* player);
-
 
 	bool GetHeadSkillOn() { return skillOn; }
 	void SetHeadSkillOn(bool onoff) { skillOn = onoff; }

@@ -8,6 +8,20 @@
 
 #include "Player.h"
 
+YggdrasilEnergyBallBig::YggdrasilEnergyBallBig(const std::string& name)
+	: AnimationGameObject(name)
+{
+	rigidBody = new Rigidbody(this);
+	rigidBody->SetGround(false);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+}
+
+
+YggdrasilEnergyBallBig::~YggdrasilEnergyBallBig()
+{
+}
+
+
 void YggdrasilEnergyBallBig::Awake()
 {
 	AnimationGameObject::Awake();
@@ -20,7 +34,6 @@ void YggdrasilEnergyBallBig::Start()
 
 void YggdrasilEnergyBallBig::Update(const float& deltaTime)
 {
-	rigidBody->Update(deltaTime);
 }
 
 void YggdrasilEnergyBallBig::FixedUpdate(const float& deltaTime)
@@ -81,15 +94,3 @@ void YggdrasilEnergyBallBig::SetPlayer(Player* player)
 	this->player = player;
 }
 
-YggdrasilEnergyBallBig::YggdrasilEnergyBallBig(const std::string& name) 
-	: AnimationGameObject(name)
-{
-	rigidBody = new Rigidbody(this);
-	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
-}
-
-
-YggdrasilEnergyBallBig::~YggdrasilEnergyBallBig()
-{
-}

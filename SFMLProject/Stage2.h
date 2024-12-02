@@ -1,12 +1,15 @@
 #pragma once
 #include "Scene.h"
 
+class Yggdrasil;
 class Player;
 
 class Stage2 : public Scene
 {
 private:
 	Player* player;
+	Yggdrasil* yggdrasil;
+
 	Rectangle	cameraLimitRect;
 	Rectangle	bossClearCameraLimitRect;
 	Rectangle	currentCameraLimitRect;

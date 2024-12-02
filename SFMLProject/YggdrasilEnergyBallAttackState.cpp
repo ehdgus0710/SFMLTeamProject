@@ -10,7 +10,7 @@
 void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector2f dir, float speed, float deltaTime)
 {
 	shootTime += deltaTime;
-	yggdrasil->SetHeadPos(pos + dir * speed * deltaTime);
+	yggdrasil->SetEnergyBallBigPos(pos + dir * speed * deltaTime);
 	if (shootTime > shootDelay)
 	{
 		++attackCount;
@@ -35,12 +35,12 @@ void YggdrasilEnergyBallAttackState::Enter()
 
 	isShoot = false;
 
-	speed = 500.f;
+	speed = 1000.f;
 	attackCount = 0;
 	currentFirstAttack = 0.f;
 	firstAttackDelay = 2.f;
 	shootTime = 0.f;
-	shootDelay = 1.f;
+	shootDelay = 2.f;
 
 	startPos = yggdrasil->GetHeadPos();
 }
@@ -57,21 +57,27 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 	{
 		if (!isShoot)
 		{
+			yggdrasil->SetEnergyBallBigPos(startPos);
 			currentFirstAttack += deltaTime;
 			if (currentFirstAttack > firstAttackDelay)
 			{
-				look = { startPos.y - player->GetPosition().y, startPos.x - player->GetPosition().x };
+				//float radi = atan2f(startPos.y - player->GetPosition().y, startPos.x - player->GetPosition().x);
+				//float degr = (radi * 180 / Utils::PI) + 90;
+				//look = 노멀라이즈 어디있는데 ㅋㅋㅋㅋ;
+				look = player->GetPosition() - startPos;
+				look.Normalized();
 				isShoot = true;
 				currentFirstAttack = 0;
 			}
 		}
 		else
 		{
-			EnergyBallFire(player->GetPosition(), look, speed, deltaTime);
+			EnergyBallFire(yggdrasil->GetEnergyBallBigPos(), look, speed, deltaTime);
 		}
 	}
 	else
 	{
+		yggdrasil->SetEnergyBallBigPos(startPos);
 		fsm->ChangeState(YggdrasilStateType::Idle);
 	}
 }

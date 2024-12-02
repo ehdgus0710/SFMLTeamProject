@@ -26,6 +26,8 @@ public:
 
 	void fire();
 
+	void SetAniLeftHand(std::string name, bool loop);
+
 	void SetYggdrasil(Yggdrasil* yggdrasil);
 	void SetPlayer(Player* player);
 

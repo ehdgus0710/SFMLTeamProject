@@ -10,6 +10,8 @@ protected:
 
 	sf::Vector2f	startPos;
 	sf::Vector2f	endPos;
+	sf::Vector2f	firstLeftPos;
+	sf::Vector2f	firstRightPos;
 
 	int			attackCount;
 	int			currentAttackCount;
@@ -17,7 +19,9 @@ protected:
 	float		currentAttackDelay;
 	float		attackDelay;
 	float		switchFistDelay;
+	float		readyDelay;
 
+	float		readyTime;
 	float		currentAttackTime;
 	float		attackTime;
 	float		recoveryTime;
@@ -29,10 +33,13 @@ protected:
 	bool		isRecovery;
 	bool		onAttack;
 	bool		switchFist;
+	bool		readyFist;
 
 private:
+	void ReadyFist(float deltaTime);
 	void StartAttack(float deltaTime);
 	void EndAttackWait(float deltaTime);
+	void EndFistPos(float deltaTime);
 	void Recovery(float deltaTime);
 
 public:

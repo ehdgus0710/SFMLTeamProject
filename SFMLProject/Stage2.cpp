@@ -6,6 +6,8 @@
 #include "BackgroundSprite.h"
 #include "PlayerUIHub.h"
 
+#include "Yggdrasil.h"
+
 Stage2::Stage2()
 	: Scene(SceneIds::Stage2)
 	, player(nullptr)
@@ -105,6 +107,11 @@ void Stage2::Enter()
 	/*TileMapController* tilemapController = AddGameObject(new TileMapController("Stage2"), LayerType::TileMap);
 	tilemapController->SetSpriteSheetId("Stage1TileMap");
 	tilemapController->SetCellSize({ 32.f,32.f });*/
+
+	Yggdrasil* testYggdrasil = AddGameObject(new Yggdrasil("Yggdrasil"), LayerType::Enemy);
+	testYggdrasil->Awake();
+	testYggdrasil->SetPosition({ 960.f, 400.f });
+	testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
 
 	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap","Stage1TileMap" ), LayerType::TileMap);
 	tileMap->LoadCsv("TileMap/Stage2Map1.csv");

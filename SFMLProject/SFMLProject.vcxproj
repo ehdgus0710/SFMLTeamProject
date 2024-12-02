@@ -316,7 +316,7 @@
     </ClCompile>
     <ClCompile Include="Yggdrasil.cpp" />
     <ClCompile Include="YggdrasilBaseState.cpp" />
-    <ClCompile Include="YggdrasilBody.cpp" />
+    <ClCompile Include="YggdrasilMouth.cpp" />
     <ClCompile Include="YggdrasilDeadState.cpp" />
     <ClCompile Include="YggdrasilEnergyBallAttackState.cpp" />
     <ClCompile Include="YggdrasilEnergyBallBig.cpp" />
@@ -482,7 +482,7 @@
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="Yggdrasil.h" />
     <ClInclude Include="YggdrasilBaseState.h" />
-    <ClInclude Include="YggdrasilBody.h" />
+    <ClInclude Include="YggdrasilMouth.h" />
     <ClInclude Include="YggdrasilDeadState.h" />
     <ClInclude Include="YggdrasilEnergyBallAttackState.h" />
     <ClInclude Include="YggdrasilEnergyBallBig.h" />

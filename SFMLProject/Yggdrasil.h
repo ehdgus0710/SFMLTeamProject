@@ -2,7 +2,7 @@
 #include "AnimationGameObject.h"
 #include "YggdrasilFSM.h"
 
-class YggdrasilBody;
+class YggdrasilMouth;
 class YggdrasilHead;
 class YggdrasilLeftHand;
 class YggdrasilRightHand;
@@ -13,7 +13,7 @@ class Yggdrasil : public AnimationGameObject
 {
 protected:
 	Player*					player;
-	YggdrasilBody*			yggdrasilBody;
+	YggdrasilMouth*			yggdrasilMouth;
 	YggdrasilHead*			yggdrasilHead;
 	YggdrasilLeftHand*		yggdrasilLeftHand;
 	YggdrasilRightHand*		yggdrasilRightHand;
@@ -34,6 +34,7 @@ public:
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;
 
+	sf::Vector2f GetEnergyBallBigPos();
 	sf::Vector2f GetHeadPos();
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
@@ -41,6 +42,11 @@ public:
 	void TakeDamage(float damage);
 	void OnDead();
 
+	void SetAnimeLeftHand(std::string name, bool loop);
+	void SetAnimeRightHand(std::string name, bool loop);
+
+
+	void SetEnergyBallBigPos(sf::Vector2f pos);
 	void SetHeadPos(sf::Vector2f pos);
 	void SetLeftFistPos(sf::Vector2f pos);
 	void SetRightFistPos(sf::Vector2f pos);

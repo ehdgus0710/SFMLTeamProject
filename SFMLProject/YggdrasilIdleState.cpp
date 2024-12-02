@@ -20,6 +20,9 @@ void YggdrasilIdleState::Start()
 void YggdrasilIdleState::Enter()
 {
 	YggdrasilBaseState::Enter();
+
+	yggdrasil->SetAnimeLeftHand("phase1HandLeftIdle", true);
+	yggdrasil->SetAnimeRightHand("phase1HandRightIdle", true);
 }
 
 void YggdrasilIdleState::Exit()
@@ -35,6 +38,10 @@ void YggdrasilIdleState::Update(float deltaTime)
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
 	{
 		fsm->ChangeState(YggdrasilStateType::SweepAttack);
+	}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
+	{
+		fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
 	}
 }
 

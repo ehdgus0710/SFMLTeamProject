@@ -11,19 +11,20 @@ void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 {
 	currentAttackTime += deltaTime;
 	lStartPos = yggdrasil->GetLeftFistPos();
-	lEndPos = { yggdrasil->GetPosition().x + 1000.f, 0.f };
+	lEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 	rStartPos = yggdrasil->GetRightFistPos();
-	rEndPos = { yggdrasil->GetPosition().x - 1000.f, 0.f };
+	rEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 	isWait = true;
 }
 
 void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 {
+	yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
 	currentAttackTime += deltaTime;
-	lStartPos = { yggdrasil->GetPosition().x + 1000.f, 0.f };
-	lEndPos = { yggdrasil->GetPosition().x - 1000.f, 0.f };
+	lStartPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
+	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 
 	if (currentAttackTime >= readyFistTime)
@@ -37,8 +38,8 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 {
 	currentAttackTime += deltaTime;
-	rStartPos = { yggdrasil->GetPosition().x - 1000.f, 0.f };
-	rEndPos = { yggdrasil->GetPosition().x + 1000.f, 0.f };
+	rStartPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
+	rEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 
 	if (currentAttackTime >= readyFistTime)
@@ -64,10 +65,10 @@ void YggdrasilSweepAttackState::EndAttackWait(float deltaTime)
 void YggdrasilSweepAttackState::Recovery(float deltaTime)
 {
 	currentAttackTime += deltaTime;
-	lStartPos = { yggdrasil->GetPosition().x + 300.f, yggdrasil->GetPosition().y + 800.f };
+	lStartPos = { yggdrasil->GetPosition().x + 1300.f, 800.f };
 	lEndPos = lFirstPos;
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / recoveryTime));
-	rStartPos = { yggdrasil->GetPosition().x - 300.f, yggdrasil->GetPosition().y + 800.f };
+	rStartPos = { yggdrasil->GetPosition().x - 1300.f, 800.f };
 	rEndPos = rFirstPos;
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / recoveryTime));
 	if (currentAttackTime >= recoveryTime)
@@ -107,7 +108,7 @@ void YggdrasilSweepAttackState::Enter()
 	readyFistDelay = 0.f;
 
 	attackDelay = 2.f;
-	attackTime = 0.5f;
+	attackTime = 2.f;
 	recoveryTime = 1.f;
 	readyFistTime = 2.f;
 

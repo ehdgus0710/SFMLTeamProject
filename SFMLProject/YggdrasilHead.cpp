@@ -14,6 +14,7 @@ YggdrasilHead::YggdrasilHead(const std::string& name)
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+	SetScale({ 3.5f, 3.5f });
 
 	animator->LoadCsv("animators/yggdrasilHead.csv");
 
@@ -37,7 +38,7 @@ void YggdrasilHead::Start()
 
 void YggdrasilHead::Update(const float& deltaTime)
 {
-	rigidBody->Update(deltaTime);
+	animator->Update(deltaTime);
 }
 
 void YggdrasilHead::FixedUpdate(const float& deltaTime)

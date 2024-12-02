@@ -30,7 +30,7 @@ void SceneDev1::Enter()
 
 	Yggdrasil* testYggdrasil = AddGameObject(new Yggdrasil("Yggdrasil"), LayerType::Enemy);
 	testYggdrasil->Awake();
-	testYggdrasil->SetPosition({ 0, -500.f });
+	testYggdrasil->SetPosition({ 0, -350.f });
 	testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);

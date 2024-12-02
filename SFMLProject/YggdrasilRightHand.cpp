@@ -16,6 +16,7 @@ YggdrasilRightHand::YggdrasilRightHand(const std::string& name)
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+	SetScale({ 3.5f, 3.5f });
 	animator->LoadCsv("animators/yggdrasilHandRight.csv");
 }
 
@@ -87,6 +88,11 @@ void YggdrasilRightHand::OnCollisionEnd(Collider* target)
 
 void YggdrasilRightHand::fire()
 {
+}
+
+void YggdrasilRightHand::SetAniRightHand(std::string name, bool loop)
+{
+	animator->ChangeAnimation(name, loop);
 }
 
 void YggdrasilRightHand::SetYggdrasil(Yggdrasil* yggdrasil)

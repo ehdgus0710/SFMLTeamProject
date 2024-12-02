@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "Stage1.h"
 
+#include "ScaffoldingObject.h"
+#include "GameInclude.h"
+
+#include "Yggdrasil.h"
+
 void Stage1::CollisitionCheck()
 {
 }
@@ -15,6 +20,7 @@ void Stage1::Init()
 
 void Stage1::Enter()
 {
+
 }
 
 void Stage1::Exit()

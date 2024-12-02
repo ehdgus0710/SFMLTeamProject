@@ -10,12 +10,29 @@
 #include "Camera.h"
 #include "InGameScoreUI.h"
 #include "YggdrasilBaseState.h"
-#include "YggdrasilBody.h"
+#include "yggdrasilMouth.h"
 #include "YggdrasilHead.h"
 #include "YggdrasilLeftHand.h"
 #include "YggdrasilRightHand.h"
 #include "YggdrasilEnergyBallBig.h"
 #include "Player.h"
+
+
+Yggdrasil::Yggdrasil(const std::string& name)
+	: AnimationGameObject(name)
+	, fsm(this)
+{
+	rigidBody = new Rigidbody(this);
+	rigidBody->SetGround(false);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss);
+	SetScale({ 4.f, 4.f });
+
+	animator->LoadCsv("animators/yggdrasilBody.csv");
+}
+
+Yggdrasil::~Yggdrasil()
+{
+}
 
 void Yggdrasil::Awake()
 {
@@ -25,6 +42,9 @@ void Yggdrasil::Awake()
 void Yggdrasil::Start()
 {
 	AnimationGameObject::Start();
+	
+	animator->ChangeAnimation("phase1Head", true);
+
 
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);
@@ -32,21 +52,28 @@ void Yggdrasil::Start()
 
 	yggdrasilHead = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilHead("YggdrasilHead"), LayerType::Boss);
 	yggdrasilHead->SetYggdrasil(this);
-	yggdrasilHead->SetPosition({ 0.f, -600.f });
+	yggdrasilHead->SetPosition({ GetPosition().x, GetPosition().y - 150.f });
 	yggdrasilHead->Awake();
 	yggdrasilHead->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilHead->GetRigidbody()->SetActive(false);
 
+	yggdrasilMouth = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilMouth("yggdrasilMouth"), LayerType::Boss);
+	yggdrasilMouth->SetYggdrasil(this);
+	yggdrasilMouth->SetPosition({ yggdrasilHead->GetPosition().x + 50.f, yggdrasilHead->GetPosition().y + 300.f });
+	yggdrasilMouth->Awake();
+	yggdrasilMouth->GetCollider()->SetScale({ 200.f,200.f });
+	yggdrasilMouth->GetRigidbody()->SetActive(false);
+
 	yggdrasilLeftHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilLeftHand("yggdrasilLeftHand"), LayerType::Boss);
 	yggdrasilLeftHand->SetYggdrasil(this);
-	yggdrasilLeftHand->SetPosition({ 450.f, -350.f });
+	yggdrasilLeftHand->SetPosition({ GetPosition().x + 700.f, GetPosition().y + 300.f });
 	yggdrasilLeftHand->Awake();
 	yggdrasilLeftHand->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilLeftHand->GetRigidbody()->SetActive(false);
 
 	yggdrasilRightHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilRightHand("YggdrasilRightHand"), LayerType::Boss);
 	yggdrasilRightHand->SetYggdrasil(this);
-	yggdrasilRightHand->SetPosition({ -450.f, -350.f });
+	yggdrasilRightHand->SetPosition({ GetPosition().x - 700.f, GetPosition().y + 300.f });
 	yggdrasilRightHand->Awake();
 	yggdrasilRightHand->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilRightHand->GetRigidbody()->SetActive(false);
@@ -68,6 +95,7 @@ void Yggdrasil::Start()
 
 void Yggdrasil::Update(const float& deltaTime)
 {
+	animator->Update(deltaTime);
 	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	//{
 	//	fsm.ChangeState(YggdrasilStateType::FistAttack);
@@ -76,10 +104,10 @@ void Yggdrasil::Update(const float& deltaTime)
 	//{
 	//	fsm.ChangeState(YggdrasilStateType::SweepAttack);
 	//}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
-	{
-		fsm.ChangeState(YggdrasilStateType::EnergyBallAttack);
-	}
+	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
+	//{
+	//	fsm.ChangeState(YggdrasilStateType::EnergyBallAttack);
+	//}
 	fsm.Update(deltaTime);
 }
 
@@ -90,6 +118,11 @@ void Yggdrasil::FixedUpdate(const float& deltaTime)
 void Yggdrasil::LateUpdate(const float& deltaTime)
 {
 	fsm.LateUpdate(deltaTime);
+}
+
+sf::Vector2f Yggdrasil::GetEnergyBallBigPos()
+{
+	return sf::Vector2f(yggdrasilEnergyBallBig->GetPosition());
 }
 
 sf::Vector2f Yggdrasil::GetHeadPos()
@@ -118,6 +151,21 @@ void Yggdrasil::TakeDamage(float damage)
 void Yggdrasil::OnDead()
 {
 	 //fsm.ChangeState(YggdrasilStateType::Dead);
+}
+
+void Yggdrasil::SetAnimeLeftHand(std::string name, bool loop)
+{
+	yggdrasilLeftHand->SetAniLeftHand(name, loop);
+}
+
+void Yggdrasil::SetAnimeRightHand(std::string name, bool loop)
+{
+	yggdrasilRightHand->SetAniRightHand(name, loop);
+}
+
+void Yggdrasil::SetEnergyBallBigPos(sf::Vector2f pos)
+{
+	yggdrasilEnergyBallBig->SetPosition(pos);
 }
 
 void Yggdrasil::SetHeadPos(sf::Vector2f pos)
@@ -156,15 +204,3 @@ void Yggdrasil::LoadData(const PlayerSaveData& data)
 {
 }
 
-Yggdrasil::Yggdrasil(const std::string& name)
-	: AnimationGameObject(name)
-	, fsm(this)
-{
-	rigidBody = new Rigidbody(this);
-	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss);
-}
-
-Yggdrasil::~Yggdrasil()
-{
-}

@@ -54,14 +54,15 @@ enum class LayerType
 {
 	Default,
 	BackGround_Back,
+	SecondGround,
 	TileMap,
 	Wall,
 	BackGround_Forward,
 	Item,
 	Block,
-	Player,
 	Enemy,
 	Boss,
+	Player,
 	PlayerBullet,
 	EnemyBullet,
 

@@ -5,7 +5,7 @@ class UITextGameObject : public UIGameObject
 protected:
 	sf::Text		text;
 	std::string		textId;
-	std::string		textString;
+	std::wstring	textString;
 	sf::Color		textColor;
 	unsigned int	textSize;
 
@@ -17,7 +17,8 @@ public:
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 	void SetPosition(const sf::Vector2f& pos) override;
-	void SetString(const std::string& string);	
+	void SetString(const std::string& string);
+	void SetString(const std::wstring& string);
 	void Update(const float& deltaTime) override;
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;

@@ -104,11 +104,15 @@ void PlayerUIHub::Start()
 	hpText = scene->AddGameObject(new UITextGameObject("Status", "hpText", 30), LayerType::UI);
 	maxHPText = scene->AddGameObject(new UITextGameObject("Status", "maxHpText", 30), LayerType::UI);
 
+	hpSlashText = scene->AddGameObject(new UITextGameObject("Status", "maxHpText", 30), LayerType::UI);
+
 	maxHPText->SetString(std::to_string((int)player->GetCurrentHP()));
 	hpText->SetString(std::to_string((int)player->GetCurrentHP()));
+	hpSlashText->SetString("/");
 
 	hpText->SetPosition({ 300.f, 1005.f });
 	maxHPText->SetPosition({ 450.f, 1005.f });
+	hpSlashText->SetPosition({ 375.f, 1005.f });
 
 	playerHpBar = scene->AddGameObject(new HpBarUI("PlayerHealthBar", "PlayerHPBar"), LayerType::UI);
 	playerHpBar->SetOrigin(Origins::MiddleLeft);
@@ -160,13 +164,5 @@ void PlayerUIHub::Start()
 }
 
 void PlayerUIHub::Update(const float& deltaTime)
-{
-}
-
-void PlayerUIHub::FixedUpdate(const float& deltaTime)
-{
-}
-
-void PlayerUIHub::LateUpdate(const float& deltaTime)
 {
 }

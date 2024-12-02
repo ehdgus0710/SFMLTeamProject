@@ -36,9 +36,6 @@ public:
 	void Start() override;
 
 	void Update(const float& deltaTime) override;
-	void FixedUpdate(const float& deltaTime) override;
-	void LateUpdate(const float& deltaTime) override;
-
 public:
 	PlayerUIHub(const std::string& texId, const std::string& name = "PlayerUI");
 	virtual ~PlayerUIHub() = default;

@@ -7,6 +7,7 @@
 #include "PlayerUIHub.h"
 
 #include "Yggdrasil.h"
+#include "YggdrasilUIHub.h"
 
 Stage2::Stage2()
 	: Scene(SceneIds::Stage2)
@@ -46,6 +47,7 @@ void Stage2::CollisitionCheck()
 void Stage2::LoadResources()
 {
 	ResourcesManager<sf::Font>::GetInstance().Load("Status", "fonts/Perfect DOS VGA 437.ttf", true);
+	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
 
 	// Yggdrasil
 	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
@@ -71,13 +73,25 @@ void Stage2::LoadResources()
 	TEXTURE_MANAGER.Load("P2EnergyCorpsSpark", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsSpark.png");
 	TEXTURE_MANAGER.Load("P2EnergyCorpsStartImpact", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsStartImpact.png");
 
+	// map
 	TEXTURE_MANAGER.Load("Stage1TileMap", "graphics/TileMap/1_Tile01.png");
+	// Player UI
 	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
 	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
 	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
-	
+
+	// Yggdrasil UI
+	TEXTURE_MANAGER.Load("BossHealthBarFirstPhase", "graphics/UI/BossUI/BossHealthBar_FirstPhase.png");
+	TEXTURE_MANAGER.Load("BossHealthBarSecondPhase", "graphics/UI/BossUI/BossHealthBar_SecondPhase.png");
+	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseBottomBack", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_BottomBack.png");
+	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseFront", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_Front.png");
+	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseTopBack", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_Top_Back.png");
+	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseBottomBack", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Bottom_Back.png");
+	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseFront", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Front.png");
+	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseTop", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Top_Back.png");
+
 }
 
 void Stage2::Init()
@@ -134,6 +148,11 @@ void Stage2::Enter()
 
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+
+	YggdrasilUIHub* yggdrasilUIHub = AddGameObject(new YggdrasilUIHub("YggdrasilUIHub"), LayerType::InGameUI);
+	yggdrasilUIHub->SetOrigin(Origins::BottomLeft);
+	yggdrasilUIHub->SetScale({ 3.5f,3.5f });
+	yggdrasilUIHub->SetPosition({ 0, 1075.f });
 	/*AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 500, 500.f });

@@ -29,3 +29,11 @@ void HpBarUI::ChangeHP(float currentHP, float maxHp)
 	currentSize.x = maxSize.x * hp;
 	SetScale(currentSize);
 }
+
+void HpBarUI::ChangeSprite(std::string changeTextureID)
+{
+	textureId = changeTextureID;
+	rectangleShape.setTexture(&ResourcesManager<sf::Texture>::GetInstance().Get(textureId), true);
+
+	SetOrigin(originPreset);
+}

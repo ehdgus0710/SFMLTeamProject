@@ -16,6 +16,7 @@ public:
 	void SetMaxHpBarSize(const sf::Vector2f& maxSize);
 	void SetOwnerStatus(const DefaultStatus& status) { ownerStatus = &status; }
 	void ChangeHP(float currentHP, float maxHp);
+	void ChangeSprite(std::string changeTextureID);
 public:
 	HpBarUI(const std::string& textureId, const std::string& name = "");
 	virtual ~HpBarUI() = default;

@@ -265,6 +265,7 @@
     <ClCompile Include="PlayerRunState.cpp" />
     <ClCompile Include="PlayerSaveData.cpp" />
     <ClCompile Include="RectSpriteGameObject.cpp" />
+    <ClCompile Include="ReianaUIHub.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="Rising.cpp" />
@@ -327,6 +328,7 @@
     <ClCompile Include="YggdrasilHead.cpp" />
     <ClCompile Include="YggdrasilRightHand.cpp" />
     <ClCompile Include="YggdrasilSweepAttackState.cpp" />
+    <ClCompile Include="YggdrasilUIHub.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -433,6 +435,7 @@
     <ClInclude Include="PlayerSaveData.h" />
     <ClInclude Include="rapidcsv.h" />
     <ClInclude Include="RectSpriteGameObject.h" />
+    <ClInclude Include="ReianaUIHub.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesManager.h" />
@@ -493,6 +496,7 @@
     <ClInclude Include="YggdrasilHead.h" />
     <ClInclude Include="YggdrasilRightHand.h" />
     <ClInclude Include="YggdrasilSweepAttackState.h" />
+    <ClInclude Include="YggdrasilUIHub.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFMLProject.rc" />

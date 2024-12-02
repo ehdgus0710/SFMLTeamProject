@@ -95,6 +95,5 @@ void UISpriteGameObject::ChangeSprite(std::string changeTextureID)
 {
 	textureId = changeTextureID;
 	sprite.setTexture(ResourcesManager<sf::Texture>::GetInstance().Get(textureId), true);
-
 	SetOrigin(originPreset);
 }

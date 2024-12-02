@@ -50,8 +50,15 @@ void UITextGameObject::SetPosition(const sf::Vector2f& pos)
 
 void UITextGameObject::SetString(const std::string& string)
 {
-	textString = string;
+	textString = std::wstring(string.begin(), string.end());
 	text.setString(textString);
+	SetScale({ (float)textString.length() * (float)textSize * 0.5f , (float)textSize });
+}
+
+void UITextGameObject::SetString(const std::wstring& string)
+{
+	textString = string;
+	text.setString(string);
 	SetScale({ (float)textString.length() * (float)textSize * 0.5f , (float)textSize });
 }
 

@@ -8,6 +8,22 @@
 
 #include "Player.h"
 
+
+YggdrasilBody::YggdrasilBody(const std::string& name)
+	: AnimationGameObject(name)
+	, skillOn(false)
+{
+	rigidBody = new Rigidbody(this);
+	rigidBody->SetGround(false);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f(10.f, 10.f), sf::Vector2f(100.f, 100.f));
+
+	animator->LoadCsv("animators/yggdrasilBody.csv");
+}
+
+YggdrasilBody::~YggdrasilBody()
+{
+}
+
 void YggdrasilBody::Awake()
 {
 	AnimationGameObject::Awake();
@@ -85,18 +101,5 @@ PlayerSaveData YggdrasilBody::GetPlayerSaveData() const
 }
 
 void YggdrasilBody::LoadData(const PlayerSaveData& data)
-{
-}
-
-YggdrasilBody::YggdrasilBody(const std::string& name)
-	: AnimationGameObject(name)
-	, skillOn(false)
-{
-	rigidBody = new Rigidbody(this);
-	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f(10.f, 10.f), sf::Vector2f(100.f, 100.f));
-}
-
-YggdrasilBody::~YggdrasilBody()
 {
 }

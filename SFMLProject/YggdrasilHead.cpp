@@ -8,6 +8,22 @@
 
 #include "Player.h"
 
+YggdrasilHead::YggdrasilHead(const std::string& name)
+	: AnimationGameObject(name)
+{
+	rigidBody = new Rigidbody(this);
+	rigidBody->SetGround(false);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+
+	animator->LoadCsv("animators/yggdrasilHead.csv");
+
+}
+
+YggdrasilHead::~YggdrasilHead()
+{
+}
+
+
 void YggdrasilHead::Awake()
 {
 	AnimationGameObject::Awake();
@@ -16,6 +32,7 @@ void YggdrasilHead::Awake()
 void YggdrasilHead::Start()
 {
 	AnimationGameObject::Start();
+	animator->ChangeAnimation("yggdrasilPhase1Head", true);
 }
 
 void YggdrasilHead::Update(const float& deltaTime)
@@ -56,16 +73,4 @@ void YggdrasilHead::SetPlayer(Player* player)
 {
 	this->player = player;
 
-}
-
-YggdrasilHead::YggdrasilHead(const std::string& name)
-	: AnimationGameObject(name)
-{
-	rigidBody = new Rigidbody(this);
-	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
-}
-
-YggdrasilHead::~YggdrasilHead()
-{
 }

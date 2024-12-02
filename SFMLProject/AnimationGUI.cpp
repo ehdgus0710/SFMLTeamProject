@@ -76,4 +76,6 @@ void AnimationGUI::SetObject(GameObject* object)
 	}
 
 	animator = target->GetAnimator();
+
+    static int item_current_idx = 0;
 }

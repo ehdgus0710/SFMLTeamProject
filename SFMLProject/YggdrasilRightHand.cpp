@@ -8,6 +8,21 @@
 
 #include "Player.h"
 
+
+YggdrasilRightHand::YggdrasilRightHand(const std::string& name)
+	: AnimationGameObject(name)
+	, skillOn(false)
+{
+	rigidBody = new Rigidbody(this);
+	rigidBody->SetGround(false);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+	animator->LoadCsv("animators/yggdrasilHandRight.csv");
+}
+
+YggdrasilRightHand::~YggdrasilRightHand()
+{
+}
+
 void YggdrasilRightHand::Awake()
 {
 	AnimationGameObject::Awake();
@@ -17,11 +32,12 @@ void YggdrasilRightHand::Awake()
 void YggdrasilRightHand::Start()
 {
 	AnimationGameObject::Start();
+	animator->ChangeAnimation("phase1HandRightIdle", true);
 }
 
 void YggdrasilRightHand::Update(const float& deltaTime)
 {
-	rigidBody->Update(deltaTime);
+	animator->Update(deltaTime);
 }
 
 void YggdrasilRightHand::FixedUpdate(const float& deltaTime)
@@ -80,17 +96,4 @@ void YggdrasilRightHand::SetYggdrasil(Yggdrasil* yggdrasil)
 void YggdrasilRightHand::SetPlayer(Player* player)
 {
 	this->player = player;
-}
-
-YggdrasilRightHand::YggdrasilRightHand(const std::string& name)
-	: AnimationGameObject(name)
-	, skillOn(false)
-{
-	rigidBody = new Rigidbody(this);
-	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
-}
-
-YggdrasilRightHand::~YggdrasilRightHand()
-{
 }

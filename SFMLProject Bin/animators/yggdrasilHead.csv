@@ -1,4 +1,4 @@
 ANIMATIONCSVPATH,ANIMAIONID
 ,
-animations/Enemy/yggdrasil/phase1Head.csv,yggdrasilPhase1Head
-animations/Enemy/yggdrasil/phase2Head.csv,yggdrasilPhase2Head
+animations/Enemy/yggdrasil/Head/phase1Head.csv,yggdrasilPhase1Head
+animations/Enemy/yggdrasil/Head/phase2Head.csv,yggdrasilPhase2Head

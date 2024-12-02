@@ -12,6 +12,15 @@ protected:
 
 	float		moveDirectionX;
 	bool		skillOn;
+
+public:
+	void fire();
+	void SetPlayer(Player* player);
+	bool GetHeadSkillOn() { return skillOn; }
+	void SetHeadSkillOn(bool onoff) { skillOn = onoff; }
+
+	PlayerSaveData GetPlayerSaveData() const;
+	void LoadData(const PlayerSaveData& data);
 public:
 	void Awake() override;
 	void Start() override;
@@ -22,16 +31,6 @@ public:
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
 	void OnCollisionEnd(Collider* target) override;
-
-	void fire();
-
-	void SetPlayer(Player* player);
-
-	bool GetHeadSkillOn() { return skillOn; }
-	void SetHeadSkillOn(bool onoff) { skillOn = onoff; }
-
-	PlayerSaveData GetPlayerSaveData() const;
-	void LoadData(const PlayerSaveData& data);
 public:
 	YggdrasilBody(const std::string& name = "YggdrasilBody");
 	virtual ~YggdrasilBody();

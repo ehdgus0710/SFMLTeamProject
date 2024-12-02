@@ -188,3 +188,9 @@ enum class BossType
 	Reiana,
 	End
 };
+
+enum class SkullType
+{
+	Littlebone,
+	End
+};

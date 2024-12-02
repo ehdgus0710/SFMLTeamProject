@@ -10,9 +10,9 @@
 #include "Enemy.h"
 
 Head::Head(const std::string& name)
-	: AnimationGameObject(name)
+	: SpriteGameObject("SkulHead", name)
 	, isThrow(false)
-	, skill1OnTime(0.2f)
+	, skill1OnTime(0.5f)
 	, player(nullptr)
 	, moveDirectionX(0)
 	, currentTime(0.f)
@@ -20,7 +20,8 @@ Head::Head(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player, sf::Vector2f(10.f, 10.f), sf::Vector2f(1.5f, 1.5f));
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
+	scale = { 3.f, 3.f };
 }
 
 Head::~Head()
@@ -28,13 +29,19 @@ Head::~Head()
 }
 void Head::Awake()
 {
-	AnimationGameObject::Awake();
+	SpriteGameObject::Awake();
 }
 
 void Head::Start()
 {
-	AnimationGameObject::Start();
+	SpriteGameObject::Start();
 	
+}
+
+void Head::SetRotation(float angle)
+{
+	rotation = angle;
+	sprite.setRotation(rotation);
 }
 
 void Head::Update(const float& deltaTime)
@@ -46,7 +53,10 @@ void Head::Update(const float& deltaTime)
 		if (currentTime >= skill1OnTime)
 			EndThrow();
 		else
+		{
 			SetPosition(sf::Vector2f::Lerp(skill1StartPos, skillEndPos, currentTime / skill1OnTime));
+			SetRotation(Utils::Lerp(0.f, 360.f, currentTime / skill1OnTime));
+		}
 
 	}
 }
@@ -115,6 +125,14 @@ void Head::ThrowHead()
 
 	skill1StartPos = player->GetPosition();
 	skillEndPos = skill1StartPos + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 800.f;
+
+	if (player->IsFlipX() && scale.x > 0.f || !player->IsFlipX() && scale.x < 0.f)
+	{
+		scale.x = scale.x * -1.f;
+	}
+
+	SetScale(scale);
+
 	rigidBody->SetActive(false);
 	currentTime = 0.f;
 }

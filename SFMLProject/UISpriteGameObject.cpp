@@ -90,3 +90,11 @@ void UISpriteGameObject::SetOrigin(const sf::Vector2f& newOrigin)
 	origin = newOrigin;
 	sprite.setOrigin(origin);
 }
+
+void UISpriteGameObject::ChangeSprite(std::string changeTextureID)
+{
+	textureId = changeTextureID;
+	sprite.setTexture(ResourcesManager<sf::Texture>::GetInstance().Get(textureId), true);
+
+	SetOrigin(originPreset);
+}

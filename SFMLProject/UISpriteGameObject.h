@@ -14,6 +14,8 @@ public:
 
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
+
+	void ChangeSprite(std::string changeTextureID);
 public:
 	void Render(sf::RenderWindow& renderWindow) override;
 	void Start() override;

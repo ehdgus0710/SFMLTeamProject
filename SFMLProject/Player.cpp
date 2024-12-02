@@ -30,9 +30,10 @@ Player::Player(const std::string& name)
 	, currentSkill1CoolTime(0.f)
 	, currentSkill2CoolTime(0.f)
 	, skill1CoolTime(2.f)
-	, skill2CoolTime(2.f)
+	, skill2CoolTime(3.f)
 	, isSkll1CoolTime(false)
 	, isSkll2CoolTime(false)
+	, skullType(SkullType::Littlebone)
 	
 {	
 	rigidBody = new Rigidbody(this);
@@ -181,7 +182,6 @@ void Player::Start()
 	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
 	head->SetPlayer(this);
 	head->Awake();
-	head->GetCollider()->SetScale({ 50.f,50.f });
 	head->SetActive(false);
 }
 
@@ -217,13 +217,13 @@ void Player::Update(const float& deltaTime)
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
-		if(fsm.GetCurrentStateType() != PlayerStateType::Skill1 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
+		if(!isSkll1CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill1 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
 			fsm.ChangeState(PlayerStateType::Skill1);
 	}
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
 	{
-		if (fsm.GetCurrentStateType() != PlayerStateType::Skill2 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
+		if (!isSkll2CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill2 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
 			fsm.ChangeState(PlayerStateType::Skill2);
 	}
 

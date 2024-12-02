@@ -19,7 +19,7 @@ public:
 	virtual void AddState(T type);
 	virtual BaseState<T>* CreateState(T type) = 0;
 	virtual void ChangeState(T type);
-
+	bool FindStateType(T type);
 public:
 	virtual void Awake() {}
 	virtual void Start() {}
@@ -54,6 +54,18 @@ inline void FSMController<T>::ChangeState(T type)
 		currentStateType = type;
 		stateMap[currentStateType]->Enter();
 	}
+}
+
+template<typename T>
+inline bool FSMController<T>::FindStateType(T type)
+{
+	auto iter = stateMap.find(type);
+	if (iter != stateMap.end())
+	{
+		return true;
+	}
+
+	return false;
 }
 
 template<typename T>

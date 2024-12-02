@@ -10,13 +10,25 @@ class PlayerUIHub : public UISpriteGameObject
 {
 protected:
 	Player*					player;
-	UISpriteGameObject*		playerSmbolUI;
+	Player*					player2;
+	UISpriteGameObject*		playerSimbolUI;
+	UISpriteGameObject*		playerSkill2Frame;
+	UISpriteGameObject*		playerSkill1;
+	UISpriteGameObject*		playerSkill2;
+	UISpriteGameObject*		subSkullFrame;
+	UISpriteGameObject*		subSkullSpriteUI;
+
 	UITextGameObject*		hpText;
 	UITextGameObject*		maxHPText;
+	UITextGameObject*		hpSlashText;
 	HpBarUI*				playerHpBar;
+
 
 public:
 	void ChangeHP(float currentHp, float maxHp);
+	void ChangeSkull(Player* player);
+	void ChangeSkillSprite(SkullType type);
+	void AddSkull(Player* player);
 public:
 	void Awake() override;
 	void SetPosition(const sf::Vector2f& pos) override;

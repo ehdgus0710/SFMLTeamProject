@@ -1,12 +1,12 @@
 #pragma once
-#include "AnimationGameObject.h"
+#include "SpriteGameObject.h"
 #include "PlayerFSM.h"
 
 class Rigidbody;
 class Player;
 class HitBoxObject;
 
-class Head : public AnimationGameObject
+class Head : public SpriteGameObject
 {
 protected:
 	Player*			player;
@@ -31,6 +31,7 @@ public:
 public:
 	void Awake() override;
 	void Start() override;
+	void SetRotation(float angle) override;
 	void Update(const float& deltaTime) override;
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;

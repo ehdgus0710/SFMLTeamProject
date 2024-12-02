@@ -13,9 +13,10 @@ class Player : public AnimationGameObject
 protected:
 	Head*			head;
 	PlayerFSM		fsm;
+	DefaultStatus	currentStatus;
+	SkullType		skullType;
 
 	float			moveDirectionX;
-	DefaultStatus	currentStatus;
 
 	int				jumpCount;
 	int				currentJumpCount;
@@ -54,6 +55,7 @@ public:
 	const float& GetMoveDirection() { return moveDirectionX; }
 
 	PlayerFSM& GetFSM() { return fsm; }
+	SkullType GetSkullType() { return skullType; }
 public:
 	void OnSkill1CoolTime();
 	void OnSkill2CoolTime();

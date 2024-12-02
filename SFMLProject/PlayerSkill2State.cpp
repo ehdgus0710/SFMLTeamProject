@@ -4,6 +4,7 @@
 #include "Animator.h"
 #include "Animation.h"
 #include "Rigidbody.h"
+#include "Collider.h"
 
 PlayerSkill2State::PlayerSkill2State(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Skill2)
@@ -29,7 +30,7 @@ void PlayerSkill2State::Enter()
 	animation->SetAnimationStartEvent(std::bind(&PlayerSkill2State::OnEndAniamtion, this), animation->GetFrameCount() - 1);
 
 	player->GetRigidbody()->SetActive(false);
-	player->SetPosition(player->GetHeadPosition());
+	player->SetPosition(player->GetHeadPosition() + 23.5f * sf::Vector2f::up);
 	player->OnSkill2CoolTime();
 	player->OnGetHead();
 }

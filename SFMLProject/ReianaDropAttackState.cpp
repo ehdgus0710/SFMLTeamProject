@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "Animation.h"
 #include "HitBoxObject.h"
+#include "IntroLandSmoke.h"
 
 ReianaDropAttackState::ReianaDropAttackState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm, ReianaStateType::DropAttack)
@@ -31,9 +32,11 @@ void ReianaDropAttackState::Drop(float deltaTime)
 	currentDropTime += deltaTime;
 
 	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
-
 	if (currentDropTime > dropTime)
 	{
+		IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
+		introLandSmoke->Start();
+		introLandSmoke->SetPosition(reiana->GetPosition());
 		OnDestoryHitBox();
 		fsm->ChangeState(ReianaStateType::Idle);
 	}

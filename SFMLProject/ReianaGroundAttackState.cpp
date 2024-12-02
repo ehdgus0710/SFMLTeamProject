@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "Animation.h"
 #include "HitBoxObject.h"
+#include "MeteorGroundSmoke.h"
 
 ReianaGroundAttackState::ReianaGroundAttackState(ReianaFsm* fsm)
 	: ReianaBaseState(fsm, ReianaStateType::GroundAttack)
@@ -18,6 +19,17 @@ ReianaGroundAttackState::~ReianaGroundAttackState()
 
 void ReianaGroundAttackState::Attack(float deltaTime)
 {
+	if (!start)
+	{
+		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
+		meteorGroundSmoke->Start();
+		meteorGroundSmoke->SetPosition(reiana->GetPosition());
+		if (reiana->IsFlipX())
+		{
+			meteorGroundSmoke->OnFlipX();
+		}
+		start = true;
+	}
 	currentAttackTime += deltaTime;
 	endPosition = reiana->GetPosition();
 	startPosition = { 1700.f ,reiana->GetPosition().y };
@@ -72,7 +84,7 @@ void ReianaGroundAttackState::Enter()
 
 	if(!reiana->IsFlipX())
 		reiana->OnFlipX();
-
+	start = false;
 	currentAttackTime = 0.f;
 	currentWaitTime = 0.f;
 	action = false;

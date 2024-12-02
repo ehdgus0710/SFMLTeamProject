@@ -14,7 +14,6 @@ AroundDimention::AroundDimention(GameObject* owner, ColliderLayer thisLayerType,
 void AroundDimention::Start()
 {
 	AnimationHitBox::Start();
-	
 }
 
 void AroundDimention::Update(const float& deltaTime)

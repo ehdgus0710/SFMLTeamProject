@@ -58,7 +58,7 @@ public:
 	sf::Vector2f GetScale();
 
 	void SetOwnerScale(const sf::Vector2f& size);
-
+	sf::Vector2f GetOwnerScale() { return ownerScale; }
 	void SetRotation(float angle);
 	float GetRotation();
 

@@ -44,7 +44,7 @@ HitBoxObject::~HitBoxObject()
 
 void HitBoxObject::OwnerFollow()
 {
-	if (owner->GetScale().x == -1.f)
+	if (owner->GetScale().x < 0.f)
 		SetPosition(owner->GetPosition() - offsetPosition);
 	else
 		SetPosition(owner->GetPosition() + offsetPosition);

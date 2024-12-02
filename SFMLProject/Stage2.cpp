@@ -43,7 +43,7 @@ void Stage2::CollisitionCheck()
 
 void Stage2::LoadResources()
 {
-	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
+	ResourcesManager<sf::Font>::GetInstance().Load("Status", "fonts/Perfect DOS VGA 437.ttf", true);
 
 	// Yggdrasil
 	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
@@ -74,6 +74,8 @@ void Stage2::LoadResources()
 	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
 	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
+	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
+	
 }
 
 void Stage2::Init()

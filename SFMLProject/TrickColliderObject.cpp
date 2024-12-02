@@ -58,8 +58,6 @@ void TrickColliderObject::OnCollisionStay(Collider* target)
 	if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
 		Player* player = (Player*)target->GetOwner();
-		if(!player->IsHit())
-			player->TakeDamage();
 	}
 }
 

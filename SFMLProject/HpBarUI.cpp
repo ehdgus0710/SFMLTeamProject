@@ -1,18 +1,31 @@
 #include "stdafx.h"
 #include "HpBarUI.h"
 
-HpBarUI::HpBarUI(const std::string& texId, const sf::Color& color,const std::string& name)
+HpBarUI::HpBarUI(const std::string& texId,const std::string& name)
 	: UIRectangleShapeObject(texId, name)
-	, hpColor(color)
+	, ownerStatus(nullptr)
 {
 }
 
 void HpBarUI::Start()
 {
-	rectangleShape.setFillColor(hpColor);
+	UIRectangleShapeObject::Start();
+}
 
-	SetScale(scale);
-	SetPosition(position);
-	SetRotation(rotation);
-	SetOrigin(originPreset);
+void HpBarUI::Update(const float& deltaTime)
+{
+}
+
+void HpBarUI::SetMaxHpBarSize(const sf::Vector2f& maxSize)
+{
+	this->maxSize = maxSize;
+	currentSize = maxSize;
+	SetScale(currentSize);
+}
+
+void HpBarUI::ChangeHP(float currentHP, float maxHp)
+{
+	float hp =  currentHP / maxHp;
+	currentSize.x = maxSize.x * hp;
+	SetScale(currentSize);
 }

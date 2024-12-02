@@ -49,8 +49,9 @@ void ColliderGUI::Update()
 	ImGui::Text("Scale   "); ImGui::SameLine();
 	if (ImGui::InputFloat2("##Scale", scaleArr))
 	{
-		colliderScale.x = scaleArr[0];
-		colliderScale.y = scaleArr[1];
+		colliderScale.x = scaleArr[0] / collider->GetOwnerScale().x;
+		colliderScale.y = scaleArr[1] / collider->GetOwnerScale().y;
+
 		collider->SetScale(colliderScale);
 	}
 

@@ -32,6 +32,9 @@ struct DefaultStatus
 	{}
 	DefaultStatus(float hp, float speed, float jumpPower, float maxJumpPower)
 		: hp(hp), maxHp(hp), speed(speed), jumpPower(jumpPower), maxJumpPower(maxJumpPower) {}
+
+	float GetMaxHp() const { return maxHp; }
+	float GetCurrentHp() const { return hp; }
 };
 
 struct DefaultStatusSaveData

@@ -16,9 +16,7 @@ Player::Player(const std::string& name)
 	: AnimationGameObject(name)
 	, fsm(this)
 	, isJump(false)
-	, currentStatus(2, 500.f, 200.f, 350.f)
-	, hitTime(2.f)
-	, currentHitTime(0.f)
+	, currentStatus(150.f, 500.f, 200.f, 350.f)
 	, reloadTime(0.2f)
 	, currentReloadTime(0.f)
 	, isReload(false)
@@ -43,36 +41,31 @@ Player::Player(const std::string& name)
 
 	animator->LoadCsv("animators/littlebone.csv");
 	animator->LoadCsv("animators/noheadlittlebone.csv");
+
+	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
 }
 
 Player::~Player()
 {
 }
-void Player::TakeDamage()
+
+void Player::TakeDamage(float damage)
 {
+	currentStatus.hp -= damage;
 
-	if (isHit)
-		return;
-
-	--currentStatus.hp;
-	isHit = true;
-
-	if (currentStatus.hp == 0)
+	if (currentStatus.hp <= 0.f)
 	{
+		currentStatus.hp = 0.f;
 		isDead = true;
 		fsm.ChangeState(PlayerStateType::Dead);
-		return;
 	}
 	else
 	{
 		fsm.ChangeState(PlayerStateType::Hit);
 	}
 
-	currentHitTime = hitTime;
-}
-
-void Player::TakeDamage(float damage)
-{
+	if (changeHpAction)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void Player::AddItem(ItemType itemType)
@@ -150,6 +143,23 @@ sf::Vector2f Player::GetHeadPosition()
 {
 	return head->GetPosition();
 }
+void Player::AddHp(float hp)
+{
+	currentStatus.hp += hp;
+
+	if (currentStatus.hp > currentStatus.maxHp)
+		currentStatus.hp = currentStatus.maxHp;
+
+	if (changeHpAction)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
+}
+void Player::SetMaxHp(float maxHp)
+{
+	currentStatus.maxHp = maxHp;
+
+	if (changeHpAction)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
+}
 void Player::Awake()
 {
 	AnimationGameObject::Awake();
@@ -164,6 +174,10 @@ void Player::Start()
 	fsm.Start();
 	animator->ChangeAnimation("noheadlittleboneIdle", true);
 
+	SetScale({ 3.f,3.f });
+	collider->SetScale({ 16.f,32.f });
+	collider->SetOffsetPosition({ 0.f, -5.f });
+
 	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
 	head->SetPlayer(this);
 	head->Awake();
@@ -175,18 +189,6 @@ void Player::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-
-	if (isHit)
-	{
-		currentHitTime -= deltaTime;
-
-		if (currentHitTime <= 0.f)
-		{
-			isHit = false;
-			currentHitTime = 0.f;
-		}
-	}
-
 	if (currentDashCount <= 0)
 	{
 		currentDashDelayTime += deltaTime;
@@ -227,6 +229,11 @@ void Player::Update(const float& deltaTime)
 
 	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && fsm.GetCurrentStateType() != PlayerStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
+	{
+		TakeDamage(10);
+	}
 }
 
 void Player::FixedUpdate(const float& deltaTime)

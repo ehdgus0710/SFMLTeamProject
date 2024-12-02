@@ -18,6 +18,13 @@ PlayerUIHub::PlayerUIHub(const std::string& texId, const std::string& name)
 {
 }
 
+void PlayerUIHub::ChangeHP(float currentHp, float maxHp)
+{
+	hpText->SetString(std::to_string((int)currentHp));
+	maxHPText->SetString(std::to_string((int)maxHp));
+	playerHpBar->ChangeHP(currentHp, maxHp);
+}
+
 void PlayerUIHub::Awake()
 {
 	UISpriteGameObject::Awake();
@@ -44,8 +51,8 @@ void PlayerUIHub::Start()
 	playerSmbolUI->SetPosition({ 100.f, 925.f });
 	playerSmbolUI->SetScale({ 2.5f,2.5f });
 
-	hpText = scene->AddGameObject(new UITextGameObject("DungGeunMo", "hpText", 30), LayerType::UI);
-	maxHPText = scene->AddGameObject(new UITextGameObject("DungGeunMo", "maxHpText", 30), LayerType::UI);
+	hpText = scene->AddGameObject(new UITextGameObject("Status", "hpText", 30), LayerType::UI);
+	maxHPText = scene->AddGameObject(new UITextGameObject("Status", "maxHpText", 30), LayerType::UI);
 
 	maxHPText->SetString(std::to_string((int)player->GetCurrentHP()));
 	hpText->SetString(std::to_string((int)player->GetCurrentHP()));
@@ -53,13 +60,16 @@ void PlayerUIHub::Start()
 	hpText->SetPosition({ 300.f, 1005.f });
 	maxHPText->SetPosition({ 450.f, 1005.f });
 
-	playerHpBar = scene->AddGameObject(new HpBarUI("", sf::Color::Red, "PlayerHPBar"), LayerType::UI);
+	playerHpBar = scene->AddGameObject(new HpBarUI("PlayerHealthBar", "PlayerHPBar"), LayerType::UI);
 	playerHpBar->SetOrigin(Origins::MiddleLeft);
-	playerHpBar->SetPosition({ 160.f, 1015.f });
-	playerHpBar->SetScale({ 400.f,30.f });
+	playerHpBar->SetPosition({ 155.f, 1015.f });
+	playerHpBar->SetMaxHpBarSize({ 405.f,30.f });
+	playerHpBar->SetOwnerStatus(player->GetCurrentStatus());
 	playerHpBar->sortingOrder = 10;
 	hpText->sortingOrder = 9;
 	maxHPText->sortingOrder = 9;
+
+	player->SetChangeHpAction(std::bind(&PlayerUIHub::ChangeHP, this, std::placeholders::_1, std::placeholders::_2));
 
 }
 

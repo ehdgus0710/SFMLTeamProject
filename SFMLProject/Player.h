@@ -24,8 +24,6 @@ protected:
 
 	float			dashDelayTime;
 	float			currentDashDelayTime;
-	float			hitTime;
-	float			currentHitTime;
 	float			reloadTime;
 	float			currentReloadTime;
 
@@ -36,13 +34,14 @@ protected:
 	bool			isSkll1CoolTime;
 	bool			isSkll2CoolTime;
 	bool			isJump;
-	bool			isHit;
+
 	bool			isDead;
 	bool			isReload;
 	bool			isAttack;
 	bool			isNoneHead;
+
+	std::function<void(float, float)> changeHpAction;
 public:
-	void TakeDamage();
 	void TakeDamage(float damage);
 	void AddItem(ItemType itemType);
 	void Attack();
@@ -62,7 +61,6 @@ public:
 	void OnNoneHead() { isNoneHead = true; }
 	bool IsNoneHead() { return isNoneHead; }
 
-	bool IsHit() const { return isHit; }
 	void SetIsJump(bool jump) { isJump = jump; }
 
 	bool IsJump() const { return isJump; }
@@ -79,7 +77,11 @@ public:
 	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }
 
-	void SetHp(float hp) { currentStatus.hp = hp; }
+	void AddHp(float hp);
+	void SetMaxHp(float hp);
+
+	const DefaultStatus& GetCurrentStatus() { return currentStatus; }
+	void SetChangeHpAction(std::function<void(float, float)> action) { changeHpAction = action; }
 public:
 	void Awake() override;
 	void Start() override;

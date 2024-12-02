@@ -702,6 +702,12 @@
     <ClCompile Include="UIRectangleShapeObject.cpp">
       <Filter>Core\7. Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="MeteorGroundSmoke.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroLandSmoke.cpp">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1186,6 +1192,12 @@
     </ClInclude>
     <ClInclude Include="UIRectangleShapeObject.h">
       <Filter>Core\7. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteorGroundSmoke.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroLandSmoke.h">
+      <Filter>Contants\Object\Reiana\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

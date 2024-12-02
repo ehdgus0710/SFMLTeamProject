@@ -21,7 +21,6 @@ void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 
 void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 {
-	yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
 	currentAttackTime += deltaTime;
 	lStartPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
@@ -90,6 +89,9 @@ void YggdrasilSweepAttackState::Start()
 void YggdrasilSweepAttackState::Enter()
 {
 	YggdrasilBaseState::Enter();
+
+	yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
+	yggdrasil->SetAnimeRightHand("phase1HandRightSweep", false);
 
 	currentAttackCount = 0;
 	attackCount = 0;

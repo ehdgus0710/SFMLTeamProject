@@ -1,5 +1,5 @@
 TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
 YggdrasilLeftHand,phase1HandLeftSweep,0,,,,,
 ,,,,,,,
-,200,200,0,600,200,200,0.1
-,200,200,200,600,200,200,0.1
+,200,200,0,400,200,200,0.15
+,200,200,200,400,200,200,0.15

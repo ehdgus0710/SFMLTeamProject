@@ -11,11 +11,70 @@ void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector
 {
 	shootTime += deltaTime;
 	yggdrasil->SetEnergyBallBigPos(pos + dir * speed * deltaTime);
+	for (int i = 0; i < 7; ++i)
+	{
+		if (i == 0)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { 1, -1 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 1)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { 1, 0 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 2)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { 1, 1 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 3)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { 0, 1 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 4)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { -1, 1 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 5)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { -1, 0 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 6)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { -1, -1 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+		if (i == 7)
+		{
+			pos = yggdrasil->GetEnergyBallSmallPos(i);
+			dir = { 0, -1 };
+			yggdrasil->SetEnergyBallSmallPos(pos + dir * speed * deltaTime, i);
+		}
+	}
 	if (shootTime > shootDelay)
 	{
 		++attackCount;
 		isShoot = false;
 		shootTime = 0.f;
+	}
+}
+
+void YggdrasilEnergyBallAttackState::SetEnergySmallBallPos()
+{
+	for (int i = 0; i < 7; ++i)
+	{
+		yggdrasil->SetEnergyBallSmallPos(startPos, i);
 	}
 }
 
@@ -32,6 +91,9 @@ void YggdrasilEnergyBallAttackState::Start()
 void YggdrasilEnergyBallAttackState::Enter()
 {
 	YggdrasilBaseState::Enter();
+	yggdrasil->SetAnimeEnergyBallBig("EnergyBomb", true);
+	yggdrasil->SetAnimeEnergyBallSmall("EnergyBomb", true);
+
 
 	isShoot = false;
 
@@ -42,7 +104,7 @@ void YggdrasilEnergyBallAttackState::Enter()
 	shootTime = 0.f;
 	shootDelay = 2.f;
 
-	startPos = yggdrasil->GetHeadPos();
+	startPos = { yggdrasil->GetEnergyBallBigPos().x,yggdrasil->GetEnergyBallBigPos().y - 50.f };
 }
 
 void YggdrasilEnergyBallAttackState::Exit()
@@ -58,6 +120,7 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 		if (!isShoot)
 		{
 			yggdrasil->SetEnergyBallBigPos(startPos);
+			SetEnergySmallBallPos();
 			currentFirstAttack += deltaTime;
 			if (currentFirstAttack > firstAttackDelay)
 			{
@@ -78,6 +141,7 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 	else
 	{
 		yggdrasil->SetEnergyBallBigPos(startPos);
+		SetEnergySmallBallPos();
 		fsm->ChangeState(YggdrasilStateType::Idle);
 	}
 }

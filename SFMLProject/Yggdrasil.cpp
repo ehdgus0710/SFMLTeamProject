@@ -15,6 +15,7 @@
 #include "YggdrasilLeftHand.h"
 #include "YggdrasilRightHand.h"
 #include "YggdrasilEnergyBallBig.h"
+#include "YggdrasilEnergyBallSmall.h"
 #include "Player.h"
 
 
@@ -42,7 +43,7 @@ void Yggdrasil::Awake()
 void Yggdrasil::Start()
 {
 	AnimationGameObject::Start();
-	
+
 	animator->ChangeAnimation("phase1Head", true);
 
 
@@ -78,12 +79,24 @@ void Yggdrasil::Start()
 	yggdrasilRightHand->GetCollider()->SetScale({ 200.f,200.f });
 	yggdrasilRightHand->GetRigidbody()->SetActive(false);
 
-	yggdrasilEnergyBallBig = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig("YggdrasilEnergyBallBig"), LayerType::Boss);
+	yggdrasilEnergyBallBig = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig("YggdrasilEnergyBallBig"), LayerType::EnemyBullet);
 	yggdrasilEnergyBallBig->SetYggdrasil(this);
-	yggdrasilEnergyBallBig->SetPosition(yggdrasilHead->GetPosition());
+	yggdrasilEnergyBallBig->SetPosition({ yggdrasilMouth->GetPosition().x, yggdrasilMouth->GetPosition().y - 50.f });
+	yggdrasilEnergyBallBig->SetScale({ 2.5f, 2.5f });
 	yggdrasilEnergyBallBig->Awake();
 	yggdrasilEnergyBallBig->GetCollider()->SetScale({ 150.f,150.f });
 	yggdrasilEnergyBallBig->GetRigidbody()->SetActive(false);
+
+	for (int i = 0; i < 7; ++i)
+	{
+		yggdrasilEnergyBallSmall[i] = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallSmall("YggdrasilEnergyBallSmall"), LayerType::EnemyBullet);
+		yggdrasilEnergyBallSmall[i]->SetYggdrasil(this);
+		yggdrasilEnergyBallSmall[i]->SetPosition({ yggdrasilMouth->GetPosition().x, yggdrasilMouth->GetPosition().y - 50.f });
+		yggdrasilEnergyBallSmall[i]->SetScale({ 0.5f, 0.5f });
+		yggdrasilEnergyBallSmall[i]->Awake();
+		yggdrasilEnergyBallSmall[i]->GetCollider()->SetScale({ 50.f,50.f });
+		yggdrasilEnergyBallSmall[i]->GetRigidbody()->SetActive(false);
+	}
 
 	attackTime = 0;
 	attackDelay = 3.f;
@@ -125,6 +138,11 @@ sf::Vector2f Yggdrasil::GetEnergyBallBigPos()
 	return sf::Vector2f(yggdrasilEnergyBallBig->GetPosition());
 }
 
+sf::Vector2f Yggdrasil::GetEnergyBallSmallPos(int i)
+{
+	return sf::Vector2f(yggdrasilEnergyBallSmall[i]->GetPosition());
+}
+
 sf::Vector2f Yggdrasil::GetHeadPos()
 {
 	return sf::Vector2f(yggdrasilHead->GetPosition());
@@ -150,7 +168,20 @@ void Yggdrasil::TakeDamage(float damage)
 
 void Yggdrasil::OnDead()
 {
-	 //fsm.ChangeState(YggdrasilStateType::Dead);
+	//fsm.ChangeState(YggdrasilStateType::Dead);
+}
+
+void Yggdrasil::SetAnimeEnergyBallBig(std::string name, bool loop)
+{
+	yggdrasilEnergyBallBig->SetAniEnergyBallBig(name, loop);
+}
+
+void Yggdrasil::SetAnimeEnergyBallSmall(std::string name, bool loop)
+{
+	for (int i = 0; i < 7; ++i)
+	{
+		yggdrasilEnergyBallSmall[i]->SetAniEnergyBallSmall(name, loop);
+	}
 }
 
 void Yggdrasil::SetAnimeLeftHand(std::string name, bool loop)
@@ -166,6 +197,11 @@ void Yggdrasil::SetAnimeRightHand(std::string name, bool loop)
 void Yggdrasil::SetEnergyBallBigPos(sf::Vector2f pos)
 {
 	yggdrasilEnergyBallBig->SetPosition(pos);
+}
+
+void Yggdrasil::SetEnergyBallSmallPos(sf::Vector2f pos, int i)
+{
+	yggdrasilEnergyBallSmall[i]->SetPosition(pos);
 }
 
 void Yggdrasil::SetHeadPos(sf::Vector2f pos)

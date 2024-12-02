@@ -13,7 +13,11 @@ YggdrasilEnergyBallBig::YggdrasilEnergyBallBig(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::EnemyBullet, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
+
+	Animation* animation = new Animation("animations/Enemy/yggdrasil/Effects/EnergyBomb.csv");
+	animator->AddAnimation(animation, "EnergyBomb");
+	animator->ChangeAnimation("EnergyBomb", true);
 }
 
 
@@ -34,6 +38,7 @@ void YggdrasilEnergyBallBig::Start()
 
 void YggdrasilEnergyBallBig::Update(const float& deltaTime)
 {
+	animator->Update(deltaTime);
 }
 
 void YggdrasilEnergyBallBig::FixedUpdate(const float& deltaTime)
@@ -85,7 +90,12 @@ void YggdrasilEnergyBallBig::fire()
 {
 }
 
-void YggdrasilEnergyBallBig::SetYggdrasil(Yggdrasil* player)
+void YggdrasilEnergyBallBig::SetAniEnergyBallBig(std::string name, bool loop)
+{
+	animator->ChangeAnimation(name, loop);
+}
+
+void YggdrasilEnergyBallBig::SetYggdrasil(Yggdrasil* yggdrasil)
 {
 }
 

@@ -60,6 +60,7 @@ void UITextGameObject::SetString(const std::wstring& string)
 	textString = string;
 	text.setString(string);
 	SetScale({ (float)textString.length() * (float)textSize * 0.5f , (float)textSize });
+	SetOrigin(originPreset);
 }
 
 void UITextGameObject::Update(const float& deltaTime)

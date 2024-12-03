@@ -3,7 +3,7 @@
 
 #include "GameInclude.h"
 #include "Animation.h"
-
+#include "ReianaUIHub.h"
 Stage3::Stage3()
 	: Scene(SceneIds::Stage3)
 {
@@ -38,6 +38,7 @@ void Stage3::LoadResources()
 
 	// Rayanna
 	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
+	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
 
 	// Rayanna Effects
 	TEXTURE_MANAGER.Load("AwakenedThunder", "graphics/boss/Rayanna/effects/AwakenedThunder.png");
@@ -56,6 +57,17 @@ void Stage3::LoadResources()
 	TEXTURE_MANAGER.Load("Stage3TileMap", "graphics/TileMap/3_Tile03.png");
 	TEXTURE_MANAGER.Load("Background1", "graphics/boss/Rayanna/backgrounds/Background1.png");
 	TEXTURE_MANAGER.Load("Background2", "graphics/boss/Rayanna/backgrounds/Background2.png");
+
+
+	TEXTURE_MANAGER.Load("BossHealthBarFirstPhase", "graphics/UI/BossUI/BossHealthBar_FirstPhase.png");
+	TEXTURE_MANAGER.Load("BossHealthBarSecondPhase", "graphics/UI/BossUI/BossHealthBar_SecondPhase.png");
+
+	TEXTURE_MANAGER.Load("Ch2BossFirstPhaseTopBack", "graphics/boss/Rayanna/UI/Ch2BossFirstPhase_Top_Back.png");
+	TEXTURE_MANAGER.Load("Ch2BossFirstPhaseFront", "graphics/boss/Rayanna/UI/Ch2BossFirstPhase_Front.png");
+	TEXTURE_MANAGER.Load("Ch2BossFirstPhaseBottomBack", "graphics/boss/Rayanna/UI/Ch2BossFirstPhase_Bottom_Back.png");
+	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseTopBack", "graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Top_Back.png");
+	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseFront",		"graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Front.png");
+	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseBottomBack", "graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Bottom_Back.png");
 }
 
 void Stage3::Init()
@@ -108,6 +120,9 @@ void Stage3::Enter()
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
+
+	
+	ReianaUIHub* reianaUIHub = AddGameObject(new ReianaUIHub("ReianaUIHub"), LayerType::InGameUI);
 
 	/*AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
 	testPlayer->Awake();

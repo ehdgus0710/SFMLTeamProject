@@ -11,12 +11,11 @@ class ReianaUIHub : public UISpriteGameObject
 private:
 	UISpriteGameObject* topBackSprite;
 	UISpriteGameObject* bottomBackSprite;
-	UISpriteGameObject* hpBarSprite;
-	HpBarUI* reianaABar;
-	HpBarUI* reianaBBar;
-	UITextGameObject* nameText;
-	UITextGameObject* tribeText;
-	Yggdrasil* yggdrasil;
+	UISpriteGameObject* frontHpBarSprite;
+	HpBarUI*			reianaAHPBar;
+	HpBarUI*			reianaBHPBar;
+	UITextGameObject*	nameText;
+	UITextGameObject*	tribeText;
 
 public:
 	void ChangeHP(float currentHp, float maxHp);
@@ -24,7 +23,6 @@ public:
 public:
 	void SetPosition(const sf::Vector2f& pos) override;
 	void Start() override;
-
 public:
 	ReianaUIHub(const std::string& texId, const std::string& name = "ReianaUIHub");
 	virtual ~ReianaUIHub() = default;

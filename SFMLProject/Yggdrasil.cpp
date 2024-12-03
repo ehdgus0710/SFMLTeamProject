@@ -55,32 +55,38 @@ void Yggdrasil::Start()
 	yggdrasilHead->SetYggdrasil(this);
 	yggdrasilHead->SetPosition({ GetPosition().x, GetPosition().y - 150.f });
 	yggdrasilHead->Awake();
-	yggdrasilHead->GetCollider()->SetScale({ 200.f,200.f });
+	yggdrasilHead->GetCollider()->SetScale({ 150.f,150.f });
 	yggdrasilHead->GetRigidbody()->SetActive(false);
 
 	yggdrasilMouth = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilMouth("yggdrasilMouth"), LayerType::Boss);
 	yggdrasilMouth->SetYggdrasil(this);
 	yggdrasilMouth->SetPosition({ yggdrasilHead->GetPosition().x + 50.f, yggdrasilHead->GetPosition().y + 300.f });
 	yggdrasilMouth->Awake();
-	yggdrasilMouth->GetCollider()->SetScale({ 200.f,200.f });
+	yggdrasilMouth->GetCollider()->SetScale({ 100.f,100.f });
 	yggdrasilMouth->GetRigidbody()->SetActive(false);
 
 	yggdrasilLeftHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilLeftHand("yggdrasilLeftHand"), LayerType::Boss);
 	yggdrasilLeftHand->SetYggdrasil(this);
-	yggdrasilLeftHand->SetPosition({ GetPosition().x + 700.f, GetPosition().y + 300.f });
+	yggdrasilLeftHand->SetPosition({ GetPosition().x + 700.f, GetPosition().y + 250.f });
 	yggdrasilLeftHand->Awake();
-	yggdrasilLeftHand->GetCollider()->SetScale({ 200.f,200.f });
+	yggdrasilLeftHand->GetCollider()->SetScale({ 150.f,150.f });
 	yggdrasilLeftHand->GetRigidbody()->SetActive(false);
 
 	yggdrasilRightHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilRightHand("YggdrasilRightHand"), LayerType::Boss);
 	yggdrasilRightHand->SetYggdrasil(this);
-	yggdrasilRightHand->SetPosition({ GetPosition().x - 700.f, GetPosition().y + 300.f });
+	yggdrasilRightHand->SetPosition({ GetPosition().x - 700.f, GetPosition().y + 250.f });
 	yggdrasilRightHand->Awake();
-	yggdrasilRightHand->GetCollider()->SetScale({ 200.f,200.f });
+	yggdrasilRightHand->GetCollider()->SetScale({ 150.f,150.f });
 	yggdrasilRightHand->GetRigidbody()->SetActive(false);
 
 	attackTime = 0;
 	attackDelay = 3.f;
+
+	phase1Hp = 100;
+	phase2Hp = 100;
+
+	phaseUp = false;
+
 
 	player = static_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 
@@ -90,10 +96,10 @@ void Yggdrasil::Start()
 void Yggdrasil::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
-	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
-	//{
-	//	fsm.ChangeState(YggdrasilStateType::FistAttack);
-	//}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	{
+		phaseUp = !phaseUp;
+	}
 	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
 	//{
 	//	fsm.ChangeState(YggdrasilStateType::SweepAttack);

@@ -6,6 +6,9 @@
 #include "GameManager.h"
 #include "Yggdrasil.h"
 #include "Player.h"
+#include "HitBoxObject.h"
+#include "YggdrasilLeftHand.h"
+#include "YggdrasilRightHand.h"
 
 void YggdrasilFistAttackState::ReadyFist(float deltaTime)
 {
@@ -30,14 +33,23 @@ void YggdrasilFistAttackState::ReadyFist(float deltaTime)
 
 void YggdrasilFistAttackState::StartAttack(float deltaTime)
 {
+
 	switchFistDelay = 0.f;
 	if (!switchFist)
 	{
+		for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
+		{
+			attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+			attackBox->SetScale({ 400.f,400.f });
+			attackBox->SetDamage(10);
+		}
+		attackBox->SetPosition(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
 		currentAttackTime += deltaTime;
 		yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
 
 		if (currentAttackTime >= attackTime)
 		{
+			hitBoxOn = false;
 			currentAttackTime = 0.f;
 			currentAttackDelay = 0.f;
 			isWait = true;
@@ -45,11 +57,19 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 	}
 	else
 	{
+		for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
+		{
+			attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilRightHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+			attackBox->SetScale({ 400.f,400.f });
+			attackBox->SetDamage(10);
+		}
+		attackBox->SetPosition(sf::Vector2f::Lerp({ startPos.x - 100.f,startPos.y }, endPos, currentAttackTime / attackTime));
 		currentAttackTime += deltaTime;
 		yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
 
 		if (currentAttackTime >= attackTime)
 		{
+			hitBoxOn = false;
 			currentAttackTime = 0.f;
 			currentAttackDelay = 0.f;
 			isWait = true;
@@ -62,8 +82,9 @@ void YggdrasilFistAttackState::EndAttackWait(float deltaTime)
 	currentAttackDelay += deltaTime;
 
 
-	if (currentAttackDelay >= 0.5f)
+	if (currentAttackDelay >= 1.f)
 	{
+		attackBox->OnDestory();
 		currentAttackDelay = 0.f;
 		isRecovery = true;
 		isWait = false;
@@ -146,6 +167,7 @@ void YggdrasilFistAttackState::Enter()
 	isWait = false;
 	switchFist = false;
 	onAttack = true;
+	hitBoxOn = false;
 
 	currentAttackDelay = 0.f;
 	currentAttackTime = 0.f;
@@ -159,7 +181,7 @@ void YggdrasilFistAttackState::Enter()
 	recoveryTime = 0.7f;
 	switchFistTime = 2.8f;
 
-	endPos = { player->GetPosition().x, 0.f };
+	endPos = { player->GetPosition().x, -100.f };
 	firstLeftPos = yggdrasil->GetLeftFistPos();
 	firstRightPos = yggdrasil->GetRightFistPos();
 }

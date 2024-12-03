@@ -2,8 +2,12 @@
 
 #include "YggdrasilBaseState.h"
 
+class HitBoxObject;
+
 class YggdrasilSweepAttackState : public YggdrasilBaseState
 {
+	HitBoxObject*	attackBox;
+
 	sf::Vector2f	lFirstPos;
 	sf::Vector2f	rFirstPos;
 
@@ -34,6 +38,7 @@ class YggdrasilSweepAttackState : public YggdrasilBaseState
 	bool		switchFist;
 
 	bool		isAttackWait;
+	bool		hitBoxOn;
 
 private:
 	void ReadyAttack(float deltaTime);

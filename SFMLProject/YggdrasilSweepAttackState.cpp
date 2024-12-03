@@ -6,6 +6,9 @@
 #include "GameManager.h"
 #include "Yggdrasil.h"
 #include "Player.h"
+#include "HitBoxObject.h"
+#include "YggdrasilLeftHand.h"
+#include "YggdrasilRightHand.h"
 
 void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 {
@@ -21,13 +24,23 @@ void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 
 void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 {
+	
 	currentAttackTime += deltaTime;
 	lStartPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
+	for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
+	{
+		attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+		attackBox->SetScale({ 400.f,400.f });
+		attackBox->SetDamage(10);
+	}
+	attackBox->SetPosition(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 
 	if (currentAttackTime >= readyFistTime)
 	{
+		attackBox->OnDestory();
+		hitBoxOn = false;
 		switchFist = true;
 		++attackCount;
 		currentAttackTime = 0.f;
@@ -39,10 +52,19 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	currentAttackTime += deltaTime;
 	rStartPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	rEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
+	for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
+	{
+		attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilRightHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+		attackBox->SetScale({ 400.f,400.f });
+		attackBox->SetDamage(10);
+	}
+	attackBox->SetPosition(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 
 	if (currentAttackTime >= readyFistTime)
 	{
+		attackBox->OnDestory();
+		hitBoxOn = false;
 		switchFist = true;
 		++attackCount;
 		currentAttackTime = 0.f;

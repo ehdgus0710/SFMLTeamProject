@@ -3,11 +3,12 @@
 
 class Player;
 class yggdrasil;
+class HitBoxObject;
 
 class YggdrasilFistAttackState : public YggdrasilBaseState
 {
 protected:
-
+	HitBoxObject*	attackBox;
 	sf::Vector2f	startPos;
 	sf::Vector2f	endPos;
 	sf::Vector2f	firstLeftPos;
@@ -34,6 +35,8 @@ protected:
 	bool		onAttack;
 	bool		switchFist;
 	bool		readyFist;
+
+	bool		hitBoxOn;
 
 private:
 	void ReadyFist(float deltaTime);

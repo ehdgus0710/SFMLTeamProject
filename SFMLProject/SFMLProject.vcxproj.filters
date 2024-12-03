@@ -244,9 +244,6 @@
     <Filter Include="Contants\UI\HP">
       <UniqueIdentifier>{e04963de-c073-4c3c-b3af-b2774ec6cfcb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\UI\Boss">
-      <UniqueIdentifier>{34520d84-64fb-492d-b690-ef4b7337f422}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -711,6 +708,9 @@
     <ClCompile Include="YggdrasilEnergyBallBig.cpp">
       <Filter>Contants\Object\Yggdrasil</Filter>
     </ClCompile>
+    <ClCompile Include="ReianaUIHub.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="YggdrasilEnergyBallSmall.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -718,10 +718,10 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="YggdrasilUIHub.cpp">
-      <Filter>Contants\UI\Boss</Filter>
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaUIHub.cpp">
-      <Filter>Contants\UI\Boss</Filter>
+    <ClCompile Include="YggdrasilSpecialAttackState.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1214,6 +1214,9 @@
     <ClInclude Include="YggdrasilEnergyBallBig.h">
       <Filter>Contants\Object\Yggdrasil</Filter>
     </ClInclude>
+    <ClInclude Include="ReianaUIHub.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="YggdrasilEnergyBallSmall.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -1221,10 +1224,10 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="YggdrasilUIHub.h">
-      <Filter>Contants\UI\Boss</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaUIHub.h">
-      <Filter>Contants\UI\Boss</Filter>
+    <ClInclude Include="YggdrasilSpecialAttackState.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

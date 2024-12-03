@@ -47,6 +47,9 @@ void YggdrasilFSM::CreateAllState()
 		case YggdrasilStateType::EnergyBallAttack:
 			AddState(YggdrasilStateType::EnergyBallAttack);
 			break;
+		case YggdrasilStateType::YggdrasilSpecialAttack:
+			AddState(YggdrasilStateType::EnergyBallAttack);
+			break;
 		case YggdrasilStateType::Dead:
 			AddState(YggdrasilStateType::Dead);
 			break;
@@ -74,6 +77,9 @@ BaseState<YggdrasilStateType>* YggdrasilFSM::CreateState(YggdrasilStateType type
 		state = new YggdrasilSweepAttackState(this);
 		break;
 	case YggdrasilStateType::EnergyBallAttack:
+		state = new YggdrasilEnergyBallAttackState(this);
+		break;
+	case YggdrasilStateType::YggdrasilSpecialAttack:
 		state = new YggdrasilEnergyBallAttackState(this);
 		break;
 	case YggdrasilStateType::Dead:

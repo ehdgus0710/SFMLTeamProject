@@ -132,6 +132,7 @@ enum class YggdrasilStateType
 	FistAttack,
 	SweepAttack,
 	EnergyBallAttack,
+	YggdrasilSpecialAttack,
 	Dead,
 
 	End

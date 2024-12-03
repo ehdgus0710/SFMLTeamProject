@@ -53,22 +53,26 @@ void YggdrasilIdleState::Update(float deltaTime)
 		changeOn = true;
 	}
 	
-	if (attackTime > attackDelay)
+	//if (attackTime > attackDelay)
+	//{
+	//	choiceAttack = Utils::RandomRange(1, 3);
+	//	attackTime = 0;
+	//}
+	//if (choiceAttack == 1)
+	//{
+	//	fsm->ChangeState(YggdrasilStateType::FistAttack);
+	//}
+	//if (choiceAttack == 2)
+	//{
+	//	fsm->ChangeState(YggdrasilStateType::SweepAttack);
+	//}
+	//if (choiceAttack == 3)
+	//{
+	//	fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
+	//}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
 	{
-		choiceAttack = Utils::RandomRange(1, 3);
-		attackTime = 0;
-	}
-	if (choiceAttack == 1)
-	{
-		fsm->ChangeState(YggdrasilStateType::FistAttack);
-	}
-	if (choiceAttack == 2)
-	{
-		fsm->ChangeState(YggdrasilStateType::SweepAttack);
-	}
-	if (choiceAttack == 3)
-	{
-		fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
+		fsm->ChangeState(YggdrasilStateType::YggdrasilSpecialAttack);
 	}
 }
 

@@ -11,7 +11,7 @@ class YggdrasilUIHub : public UISpriteGameObject
 private:
 	UISpriteGameObject* topBackSprite;
 	UISpriteGameObject* bottomBackSprite;
-	UISpriteGameObject* hpBarSprite;
+	UISpriteGameObject* frontHpBarSprite;
 	HpBarUI*			hpBar;
 	UITextGameObject*	nameText;
 	UITextGameObject*	tribeText;

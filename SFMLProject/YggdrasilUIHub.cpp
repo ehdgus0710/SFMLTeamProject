@@ -8,7 +8,7 @@
 
 YggdrasilUIHub::YggdrasilUIHub(const std::string& texId, const std::string& name)
 	: UISpriteGameObject(texId, name)
-	, hpBarSprite(nullptr)
+	, frontHpBarSprite(nullptr)
 	, hpBar(nullptr)
 	, nameText(nullptr)
 	, tribeText(nullptr)
@@ -26,8 +26,20 @@ void YggdrasilUIHub::ChangePhase()
 {
 	bottomBackSprite->ChangeSprite("YggdrasilSecondPhaseBottomBack");
 	topBackSprite->ChangeSprite("YggdrasilSecondPhaseFront");
-	hpBarSprite->ChangeSprite("YggdrasilSecondPhaseTop");
-	hpBar->ChangeSprite("YggdrasilSecondPhaseBottomBack");
+	frontHpBarSprite->ChangeSprite("YggdrasilSecondPhaseTop");
+
+	hpBar->ChangeSprite("BossHealthBarSecondPhase");
+	nameText->SetString(L"각성한 위그드라실");
+
+	frontHpBarSprite->SetPosition({ 960.f, 70.f });
+	topBackSprite->SetPosition({ 960.f, 85.f });
+	bottomBackSprite->SetPosition({ 960.f,85.f });
+
+	hpBar->SetPosition({ 549.f, 80.f });
+	hpBar->SetMaxHpBarSize({ 823.f,30.f });
+
+	nameText->SetPosition({ 960.f, 45.f });
+	tribeText->SetPosition({ 960.f, 120.f });
 }
 void YggdrasilUIHub::SetPosition(const sf::Vector2f& pos)
 {
@@ -48,34 +60,39 @@ void YggdrasilUIHub::Start()
 	topBackSprite = scene->AddGameObject(new UISpriteGameObject("YggdrasilFirstPhaseTopBack", "YggdrasilFirstPhaseTopBack"), LayerType::UI);
 	
 	topBackSprite->SetScale({ 3.f, 3.f });
-	topBackSprite->SetPosition({ 960.f,140.f});
+	topBackSprite->SetPosition({ 960.f,85.f});
 
 	bottomBackSprite->SetScale({ 2.f, 2.5f });
-	bottomBackSprite->SetPosition({ 960.f,125.f });
+	bottomBackSprite->SetPosition({ 960.f,85.f });
 
 	nameText->SetString(L"위그드라실");
 	tribeText->SetString(L"엘로 장로");
-	nameText->SetPosition({ 960.f, 105.f });
-	tribeText->SetPosition({ 960.f, 165.f });
+	nameText->SetPosition({ 960.f, 55.f });
+	tribeText->SetPosition({ 960.f, 125.f });
 
 	hpBar = scene->AddGameObject(new HpBarUI("BossHealthBarFirstPhase", "BossHealthBar"), LayerType::UI);
 	hpBar->SetOrigin(Origins::MiddleLeft);
-	hpBar->SetPosition({ 618.f, 138.f });
+	hpBar->SetPosition({ 618.f, 98.f });
 	hpBar->SetMaxHpBarSize({ 685.f,25.f });
 	
-	hpBarSprite = scene->AddGameObject(new UISpriteGameObject("YggdrasilFirstPhaseFront", "YggdrasilFront"), LayerType::UI);
-	hpBarSprite->SetPosition({ 960.f, 125.f });
-	hpBarSprite->SetScale({ 2.5f, 2.5f });
+	frontHpBarSprite = scene->AddGameObject(new UISpriteGameObject("YggdrasilFirstPhaseFront", "YggdrasilFront"), LayerType::UI);
+	frontHpBarSprite->SetPosition({ 960.f, 85.f });
+	frontHpBarSprite->SetScale({ 2.5f, 2.5f });
 
 	bottomBackSprite->sortingOrder = 8;
 	topBackSprite->sortingOrder = 8;
-	hpBarSprite->sortingOrder = 6;
+	frontHpBarSprite->sortingOrder = 6;
 	hpBar->sortingOrder = 5;
 	sortingOrder = 4;
 	nameText->sortingOrder = 3;
 	nameText->sortingOrder = 3;
 
+
 }
 void YggdrasilUIHub::Update(const float& deltaTime)
 {
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	{
+		ChangePhase();
+	}
 }

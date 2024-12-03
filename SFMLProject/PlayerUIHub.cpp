@@ -5,6 +5,7 @@
 
 #include "UITextGameObject.h"
 #include "HpBarUI.h"
+#include "SkillCoolTimeUI.h"
 
 PlayerUIHub::PlayerUIHub(const std::string& texId, const std::string& name)
 	: UISpriteGameObject(texId, name)
@@ -75,6 +76,16 @@ void PlayerUIHub::AddSkull(Player* player)
 	subSkullFrame->SetActive(true);
 }
 
+void PlayerUIHub::OnSkill1CoolTime()
+{
+	playerSkill1->OnSkillCoolTime();
+}
+
+void PlayerUIHub::OnSkill2CoolTime()
+{
+	playerSkill2->OnSkillCoolTime();
+}
+
 void PlayerUIHub::Awake()
 {
 	UISpriteGameObject::Awake();
@@ -125,13 +136,18 @@ void PlayerUIHub::Start()
 	playerSkill2Frame->SetScale({ 3.5f, 3.5f });
 
 
-	playerSkill1 = scene->AddGameObject(new UISpriteGameObject("", "SkulSkill1"), LayerType::UI);
+	playerSkill1 = scene->AddGameObject(new SkillCoolTimeUI("", "SkulSkill1"), LayerType::UI);
 	playerSkill1->SetPosition({ 245.f, 940.f });
 	playerSkill1->SetScale({ 3.5f, 3.5f });
+	playerSkill1->SetPlayer(player);
 
-	playerSkill2 = scene->AddGameObject(new UISpriteGameObject("", "SkulSkill2"), LayerType::UI);
+	playerSkill2 = scene->AddGameObject(new SkillCoolTimeUI("", "SkulSkill2"), LayerType::UI);
 	playerSkill2->SetPosition({ 350.f, 940.f });
-	playerSkill2->SetScale({ 3.5f, 3.5f });
+	playerSkill2->SetScale({ 3.5f, 3.5f }); 
+	playerSkill2->SetPlayer(player);
+
+	player->SetSkill1CooltimeEvent(std::bind(&SkillCoolTimeUI::SetSkillCooltime, playerSkill1, std::placeholders::_1, std::placeholders::_2));
+	player->SetSkill2CooltimeEvent(std::bind(&SkillCoolTimeUI::SetSkillCooltime, playerSkill2, std::placeholders::_1, std::placeholders::_2));
 
 	player->SetChangeHpAction(std::bind(&PlayerUIHub::ChangeHP, this, std::placeholders::_1, std::placeholders::_2));
 	ChangeSkull(player);

@@ -8,6 +8,7 @@
 
 #include "Yggdrasil.h"
 #include "YggdrasilUIHub.h"
+#include "SkillCoolTimeUI.h"
 
 Stage2::Stage2()
 	: Scene(SceneIds::Stage2)
@@ -143,11 +144,6 @@ void Stage2::Enter()
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
 
-	PlayerUIHub* playerUIHub = AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
-
-	playerUIHub->SetOrigin(Origins::BottomLeft);
-	playerUIHub->SetScale({ 3.5f,3.5f });
-	playerUIHub->SetPosition({ 0, 1075.f });
 
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);

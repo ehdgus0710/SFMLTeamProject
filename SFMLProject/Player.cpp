@@ -12,6 +12,7 @@
 #include "Head.h"
 #include "PlayerBaseState.h"
 #include "PlayerHitState.h"
+#include "PlayerUIHub.h"
 
 Player::Player(const std::string& name)
 	: AnimationGameObject(name)
@@ -134,12 +135,16 @@ void Player::OnSkill1CoolTime()
 {
 	isSkll1CoolTime = true;
 	currentSkill1CoolTime = 0.f;
+
+	playerUI->OnSkill1CoolTime();
 }
 
 void Player::OnSkill2CoolTime()
 {
 	isSkll2CoolTime = true;
 	currentSkill2CoolTime = 0.f;
+
+	playerUI->OnSkill2CoolTime();
 }
 
 
@@ -191,6 +196,12 @@ void Player::Start()
 	head->SetPlayer(this);
 	head->Awake();
 	head->SetActive(false);
+
+	playerUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
+
+	playerUI->SetOrigin(Origins::BottomLeft);
+	playerUI->SetScale({ 3.5f,3.5f });
+	playerUI->SetPosition({ 0, 1075.f });
 }
 
 void Player::Update(const float& deltaTime)
@@ -211,13 +222,22 @@ void Player::Update(const float& deltaTime)
 	{
 		currentSkill1CoolTime += deltaTime;
 
+		if(skill1CooltimeAction)
+			skill1CooltimeAction(currentSkill1CoolTime, skill1CoolTime);
+
 		if (currentSkill1CoolTime >= skill1CoolTime)
+		{
 			isSkll1CoolTime = false;
+			OnGetHead();
+		}
 	}
 
 	if (isSkll2CoolTime)
 	{
 		currentSkill2CoolTime += deltaTime;
+		
+		if (skill2CooltimeAction)
+			skill2CooltimeAction(currentSkill2CoolTime, skill2CoolTime);
 
 		if (currentSkill2CoolTime >= skill2CoolTime)
 			isSkll2CoolTime = false;

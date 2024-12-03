@@ -7,11 +7,13 @@ class Camera;
 class Rigidbody;
 class Head;
 class GameObject;
+class PlayerUIHub;
 
 class Player : public AnimationGameObject
 {
 protected:
 	Head*			head;
+	PlayerUIHub*	playerUI;
 	PlayerFSM		fsm;
 	DefaultStatus	currentStatus;
 	SkullType		skullType;
@@ -42,6 +44,8 @@ protected:
 	bool			isNoneHead;
 
 	std::function<void(float, float)> changeHpAction;
+	std::function<void(float, float)> skill1CooltimeAction;
+	std::function<void(float, float)> skill2CooltimeAction;
 public:
 	void TakeDamage(const DamegeInfo& damage);
 	void AddItem(ItemType itemType);
@@ -84,6 +88,8 @@ public:
 
 	const DefaultStatus& GetCurrentStatus() { return currentStatus; }
 	void SetChangeHpAction(std::function<void(float, float)> action) { changeHpAction = action; }
+	void SetSkill1CooltimeEvent(std::function<void(float, float)> action) { skill1CooltimeAction = action; }
+	void SetSkill2CooltimeEvent(std::function<void(float, float)> action) { skill2CooltimeAction = action; }
 public:
 	void Awake() override;
 	void Start() override;

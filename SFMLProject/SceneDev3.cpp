@@ -3,6 +3,7 @@
 
 #include "GameInclude.h"
 #include "Animation.h"
+#include "SkillCoolTimeUI.h"
 
 void SceneDev3::CollisitionCheck()
 {
@@ -78,7 +79,12 @@ void SceneDev3::Enter()
 	TEXTURE_MANAGER.Load("TwinMeteor", "graphics/boss/Rayanna/effects/TwinMeteor.png");
 	TEXTURE_MANAGER.Load("TwinMeteorSign", "graphics/boss/Rayanna/effects/TwinMeteorSign.png");
 
-
+	// Player UI
+	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
+	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
+	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
+	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
+	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
 
 	AnimationGameObject* effect1 = AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::Player);
 	effect1->Awake();
@@ -127,6 +133,9 @@ void SceneDev3::Enter()
 
 	CollisitionCheck();
 
+	SkillCoolTimeUI* coolTimeUI = AddGameObject(new SkillCoolTimeUI("SkulSimbul", "Skill1"), LayerType::InGameUI);
+	coolTimeUI->SetPosition({ 300.f,300.f });
+	coolTimeUI->SetScale({ 2.5f,2.5f });
 	//AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
 	//testPlayer->Awake();
 	//testPlayer->SetPosition({ 500, 500.f });

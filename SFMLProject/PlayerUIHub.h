@@ -5,6 +5,7 @@
 class Player;
 class UITextGameObject;
 class HpBarUI;
+class SkillCoolTimeUI;
 
 class PlayerUIHub : public UISpriteGameObject
 {
@@ -13,8 +14,8 @@ protected:
 	Player*					player2;
 	UISpriteGameObject*		playerSimbolUI;
 	UISpriteGameObject*		playerSkill2Frame;
-	UISpriteGameObject*		playerSkill1;
-	UISpriteGameObject*		playerSkill2;
+	SkillCoolTimeUI*		playerSkill1;
+	SkillCoolTimeUI*		playerSkill2;
 	UISpriteGameObject*		subSkullFrame;
 	UISpriteGameObject*		subSkullSpriteUI;
 
@@ -29,6 +30,9 @@ public:
 	void ChangeSkull(Player* player);
 	void ChangeSkillSprite(SkullType type);
 	void AddSkull(Player* player);
+
+	void OnSkill1CoolTime();
+	void OnSkill2CoolTime();
 public:
 	void Awake() override;
 	void SetPosition(const sf::Vector2f& pos) override;

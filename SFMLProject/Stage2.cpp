@@ -30,13 +30,15 @@ void Stage2::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet); 
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::EnemyBullet);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Reiana);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::PlayerBullet, ColliderLayer::Reiana);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
@@ -128,7 +130,7 @@ void Stage2::Enter()
 	testYggdrasil->SetPosition({ 960.f, 400.f });
 	testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
 
-	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap","Stage1TileMap" ), LayerType::TileMap);
+	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap", "Stage1TileMap"), LayerType::TileMap);
 	tileMap->LoadCsv("TileMap/Stage2Map1.csv");
 
 	WallCollisionObject* wallObject = AddGameObject(new WallCollisionObject("Wall1"), LayerType::Wall);
@@ -141,11 +143,11 @@ void Stage2::Enter()
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
 
-	PlayerUIHub* playerUIHub = AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
+	/*PlayerUIHub* playerUIHub = AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
 
 	playerUIHub->SetOrigin(Origins::BottomLeft);
 	playerUIHub->SetScale({ 3.5f,3.5f });
-	playerUIHub->SetPosition({ 0, 1075.f });
+	playerUIHub->SetPosition({ 0, 1075.f });*/
 
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);

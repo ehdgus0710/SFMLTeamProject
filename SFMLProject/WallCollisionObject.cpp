@@ -60,7 +60,7 @@ void WallCollisionObject::Start()
 
 void WallCollisionObject::OnCollisionEnter(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy)
+	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Reiana)
 	{
 		GameObject* object = target->GetOwner();
 
@@ -81,7 +81,7 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 
 void WallCollisionObject::OnCollisionStay(Collider * target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy)
+	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Reiana)
 	{
 		GameObject* object = target->GetOwner();
 		Rigidbody* targetRigidbody = target->GetOwner()->GetRigidbody();

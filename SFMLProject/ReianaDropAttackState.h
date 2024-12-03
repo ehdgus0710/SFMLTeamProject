@@ -15,12 +15,14 @@ protected:
 	sf::Vector2f waitStartPos = { 0, 800.f };
 	sf::Vector2f waitEndPos;
 
+	float landingTime = 0.5f;
+	float currentLandingTime = 0.f;
 	float waitTime = 0.5f;
 	float currentWaitTime = 0.f;
 	float dropTime = 0.5f;
 	float currentDropTime = 0.f;
 	float damage = 20.f;
-
+	bool effect = false;
 	bool action = false;
 public:
 	void Wait(float deltaTime);

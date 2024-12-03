@@ -15,6 +15,9 @@ public:
 protected:
 	float delayTime;
 	float currentDelay;
+	float changeTime;
+	float currentChangeTime;
+
 	sf::Vector2f plusPos1 = { -200.f,-10.f };
 	sf::Vector2f plusPos2 = { -160.f,-120.f };
 	sf::Vector2f plusPos3 = { -50.f , -200.f };

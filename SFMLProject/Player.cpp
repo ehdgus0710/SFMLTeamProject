@@ -11,6 +11,7 @@
 #include "InGameScoreUI.h"
 #include "Head.h"
 #include "PlayerBaseState.h"
+#include "PlayerUIHub.h"
 
 Player::Player(const std::string& name)
 	: AnimationGameObject(name)
@@ -57,15 +58,11 @@ void Player::TakeDamage(float damage)
 	if (currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
-		isDead = true;
-		fsm.ChangeState(PlayerStateType::Dead);
-	}
-	else
-	{
-		fsm.ChangeState(PlayerStateType::Hit);
+		//isDead = true;
+		//fsm.ChangeState(PlayerStateType::Dead);
 	}
 
-	if (changeHpAction)
+	if (changeHpAction != nullptr)
 		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
@@ -179,10 +176,16 @@ void Player::Start()
 	collider->SetScale({ 16.f,32.f });
 	collider->SetOffsetPosition({ 0.f, -5.f });
 
-	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
+	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::PlayerBullet);
 	head->SetPlayer(this);
 	head->Awake();
 	head->SetActive(false);
+
+	PlayerUIHub* playerUIHub = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
+
+	playerUIHub->SetOrigin(Origins::BottomLeft);
+	playerUIHub->SetScale({ 3.5f,3.5f });
+	playerUIHub->SetPosition({ 0, 1075.f });
 }
 
 void Player::Update(const float& deltaTime)

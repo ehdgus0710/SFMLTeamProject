@@ -17,6 +17,9 @@ protected:
 	std::vector<std::function<void()>>	stateEndEvents;
 
 public:
+	void changeState(float dt);
+
+public:
 	void Awake() override;
 	void Start() override;
 

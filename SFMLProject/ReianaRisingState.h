@@ -11,7 +11,7 @@ public:
 	Rising* rising;
 	RisingReady* risingReady;
 
-	sf::Vector2f risingPos{ 25.f ,0.f };
+	sf::Vector2f risingPos{ 45.f ,0.f };
 
 	float RisingDelat = 0.05f;
 	float CurrentRisingDelat;

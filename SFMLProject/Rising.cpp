@@ -32,6 +32,9 @@ void Rising::Start()
 	currentDelay = 0.f;
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
 	SetPosition(reiana->GetPosition());
+	effect1->SetOrigin(Origins::BottomCenter);
+	effect1->SetScale({ 2.f,2.f });
+
 }
 void Rising::Update(const float& deltaTime)
 {
@@ -65,6 +68,7 @@ void Rising::SetPosition(const sf::Vector2f& pos)
 	AnimationBullet::SetPosition(pos);
 	if (effect1 != nullptr)
 	{
-	effect1->SetPosition(pos);
+		effect1->SetPosition(pos);
+		effect1->SetOrigin(Origins::BottomCenter);
 	}
 }

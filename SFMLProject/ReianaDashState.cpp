@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "Animation.h"
 #include "Camera.h"
+#include "IntroLandSmoke.h"
 
 ReianaDashState::ReianaDashState(ReianaFsm* fsm)
 	: ReianaBaseState(fsm, ReianaStateType::Dash)
@@ -34,11 +35,14 @@ void ReianaDashState::Enter()
 {
 	ReianaBaseState::Enter();
 	animator->ChangeAnimation("dash", false);
-	if (reiana->IsFlipX())
-		reiana->OnFlipX();
 	movePosition = reiana->GetPosition();
 	cameraFixPos = SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->GetCameraPosition();
 	cameraFixPos.x += 1000.f;
+	IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
+	introLandSmoke->Start();
+	introLandSmoke->SetPosition(reiana->GetPosition());
+	if (!reiana->IsFlipX())
+		reiana->OnFlipX();
 }
 
 void ReianaDashState::Exit()
@@ -54,7 +58,8 @@ void ReianaDashState::Update(float deltaTime)
 	reiana->SetPosition(movePosition);
 	if (cameraFixPos.x <= reiana->GetPosition().x)
 	{
-		reiana->SetPosition({ reiana->GetPosition().x,-30.f });
+		reiana->SetPosition({ reiana->GetPosition().x + 500,reiana->GetPosition().y});
+		fsm->ChangeState(ReianaStateType::Idle);
 	}
 }
 

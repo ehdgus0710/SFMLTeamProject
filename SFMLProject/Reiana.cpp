@@ -13,7 +13,7 @@ Reiana::Reiana(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
-	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
+	CreateCollider(ColliderType::Rectangle, ColliderLayer::Reiana);
 
 
 	animator->LoadCsv("animators/rayanna.csv");
@@ -38,6 +38,7 @@ void Reiana::OnDead()
 {
 	// fsm.ChangeState(ReianaStateType::Dead);
 }
+
 void Reiana::Awake()
 {
 	AnimationGameObject::Awake();
@@ -46,19 +47,15 @@ void Reiana::Awake()
 void Reiana::Start()
 {
 	InputManager::GetInstance().BindKey(sf::Keyboard::Q);
-	InputManager::GetInstance().BindKey(sf::Keyboard::W);
-	InputManager::GetInstance().BindKey(sf::Keyboard::E);
-	InputManager::GetInstance().BindKey(sf::Keyboard::R);
-	InputManager::GetInstance().BindKey(sf::Keyboard::T);
-	InputManager::GetInstance().BindKey(sf::Keyboard::Y);
 
-
+	collider->SetOffsetPosition({ 0.f,-100.f });
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("ReianaIdle", true);
 	fsm.ChangeState(ReianaStateType::Idle);
-	collider->SetScale({ 150.f,192.f });
+	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
+	SetScale({ -2.5f,2.5f });
 }
 
 void Reiana::Update(const float& deltaTime)
@@ -67,29 +64,8 @@ void Reiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(ReianaStateType::DropAttack);
-	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::W))
-	{
-		fsm.ChangeState(ReianaStateType::GroundAttack);
-	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::E))
-	{
 		fsm.ChangeState(ReianaStateType::Dimension);
 	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::R))
-	{
-		fsm.ChangeState(ReianaStateType::ThreeSword);
-	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::T))
-	{
-		fsm.ChangeState(ReianaStateType::Dash);
-	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Y))
-	{
-		fsm.ChangeState(ReianaStateType::Rising);
-	}
-
 }
 
 void Reiana::FixedUpdate(const float& deltaTime)

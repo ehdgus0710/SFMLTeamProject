@@ -2,12 +2,14 @@
 #include "ReianaThreeSwordState.h"
 #include "Knife.h"
 #include "Player.h"
+#include "Animator.h"
 
 ReianaThreeSwordState::ReianaThreeSwordState(ReianaFsm* fsm)
 	:ReianaBaseState(fsm,ReianaStateType::ThreeSword)
 	,currentDelay(0.f)
-	,delayTime(0.5f)
+	,delayTime(1.f)
 	,fix(false)
+	,changeTime(1.5f)
 {
 }
 
@@ -17,16 +19,21 @@ ReianaThreeSwordState::~ReianaThreeSwordState()
 
 void ReianaThreeSwordState::Awake()
 {
+	ReianaBaseState::Awake();
+
 }
 
 void ReianaThreeSwordState::Start()
 {
+	ReianaBaseState::Start();
+
 }
 
 void ReianaThreeSwordState::CreateKnife()
 {
 	Knife* knife = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Knife(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "MenuBar"), LayerType::EnemyBullet);
-	if (reiana->IsFlipX())
+	knife->SetScale({ 2.f,2.f });
+	if (!reiana->IsFlipX())
 	{
 		switch ((ReianaThreeSwordState::Pos)count)
 		{
@@ -76,12 +83,15 @@ void ReianaThreeSwordState::Enter()
 	ReianaBaseState::Enter();
 	count = 1;
 	currentDelay = 0.f;
+	currentChangeTime = 0.f;
+	delayTime = 1.f;
+	animator->ChangeAnimation("homingpierceReady", false);
 	fix = false;
-	if (reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
+	if (reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
 	{
 		reiana->OnFlipX();
 	}
-	if (!reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
+	if (!reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
 	{
 		reiana->OnFlipX();
 	}
@@ -98,13 +108,20 @@ void ReianaThreeSwordState::Update(float deltaTime)
 {
 	ReianaBaseState::Update(deltaTime);
 	currentDelay += deltaTime;
+	currentChangeTime += deltaTime;
+	if (currentChangeTime > changeTime)
+	{
+		fsm->ChangeState(ReianaStateType::Idle);
+	}
 	if (currentDelay > delayTime)
 	{
+		animator->ChangeAnimation("homingPierce", false);
 		CreateKnife();
-		fsm->ChangeState(ReianaStateType::Idle);
+		delayTime = 100.f;
 	}
 	else if (!fix&&currentDelay > delayTime / 2)
 	{
+		animator->ChangeAnimation("homingPierce", false);
 		CreateKnife();
 		fix = true;
 	}

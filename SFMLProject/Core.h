@@ -141,13 +141,12 @@ enum class ReianaStateType
 {
 	Idle,
 	NomalAttack,
+	Dash,
 	GroundAttack,
 	ThreeSword,
-	Aruond,
-	Rising,
 	Dimension,
-	Dash,
 	DropAttack,
+	Rising,
 	Dead,
 
 	End

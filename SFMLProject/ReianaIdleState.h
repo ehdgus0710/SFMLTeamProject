@@ -5,7 +5,11 @@
 class ReianaIdleState : public ReianaBaseState
 {
 protected:
+	int				count = 1;
+	float			currentdelay = 0.f;
+	float			delay = 2.f;
 
+	bool			dash = false;
 public:
 	void Awake() override;
 	void Start() override;
@@ -15,6 +19,7 @@ public:
 	void Update(float deltaTime) override;
 	void FixedUpdate(float fixedDeltaTime) override;
 	void LateUpdate(float deltaTime) override;
+	void changeState(float dt);
 public:
 	ReianaIdleState(ReianaFsm* fsm);
 	~ReianaIdleState();

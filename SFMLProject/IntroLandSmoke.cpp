@@ -18,6 +18,7 @@ IntroLandSmoke::IntroLandSmoke(const std::string& name)
 
 void IntroLandSmoke::Start()
 {
+	SetScale({ 2.f,2.f });
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("DimensionPierce");
 }

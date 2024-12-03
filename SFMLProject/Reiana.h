@@ -13,12 +13,9 @@ protected:
 	DefaultStatus	currentStatus;
 	Player*			player;
 	bool			isHit = false;
-
 public:
 	void TakeDamage(float damage);
 	void OnDead();
-	void Attack();
-	void OnAttackEnd();
 
 	ReianaFsm& GetFSM() { return fsm; }
 	Player* GetPlayer() { return player; }

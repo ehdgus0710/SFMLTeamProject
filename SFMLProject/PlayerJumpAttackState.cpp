@@ -118,11 +118,11 @@ void PlayerJumpAttackState::OnEndAttack()
 
 void PlayerJumpAttackState::OnCreateHitBox()
 {
-	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Enemy, true, (sf::Vector2f::right * 30.f)), LayerType::PlayerBullet);
+	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Boss, true, (sf::Vector2f::right * 30.f)), LayerType::PlayerBullet);
 	attackBox->SetScale({ 50.f,50.f });
 
-
 	attackBox->SetDamage(damageInfo);
+	attackBox->AddStartHitEvent(std::bind(&PlayerJumpAttackState::CreateEffect, this, std::placeholders::_1));
 }
 
 void PlayerJumpAttackState::OnDestoryHitBox()
@@ -142,4 +142,23 @@ void PlayerJumpAttackState::ClearEvenet()
 	animation->ClearEndEvent(animation->GetFrameCount() - 1);
 	animation->ClearStartEvent(1);
 	animation->ClearEndEvent(1);
+}
+
+void PlayerJumpAttackState::CreateEffect(GameObject* object)
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Effect/normalAttack.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "NormalAttack");
+	effect->GetAnimator()->ChangeAnimation("NormalAttack");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition(object->GetPosition());
+
+	if (player->IsFlipX())
+		effect->SetScale({ effect->GetScale().x * -2.f ,effect->GetScale().y * 2.f });
+	else
+		effect->SetScale(sf::Vector2f::one * 2.f);
+
+	effect->Awake();
+	effect->Start();
 }

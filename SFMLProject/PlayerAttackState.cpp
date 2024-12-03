@@ -75,7 +75,9 @@ void PlayerAttackState::CreateEffect(GameObject* object)
 	effect->SetPosition(object->GetPosition());
 
 	if (player->IsFlipX())
-		effect->SetScale({ effect->GetScale().x * -1.f ,effect->GetScale().y });
+		effect->SetScale({ effect->GetScale().x * -2.f ,effect->GetScale().y * 2.f});
+	else
+		effect->SetScale(sf::Vector2f::one * 2.f);
 
 	effect->Awake();
 	effect->Start();

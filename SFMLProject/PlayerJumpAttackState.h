@@ -14,6 +14,7 @@ protected:
 
 private:
 
+	void CreateEffect(GameObject* object);
 	void OnStartAttack();
 	void OnEndAttack();
 	void OnCreateHitBox();

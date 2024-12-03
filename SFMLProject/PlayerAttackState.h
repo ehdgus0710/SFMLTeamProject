@@ -10,6 +10,8 @@ protected:
 	HitBoxObject*	attackBox;
 	Rigidbody*		rigidbody;
 	DamegeInfo		damageInfo;
+
+	float			attackMoveSpeed;
 	float			horizontal;
 	bool			isMoveDirectionLeft;
 	bool			sequenceAttack;
@@ -18,6 +20,8 @@ protected:
 private:
 	void EvenetClear();
 	void CreateEffect(GameObject* object);
+	void StartMove();
+	void EndMove();
 public:
 
 	void StartAttack();

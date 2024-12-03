@@ -49,8 +49,15 @@ void PlayerRunState::Update(float deltaTime)
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
-
 		fsm->ChangeState(PlayerStateType::Jump);
+		return;
+	}
+
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::X))
+	{
+		fsm->ChangeState(PlayerStateType::Attack);
+		return;
 	}
 
 	if (horizontal == 0)
@@ -92,8 +99,11 @@ void PlayerRunState::InputMove()
 		horizontal = 1.f;
 	}
 
-	if(InputManager::GetInstance().GetKeyNone(sf::Keyboard::Left) && InputManager::GetInstance().GetKeyNone(sf::Keyboard::Right))
+	if (InputManager::GetInstance().GetKeyNone(sf::Keyboard::Left) && InputManager::GetInstance().GetKeyNone(sf::Keyboard::Right))
+	{
 		fsm->ChangeState(PlayerStateType::Idle);
+		return;
+	}
 
 
 	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))

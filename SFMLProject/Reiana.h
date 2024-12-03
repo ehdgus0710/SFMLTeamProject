@@ -13,6 +13,7 @@ protected:
 	DefaultStatus	currentStatus;
 	Player*			player;
 	bool			isHit = false;
+	int				count;
 public:
 	void TakeDamage(float damage);
 	void OnDead();
@@ -33,6 +34,8 @@ public:
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
 	void OnCollisionEnd(Collider* target) override;
+	void SetCount(int con);
+	int GetCount() { return count; }
 public:
 	Reiana(const std::string& name = "Reiana");
 	virtual ~Reiana();

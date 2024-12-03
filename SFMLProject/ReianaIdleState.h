@@ -6,6 +6,7 @@ class ReianaIdleState : public ReianaBaseState
 {
 protected:
 	int				count = 1;
+	int				tossCount = 1;
 	float			currentdelay = 0.f;
 	float			delay = 2.f;
 
@@ -23,5 +24,6 @@ public:
 public:
 	ReianaIdleState(ReianaFsm* fsm);
 	~ReianaIdleState();
+	int GetCount() { return count; }
 };
 

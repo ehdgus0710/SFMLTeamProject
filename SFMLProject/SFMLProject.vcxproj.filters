@@ -717,6 +717,33 @@
     <ClCompile Include="ReianaRisingState.cpp">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClCompile>
+    <ClCompile Include="B_Reiana.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaBaseState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaFSM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaIdleState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaGroundAttackState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaThreeSwordState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaDropAttackState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaDeadState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaDashState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1216,6 +1243,33 @@
     </ClInclude>
     <ClInclude Include="ReianaRisingState.h">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
+    </ClInclude>
+    <ClInclude Include="B_Reiana.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaBaseState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaFSM.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaIdleState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaGroundAttackState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaThreeSwordState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaDropAttackState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaDeadState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaDashState.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

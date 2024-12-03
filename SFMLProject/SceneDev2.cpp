@@ -16,11 +16,16 @@ void SceneDev2::CollisitionCheck()
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::Player);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Reiana);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::PlayerBullet, ColliderLayer::Reiana);
+
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Reiana);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::PlayerBullet, ColliderLayer::Reiana);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
+
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
 }
@@ -142,6 +147,10 @@ void SceneDev2::Enter()
 	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
 	testReiana->Awake();
 	testReiana->SetPosition({ 1700.f,-500.f });
+
+	B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
+	testBReiana->Awake();
+	testBReiana->SetPosition({ 200.f,-500.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });

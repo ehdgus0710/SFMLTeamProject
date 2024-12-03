@@ -64,7 +64,7 @@ void Reiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(ReianaStateType::Rising);
+		fsm.ChangeState(ReianaStateType::Dimension);
 	}
 }
 
@@ -113,4 +113,9 @@ void Reiana::OnCollisionEnd(Collider* target)
 			rigidBody->SetGround(false);
 		}
 	}
+}
+
+void Reiana::SetCount(int con)
+{
+	count = con;
 }

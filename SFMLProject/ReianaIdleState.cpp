@@ -25,6 +25,7 @@ void ReianaIdleState::Enter()
 {
 	ReianaBaseState::Enter();
 
+
 	currentdelay = 0.f;
 	if (reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
 	{
@@ -35,7 +36,7 @@ void ReianaIdleState::Enter()
 		reiana->OnFlipX();
 	}
 	animator->ChangeAnimation("idle", true);
-
+	reiana->SetCount(count);
 	if (count == 9)
 	{
 		count = 1;
@@ -76,6 +77,7 @@ void ReianaIdleState::changeState(float dt)
 		{
 		case ReianaStateType::NomalAttack:
 			count++;
+			tossCount++;
 			fsm->ChangeState(ReianaStateType::NomalAttack);
 			break;
 		case ReianaStateType::Dash:
@@ -84,10 +86,12 @@ void ReianaIdleState::changeState(float dt)
 			break;
 		case ReianaStateType::GroundAttack:
 			count++;
+			tossCount++;
 			fsm->ChangeState(ReianaStateType::GroundAttack);
 			break;
 		case ReianaStateType::ThreeSword:
 			count++;
+			tossCount++;
 			fsm->ChangeState(ReianaStateType::ThreeSword);
 			break;
 		case ReianaStateType::Dimension:
@@ -103,6 +107,7 @@ void ReianaIdleState::changeState(float dt)
 			else
 			{
 				count++;
+				tossCount++;
 				fsm->ChangeState(ReianaStateType::DropAttack);
 				dash = false;
 			}

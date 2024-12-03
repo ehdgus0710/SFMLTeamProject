@@ -64,7 +64,7 @@ void Reiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(ReianaStateType::Dimension);
+		fsm.ChangeState(ReianaStateType::Rising);
 	}
 }
 

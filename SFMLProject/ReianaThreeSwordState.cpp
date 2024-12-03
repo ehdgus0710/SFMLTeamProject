@@ -9,7 +9,7 @@ ReianaThreeSwordState::ReianaThreeSwordState(ReianaFsm* fsm)
 	,currentDelay(0.f)
 	,delayTime(1.f)
 	,fix(false)
-	,changeTime(1.5f)
+	,changeTime(3.f)
 {
 }
 

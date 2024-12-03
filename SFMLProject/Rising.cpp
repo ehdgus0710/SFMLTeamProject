@@ -54,7 +54,9 @@ void Rising::setDelay(float delay)
 void Rising::OnCreateHitBox()
 {
 	collider->SetActive(true);
-	SetDamage(1000);
+	collider->SetScale({ 30,350 });
+	collider->SetOrigin(Origins::BottomCenter);
+	SetDamage(10);
 }
 
 void Rising::OnDestoryHitBox()

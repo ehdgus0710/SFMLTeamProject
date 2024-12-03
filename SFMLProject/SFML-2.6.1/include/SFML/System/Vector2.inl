@@ -159,10 +159,11 @@ inline Vector2<T> sf::Vector2<T>::Normalized(const Vector2<T>& left, const Vecto
 template<typename T>
 inline Vector2<T> sf::Vector2<T>::Normalized(const Vector2<T>& lhs)
 {
-    auto lenght = lhs.Length();
+    Vector2<T> normalized = lhs;
+    T lenght = normalized.Length();
     if (lenght == 0)
         return zero;
-    return Vector2<T>(lhs / lenght);
+    return Vector2<T>(normalized / lenght);
 }
 
 ////////////////////////////////////////////////////////////

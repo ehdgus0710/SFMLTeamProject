@@ -26,9 +26,9 @@ Reiana::~Reiana()
 {
 }
 
-void Reiana::TakeDamage(float damage)
+void Reiana::TakeDamage(const DamegeInfo& damage)
 {
-	currentStatus.hp -= damage;
+	currentStatus.hp -= damage.damege;
 
 	if (currentStatus.hp <= 0)
 		OnDead();

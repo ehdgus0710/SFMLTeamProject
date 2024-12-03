@@ -1,20 +1,17 @@
 #pragma once
 #include "PlayerBaseState.h"
 
-class AttackObject;
-
+class Rigidbody;
 class PlayerHitState : public PlayerBaseState
 {
 private:
-	AttackObject* attack;
-	sf::Vector2f changePosition;
-	sf::Vector2f originalPosition;
-	float	currentTime;
+	Rigidbody*	rigidbody;
+	DamegeInfo	currentDamageInfo;
+	float		currentTime;
 
-private:
-	void StartEffect();
-	void ChangePosition();
-	void ReturnPosition();
+public:
+	void SetDamageInfo(const DamegeInfo& damage);
+
 public:
 	void Awake() override;
 	void Start() override;
@@ -22,8 +19,6 @@ public:
 	void Enter() override;
 	void Exit() override;
 	void Update(float deltaTime) override;
-	void FixedUpdate(float fixedDeltaTime) override;
-	void LateUpdate(float deltaTime) override;
 public:
 	PlayerHitState(PlayerFSM* fsm);
 	~PlayerHitState();

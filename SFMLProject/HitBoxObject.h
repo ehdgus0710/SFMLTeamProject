@@ -6,12 +6,12 @@ protected:
 	GameObject*							owner;
 	ColliderLayer						targetLayer;
 	uint64_t							hitLayer;
+	DamegeInfo							damageInfo;
 
-	std::vector<std::function<void()>>	startHitEvents;
-	std::vector<std::function<void()>>	endHitEvents;
+	std::vector<std::function<void(GameObject*)>>	startHitEvents;
+	std::vector<std::function<void(GameObject*)>>	endHitEvents;
 
 	sf::Vector2f						offsetPosition;
-	float								damage;
 	float								lifeTime;
 	float								currentLifeTime;
 	bool								useLifeTime;
@@ -23,12 +23,12 @@ protected:
 
 public:
 	void SetOwner(GameObject* owner) { this->owner = owner; }
-	void SetDamage(float damage) { this->damage = damage; }
+	void SetDamage(const DamegeInfo& damageinfo) { damageInfo = damageinfo; }
 	void UseLifeTime(float lifeTime) { this->lifeTime = lifeTime; useLifeTime = true; }
 	void OnAutoDestory() { isAutoDestory = true; }
 
-	void AddStartHitEvent(std::function<void()> hitEvent) { startHitEvents.push_back(hitEvent); }
-	void AddEndHitEvent(std::function<void()> hitEvent) { endHitEvents.push_back(hitEvent); }
+	void AddStartHitEvent(std::function<void(GameObject*)> hitEvent) { startHitEvents.push_back(hitEvent); }
+	void AddEndHitEvent(std::function<void(GameObject*)> hitEvent) { endHitEvents.push_back(hitEvent); }
 
 public:
 	void SetScale(const sf::Vector2f& scale) override;

@@ -3,6 +3,25 @@
 const static sf::Vector2f& gravity = { 0.f, 9.8f };
 #define Gravity gravity
 
+struct DamegeInfo
+{
+	GameObject*		owner;
+	sf::Vector2f	knockbackVelocity;
+	sf::Vector2f	hitDirection;
+	float			damege;
+	float			knockbackDuration;
+	bool			useKnockback;
+
+	DamegeInfo() = default;
+	DamegeInfo(float damage)
+		: damege(damage)
+		, useKnockback(false)
+		, knockbackDuration(0.f)
+		, owner(nullptr)
+	{}
+	DamegeInfo(const DamegeInfo& other) = default;
+};
+
 struct DefaultStatus
 {
 	float		maxHp;

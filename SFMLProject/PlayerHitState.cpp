@@ -3,10 +3,12 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Animation.h"
+#include "Rigidbody.h"
 
 PlayerHitState::PlayerHitState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Hit)
 	, currentTime(0.f)
+	, rigidbody(nullptr)
 {
 }
 
@@ -14,80 +16,62 @@ PlayerHitState::~PlayerHitState()
 {
 }
 
-void PlayerHitState::StartEffect()
+void PlayerHitState::SetDamageInfo(const DamegeInfo& damage)
 {
-	if (player->GetCurrentHP() == 1)
-	{
-		// 공격 애니메이션으로 변경
-		player->GetAnimator()->ChangeAnimation("marioHit", true, true);
-		player->GetCollider()->SetScale(player->GetCollider()->GetScale() * 0.5f);
-
-		
-		// 현재 애니메이션은 공격 애니메이션으로 변경 됨
-		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
-		
-		// 현재 애니메이션을 가져와서 공격 이벤트를 넣어주는 상태
-		animation->SetAnimationStartEvent(std::bind(&PlayerHitState::ChangePosition ,this ), 2);
-		animation->SetAnimationStartEvent(std::bind(&PlayerHitState::ChangePosition, this), 5);
-
-		animation->SetAnimationEndEvent(std::bind(&PlayerHitState::ReturnPosition, this), 2);
-		animation->SetAnimationEndEvent(std::bind(&PlayerHitState::ReturnPosition, this), 5);
-	}
-}
-
-void PlayerHitState::ChangePosition()
-{
-	player->SetPosition(changePosition);
-}
-
-void PlayerHitState::ReturnPosition()
-{
-	player->SetPosition(originalPosition);
+	currentDamageInfo = damage;
 }
 
 void PlayerHitState::Awake()
 {
+	PlayerBaseState::Awake();
+
 }
 
 void PlayerHitState::Start()
 {
+	rigidbody = player->GetRigidbody();
 }
 
 void PlayerHitState::Enter()
 {
 	PlayerBaseState::Enter();
+
+	currentTime = 0.f;
+	rigidbody->ResetVelocity();
+
+	if (currentDamageInfo.hitDirection == sf::Vector2f::down || currentDamageInfo.hitDirection == sf::Vector2f::up)
+	{
+		if (player->GetPosition().x < currentDamageInfo.owner->GetPosition().x)
+			rigidbody->SetVelocity(sf::Vector2f::right * currentDamageInfo.knockbackVelocity);
+		else
+			rigidbody->SetVelocity(sf::Vector2f::left * currentDamageInfo.knockbackVelocity);
+	}
+	else
+	{
+		if (currentDamageInfo.knockbackVelocity.y != 0.f && rigidbody->GetCurrentVelocity().y == 0.f)
+		{
+			rigidbody->SetGround(false);
+		}
+
+		rigidbody->SetVelocity(currentDamageInfo.knockbackVelocity);
+	}
 }
 
 void PlayerHitState::Exit()
 {
 	PlayerBaseState::Exit();
 
-	/*if (player->GetCurrentHP() == 1)
-	{
-		player->SetPosition(changePosition);
-		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
-		animation->ClearStartEvent(2);
-		animation->ClearEndEvent(2);
-		animation->ClearStartEvent(5);
-		animation->ClearEndEvent(5);
-	}*/
+	rigidbody->SetVelocity({0.f, rigidbody->GetCurrentVelocity().y});
 }
 
 void PlayerHitState::Update(float deltaTime)
 {
-	currentTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
-
-	if (currentTime >= 1.f)
+	currentTime += deltaTime;
+	if (currentTime >= currentDamageInfo.knockbackDuration)
 	{
-		fsm->ChangeState(PlayerStateType::Idle);
-		currentTime = 0.f;
- 	}
-}
-
-void PlayerHitState::FixedUpdate(float fixedDeltaTime)
-{
-}
-
-void PlayerHitState::LateUpdate(float deltaTime)
-{
+		if(rigidbody->GetCurrentVelocity().y != 0.f)
+			fsm->ChangeState(PlayerStateType::Falling);
+		else
+			fsm->ChangeState(PlayerStateType::Idle);
+	}
 }

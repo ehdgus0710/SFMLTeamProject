@@ -110,7 +110,15 @@ void ReianaDropAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::Enemy, ColliderLayer::Player, true), LayerType::Enemy);
 	hitBox->SetScale({ 50.f,100.f });
-	hitBox->SetDamage(1000);
+
+	DamegeInfo damageInfo;
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.5f;
+	damageInfo.owner = reiana;
+	damageInfo.knockbackVelocity = { 100.f,0.f };
+	damageInfo.hitDirection = sf::Vector2f::down;
+	hitBox->SetDamage(damageInfo);
 }
 
 void ReianaDropAttackState::OnDestoryHitBox()

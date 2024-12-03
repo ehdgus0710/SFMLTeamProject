@@ -8,6 +8,7 @@ class PlayerJumpAttackState : public PlayerBaseState
 protected:
 	Rigidbody*		rigidbody;
 	HitBoxObject*	attackBox;
+	DamegeInfo		damageInfo;
 	float			horizontal;
 	bool			sequenceAttack;
 

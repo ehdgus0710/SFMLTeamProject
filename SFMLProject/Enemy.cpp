@@ -26,9 +26,9 @@ Enemy::~Enemy()
 }
 
 
-void Enemy::TakeDamage(float damage)
+void Enemy::TakeDamage(const DamegeInfo& damage)
 {
-    currentStatus.hp -= damage;
+    currentStatus.hp -= damage.damege;
 
     if(currentStatus.hp <= 0)
         OnDead();

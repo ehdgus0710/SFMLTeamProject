@@ -43,7 +43,7 @@ protected:
 
 	std::function<void(float, float)> changeHpAction;
 public:
-	void TakeDamage(float damage);
+	void TakeDamage(const DamegeInfo& damage);
 	void AddItem(ItemType itemType);
 	void Attack();
 	void OnAttackEnd();

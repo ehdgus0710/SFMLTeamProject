@@ -36,7 +36,7 @@ public:
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
 	
-	void TakeDamage(float damage);
+	void TakeDamage(const DamegeInfo& damage);
 	void OnDead();
 
 	void SetAnimeLeftHand(std::string name, bool loop);

@@ -10,6 +10,14 @@ PlayerAttackState::PlayerAttackState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("littleboneAttack");
 	animationKeys.push_back("noheadlittleboneAttack");
+
+
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.2f;
+	damageInfo.owner = player;
+	damageInfo.knockbackVelocity = { 30.f,0.f };
+	damageInfo.hitDirection = sf::Vector2f::down;
 }
 
 PlayerAttackState::~PlayerAttackState()
@@ -54,6 +62,23 @@ void PlayerAttackState::EvenetClear()
 {
 	Animation* animation = animator->GetCurrentAnimation();
 	animator->GetCurrentAnimation()->ClearEndEvent(animation->GetFrameCount() - 1);
+}
+
+void PlayerAttackState::CreateEffect(GameObject* object)
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Effect/normalAttack.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "NormalAttack");
+	effect->GetAnimator()->ChangeAnimation("NormalAttack");
+	
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition(object->GetPosition());
+
+	if (player->IsFlipX())
+		effect->SetScale({ effect->GetScale().x * -1.f ,effect->GetScale().y });
+
+	effect->Awake();
+	effect->Start();
 }
 
 void PlayerAttackState::StartAttack()
@@ -108,10 +133,12 @@ void PlayerAttackState::SequenceAttack()
 
 void PlayerAttackState::OnCreateHitBox()
 {
-	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Enemy), LayerType::PlayerBullet);
+	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Boss), LayerType::PlayerBullet);
 	attackBox->SetPosition(player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left * 30.f : sf::Vector2f::right * 30.f));
 	attackBox->SetScale({ 50.f,50.f });
-	attackBox->SetDamage(10);
+	attackBox->SetDamage(damageInfo);
+
+	attackBox->AddStartHitEvent(std::bind(&PlayerAttackState::CreateEffect, this, std::placeholders::_1));
 }
 
 void PlayerAttackState::OnDestoryHitBox()

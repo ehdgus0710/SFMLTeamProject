@@ -15,7 +15,7 @@ protected:
 	bool			isHit = false;
 
 public:
-	void TakeDamage(float damage);
+	void TakeDamage(const DamegeInfo& damage);
 	void OnDead();
 	void Attack();
 	void OnAttackEnd();

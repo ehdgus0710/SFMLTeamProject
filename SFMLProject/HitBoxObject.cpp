@@ -12,7 +12,6 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType,Collid
 	, owner(owner)
 	, targetLayer(targetLayerType)
 	, isOwnerFollow(false)
-	, damage(0.f)
 	, lifeTime(0.f)
 	, currentLifeTime(0.f)
 	, useLifeTime(false)
@@ -28,7 +27,6 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, Colli
 	, targetLayer(targetLayer)
 	, isOwnerFollow(ownerFollow)
 	, offsetPosition(offsetPos)
-	, damage(0.f)
 	, lifeTime(0.f)
 	, currentLifeTime(0.f)
 	, useLifeTime(false)
@@ -131,11 +129,11 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 	{
 		if (target->GetColliderLayer() == ColliderLayer::Player)
 		{
-			((Player*)target->GetOwner())->TakeDamage(damage);
+			((Player*)target->GetOwner())->TakeDamage(damageInfo);
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Enemy)
 		{
-			((Enemy*)target->GetOwner())->TakeDamage(damage);
+			((Enemy*)target->GetOwner())->TakeDamage(damageInfo);
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Boss)
 		{
@@ -143,21 +141,21 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 			Yggdrasil* yggdrasil = dynamic_cast<Yggdrasil*>(target->GetOwner());
 
 			if(yggdrasil)
-				yggdrasil->TakeDamage(damage);
+				yggdrasil->TakeDamage(damageInfo);
 			else
-				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damage);
+				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Yggdrasil)
 		{
-			static_cast<Yggdrasil*>(target->GetOwner())->TakeDamage(damage);
+			static_cast<Yggdrasil*>(target->GetOwner())->TakeDamage(damageInfo);
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Reiana)
-			static_cast<Reiana*>(target->GetOwner())->TakeDamage(damage);
+			static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
 
 		for (auto& hitEvent : startHitEvents)
 		{
 			if (hitEvent)
-				hitEvent();
+				hitEvent(this);
 		}
 
 		if (isAutoDestory)
@@ -185,7 +183,7 @@ void HitBoxObject::OnCollisionEnd(Collider* target)
 		for (auto& hitEvent : endHitEvents)
 		{
 			if(hitEvent)
-				hitEvent();
+				hitEvent(this);
 		}
 	}
 }

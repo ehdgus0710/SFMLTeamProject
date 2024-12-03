@@ -13,6 +13,12 @@ Rising::Rising(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer tar
 	: AnimationBullet(owner, thisLayerType, targetLayer, texId, name)
 	, reiana(nullptr)
 {
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.4f;
+	damageInfo.owner = this;
+	damageInfo.knockbackVelocity = { 50.f,0.f };
+	damageInfo.hitDirection = sf::Vector2f::down;
 }
 
 void Rising::Start()
@@ -51,7 +57,7 @@ void Rising::setDelay(float delay)
 void Rising::OnCreateHitBox()
 {
 	collider->SetActive(true);
-	SetDamage(1000);
+	SetDamage(damageInfo);
 }
 
 void Rising::OnDestoryHitBox()

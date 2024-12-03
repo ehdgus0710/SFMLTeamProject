@@ -15,6 +15,13 @@ PlayerJumpAttackState::PlayerJumpAttackState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("littleboneJumpAttack");
 	animationKeys.push_back("noheadlittleboneJumpAttack");
+
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.2f;
+	damageInfo.owner = player;
+	damageInfo.knockbackVelocity = { 30.f,0.f };
+	damageInfo.hitDirection = sf::Vector2f::down;
 }
 
 PlayerJumpAttackState::~PlayerJumpAttackState()
@@ -113,7 +120,9 @@ void PlayerJumpAttackState::OnCreateHitBox()
 {
 	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Enemy, true, (sf::Vector2f::right * 30.f)), LayerType::PlayerBullet);
 	attackBox->SetScale({ 50.f,50.f });
-	attackBox->SetDamage(10);
+
+
+	attackBox->SetDamage(damageInfo);
 }
 
 void PlayerJumpAttackState::OnDestoryHitBox()

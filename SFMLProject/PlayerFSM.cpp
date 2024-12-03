@@ -142,6 +142,14 @@ PlayerBaseState* PlayerFSM::GetCurrentState()
 { 
 	return (PlayerBaseState*)stateMap[currentStateType];
 }
+PlayerBaseState* PlayerFSM::GetState(PlayerStateType type)
+{
+	auto iter = stateMap.find(type);
+	if (iter != stateMap.end())
+		return (PlayerBaseState*)iter->second;
+
+	return nullptr;
+}
 
 void PlayerFSM::Update(float deltaTime)
 {

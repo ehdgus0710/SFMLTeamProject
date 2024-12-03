@@ -11,6 +11,7 @@
 #include "InGameScoreUI.h"
 #include "Head.h"
 #include "PlayerBaseState.h"
+#include "PlayerHitState.h"
 
 Player::Player(const std::string& name)
 	: AnimationGameObject(name)
@@ -44,21 +45,32 @@ Player::Player(const std::string& name)
 	animator->LoadCsv("animators/noheadlittlebone.csv");
 
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
+	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);
 }
 
 Player::~Player()
 {
 }
 
-void Player::TakeDamage(float damage)
+void Player::TakeDamage(const DamegeInfo& damage)
 {
-	currentStatus.hp -= damage;
+	currentStatus.hp -= damage.damege;
+
+
 
 	if (currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
 		/*isDead = true;
 		fsm.ChangeState(PlayerStateType::Dead);*/
+	}
+	else
+	{
+		if (damage.useKnockback && fsm.GetCurrentStateType() != PlayerStateType::Hit && fsm.GetCurrentStateType() != PlayerStateType::Dead)
+		{
+			static_cast<PlayerHitState*>(fsm.GetState(PlayerStateType::Hit))->SetDamageInfo(damage);
+			fsm.ChangeState(PlayerStateType::Hit);
+		}
 	}
 
 	if (changeHpAction)
@@ -223,12 +235,30 @@ void Player::Update(const float& deltaTime)
 			fsm.ChangeState(PlayerStateType::Skill2);
 	}
 
-	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && fsm.GetCurrentStateType() != PlayerStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
+	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && fsm.GetCurrentStateType() != PlayerStateType::Hit && fsm.GetCurrentStateType() != PlayerStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	{
-		TakeDamage(10);
+		DamegeInfo damageInfo;
+		damageInfo.damege = 10.f;
+		damageInfo.useKnockback = true;
+		damageInfo.knockbackDuration = 0.4f;
+		damageInfo.owner = this;
+		damageInfo.knockbackVelocity = { 50.f,0.f };
+		damageInfo.hitDirection = sf::Vector2f::down;
+		TakeDamage(damageInfo);
+	}
+	else if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
+	{
+		DamegeInfo damageInfo;
+		damageInfo.damege = 10.f;
+		damageInfo.useKnockback = true;
+		damageInfo.knockbackDuration = 0.4f;
+		damageInfo.owner = this;
+		damageInfo.knockbackVelocity = { 800.f,- 600.f };
+		damageInfo.hitDirection = sf::Vector2f::Normalized(damageInfo.knockbackVelocity);
+		TakeDamage(damageInfo);
 	}
 }
 

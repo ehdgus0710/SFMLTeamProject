@@ -9,6 +9,7 @@ class PlayerAttackState : public PlayerBaseState
 protected:
 	HitBoxObject*	attackBox;
 	Rigidbody*		rigidbody;
+	DamegeInfo		damageInfo;
 	float			horizontal;
 	bool			isMoveDirectionLeft;
 	bool			sequenceAttack;
@@ -16,7 +17,7 @@ protected:
 
 private:
 	void EvenetClear();
-
+	void CreateEffect(GameObject* object);
 public:
 
 	void StartAttack();

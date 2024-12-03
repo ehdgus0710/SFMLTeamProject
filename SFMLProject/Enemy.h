@@ -20,7 +20,7 @@ protected:
 	bool			isDead;
 
 public:
-	void TakeDamage(float damage);
+	void TakeDamage(const DamegeInfo& damage);
 	virtual void OnDead();
 
 	const sf::Vector2f& GetMoveDirection() { return moveDirection; }

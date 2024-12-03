@@ -18,6 +18,7 @@ private:
 public:
 	BaseState<PlayerStateType>* CreateState(PlayerStateType type);
 	PlayerBaseState* GetCurrentState();
+	PlayerBaseState* GetState(PlayerStateType type);
 	Player* GetPlayer() { return owner; }
 
 public:

@@ -15,6 +15,13 @@ Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targe
 {
 	TEXTURE_MANAGER.Load("Knife", "graphics/HomingPierce_Ready_8.png");
 	animator->CreateAnimation("Knife", "idle", { 96,31 }, 1, 0.1f);
+
+
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.5f;
+	damageInfo.owner = this;
+	damageInfo.knockbackVelocity = { 100.f,0.f };
 }
 
 void Knife::Start()
@@ -71,7 +78,8 @@ void Knife::setDelay(float delay)
 void Knife::OnCreateHitBox()
 {
 	collider->SetActive(true);
-	SetDamage(1000);
+	damageInfo.hitDirection = moveDirection;
+	SetDamage(damageInfo);
 }
 
 void Knife::OnDestoryHitBox()

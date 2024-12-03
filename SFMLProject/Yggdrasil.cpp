@@ -129,12 +129,12 @@ sf::Vector2f Yggdrasil::GetRightFistPos()
 	return sf::Vector2f(yggdrasilRightHand->GetPosition());
 }
 
-void Yggdrasil::TakeDamage(float damage)
+void Yggdrasil::TakeDamage(const DamegeInfo& damage)
 {
-	currentStatus.hp -= damage;
+	/*currentStatus.hp -= damage.damege;
 
 	if (currentStatus.hp <= 0)
-		OnDead();
+		OnDead();*/
 }
 
 void Yggdrasil::OnDead()

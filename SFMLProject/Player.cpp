@@ -57,12 +57,8 @@ void Player::TakeDamage(float damage)
 	if (currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
-		isDead = true;
-		fsm.ChangeState(PlayerStateType::Dead);
-	}
-	else
-	{
-		fsm.ChangeState(PlayerStateType::Hit);
+		/*isDead = true;
+		fsm.ChangeState(PlayerStateType::Dead);*/
 	}
 
 	if (changeHpAction)

@@ -281,6 +281,7 @@
     <ClCompile Include="SceneDev3.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="SkillCoolTimeUI.cpp" />
     <ClCompile Include="SkillFrameUI.cpp" />
     <ClCompile Include="SoundManger.cpp" />
     <ClCompile Include="SpriteGameObject.cpp" />
@@ -454,6 +455,7 @@
     <ClInclude Include="SceneDev3.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SkillCoolTimeUI.h" />
     <ClInclude Include="SkillFrameUI.h" />
     <ClInclude Include="SoundManger.h" />
     <ClInclude Include="SpriteGameObject.h" />

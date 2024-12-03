@@ -723,6 +723,9 @@
     <ClCompile Include="ReianaUIHub.cpp">
       <Filter>Contants\UI\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="SkillCoolTimeUI.cpp">
+      <Filter>Contants\UI\PlayerUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1225,6 +1228,9 @@
     </ClInclude>
     <ClInclude Include="ReianaUIHub.h">
       <Filter>Contants\UI\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillCoolTimeUI.h">
+      <Filter>Contants\UI\PlayerUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,10 @@
 
 PlayerDashState::PlayerDashState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dash)
-	, extraDash(false)
+	, isExtraDash(false)
+	, dashTime(0.3f)
+	, currentTime(0.f)
+	, rigidbody(nullptr)
 {
 	animationKeys.push_back("littleboneDash");
 	animationKeys.push_back("noheadlittleboneDash");
@@ -16,9 +19,13 @@ PlayerDashState::~PlayerDashState()
 {
 }
 
-void PlayerDashState::Awake()
+void PlayerDashState::StartDash()
 {
-	PlayerBaseState::Awake();
+	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], false);
+	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
+	dashStartPos = player->GetPosition();
+	player->OnDash();
+	currentTime = 0.f;
 }
 
 void PlayerDashState::Start()
@@ -32,14 +39,8 @@ void PlayerDashState::Enter()
 	rigidbody->ResetDropSpeed();
 	rigidbody->ResetVelocity();
 	rigidbody->Disable();
-	dashTime = 0.3f;
-	currentTime = 0.f;
-	player->OnDash();
-
-	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], false);
-
-	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
-	dashStartPos = player->GetPosition();
+	isExtraDash = false;
+	StartDash();
 }
 
 void PlayerDashState::Exit()
@@ -53,20 +54,23 @@ void PlayerDashState::Update(float deltaTime)
  	PlayerBaseState::Update(deltaTime);
 	currentTime += deltaTime;
 	player->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currentTime / dashTime));
-	if (currentTime <= dashTime)
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
+		isExtraDash = true;
+
+	if (currentTime >= dashTime + 0.1f)
 	{
-		if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
+		if (isExtraDash && player->GetCurrentDashCount() > 0)
 		{
-			dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
-			dashStartPos = player->GetPosition();
-			currentTime = 0.f;
-			player->OnDash();
+			StartDash();
 		}
-	}
-	else
-	{
-		player->OnDash();
-		fsm->ChangeState(PlayerStateType::Idle);
+		else
+		{
+			if(rigidbody->IsGround())
+				fsm->ChangeState(PlayerStateType::Idle);
+			else
+				fsm->ChangeState(PlayerStateType::Falling);
+		}
 	}
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
@@ -74,9 +78,4 @@ void PlayerDashState::Update(float deltaTime)
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
 	}
-}
-
-void PlayerDashState::FixedUpdate(float fixedDeltaTime)
-{
-	PlayerBaseState::FixedUpdate(fixedDeltaTime);
 }

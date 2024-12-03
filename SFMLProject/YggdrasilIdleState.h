@@ -4,6 +4,8 @@
 
 class YggdrasilIdleState : public YggdrasilBaseState
 {
+protected:
+	bool changeOn;
 public:
 	void Awake() override;
 	void Start() override;

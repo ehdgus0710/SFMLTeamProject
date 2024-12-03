@@ -23,8 +23,13 @@ protected:
 	sf::Sprite					sprite;
 	YggdrasilFSM				fsm;
 
+	int							phase1Hp;
+	int							phase2Hp;
+
 	float						attackTime;
 	float						attackDelay;
+
+	bool						phaseUp;
 public:
 	void Awake() override;
 	void Start() override;
@@ -35,7 +40,6 @@ public:
 	sf::Vector2f GetHeadPos();
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
-	
 	void TakeDamage(float damage);
 	void OnDead();
 
@@ -57,6 +61,9 @@ public:
 	YggdrasilHead* GetYggdrasilHead() { return yggdrasilHead; }
 	YggdrasilLeftHand* GetYggdrasilLeftHand() { return yggdrasilLeftHand; }
 	YggdrasilRightHand* GetYggdrasilRightHand() { return yggdrasilRightHand; }
+
+	void SetPhaseUp(bool phase) { phaseUp = phase; }
+	bool GetPhaseUp() { return phaseUp; }
 
 public:
 	Yggdrasil(const std::string& name = "Player");

@@ -82,6 +82,12 @@ void Yggdrasil::Start()
 	attackTime = 0;
 	attackDelay = 3.f;
 
+	phase1Hp = 100;
+	phase2Hp = 100;
+
+	phaseUp = false;
+
+
 	player = static_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 
 	fsm.Start();
@@ -90,10 +96,10 @@ void Yggdrasil::Start()
 void Yggdrasil::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
-	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
-	//{
-	//	fsm.ChangeState(YggdrasilStateType::FistAttack);
-	//}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	{
+		phaseUp = !phaseUp;
+	}
 	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
 	//{
 	//	fsm.ChangeState(YggdrasilStateType::SweepAttack);

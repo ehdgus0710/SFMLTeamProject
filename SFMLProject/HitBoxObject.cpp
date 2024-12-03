@@ -129,7 +129,14 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 	{
 		if (target->GetColliderLayer() == ColliderLayer::Player)
 		{
-			((Player*)target->GetOwner())->TakeDamage(damageInfo);
+			Player* player = static_cast<Player*>(target->GetOwner());
+
+			if (player->GetFSM().GetCurrentStateType() != PlayerStateType::Dash)
+			{
+				((Player*)target->GetOwner())->TakeDamage(damageInfo);
+			}
+			else
+				return;
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Enemy)
 		{
@@ -165,6 +172,23 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 
 void HitBoxObject::OnCollisionStay(Collider* target)
 {
+	/*if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		Player* player = static_cast<Player*>(target->GetOwner());
+
+		if (player->GetFSM().GetCurrentStateType() != PlayerStateType::Dash)
+		{
+			((Player*)target->GetOwner())->TakeDamage(damageInfo);
+
+			for (auto& hitEvent : startHitEvents)
+			{
+				if (hitEvent)
+					hitEvent(this);
+			}
+		}
+		else
+			return;
+	}*/
 }
 
 void HitBoxObject::OnCollisionEnd(Collider* target)

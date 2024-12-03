@@ -97,7 +97,7 @@ void PlayerAttackState::EndMove()
 void PlayerAttackState::StartAttack()
 {
 	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) || InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
-		rigidbody->SetVelocity((player->IsFlipX() ? sf::Vector2f::left * 100.f : sf::Vector2f::right * attackMoveSpeed));
+		rigidbody->SetVelocity((player->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
 
 	currentAttackCount = 1;
 	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "1", false);
@@ -113,7 +113,7 @@ void PlayerAttackState::StartAttack()
 void PlayerAttackState::NextAttack()
 {
 	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) || InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
-		rigidbody->SetVelocity((player->IsFlipX() ? sf::Vector2f::left * 100.f : sf::Vector2f::right * attackMoveSpeed));
+		rigidbody->SetVelocity((player->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
 
 	currentAttackCount = 2;
 	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "2", true);

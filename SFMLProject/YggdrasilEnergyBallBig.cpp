@@ -34,6 +34,15 @@ void YggdrasilEnergyBallBig::Start()
 	AnimationBullet::Start();
 }
 
+void YggdrasilEnergyBallBig::Update(const float& deltaTime)
+{
+	AnimationBullet::Update(deltaTime);
+	if (isShoot && player != nullptr)
+	{
+		SetPosition(position + deltaTime * 100.f * (position.x < player->GetPosition().x ? sf::Vector2f::right : sf::Vector2f::left));
+	}
+}
+
 void YggdrasilEnergyBallBig::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Wall)

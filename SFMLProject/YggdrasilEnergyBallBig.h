@@ -13,6 +13,7 @@ public:
 	void Awake() override;
 	void Start() override;
 
+	void Update(const float& deltaTime) override;
 	void OnCollisionEnter(Collider* target) override;
 	void SetYggdrasil(Yggdrasil* yggdrasil);
 	void SetPlayer(Player* player);

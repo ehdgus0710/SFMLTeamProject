@@ -15,6 +15,7 @@ protected:
 	sf::Vector2f look;
 
 	int attackCount;
+	int maxAttackCount;
 
 	float speed;
 
@@ -24,6 +25,7 @@ protected:
 	float shootDelay;
 
 	bool isShoot;
+	bool changeOn;
 
 private:
 	void EnergyBallFire(sf::Vector2f pos, sf::Vector2f dir, float speed, float deltaTime);

@@ -15,10 +15,10 @@ void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 	currentAttackTime += deltaTime;
 	lStartPos = yggdrasil->GetLeftFistPos();
 	lEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
-	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
+	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackDelay));
 	rStartPos = yggdrasil->GetRightFistPos();
 	rEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
-	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
+	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackDelay));
 	isWait = true;
 }
 
@@ -106,36 +106,62 @@ void YggdrasilSweepAttackState::Awake()
 void YggdrasilSweepAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	changeOn = false;
 }
 
 void YggdrasilSweepAttackState::Enter()
 {
 	YggdrasilBaseState::Enter();
+	if (!yggdrasil->GetPhaseUp())
+	{
+		yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
+		yggdrasil->SetAnimeRightHand("phase1HandRightSweep", false);
 
-	yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
-	yggdrasil->SetAnimeRightHand("phase1HandRightSweep", false);
+		attackCount = 0;
+		whatFist = Utils::RandomRange(1, 2);
 
-	currentAttackCount = 0;
-	attackCount = 0;
-	whatFist = Utils::RandomRange(1, 2);
+		readyAttack = false;
+		isAttack = false;
+		isRecovery = false;
+		isWait = false;
+		switchFist = false;
+		onAttack = true;
 
-	readyAttack = false;
-	isAttack = false;
-	isRecovery = false;
-	isWait = false;
-	switchFist = false;
-	onAttack = true;
+		currentAttackDelay = 0.f;
+		currentAttackTime = 0.f;
+		currentRecoveryTime = 0.f;
+		readyFistDelay = 0.f;
 
-	currentAttackDelay = 0.f;
-	currentAttackTime = 0.f;
-	currentRecoveryTime = 0.f;
-	readyFistDelay = 0.f;
+		attackDelay = 2.f;
+		attackTime = 2.f;
+		recoveryTime = 1.f;
+		readyFistTime = 2.f;
+	}
+	else
+	{
+		yggdrasil->SetAnimeLeftHand("phase2HandLeftSweep", false);
+		yggdrasil->SetAnimeRightHand("phase2HandRightSweep", false);
 
-	attackDelay = 2.f;
-	attackTime = 2.f;
-	recoveryTime = 1.f;
-	readyFistTime = 2.f;
+		attackCount = 0;
+		whatFist = Utils::RandomRange(1, 2);
 
+		readyAttack = false;
+		isAttack = false;
+		isRecovery = false;
+		isWait = false;
+		switchFist = false;
+		onAttack = true;
+
+		currentAttackDelay = 0.f;
+		currentAttackTime = 0.f;
+		currentRecoveryTime = 0.f;
+		readyFistDelay = 0.f;
+
+		attackDelay = 1.f;
+		attackTime = 0.5f;
+		recoveryTime = 0.5f;
+		readyFistTime = 2.f;
+	}
 	lFirstPos = yggdrasil->GetLeftFistPos();
 	rFirstPos = yggdrasil->GetRightFistPos();
 
@@ -148,6 +174,11 @@ void YggdrasilSweepAttackState::Exit()
 
 void YggdrasilSweepAttackState::Update(float deltaTime)
 {
+	if (yggdrasil->GetPhaseUp() && !changeOn)
+	{
+		Enter();
+		changeOn = true;
+	}
 	// 휩쓸기 준비 모션
 	if (!readyAttack)
 	{
@@ -163,7 +194,7 @@ void YggdrasilSweepAttackState::Update(float deltaTime)
 	}
 	else
 	{
-		if (attackCount < 2)
+		if (attackCount < 3)
 		{
 			if (!switchFist)
 			{

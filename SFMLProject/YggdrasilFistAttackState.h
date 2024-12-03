@@ -28,6 +28,7 @@ protected:
 	float		recoveryTime;
 	float		currentRecoveryTime;
 	float		switchFistTime;
+	float		waitTime;
 	
 	bool		isWait;
 	bool		isAttack;
@@ -37,6 +38,7 @@ protected:
 	bool		readyFist;
 
 	bool		hitBoxOn;
+	bool		changeOn;
 
 private:
 	void ReadyFist(float deltaTime);

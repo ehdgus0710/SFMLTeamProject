@@ -23,11 +23,17 @@ void YggdrasilIdleState::Enter()
 	YggdrasilBaseState::Enter();
 	if (yggdrasil->GetPhaseUp())
 	{
+		attackTime = 0.f;
+		attackDelay = 5.f;
+		choiceAttack = 0;
 		yggdrasil->SetAnimeLeftHand("phase2HandLeftIdle", true);
 		yggdrasil->SetAnimeRightHand("phase2HandRightIdle", true);
 	}
 	else
 	{
+		attackTime = 0.f;
+		attackDelay = 2.5f;
+		choiceAttack = 0;
 		yggdrasil->SetAnimeLeftHand("phase1HandLeftIdle", true);
 		yggdrasil->SetAnimeRightHand("phase1HandRightIdle", true);
 	}
@@ -39,21 +45,28 @@ void YggdrasilIdleState::Exit()
 
 void YggdrasilIdleState::Update(float deltaTime)
 {
+	attackTime += deltaTime;
+
 	if (yggdrasil->GetPhaseUp() && !changeOn)
 	{
 		Enter();
 		changeOn = true;
 	}
-
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
+	
+	if (attackTime > attackDelay)
+	{
+		choiceAttack = Utils::RandomRange(1, 3);
+		attackTime = 0;
+	}
+	if (choiceAttack == 1)
 	{
 		fsm->ChangeState(YggdrasilStateType::FistAttack);
 	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
+	if (choiceAttack == 2)
 	{
 		fsm->ChangeState(YggdrasilStateType::SweepAttack);
 	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
+	if (choiceAttack == 3)
 	{
 		fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
 	}

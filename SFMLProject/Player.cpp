@@ -175,7 +175,7 @@ void Player::Start()
 	collider->SetScale({ 16.f,32.f });
 	collider->SetOffsetPosition({ 0.f, -5.f });
 
-	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::Player);
+	head = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new Head("Head"), LayerType::PlayerBullet);
 	head->SetPlayer(this);
 	head->Awake();
 	head->SetActive(false);

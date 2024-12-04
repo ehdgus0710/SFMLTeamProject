@@ -4,10 +4,14 @@
 class Player;
 class yggdrasil;
 class HitBoxObject;
+class Animation;
 
 class YggdrasilFistAttackState : public YggdrasilBaseState
 {
 protected:
+	std::vector<std::function<void()>> events;
+
+	Animation* animation;
 	HitBoxObject*	attackBox;
 	sf::Vector2f	startPos;
 	sf::Vector2f	endPos;
@@ -46,6 +50,8 @@ private:
 	void EndAttackWait(float deltaTime);
 	void EndFistPos(float deltaTime);
 	void Recovery(float deltaTime);
+	void CreateLeftEffect();
+	void CreateRightEffect();
 
 public:
 	void Awake() override;

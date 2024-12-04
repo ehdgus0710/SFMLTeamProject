@@ -32,7 +32,6 @@ void YggdrasilSpecialAttackState::StartSpecialAttack(float deltaTime)
 	if (currentAttackTime > attackTime)
 	{
 		HitBoxOn();
-		hitBoxOn = true;
 		isWait = true;
 		++attackCount;
 		currentAttackTime = 0.f;
@@ -71,6 +70,7 @@ void YggdrasilSpecialAttackState::HitBoxOn()
 	attackBox->SetScale({ 2000.f,50.f });
 	attackBox->SetDamage(10);
 	attackBox->SetPosition({ 960.f, 913.f });
+	attackBox->UseLifeTime(0.2f);
 }
 
 void YggdrasilSpecialAttackState::HitBoxOff()
@@ -162,11 +162,6 @@ void YggdrasilSpecialAttackState::Update(float deltaTime)
 			}
 			else if (isWait)
 			{
-				if (hitBoxOn)
-				{
-					attackBox->OnDestory();
-					hitBoxOn = false;
-				}
 				EndAttackWait(deltaTime);
 			}
 			else if (isRecovery)

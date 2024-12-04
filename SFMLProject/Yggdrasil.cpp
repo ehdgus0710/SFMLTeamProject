@@ -60,7 +60,7 @@ void Yggdrasil::Start()
 
 	yggdrasilMouth = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilMouth("yggdrasilMouth"), LayerType::Boss);
 	yggdrasilMouth->SetYggdrasil(this);
-	yggdrasilMouth->SetPosition({ yggdrasilHead->GetPosition().x + 50.f, yggdrasilHead->GetPosition().y + 300.f });
+	yggdrasilMouth->SetPosition({ GetPosition().x + 50, GetPosition().y + 150.f });
 	yggdrasilMouth->Awake();
 	yggdrasilMouth->GetCollider()->SetScale({ 100.f,100.f });
 	yggdrasilMouth->GetRigidbody()->SetActive(false);
@@ -100,10 +100,10 @@ void Yggdrasil::Update(const float& deltaTime)
 	{
 		phaseUp = !phaseUp;
 	}
-	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad8))
-	//{
-	//	fsm.ChangeState(YggdrasilStateType::SweepAttack);
-	//}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
+	{
+		fsm.ChangeState(YggdrasilStateType::Dead);
+	}
 	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
 	//{
 	//	fsm.ChangeState(YggdrasilStateType::EnergyBallAttack);
@@ -123,6 +123,11 @@ void Yggdrasil::LateUpdate(const float& deltaTime)
 sf::Vector2f Yggdrasil::GetHeadPos()
 {
 	return sf::Vector2f(yggdrasilHead->GetPosition());
+}
+
+sf::Vector2f Yggdrasil::GetMouthPos()
+{
+	return sf::Vector2f(yggdrasilMouth->GetPosition());
 }
 
 sf::Vector2f Yggdrasil::GetLeftFistPos()
@@ -177,6 +182,11 @@ void Yggdrasil::SetHeadPos(sf::Vector2f pos)
 	yggdrasilHead->SetPosition(pos);
 }
 
+void Yggdrasil::SetMouthPos(sf::Vector2f pos)
+{
+	yggdrasilMouth->SetPosition(pos);
+}
+
 void Yggdrasil::SetLeftFistPos(sf::Vector2f pos)
 {
 	yggdrasilLeftHand->SetPosition(pos);
@@ -185,6 +195,26 @@ void Yggdrasil::SetLeftFistPos(sf::Vector2f pos)
 void Yggdrasil::SetRightFistPos(sf::Vector2f pos)
 {
 	yggdrasilRightHand->SetPosition(pos);
+}
+
+void Yggdrasil::SetHeadRota(float rota)
+{
+	yggdrasilHead->SetRotation(rota);
+}
+
+void Yggdrasil::SetMouthRota(float rota)
+{
+	yggdrasilMouth->SetRotation(rota);
+}
+
+void Yggdrasil::SetLeftFistRota(float rota)
+{
+	yggdrasilLeftHand->SetRotation(rota);
+}
+
+void Yggdrasil::SetRightFistRota(float rota)
+{
+	yggdrasilRightHand->SetRotation(rota);
 }
 
 void Yggdrasil::OnCollisionEnter(Collider* target)

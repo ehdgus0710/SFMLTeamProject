@@ -34,6 +34,11 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, Colli
 	, isAutoDestory(false)
 {
 	CreateCollider(ColliderType::Rectangle, thisLayerType);
+
+	if (isOwnerFollow)
+	{
+		OwnerFollow();
+	}
 }
 
 HitBoxObject::~HitBoxObject()

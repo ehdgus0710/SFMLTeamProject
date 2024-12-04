@@ -1,0 +1,6 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+AwakenRayanna,risingPierceEnd,0,,,,,
+,,,,,,,
+,90,125,0,588,90,125,0.1
+,90,125,90,588,90,125,0.1
+,90,125,180,588,90,125,0.1

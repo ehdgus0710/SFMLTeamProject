@@ -29,6 +29,7 @@ class YggdrasilSpecialAttackState : public YggdrasilBaseState
 	float		recoveryTime;
 	float		currentRecoveryTime;
 	float		readyFistTime;
+	float		waitTime;
 
 	bool		readyAttack;
 	bool		isWait;
@@ -43,10 +44,13 @@ class YggdrasilSpecialAttackState : public YggdrasilBaseState
 
 private:
 	void ReadyAttack(float deltaTime);
-	void StartLeftAttack(float deltaTime);
-	void StartRightAttack(float deltaTime);
+	void StartSpecialAttack(float deltaTime);
 	void EndAttackWait(float deltaTime);
 	void Recovery(float deltaTime);
+
+	void HitBoxOn();
+	void HitBoxOff();
+
 
 public:
 	void Awake() override;

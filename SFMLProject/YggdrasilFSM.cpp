@@ -49,7 +49,7 @@ void YggdrasilFSM::CreateAllState()
 			AddState(YggdrasilStateType::EnergyBallAttack);
 			break;
 		case YggdrasilStateType::YggdrasilSpecialAttack:
-			AddState(YggdrasilStateType::EnergyBallAttack);
+			AddState(YggdrasilStateType::YggdrasilSpecialAttack);
 			break;
 		case YggdrasilStateType::Dead:
 			AddState(YggdrasilStateType::Dead);

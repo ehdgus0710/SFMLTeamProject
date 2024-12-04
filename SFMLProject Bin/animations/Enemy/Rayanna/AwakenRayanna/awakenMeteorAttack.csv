@@ -1,5 +1,5 @@
 ,ANIMAIONID,REPEAT(0: true, 1: false),,,,
-AwakenRayanna,meteorAttack,0,,,,,
+AwakenRayanna,awakenMeteorAttack,0,,,,,
 ,,,,,,,
 ,137,32,0,1487,137,32,0.1
 ,137,32,137,1487,137,32,0.1

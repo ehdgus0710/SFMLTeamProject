@@ -1,5 +1,5 @@
 TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
-AwakenRayanna,meteorEnd,0,,,,,
+AwakenRayanna,awakenMeteorEnd,0,,,,,
 ,,,,,,,
 ,96,77,0,1519,96,77,0.1
 ,96,77,96,1519,96,77,0.1

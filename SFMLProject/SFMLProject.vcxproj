@@ -189,6 +189,7 @@
     <ClCompile Include="Knife.cpp" />
     <ClCompile Include="MenuGUI.cpp" />
     <ClCompile Include="MeteorGroundSmoke.cpp" />
+    <ClCompile Include="PauseUIBar.cpp" />
     <ClCompile Include="PlayerJumpAttackState.cpp" />
     <ClCompile Include="PlayerSkill2State.cpp" />
     <ClCompile Include="PlayerSkill1State.cpp" />
@@ -391,6 +392,7 @@
     <ClInclude Include="Knife.h" />
     <ClInclude Include="MenuGUI.h" />
     <ClInclude Include="MeteorGroundSmoke.h" />
+    <ClInclude Include="PauseUIBar.h" />
     <ClInclude Include="PlayerJumpAttackState.h" />
     <ClInclude Include="PlayerSkill2State.h" />
     <ClInclude Include="PlayerSkill1State.h" />

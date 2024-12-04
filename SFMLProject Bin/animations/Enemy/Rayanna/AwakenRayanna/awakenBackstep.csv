@@ -1,4 +1,4 @@
 TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
-AwakenRayanna,backstep,0,,,,,
+AwakenRayanna,awakenBackstep,0,,,,,
 ,,,,,,,
 ,66,64,0,2226,66,64,0.1

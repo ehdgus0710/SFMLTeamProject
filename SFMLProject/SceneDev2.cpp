@@ -41,7 +41,8 @@ void SceneDev2::LoadResources()
 
 	// Rayanna
 	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
-	TEXTURE_MANAGER.Load("AwakeRayanna", "graphics/boss/Rayanna/awakenRayanna.png");
+	TEXTURE_MANAGER.Load("AwakenRayanna", "graphics/boss/Rayanna/AwakenRayanna.png");
+
 
 	// Rayanna Effects
 	TEXTURE_MANAGER.Load("AwakenedThunder", "graphics/boss/Rayanna/effects/AwakenedThunder.png");

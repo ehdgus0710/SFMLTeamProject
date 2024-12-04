@@ -5,6 +5,7 @@
 #include "YggdrasilFistAttackState.h"
 #include "YggdrasilSweepAttackState.h"
 #include "YggdrasilEnergyBallAttackState.h"
+#include "YggdrasilSpecialAttackState.h"
 #include "YggdrasilDeadState.h"
 
 YggdrasilFSM::YggdrasilFSM(Yggdrasil* owner)
@@ -80,7 +81,7 @@ BaseState<YggdrasilStateType>* YggdrasilFSM::CreateState(YggdrasilStateType type
 		state = new YggdrasilEnergyBallAttackState(this);
 		break;
 	case YggdrasilStateType::YggdrasilSpecialAttack:
-		state = new YggdrasilEnergyBallAttackState(this);
+		state = new YggdrasilSpecialAttackState(this);
 		break;
 	case YggdrasilStateType::Dead:
 		state = new YggdrasilDeadState(this);

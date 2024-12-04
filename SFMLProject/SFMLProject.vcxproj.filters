@@ -762,6 +762,12 @@
     <ClCompile Include="B_ReianaThreeSwordState.cpp">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClCompile>
+    <ClCompile Include="B_ReianaBackStap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseUIBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1294,6 +1300,12 @@
     </ClInclude>
     <ClInclude Include="B_ReianaThreeSwordState.h">
       <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaBackStap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseUIBar.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

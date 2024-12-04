@@ -768,6 +768,39 @@
     <ClCompile Include="PauseUIBar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="AwakeReiana.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaBaseState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaDeadState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaDimensionState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaDropAttackState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaFSM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaGroundAttackState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaIdleState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaAwakeDimensionState.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollButtonUI.cpp">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingUIBar.cpp">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1306,6 +1339,39 @@
     </ClInclude>
     <ClInclude Include="PauseUIBar.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReiana.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaBaseState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaDeadState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaDimensionState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaDropAttackState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaFSM.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaGroundAttackState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaIdleState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaAwakeDimensionState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollButtonUI.h">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingUIBar.h">
+      <Filter>Core\7. Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

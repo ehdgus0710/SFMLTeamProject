@@ -16,6 +16,7 @@ protected:
 	std::list<sf::Sound*> playing;
 	std::list<sf::Sound*> waiting;
 
+	float totalVolum = 10.f;
 	float sfxVolume = 5.f;
 	float bgmVolume = 10.f;
 
@@ -24,9 +25,10 @@ public:
 	void SetBgmVolume(float v)
 	{
 		bgmVolume = v;
-		bgm.setVolume(bgmVolume);
+		bgm.setVolume(bgmVolume / totalVolum);
 	}
 
+	void SetTotalVolume(float v) { totalVolum = v; }
 	void SetSfxVolume(float v);
 
 	void Init(int totalChannels = 64);
@@ -37,6 +39,7 @@ public:
 	void PlayBgm(sf::SoundBuffer& buffer, bool loop = true);
 	void StopBgm();
 
+	float GetTotalVolum() { return totalVolum; }
 	float GetSfxVolum() { return sfxVolume; }
 	float GetBgmVolume() { return bgmVolume; }
 

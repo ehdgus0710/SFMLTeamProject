@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "MouseObject.h"
 #include "Collider.h"
+#include "SettingUIBar.h"
 
 
 PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
@@ -17,6 +18,7 @@ PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
 	, settingButton(nullptr)
 	, endGameButton(nullptr)
 	, mouseObject(nullptr)
+	, settingUIBar(nullptr)
 
 {
 	prevTimeScale = TimeManager::GetInstance().GetTimeScale();
@@ -37,6 +39,12 @@ void PauseUIBar::OnControllerBar()
 
 void PauseUIBar::OnSettingBar()
 {
+	settingUIBar->SetActive(true);
+
+	for (auto& button : buttons)
+	{
+		button->SetActive(false);
+	}
 }
 
 void PauseUIBar::OnEndGame()
@@ -104,6 +112,16 @@ void PauseUIBar::CreateUIObject()
 	mouseObject = currentScene->AddGameObject(new MouseObject(), LayerType::UI);
 	mouseObject->Start();
 
+	settingUIBar = currentScene->AddGameObject(new SettingUIBar("OptionsFrame", "SettingUIBar"), LayerType::UI);
+	settingUIBar->SetPosition({ 960.f, 550.f });
+	settingUIBar->SetScale({ 3.f,3.f });
+	endGameButton->Start();
+
+	buttons.push_back(goBackButton);
+	buttons.push_back(controllerButton);
+	buttons.push_back(newGameButton);
+	buttons.push_back(endGameButton);
+	buttons.push_back(settingButton);
 }
 
 void PauseUIBar::SetChildActive(const bool active)
@@ -115,6 +133,7 @@ void PauseUIBar::SetChildActive(const bool active)
 	endGameButton->SetActive(active);
 	goBackButton->SetActive(active);
 	mouseObject->SetActive(active);
+
 }
 
 void PauseUIBar::SetActive(const bool active)
@@ -141,9 +160,10 @@ void PauseUIBar::Start()
 	CreateUIObject();
 
 
-	sortingOrder = 6;
-	pauseText->sortingOrder = 5;
+	sortingOrder = 11;
+	pauseText->sortingOrder = 10;
 
 
 	SetActive(false);
+	settingUIBar->SetActive(false);
 }

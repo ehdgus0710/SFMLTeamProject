@@ -177,12 +177,14 @@ void PlayerUIHub::Start()
 		subSkullFrame->SetActive(false);
 	}
 
-	playerHpBar->sortingOrder = 10;
-	hpText->sortingOrder = 9;
-	maxHPText->sortingOrder = 9;
-	playerSimbolUI->sortingOrder = 7;
-	subSkullFrame->sortingOrder = 6;
-	subSkullSpriteUI->sortingOrder = 5;
+	playerHpBar->sortingOrder = 20;
+	hpText->sortingOrder = 19;
+	maxHPText->sortingOrder = 19;
+	playerSimbolUI->sortingOrder = 17;
+	subSkullFrame->sortingOrder = 16;
+	subSkullSpriteUI->sortingOrder = 15;
+	playerSkill1->sortingOrder = 14;
+	playerSkill2->sortingOrder = 14;
 
 }
 

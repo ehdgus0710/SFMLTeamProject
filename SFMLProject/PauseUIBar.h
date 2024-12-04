@@ -4,10 +4,12 @@
 class UITextGameObject;
 class TextButton;
 class MouseObject;
+class SettingUIBar;
 
 class PauseUIBar : public UISpriteGameObject
 {
 private:
+	SettingUIBar*		settingUIBar;
 	UITextGameObject*	pauseText;
 	
 	TextButton*			goBackButton;
@@ -17,6 +19,7 @@ private:
 	TextButton*			endGameButton;
 	MouseObject*		mouseObject;
 
+	std::vector<TextButton*> buttons;
 	float				prevTimeScale;
 
 private:

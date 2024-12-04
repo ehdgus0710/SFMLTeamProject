@@ -6,6 +6,7 @@ SkillCoolTimeUI::SkillCoolTimeUI(const std::string& texId, const std::string& na
 	, currentTime(0.f)
 	, coolTime(3.f)
 	, isCoolTimeCheck(false)
+	, player(nullptr)
 {
 }
 

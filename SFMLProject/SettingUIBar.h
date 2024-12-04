@@ -2,29 +2,26 @@
 #include "UISpriteGameObject.h"
 
 class UITextGameObject;
-class TextButton;
-class MouseObject;
+class ScrollButtonUI;
 
 class SettingUIBar : public UISpriteGameObject
 {
 private:
-	UITextGameObject* audioText;
+	UITextGameObject*	audioText;
+	ScrollButtonUI*		totalSoundScroller;
+	ScrollButtonUI*		bgmSoundScroller;
+	ScrollButtonUI*		effectSoundScroller;
+	UITextGameObject*	totalSoundText;
+	UITextGameObject*	bgmSoundText;
+	UITextGameObject*	effectSoundText;
 
-	TextButton* goBackButton;
-	TextButton* newGameButton;
-	TextButton* controllerButton;
-	TextButton* settingButton;
-	TextButton* endGameButton;
-
+	std::vector<GameObject*> objects;
 private:
-	void OffUIBar();
-	void OnNewGame();
-	void OnControllerBar();
-	void OnSettingBar();
-	void OnEndGame();
-
 	void CreateUIObject();
 	void SetChildActive(const bool active);
+	void SetTotalSound(float value);
+	void SetBgmSound(float value);
+	void SetEffectSound(float value);
 public:
 	void SetActive(const bool active) override;
 	void Start() override;

@@ -299,6 +299,7 @@
     <ClCompile Include="SceneDev2.cpp" />
     <ClCompile Include="SceneDev3.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="ScrollButtonUI.cpp" />
     <ClCompile Include="SettingUIBar.cpp" />
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="SkillCoolTimeUI.cpp" />
@@ -494,6 +495,7 @@
     <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="SceneDev3.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="ScrollButtonUI.h" />
     <ClInclude Include="SettingUIBar.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SkillCoolTimeUI.h" />

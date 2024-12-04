@@ -121,7 +121,7 @@ void SoundManger::SetSfxVolume(float v)
 	sfxVolume = v;
 	for (auto sound : playing)
 	{
-		sound->setVolume(sfxVolume);
+		sound->setVolume(sfxVolume / totalVolum);
 	}
 }
 

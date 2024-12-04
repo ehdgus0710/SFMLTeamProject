@@ -148,6 +148,21 @@ void Yggdrasil::OnDead()
 	//fsm.ChangeState(YggdrasilStateType::Dead);
 }
 
+void Yggdrasil::SetAnimeBody(std::string name, bool loop)
+{
+	animator->ChangeAnimation(name, loop);
+}
+
+void Yggdrasil::SetAnimeHead(std::string name, bool loop)
+{
+	yggdrasilHead->SetAniHead(name, loop);
+}
+
+void Yggdrasil::SetAnimeMouth(std::string name, bool loop)
+{
+	yggdrasilMouth->SetAniMouth(name, loop);
+}
+
 void Yggdrasil::SetAnimeLeftHand(std::string name, bool loop)
 {
 	yggdrasilLeftHand->SetAniLeftHand(name, loop);

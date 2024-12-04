@@ -33,6 +33,7 @@ class YggdrasilSpecialAttackState : public YggdrasilBaseState
 
 	bool		readyAttack;
 	bool		isWait;
+	bool		isStartWait;
 	bool		isAttack;
 	bool		isRecovery;
 	bool		onAttack;

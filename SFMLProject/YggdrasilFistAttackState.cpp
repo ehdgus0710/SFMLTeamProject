@@ -49,6 +49,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			attackBox->OnDestory();
 			hitBoxOn = false;
 			currentAttackTime = 0.f;
 			currentAttackDelay = 0.f;
@@ -69,6 +70,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			attackBox->OnDestory();
 			hitBoxOn = false;
 			currentAttackTime = 0.f;
 			currentAttackDelay = 0.f;
@@ -84,7 +86,6 @@ void YggdrasilFistAttackState::EndAttackWait(float deltaTime)
 
 	if (currentAttackDelay >= waitTime)
 	{
-		attackBox->OnDestory();
 		currentAttackDelay = 0.f;
 		isRecovery = true;
 		isWait = false;

@@ -44,6 +44,9 @@ public:
 	void TakeDamage(const DamegeInfo& damage);
 	void OnDead();
 
+	void SetAnimeBody(std::string name, bool loop);
+	void SetAnimeHead(std::string name, bool loop);
+	void SetAnimeMouth(std::string name, bool loop);
 	void SetAnimeLeftHand(std::string name, bool loop);
 	void SetAnimeRightHand(std::string name, bool loop);
 

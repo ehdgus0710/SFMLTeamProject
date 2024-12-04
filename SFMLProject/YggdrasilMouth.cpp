@@ -51,6 +51,11 @@ void YggdrasilMouth::LateUpdate(const float& deltaTime)
 {
 }
 
+void YggdrasilMouth::SetAniMouth(std::string name, bool loop)
+{
+	animator->ChangeAnimation(name, loop);
+}
+
 void YggdrasilMouth::OnCollisionEnter(Collider* target)
 {
 }

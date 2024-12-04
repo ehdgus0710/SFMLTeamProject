@@ -1,11 +1,15 @@
 #pragma once
 #include "Scene.h"
+
+class PauseUIBar;
+
 class Stage3 :
     public Scene
 {
 private:
 	Rectangle	cameraLimitRect;
 	Rectangle	currentCameraLimitRect;
+	PauseUIBar* pauseUIBar;
 public:
 	void CollisitionCheck();
 	void LoadResources();

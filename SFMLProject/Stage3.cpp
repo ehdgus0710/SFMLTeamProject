@@ -4,6 +4,7 @@
 #include "GameInclude.h"
 #include "Animation.h"
 #include "ReianaUIHub.h"
+#include "PauseUIBar.h"
 Stage3::Stage3()
 	: Scene(SceneIds::Stage3)
 {
@@ -31,6 +32,8 @@ void Stage3::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::UI, ColliderLayer::UI);
 }
 
 void Stage3::LoadResources()
@@ -68,6 +71,8 @@ void Stage3::LoadResources()
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseTopBack", "graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Top_Back.png");
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseFront",		"graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Front.png");
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseBottomBack", "graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Bottom_Back.png");
+
+	TEXTURE_MANAGER.Load("PauseFrame", "graphics/UI/Pause_Frame.png");
 }
 
 void Stage3::Init()
@@ -124,11 +129,16 @@ void Stage3::Enter()
 	
 	ReianaUIHub* reianaUIHub = AddGameObject(new ReianaUIHub("ReianaUIHub"), LayerType::InGameUI);
 
+	pauseUIBar = AddGameObject(new PauseUIBar("PauseFrame","PauseFrame"), LayerType::UI);
+	pauseUIBar->SetScale({ 3.f,3.f });
+	pauseUIBar->SetPosition({ mainCamera->GetView().getSize().x * 0.5f, 450.f });
 	/*AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 500, 500.f });
 	testPlayer->GetAnimator()->LoadCsv("animators/rayanna.csv");
 	testPlayer->GetAnimator()->ChangeAnimation("awaken");*/
+
+	InputManager::GetInstance().BindKey(sf::Keyboard::Escape);
 
 	Scene::Enter();
 }
@@ -146,6 +156,11 @@ void Stage3::Release()
 void Stage3::Update(float dt)
 {
 	Scene::Update(dt);
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Escape))
+	{
+		pauseUIBar->SetActive(!pauseUIBar->IsActive());
+	}
 }
 
 void Stage3::Render(sf::RenderWindow& window)

@@ -153,15 +153,18 @@ PlayerBaseState* PlayerFSM::GetState(PlayerStateType type)
 
 void PlayerFSM::Update(float deltaTime)
 {
-	stateMap[currentStateType]->Update(deltaTime);
+	if(!InputManager::GetInstance().GetInputable())
+		stateMap[currentStateType]->Update(deltaTime);
 }
 
 void PlayerFSM::FixedUpdate(float fixedDeltaTime)
 {
-	stateMap[currentStateType]->FixedUpdate(fixedDeltaTime);
+	if (!InputManager::GetInstance().GetInputable())
+		stateMap[currentStateType]->FixedUpdate(fixedDeltaTime);
 }
 
 void PlayerFSM::LateUpdate(float deltaTime)
 {
-	stateMap[currentStateType]->LateUpdate(deltaTime);
+	if (!InputManager::GetInstance().GetInputable())
+		stateMap[currentStateType]->LateUpdate(deltaTime);
 }

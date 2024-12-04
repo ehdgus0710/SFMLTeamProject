@@ -9,6 +9,7 @@
 #include "Yggdrasil.h"
 #include "YggdrasilUIHub.h"
 #include "SkillCoolTimeUI.h"
+#include "PauseUIBar.h"
 
 Stage2::Stage2()
 	: Scene(SceneIds::Stage2)
@@ -53,8 +54,8 @@ void Stage2::CollisitionCheck()
 void Stage2::LoadResources()
 {
 	ResourcesManager<sf::Font>::GetInstance().Load("Status", "fonts/Perfect DOS VGA 437.ttf", true);
+	ResourcesManager<sf::Font>::GetInstance().Load("NameFont2", "fonts/NotoSans-Bold.ttf", true);
 	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
-
 	// Yggdrasil
 	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
 	TEXTURE_MANAGER.Load("YggdrasilHead", "graphics/boss/Yggdrasil/Head.png");

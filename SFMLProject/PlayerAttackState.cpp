@@ -54,6 +54,7 @@ void PlayerAttackState::Update(float deltaTime)
 	{
 		sequenceAttack = true;
 	}
+
 }
 
 void PlayerAttackState::FixedUpdate(float fixedDeltaTime)
@@ -108,6 +109,7 @@ void PlayerAttackState::StartAttack()
 	animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::EndMove, this), 2);
 	animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::OnCreateHitBox, this), 2);
 	animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::OnDestoryHitBox, this), 2);
+
 }
 
 void PlayerAttackState::NextAttack()

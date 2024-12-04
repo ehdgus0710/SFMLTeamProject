@@ -2,14 +2,28 @@
 #include "TextButton.h"
 #include "Scene.h"
 
-TextButton::TextButton(const std::string& textId, const std::string& name, unsigned int textSize, sf::Color textColor)
+TextButton::TextButton(const std::string& textId, const std::string& name, unsigned int textSize, const  sf::Color& textColor)
 	: UIButtonObject(textId, name, textSize, textColor)
 {
 }
 
+TextButton::TextButton(const std::string& textId, const std::string& name, unsigned int textSize, const sf::Color& textColor, const sf::Color& changeColor)
+	: UIButtonObject(textId, name, textSize, textColor)
+	, changeColor(changeColor)
+	, defalutColor(textColor)
+{
+}
+
+
+void TextButton::SetChangeColor(const sf::Color& color)
+{
+	defalutColor = textColor;
+	changeColor = color;
+}
+
 void TextButton::OnCollisionEnter(Collider* target)
 {
-	textColor = sf::Color::Red;
+	textColor = changeColor;
 	text.setFillColor(textColor);
 }
 
@@ -27,6 +41,6 @@ void TextButton::OnCollisionStay(Collider* target)
 
 void TextButton::OnCollisionEnd(Collider* target)
 {
-	textColor = sf::Color::White;
+	textColor = defalutColor;
 	text.setFillColor(textColor);
 }

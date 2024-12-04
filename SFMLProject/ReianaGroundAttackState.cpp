@@ -88,7 +88,7 @@ void ReianaGroundAttackState::Enter()
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&ReianaGroundAttackState::ChangeReady2Animation, this), endFrame);
 
-	if( reiana->IsFlipX())
+	if(!reiana->IsFlipX())
 		reiana->OnFlipX();
 
 	start = false;
@@ -127,7 +127,7 @@ void ReianaGroundAttackState::LateUpdate(float deltaTime)
 
 void ReianaGroundAttackState::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::Enemy, ColliderLayer::Player, true), LayerType::Enemy);
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
 	hitBox->SetScale({ 100.f,50.f });
 
 	DamegeInfo damageInfo;

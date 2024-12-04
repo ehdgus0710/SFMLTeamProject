@@ -9,7 +9,7 @@ class Animator;
 class B_ReianaBaseState : public BaseState<B_ReianaStateType>
 {
 protected:
-	B_Reiana* B_Reiana;
+	B_Reiana* b_reiana;
 	B_ReianaFsm* fsm;
 	Animator* animator;
 

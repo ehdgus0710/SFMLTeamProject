@@ -4,9 +4,10 @@
 #include "Rigidbody.h"
 #include "Animator.h"
 #include "Animation.h"
+#include "IntroLandSmoke.h"
 
 ReianaBackStap::ReianaBackStap(ReianaFsm* fsm)
-	: ReianaBaseState(fsm, ReianaStateType::GroundAttack)
+	: ReianaBaseState(fsm, ReianaStateType::BackStap)
 
 {
 }
@@ -32,8 +33,12 @@ void ReianaBackStap::Start()
 void ReianaBackStap::Enter()
 {
 	ReianaBaseState::Enter();
-	animator->ChangeAnimation("meteorGroundReady", false);
-
+	animator->ChangeAnimation("dash", false);
+	startPosition = { 2000.f,-200.f };
+	endPosition = { 1700.f,80.f };
+	currentTime = 0.f;
+	if (!reiana->IsFlipX())
+		reiana->OnFlipX();
 }
 
 void ReianaBackStap::Exit()
@@ -44,6 +49,16 @@ void ReianaBackStap::Exit()
 void ReianaBackStap::Update(float deltaTime)
 {
 	ReianaBaseState::Update(deltaTime);
+	currentTime += deltaTime;
+	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentTime / time));
+	if (currentTime > time + 0.1)
+	{
+		fsm->ChangeState(ReianaStateType::Idle);
+		IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
+		introLandSmoke->SetScale({ 2.f,2.f });
+		introLandSmoke->Start();
+		introLandSmoke->SetPosition(reiana->GetPosition());
+	}
 
 }
 

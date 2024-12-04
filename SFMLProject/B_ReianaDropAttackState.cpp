@@ -31,7 +31,7 @@ void B_ReianaDropAttackState::Drop(float deltaTime)
 {
 	currentDropTime += deltaTime;
 
-	B_Reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
+	b_reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
 	if (currentDropTime > dropTime)
 	{
 		animator->ChangeAnimation("goldmetorLanding", false);
@@ -41,7 +41,7 @@ void B_ReianaDropAttackState::Drop(float deltaTime)
 			IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 			introLandSmoke->SetScale({ 2.f,2.f });
 			introLandSmoke->Start();
-			introLandSmoke->SetPosition(B_Reiana->GetPosition());
+			introLandSmoke->SetPosition(b_reiana->GetPosition());
 			effect = true;
 		}
 		if (currentLandingTime >= landingTime)
@@ -66,7 +66,7 @@ void B_ReianaDropAttackState::Start()
 void B_ReianaDropAttackState::Enter()
 {
 	B_ReianaBaseState::Enter();
-	rigidbody = B_Reiana->GetRigidbody();
+	rigidbody = b_reiana->GetRigidbody();
 	animator->ChangeAnimation("goldMeteorAttack", true);
 
 	currentDropTime = 0.f;
@@ -74,17 +74,17 @@ void B_ReianaDropAttackState::Enter()
 	currentLandingTime = 0.f;
 	action = false;
 	effect = false;
-	auto playerPos = B_Reiana->GetPlayer()->GetPosition();
+	auto playerPos = b_reiana->GetPlayer()->GetPosition();
 	endPosition = { playerPos.x, 80.f };
 
 	playerPos -= moveDistance;
 	startPosition = playerPos;
 
-	playerPos = B_Reiana->GetPlayer()->GetPosition();
+	playerPos = b_reiana->GetPlayer()->GetPosition();
 
 
 
-	B_Reiana->SetPosition(startPosition);
+	b_reiana->SetPosition(startPosition);
 	rigidbody->SetActive(false);
 }
 
@@ -120,7 +120,7 @@ void B_ReianaDropAttackState::LateUpdate(float deltaTime)
 
 void B_ReianaDropAttackState::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(B_Reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(b_reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
 	hitBox->SetScale({ 50.f,100.f });
 	hitBox->SetDamage(1000);
 }

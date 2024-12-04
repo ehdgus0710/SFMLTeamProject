@@ -7,6 +7,7 @@
 #include "B_ReianaDropAttackState.h"
 #include "B_ReianaDeadState.h"
 #include "B_ReianaDashState.h"
+#include "B_ReianaBackStap.h"
 
 B_ReianaFsm::B_ReianaFsm(B_Reiana* owner)
 	: owner(owner)
@@ -39,6 +40,12 @@ void B_ReianaFsm::CreateAllState()
 		case B_ReianaStateType::Idle:
 			AddState(B_ReianaStateType::Idle);
 			break;
+		case B_ReianaStateType::Dash:
+			AddState(B_ReianaStateType::Dash);
+			break;	
+		case B_ReianaStateType::BackStap:
+			AddState(B_ReianaStateType::BackStap);
+			break;
 		case B_ReianaStateType::GroundAttack:
 			AddState(B_ReianaStateType::GroundAttack);
 			break;
@@ -47,9 +54,6 @@ void B_ReianaFsm::CreateAllState()
 			break;
 		case B_ReianaStateType::DropAttack:
 			AddState(B_ReianaStateType::DropAttack);
-			break;
-		case B_ReianaStateType::Dash:
-			AddState(B_ReianaStateType::Dash);
 			break;
 		case B_ReianaStateType::Dead:
 			AddState(B_ReianaStateType::Dead);
@@ -71,6 +75,12 @@ BaseState<B_ReianaStateType>* B_ReianaFsm::CreateState(B_ReianaStateType type)
 	case B_ReianaStateType::Idle:
 		state = new B_ReianaIdleState(this);
 		break;
+	case B_ReianaStateType::Dash:
+		state = new B_ReianaDashState(this);
+		break;
+	case B_ReianaStateType::BackStap:
+		state = new B_ReianaBackStap(this);
+		break;
 	case B_ReianaStateType::GroundAttack:
 		state = new B_ReianaGroundAttackState(this);
 		break;
@@ -79,9 +89,6 @@ BaseState<B_ReianaStateType>* B_ReianaFsm::CreateState(B_ReianaStateType type)
 		break;
 	case B_ReianaStateType::DropAttack:
 		state = new B_ReianaDropAttackState(this);
-		break;
-	case B_ReianaStateType::Dash:
-		state = new B_ReianaDashState(this);
 		break;
 	case B_ReianaStateType::Dead:
 		state = new B_ReianaDeadState(this);

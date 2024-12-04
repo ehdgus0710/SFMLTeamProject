@@ -34,6 +34,7 @@ void Head::Awake()
 
 void Head::Start()
 {
+	TEXTURE_MANAGER.Load("SkulHead", "graphics/skul/SkulHead.png");
 	SpriteGameObject::Start();
 	
 }

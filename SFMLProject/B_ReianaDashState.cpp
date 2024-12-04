@@ -35,14 +35,14 @@ void B_ReianaDashState::Enter()
 {
 	B_ReianaBaseState::Enter();
 	animator->ChangeAnimation("dash", false);
-	movePosition = B_Reiana->GetPosition();
+	movePosition = b_reiana->GetPosition();
 	cameraFixPos = SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->GetCameraPosition();
 	cameraFixPos.x -= 1000.f;
 	IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 	introLandSmoke->Start();
-	introLandSmoke->SetPosition(B_Reiana->GetPosition());
-	if (B_Reiana->IsFlipX())
-		B_Reiana->OnFlipX();
+	introLandSmoke->SetPosition(b_reiana->GetPosition());
+	if (!b_reiana->IsFlipX())
+		b_reiana->OnFlipX();
 }
 
 void B_ReianaDashState::Exit()
@@ -55,10 +55,10 @@ void B_ReianaDashState::Update(float deltaTime)
 	B_ReianaBaseState::Update(deltaTime);
 	movePosition.x = movePosition.x - xSpeed * deltaTime;
 	movePosition.y = movePosition.y - ySpeed * deltaTime;
-	B_Reiana->SetPosition(movePosition);
-	if (cameraFixPos.x >= B_Reiana->GetPosition().x)
+	b_reiana->SetPosition(movePosition);
+	if (cameraFixPos.x >= b_reiana->GetPosition().x)
 	{
-		B_Reiana->SetPosition({ B_Reiana->GetPosition().x -500,B_Reiana->GetPosition().y });
+		b_reiana->SetPosition({ b_reiana->GetPosition().x -500,b_reiana->GetPosition().y });
 		fsm->ChangeState(B_ReianaStateType::Idle);
 	}
 }

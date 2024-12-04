@@ -26,6 +26,7 @@ protected:
 	bool rush3 = false;
 	bool playerPosCheck = false;
 	bool animation = false;
+	bool checkFilp = false;
 public:
 	void Attack(float deltaTime);
 	void Wait(float deltaTime);

@@ -35,6 +35,7 @@ void SceneDev3::Init()
 	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
 	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
 	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
+	TEXTURE_MANAGER.Load("HitEffect", "graphics/effects/HitEffect.png");
 
 	Scene::Init();
 }

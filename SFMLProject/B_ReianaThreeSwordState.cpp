@@ -31,23 +31,23 @@ void B_ReianaThreeSwordState::Start()
 
 void B_ReianaThreeSwordState::CreateKnife()
 {
-	Knife* knife = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Knife(B_Reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "MenuBar"), LayerType::EnemyBullet);
+	Knife* knife = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Knife(b_reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "MenuBar"), LayerType::EnemyBullet);
 	knife->SetScale({ 2.f,2.f });
-	if (B_Reiana->IsFlipX())
+	if (b_reiana->IsFlipX())
 	{
 		switch ((B_ReianaThreeSwordState::Pos)count)
 		{
 		case B_ReianaThreeSwordState::Pos::POS1:
-			knife->SetPosition(B_Reiana->GetPosition() + plusPos1);
+			knife->SetPosition(b_reiana->GetPosition() + plusPos1);
 			knife->setDelay(1.f);
 			break;
 		case B_ReianaThreeSwordState::Pos::POS2:
-			knife->SetPosition(B_Reiana->GetPosition() + plusPos2);
-			knife->setDelay(1.5f);
+			knife->SetPosition(b_reiana->GetPosition() + plusPos2);
+			knife->setDelay(1.f);
 			break;
 		case B_ReianaThreeSwordState::Pos::POS3:
-			knife->SetPosition(B_Reiana->GetPosition() + plusPos3);
-			knife->setDelay(2.f);
+			knife->SetPosition(b_reiana->GetPosition() + plusPos3);
+			knife->setDelay(1.5f);
 			break;
 		default:
 			break;
@@ -58,16 +58,16 @@ void B_ReianaThreeSwordState::CreateKnife()
 		switch ((B_ReianaThreeSwordState::Pos)count)
 		{
 		case B_ReianaThreeSwordState::Pos::POS1:
-			knife->SetPosition(B_Reiana->GetPosition() - plusFlipPos1);
+			knife->SetPosition(b_reiana->GetPosition() - plusFlipPos1);
 			knife->setDelay(1.f);
 			break;
 		case B_ReianaThreeSwordState::Pos::POS2:
-			knife->SetPosition(B_Reiana->GetPosition() - plusFlipPos2);
-			knife->setDelay(1.5f);
+			knife->SetPosition(b_reiana->GetPosition() - plusFlipPos2);
+			knife->setDelay(1.f);
 			break;
 		case B_ReianaThreeSwordState::Pos::POS3:
-			knife->SetPosition(B_Reiana->GetPosition() - plusFlipPos3);
-			knife->setDelay(2.f);
+			knife->SetPosition(b_reiana->GetPosition() - plusFlipPos3);
+			knife->setDelay(1.5f);
 			break;
 		default:
 			break;
@@ -87,13 +87,13 @@ void B_ReianaThreeSwordState::Enter()
 	delayTime = 1.f;
 	animator->ChangeAnimation("homingpierceReady", false);
 	fix = false;
-	if (!B_Reiana->IsFlipX() && B_Reiana->GetPosition().x > B_Reiana->GetPlayer()->GetPosition().x)
+	if (!b_reiana->IsFlipX() && b_reiana->GetPosition().x > b_reiana->GetPlayer()->GetPosition().x)
 	{
-		B_Reiana->OnFlipX();
+		b_reiana->OnFlipX();
 	}
-	if (B_Reiana->IsFlipX() && B_Reiana->GetPosition().x < B_Reiana->GetPlayer()->GetPosition().x)
+	if (b_reiana->IsFlipX() && b_reiana->GetPosition().x < b_reiana->GetPlayer()->GetPosition().x)
 	{
-		B_Reiana->OnFlipX();
+		b_reiana->OnFlipX();
 	}
 	CreateKnife();
 

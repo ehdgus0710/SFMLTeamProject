@@ -7,19 +7,23 @@
 #include "Yggdrasil.h"
 #include "Player.h"
 #include "HitBoxObject.h"
-#include "YggdrasilLeftHand.h"
-#include "YggdrasilRightHand.h"
 void YggdrasilSpecialAttackState::ReadyAttack(float deltaTime)
 {
 	currentAttackTime += deltaTime;
-	lEndPos = { yggdrasil->GetRightFistPos() + sf::Vector2f::up * 800.f };
+	lStartPos = lFirstPos;
+	lEndPos = { yggdrasil->GetLeftFistPos().x, 200.f };
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / readyFistTime));
-	rEndPos = { yggdrasil->GetRightFistPos() + sf::Vector2f::up * 800.f };
+	rStartPos = rFirstPos;
+	rEndPos = { yggdrasil->GetRightFistPos().x, 200.f };
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / readyFistTime));
-	isWait = true;
+	if (currentAttackTime > readyFistTime)
+	{
+		currentAttackDelay = 0.f;
+		currentAttackTime = 0.f;
+	}
 }
 
-void YggdrasilSpecialAttackState::StartLeftAttack(float deltaTime)
+void YggdrasilSpecialAttackState::StartSpecialAttack(float deltaTime)
 {
 
 	currentAttackTime += deltaTime;
@@ -29,10 +33,7 @@ void YggdrasilSpecialAttackState::StartLeftAttack(float deltaTime)
 
 	if (currentAttackTime >= readyFistTime)
 	{
-		attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
-		attackBox->SetScale({ 2000.f,25.f });
-		attackBox->SetDamage(10);
-		attackBox->SetPosition({ yggdrasil->GetPosition().x, 913.f });
+		HitBoxOn();
 		++attackCount;
 		currentAttackTime = 0.f;
 	}
@@ -40,11 +41,9 @@ void YggdrasilSpecialAttackState::StartLeftAttack(float deltaTime)
 
 void YggdrasilSpecialAttackState::EndAttackWait(float deltaTime)
 {
-	attackBox->OnDestory();
-	hitBoxOn = false;
 	currentAttackDelay += deltaTime;
 
-	if (currentAttackDelay >= attackDelay)
+	if (currentAttackDelay >= waitTime)
 	{
 		currentAttackDelay = 0.f;
 		isRecovery = true;
@@ -54,11 +53,28 @@ void YggdrasilSpecialAttackState::EndAttackWait(float deltaTime)
 
 void YggdrasilSpecialAttackState::Recovery(float deltaTime)
 {
+	HitBoxOff();
 	currentAttackTime += deltaTime;
-	lEndPos = { yggdrasil->GetRightFistPos() + sf::Vector2f::up * 800.f };
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / recoveryTime));
-	rEndPos = { yggdrasil->GetRightFistPos() + sf::Vector2f::up * 800.f };
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / recoveryTime));
+	if (currentAttackTime > recoveryTime)
+	{
+		isRecovery = false;
+		isWait = true;
+	}
+}
+
+void YggdrasilSpecialAttackState::HitBoxOn()
+{
+	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil, ColliderLayer::Boss, ColliderLayer::Player, false, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+	attackBox->SetScale({ 2000.f,50.f });
+	attackBox->SetDamage(10);
+	attackBox->SetPosition({ 960.f, 913.f });
+}
+
+void YggdrasilSpecialAttackState::HitBoxOff()
+{
+	attackBox->OnDestory();
 }
 
 void YggdrasilSpecialAttackState::Awake()
@@ -92,10 +108,11 @@ void YggdrasilSpecialAttackState::Enter()
 	currentRecoveryTime = 0.f;
 	readyFistDelay = 0.f;
 
-	attackDelay = 2.f;
-	attackTime = 2.f;
-	recoveryTime = 1.f;
-	readyFistTime = 2.f;
+	attackDelay = 1.f;
+	attackTime = 0.3f;
+	recoveryTime = 0.5f;
+	readyFistTime = 1.f;
+	waitTime = 1.f;
 
 	lFirstPos = yggdrasil->GetLeftFistPos();
 	rFirstPos = yggdrasil->GetRightFistPos();
@@ -113,7 +130,6 @@ void YggdrasilSpecialAttackState::Update(float deltaTime)
 	if (!readyAttack)
 	{
 		readyFistDelay += deltaTime;
-		currentAttackTime = 0.f;
 		ReadyAttack(deltaTime);
 		if (readyFistDelay > readyFistTime)
 		{
@@ -124,11 +140,11 @@ void YggdrasilSpecialAttackState::Update(float deltaTime)
 	}
 	else
 	{
-		if (attackCount < 4)
+		if (attackCount < 3)
 		{
 			if (isWait)
 			{
-				StartLeftAttack(deltaTime);
+				StartSpecialAttack(deltaTime);
 			}
 			else
 			{
@@ -136,12 +152,20 @@ void YggdrasilSpecialAttackState::Update(float deltaTime)
 			}
 		}
 	}
-	if (attackCount == 1 || attackCount == 2 || attackCount == 3)
+	if (isRecovery)
 	{
 		Recovery(deltaTime);
 	}
+	if (attackCount == 0 || attackCount == 2)
+	{
+		waitTime = 3.f;
+	}
+	else
+	{
+		waitTime = 1.f;
+	}
 
-	if (attackCount == 4)
+	if (attackCount == 3)
 	{
 		fsm->ChangeState(YggdrasilStateType::Idle);
 	}

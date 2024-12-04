@@ -4,9 +4,9 @@
 
 class HitBoxObject;
 
-class YggdrasilSweepAttackState : public YggdrasilBaseState
+class YggdrasilSpecialAttackState : public YggdrasilBaseState
 {
-	HitBoxObject*	attackBox;
+	HitBoxObject* attackBox;
 
 	sf::Vector2f	lFirstPos;
 	sf::Vector2f	rFirstPos;
@@ -57,7 +57,6 @@ public:
 	void Update(float deltaTime) override;
 	void FixedUpdate(float fixedDeltaTime) override;
 public:
-	YggdrasilSweepAttackState(YggdrasilFSM* fsm);
-	~YggdrasilSweepAttackState() = default;
+	YggdrasilSpecialAttackState(YggdrasilFSM* fsm);
+	~YggdrasilSpecialAttackState() = default;
 };
-

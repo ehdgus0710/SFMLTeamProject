@@ -17,69 +17,95 @@
 void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector2f dir, float speed, float deltaTime)
 {
 
-	sf::Vector2f yggdrasilPos = yggdrasil->GetYggdrasilMouth()->GetPosition();
-	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
-
-	//// 임시
-	//{
-	//	Animation* animation = new Animation("animations/Enemy/yggdrasil/Effects/EnergyBomb.csv");
-	//	yggdrasilEnergyBallSmall[0]->GetAnimator()->AddAnimation(animation, "EnergyBomb");
-	//	yggdrasilEnergyBallSmall[0]->GetAnimator()->ChangeAnimation("EnergyBomb", true);
-
-	//	yggdrasilEnergyBallSmall[0]->AddStartHitEvent(std::bind(&YggdrasilEnergyBallAttackState::CreateEffect, this));
-	//}
-
-
-	for (int i = 0; i < 8; ++i)
+	if (!yggdrasil->GetPhaseUp())
 	{
-		yggdrasilEnergyBallSmall[i] = currentScene->AddGameObject(new YggdrasilEnergyBallSmall(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, "YggdrasilEnergyBallSmall"), LayerType::EnemyBullet);
-		yggdrasilEnergyBallSmall[i]->SetPosition({ yggdrasilPos + sf::Vector2f::up * 50.f });
-		yggdrasilEnergyBallSmall[i]->SetScale({ 0.5f, 0.5f });
-		yggdrasilEnergyBallSmall[i]->Awake();
-		yggdrasilEnergyBallSmall[i]->GetCollider()->SetScale({ 50.f,50.f });
-		yggdrasilEnergyBallSmall[i]->Start();
-		yggdrasilEnergyBallSmall[i]->Shoot();
+		sf::Vector2f yggdrasilPos = yggdrasil->GetYggdrasilMouth()->GetPosition();
+		Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
 
-		if (i == 0)
-		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 1.f, -1.f });
-		}
-		else if (i == 1)
-		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 1.f,0.f });
-		}
-		else if (i == 2)
-		{
+		//// 임시
+		//{
+		//	Animation* animation = new Animation("animations/Enemy/yggdrasil/Effects/EnergyBomb.csv");
+		//	yggdrasilEnergyBallSmall[0]->GetAnimator()->AddAnimation(animation, "EnergyBomb");
+		//	yggdrasilEnergyBallSmall[0]->GetAnimator()->ChangeAnimation("EnergyBomb", true);
 
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 1, 1 });
-		}
-		else if (i == 3)
+		//	yggdrasilEnergyBallSmall[0]->AddStartHitEvent(std::bind(&YggdrasilEnergyBallAttackState::CreateEffect, this));
+		//}
+
+
+		for (int i = 0; i < 8; ++i)
 		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 0, 1 });
+			yggdrasilEnergyBallSmall[i] = currentScene->AddGameObject(new YggdrasilEnergyBallSmall(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, "YggdrasilEnergyBallSmall"), LayerType::EnemyBullet);
+			yggdrasilEnergyBallSmall[i]->SetPosition({ yggdrasilPos + sf::Vector2f::up * 50.f });
+			yggdrasilEnergyBallSmall[i]->SetScale({ 0.5f, 0.5f });
+			yggdrasilEnergyBallSmall[i]->Awake();
+			yggdrasilEnergyBallSmall[i]->GetCollider()->SetScale({ 50.f,50.f });
+			yggdrasilEnergyBallSmall[i]->Start();
+			yggdrasilEnergyBallSmall[i]->Shoot();
+
+			if (i == 0)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 1.f, -1.f });
+			}
+			else if (i == 1)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 1.f,0.f });
+			}
+			else if (i == 2)
+			{
+
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 1, 1 });
+			}
+			else if (i == 3)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 0, 1 });
+			}
+			else if (i == 4)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ -1, 1 });
+			}
+			else if (i == 5)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ -1, 0 });
+			}
+			else if (i == 6)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ -1, -1 });
+			}
+			else if (i == 7)
+			{
+				yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 0, -1 });
+			}
 		}
-		else if (i == 4)
-		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ -1, 1 });
-		}
-		else if (i == 5)
-		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ -1, 0 });
-		}
-		else if (i == 6)
-		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ -1, -1 });
-		}
-		else if (i == 7)
-		{
-			yggdrasilEnergyBallSmall[i]->SetMoveDirection({ 0, -1 });
-		}
+
+		look = player->GetPosition() - startPos;
+		look.Normalized();
+		yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(look);
+		yggdrasilEnergyBallBig[attackCount]->Shoot();
 	}
+	else
+	{
+		yggdrasilEnergyBallBig[attackCount] = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, "YggdrasilEnergyBallBig"), LayerType::EnemyBullet);
+		yggdrasilEnergyBallBig[attackCount]->SetYggdrasil(yggdrasil);
+		yggdrasilEnergyBallBig[attackCount]->SetPosition({ (float)Utils::RandomRange(0, 1920), (float)Utils::RandomRange(100, 200) });
+		yggdrasilEnergyBallBig[attackCount]->SetScale({ 2.5f, 2.5f });
+		yggdrasilEnergyBallBig[attackCount]->Awake();
+		yggdrasilEnergyBallBig[attackCount]->GetCollider()->SetScale({ 80.f,80.f });
+		yggdrasilEnergyBallBig[attackCount]->Start();
+		yggdrasilEnergyBallBig[attackCount]->SetPlayer(player);
+		yggdrasilEnergyBallBig[attackCount]->SetSpeed(speed);
+		yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(sf::Vector2f::down);
+		if (shootTime > shootDelay)
+		{
+			yggdrasilEnergyBallBig[attackCount]->Shoot();
+			shootTime = 0.f;
+		}
 
-	look = player->GetPosition() - startPos;
-	look.Normalized();
-	yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(look);
-	yggdrasilEnergyBallBig[attackCount]->Shoot();
-
+		// look = player->GetPosition() - startPos;
+		// look.Normalized();
+		// sf::Vector2f pos = yggdrasilEnergyBallBig[attackCount]->GetPosition();
+		// yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(look);
+		// yggdrasilEnergyBallBig[attackCount]->SetPosition(pos + sf::Vector2f{ 0, 1 } *speed * deltaTime);
+	}
 
 }
 
@@ -103,6 +129,7 @@ void YggdrasilEnergyBallAttackState::Awake()
 void YggdrasilEnergyBallAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	changeOn = false;
 }
 
 void YggdrasilEnergyBallAttackState::Enter()
@@ -111,45 +138,76 @@ void YggdrasilEnergyBallAttackState::Enter()
 	//yggdrasil->SetAnimeEnergyBallBig("EnergyBomb", true);
 	//yggdrasil->SetAnimeEnergyBallSmall("EnergyBomb", true);
 
-
-	isShoot = false;
-
-	speed = 1000.f;
-	attackCount = 0;
-	currentFirstAttack = 0.f;
-	firstAttackDelay = 2.f;
-	shootTime = 0.f;
-	shootDelay = 2.f;
-
-	for (int i = 0; i < 2; ++i)
+	if (!yggdrasil->GetPhaseUp())
 	{
-		yggdrasilEnergyBallBig[i] = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, "YggdrasilEnergyBallBig"), LayerType::EnemyBullet);
-		yggdrasilEnergyBallBig[i]->SetYggdrasil(yggdrasil);
-		yggdrasilEnergyBallBig[i]->SetPosition({yggdrasil->GetYggdrasilMouth()->GetPosition() + sf::Vector2f::up * 50.f});
-		yggdrasilEnergyBallBig[i]->SetScale({2.5f, 2.5f});
-		yggdrasilEnergyBallBig[i]->SetSpeed(speed);
-		yggdrasilEnergyBallBig[i]->Awake();
-		yggdrasilEnergyBallBig[i]->GetCollider()->SetScale({80.f,80.f});
-		yggdrasilEnergyBallBig[i]->Start();
+		isShoot = false;
+
+		speed = 1000.f;
+		attackCount = 0;
+		maxAttackCount = 2;
+		currentFirstAttack = 0.f;
+		firstAttackDelay = 2.f;
+		shootTime = 0.f;
+		shootDelay = 0.f;
+		for (int i = 0; i < maxAttackCount; ++i)
+		{
+
+			yggdrasilEnergyBallBig[i] = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, "YggdrasilEnergyBallBig"), LayerType::EnemyBullet);
+			yggdrasilEnergyBallBig[i]->SetYggdrasil(yggdrasil);
+			yggdrasilEnergyBallBig[i]->SetPosition({ yggdrasil->GetYggdrasilMouth()->GetPosition() + sf::Vector2f::up * 50.f });
+			yggdrasilEnergyBallBig[i]->SetScale({ 2.5f, 2.5f });
+			yggdrasilEnergyBallBig[i]->SetSpeed(speed);
+			yggdrasilEnergyBallBig[i]->Awake();
+			yggdrasilEnergyBallBig[i]->GetCollider()->SetScale({ 80.f,80.f });
+			yggdrasilEnergyBallBig[i]->Start();
+
+		}
+		startPos = yggdrasilEnergyBallBig[0]->GetPosition() + sf::Vector2f::up * 50.f;
+	}
+	else
+	{
+		isShoot = false;
+
+		speed = 1000.f;
+		attackCount = 0;
+		maxAttackCount = 10;
+		currentFirstAttack = 0.f;
+		firstAttackDelay = 0.5f;
+		shootTime = 0.f;
+		shootDelay = 0.3f;
 
 	}
 
-	startPos = yggdrasilEnergyBallBig[0]->GetPosition() + sf::Vector2f::up * 50.f;
 }
 
 void YggdrasilEnergyBallAttackState::Exit()
 {
 	YggdrasilBaseState::Exit();
-	for (int i = 0; i < 2; ++i)
+	if (!yggdrasil->GetPhaseUp())
 	{
-		yggdrasilEnergyBallBig[i] = nullptr;
+		for (int i = 0; i < maxAttackCount; ++i)
+		{
+			yggdrasilEnergyBallBig[i] = nullptr;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < maxAttackCount; ++i)
+		{
+			yggdrasilEnergyBallBig[i] = nullptr;
+		}
 	}
 }
 
 void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 {
 	//Fire(position, look, bulletspeed, damege);
-	if (attackCount < 2)
+	if (yggdrasil->GetPhaseUp() && !changeOn)
+	{
+		Enter();
+		changeOn = true;
+	}
+	if (attackCount < maxAttackCount)
 	{
 		if (!isShoot)
 		{
@@ -161,14 +219,18 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 				//look = 노멀라이즈 어디있는데 ㅋㅋㅋㅋ;
 				isShoot = true;
 				EnergyBallFire(startPos, look, speed, deltaTime);
-				currentFirstAttack = 0;
+				currentFirstAttack = 0.f;
+				shootTime = 0.f;
 				++attackCount;
 			}
 		}
-
-		if (attackCount == 1)
+		shootTime += deltaTime;
+		if (shootTime > firstAttackDelay)
 		{
-			isShoot = false;
+			if (attackCount == maxAttackCount - (maxAttackCount - attackCount))
+			{
+				isShoot = false;
+			}
 		}
 	}
 	else

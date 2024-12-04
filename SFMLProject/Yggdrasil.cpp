@@ -82,8 +82,8 @@ void Yggdrasil::Start()
 	attackTime = 0;
 	attackDelay = 3.f;
 
-	phase1Hp = 100;
-	phase2Hp = 100;
+	phase1Hp = 1000;
+	phase2Hp = 1000;
 
 	phaseUp = false;
 

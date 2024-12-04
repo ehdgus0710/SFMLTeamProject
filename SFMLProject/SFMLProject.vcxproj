@@ -337,6 +337,7 @@
     <ClCompile Include="YggdrasilLeftHand.cpp" />
     <ClCompile Include="YggdrasilHead.cpp" />
     <ClCompile Include="YggdrasilRightHand.cpp" />
+    <ClCompile Include="YggdrasilSpecialAttackState.cpp" />
     <ClCompile Include="YggdrasilSweepAttackState.cpp" />
     <ClCompile Include="YggdrasilUIHub.cpp" />
   </ItemGroup>
@@ -515,6 +516,7 @@
     <ClInclude Include="YggdrasilLeftHand.h" />
     <ClInclude Include="YggdrasilHead.h" />
     <ClInclude Include="YggdrasilRightHand.h" />
+    <ClInclude Include="YggdrasilSpecialAttackState.h" />
     <ClInclude Include="YggdrasilSweepAttackState.h" />
     <ClInclude Include="YggdrasilUIHub.h" />
   </ItemGroup>

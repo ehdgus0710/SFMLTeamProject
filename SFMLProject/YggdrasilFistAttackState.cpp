@@ -82,7 +82,7 @@ void YggdrasilFistAttackState::EndAttackWait(float deltaTime)
 	currentAttackDelay += deltaTime;
 
 
-	if (currentAttackDelay >= 1.f)
+	if (currentAttackDelay >= waitTime)
 	{
 		attackBox->OnDestory();
 		currentAttackDelay = 0.f;
@@ -149,37 +149,70 @@ void YggdrasilFistAttackState::Awake()
 void YggdrasilFistAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	changeOn = false;
 }
 
 void YggdrasilFistAttackState::Enter()
 {
 	YggdrasilBaseState::Enter();
+	if (!yggdrasil->GetPhaseUp())
+	{
+		yggdrasil->SetAnimeLeftHand("phase1HandLeftTakedown", false);
+		yggdrasil->SetAnimeRightHand("phase1HandRightTakedown", false);
 
-	yggdrasil->SetAnimeLeftHand("phase1HandLeftTakedown", false);
-	yggdrasil->SetAnimeRightHand("phase1HandRightTakedown", false);
+		currentAttackCount = 0;
+		attackCount = 2;
 
-	currentAttackCount = 0;
-	attackCount = 2;
+		readyFist = false;
+		isAttack = false;
+		isRecovery = false;
+		isWait = false;
+		switchFist = false;
+		onAttack = true;
+		hitBoxOn = false;
 
-	readyFist = false;
-	isAttack = false;
-	isRecovery = false;
-	isWait = false;
-	switchFist = false;
-	onAttack = true;
-	hitBoxOn = false;
+		currentAttackDelay = 0.f;
+		currentAttackTime = 0.f;
+		currentRecoveryTime = 0.f;
+		switchFistDelay = 2.8f;
+		readyTime = 0.f;
+		waitTime = 1.f;
 
-	currentAttackDelay = 0.f;
-	currentAttackTime = 0.f;
-	currentRecoveryTime = 0.f;
-	switchFistDelay = 2.8f;
-	readyTime = 0.f;
+		readyDelay = 1.f;
+		attackDelay = 2.f;
+		attackTime = 0.3f;
+		recoveryTime = 0.5f;
+		switchFistTime = 2.8f;
+	}
+	else
+	{
+		yggdrasil->SetAnimeLeftHand("phase2HandLeftTakedown", false);
+		yggdrasil->SetAnimeRightHand("phase2HandRightTakedown", false);
 
-	readyDelay = 1.f;
-	attackDelay = 2.f;
-	attackTime = 0.3f;
-	recoveryTime = 0.7f;
-	switchFistTime = 2.8f;
+		currentAttackCount = 0;
+		attackCount = 2;
+
+		readyFist = false;
+		isAttack = false;
+		isRecovery = false;
+		isWait = false;
+		switchFist = false;
+		onAttack = true;
+		hitBoxOn = false;
+
+		currentAttackDelay = 0.f;
+		currentAttackTime = 0.f;
+		currentRecoveryTime = 0.f;
+		switchFistDelay = 1.f;
+		readyTime = 0.f;
+
+		readyDelay = 0.5f;
+		attackDelay = 1.f;
+		attackTime = 0.2f;
+		recoveryTime = 0.2f;
+		switchFistTime = 1.f;
+		waitTime = 0.5f;
+	}
 
 	endPos = { player->GetPosition().x, -100.f };
 	firstLeftPos = yggdrasil->GetLeftFistPos();
@@ -193,6 +226,11 @@ void YggdrasilFistAttackState::Exit()
 
 void YggdrasilFistAttackState::Update(float deltaTime)
 {
+	if (yggdrasil->GetPhaseUp() && !changeOn)
+	{
+		Enter();
+		changeOn = true;
+	}
 	if (!readyFist)
 	{
 		readyTime += deltaTime;

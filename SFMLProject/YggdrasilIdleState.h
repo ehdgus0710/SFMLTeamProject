@@ -5,6 +5,11 @@
 class YggdrasilIdleState : public YggdrasilBaseState
 {
 protected:
+	int		choiceAttack;
+
+	float attackTime;
+	float attackDelay;
+
 	bool changeOn;
 public:
 	void Awake() override;

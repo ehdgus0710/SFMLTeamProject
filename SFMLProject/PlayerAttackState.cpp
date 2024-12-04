@@ -162,6 +162,7 @@ void PlayerAttackState::OnCreateHitBox()
 	attackBox->SetDamage(damageInfo);
 
 	attackBox->AddStartHitEvent(std::bind(&PlayerAttackState::CreateEffect, this, std::placeholders::_1));
+	attackBox->Start();
 }
 
 void PlayerAttackState::OnDestoryHitBox()

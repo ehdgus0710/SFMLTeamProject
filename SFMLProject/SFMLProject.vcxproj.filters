@@ -244,6 +244,18 @@
     <Filter Include="Contants\UI\HP">
       <UniqueIdentifier>{e04963de-c073-4c3c-b3af-b2774ec6cfcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\ReianaB">
+      <UniqueIdentifier>{f2df188f-e3b7-40d8-b7bc-78884055f297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\UI\BossUI">
+      <UniqueIdentifier>{94dc9246-90ef-44bd-bbe8-209f63591173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\ReianaB\State">
+      <UniqueIdentifier>{6c9352b4-fc72-433e-961b-71ca0c87b846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\ReianaB\FSM">
+      <UniqueIdentifier>{55bfc89a-fdf8-4494-ba90-e14842c94bf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -702,47 +714,53 @@
     <ClCompile Include="YggdrasilEnergyBallBig.cpp">
       <Filter>Contants\Object\Yggdrasil</Filter>
     </ClCompile>
-    <ClCompile Include="ReianaUIHub.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="YggdrasilEnergyBallSmall.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="YggdrasilMouth.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="YggdrasilUIHub.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ReianaRisingState.cpp">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClCompile>
     <ClCompile Include="B_Reiana.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\ReianaB</Filter>
     </ClCompile>
-    <ClCompile Include="B_ReianaBaseState.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="YggdrasilSpecialAttackState.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilMouth.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilEnergyBallSmall.cpp">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClCompile>
+    <ClCompile Include="YggdrasilUIHub.cpp">
+      <Filter>Contants\UI\BossUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ReianaUIHub.cpp">
+      <Filter>Contants\UI\BossUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillCoolTimeUI.cpp">
+      <Filter>Contants\UI\PlayerUI</Filter>
     </ClCompile>
     <ClCompile Include="B_ReianaFSM.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\ReianaB\FSM</Filter>
     </ClCompile>
-    <ClCompile Include="B_ReianaIdleState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="B_ReianaGroundAttackState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="B_ReianaThreeSwordState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="B_ReianaDropAttackState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="B_ReianaDeadState.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="B_ReianaBaseState.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
     </ClCompile>
     <ClCompile Include="B_ReianaDashState.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaDeadState.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaDropAttackState.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaGroundAttackState.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaIdleState.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClCompile>
+    <ClCompile Include="B_ReianaThreeSwordState.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1229,47 +1247,53 @@
     <ClInclude Include="YggdrasilEnergyBallBig.h">
       <Filter>Contants\Object\Yggdrasil</Filter>
     </ClInclude>
-    <ClInclude Include="ReianaUIHub.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="YggdrasilEnergyBallSmall.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="YggdrasilMouth.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="YggdrasilUIHub.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ReianaRisingState.h">
       <Filter>Contants\Object\Reiana\ReinaState</Filter>
     </ClInclude>
     <ClInclude Include="B_Reiana.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\ReianaB</Filter>
     </ClInclude>
-    <ClInclude Include="B_ReianaBaseState.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="YggdrasilSpecialAttackState.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilEnergyBallSmall.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilMouth.h">
+      <Filter>Contants\Object\Yggdrasil</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilUIHub.h">
+      <Filter>Contants\UI\BossUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ReianaUIHub.h">
+      <Filter>Contants\UI\BossUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillCoolTimeUI.h">
+      <Filter>Contants\UI\PlayerUI</Filter>
     </ClInclude>
     <ClInclude Include="B_ReianaFSM.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\ReianaB\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="B_ReianaIdleState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="B_ReianaGroundAttackState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="B_ReianaThreeSwordState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="B_ReianaDropAttackState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="B_ReianaDeadState.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="B_ReianaBaseState.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
     </ClInclude>
     <ClInclude Include="B_ReianaDashState.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaDeadState.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaDropAttackState.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaGroundAttackState.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaIdleState.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="B_ReianaThreeSwordState.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

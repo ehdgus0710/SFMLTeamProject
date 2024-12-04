@@ -166,6 +166,19 @@ enum class B_ReianaStateType
 	DropAttack,
 	None3,
 	Dead,
+
+	End
+};
+
+enum class AwakeReianaStateType
+{
+	Idle,
+	AwakeDimension,
+	Dimension,
+	DropAttack,
+	GroundAttack,
+	Dead,
+
 	End
 };
 

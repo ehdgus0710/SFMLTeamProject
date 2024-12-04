@@ -16,6 +16,7 @@
 #include "Collider.h"
 #include "Reiana.h"
 #include "B_Reiana.h"
+#include "AwakeReiana.h"
 #include "Dimension.h"
 
 #include "PlayerSaveData.h"

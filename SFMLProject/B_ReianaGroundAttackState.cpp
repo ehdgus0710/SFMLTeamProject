@@ -88,7 +88,7 @@ void B_ReianaGroundAttackState::Enter()
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&B_ReianaGroundAttackState::ChangeReady2Animation, this), endFrame);
 
-	if (!b_reiana->IsFlipX())
+	if (b_reiana->IsFlipX())
 		b_reiana->OnFlipX();
 
 	start = false;

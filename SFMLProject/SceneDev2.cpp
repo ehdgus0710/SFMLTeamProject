@@ -41,6 +41,7 @@ void SceneDev2::LoadResources()
 
 	// Rayanna
 	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
+	TEXTURE_MANAGER.Load("AwakeRayanna", "graphics/boss/Rayanna/awakenRayanna.png");
 
 	// Rayanna Effects
 	TEXTURE_MANAGER.Load("AwakenedThunder", "graphics/boss/Rayanna/effects/AwakenedThunder.png");
@@ -71,11 +72,12 @@ void SceneDev2::TestEffect()
 	Animation* animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/AwakenedThunder.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "AwakenedThunder");
-
 	animation = new Animation();
+
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierce");
 	animation = new Animation();
+
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
 	animation = new Animation();
@@ -102,7 +104,6 @@ void SceneDev2::TestEffect()
 	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "RisingPierce");
-
 
 	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierceReady.csv");
@@ -151,6 +152,10 @@ void SceneDev2::Enter()
 	B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
 	testBReiana->Awake();
 	testBReiana->SetPosition({ 200.f,-500.f });
+
+	AwakeReiana* testAwakeReiana = AddGameObject(new AwakeReiana("AwakeReiana"), LayerType::Boss);
+	testAwakeReiana->Awake();
+	testAwakeReiana->SetPosition({ 800.f,-500.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });

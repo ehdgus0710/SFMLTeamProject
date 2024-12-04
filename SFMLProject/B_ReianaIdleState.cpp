@@ -51,7 +51,7 @@ void B_ReianaIdleState::Exit()
 void B_ReianaIdleState::Update(float deltaTime)
 {
 	B_ReianaBaseState::Update(deltaTime);
-	if (count < 6&&reiana->GetCount() != count)
+	if (count < 6 && reiana->GetCount() != count)
 	{
 		currentdelay = 0.f;
 		count = reiana->GetCount();

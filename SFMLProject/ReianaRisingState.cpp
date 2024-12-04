@@ -61,7 +61,14 @@ void ReianaRisingState::Enter()
 	endCurrentDelay = 0.f;
 	CurrentRisingDelat = 0.f;
 	count = 1;
-
+	if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())
+	{
+		reiana->OnFlipX();
+	}
+	if (reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x && !reiana->IsFlipX())
+	{
+		reiana->OnFlipX();
+	}
 }
 
 void ReianaRisingState::Exit()

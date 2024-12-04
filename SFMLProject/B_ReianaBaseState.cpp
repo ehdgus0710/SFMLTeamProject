@@ -4,7 +4,7 @@
 B_ReianaBaseState::B_ReianaBaseState(B_ReianaFsm* fsm, B_ReianaStateType stateType)
 	: BaseState<B_ReianaStateType>(stateType)
 	, fsm(fsm)
-	, B_Reiana(fsm->GetChimera())
+	, b_reiana(fsm->GetChimera())
 {
 }
 
@@ -14,7 +14,7 @@ B_ReianaBaseState::~B_ReianaBaseState()
 
 void B_ReianaBaseState::Awake()
 {
-	animator = B_Reiana->GetAnimator();
+	animator = b_reiana->GetAnimator();
 }
 
 void B_ReianaBaseState::Start()

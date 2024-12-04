@@ -25,24 +25,24 @@ void B_ReianaGroundAttackState::Attack(float deltaTime)
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
 		meteorGroundSmoke->SetScale({ 2.f,2.f });
 		meteorGroundSmoke->Start();
-		meteorGroundSmoke->SetPosition(B_Reiana->GetPosition());
-		if (!meteorGroundSmoke->IsFlipX() && !B_Reiana->IsFlipX())
+		meteorGroundSmoke->SetPosition(b_reiana->GetPosition());
+		if (!meteorGroundSmoke->IsFlipX() && !b_reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
-		if (meteorGroundSmoke->IsFlipX() && B_Reiana->IsFlipX())
+		if (meteorGroundSmoke->IsFlipX() && b_reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
 		start = true;
 	}
 	currentAttackTime += deltaTime;
-	endPosition = B_Reiana->GetPosition();
-	startPosition = { 200.f ,B_Reiana->GetPosition().y };
-	B_Reiana->SetPosition(startPosition);
-	endPosition = B_Reiana->GetPosition() + sf::Vector2f::left * moveDistance;
+	endPosition = b_reiana->GetPosition();
+	startPosition = { 200.f ,b_reiana->GetPosition().y };
+	b_reiana->SetPosition(startPosition);
+	endPosition = b_reiana->GetPosition() + sf::Vector2f::left * moveDistance;
 	animator->ChangeAnimation("meteorAttack", false);
-	B_Reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime));
+	b_reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime));
 
 	if (currentAttackTime > attackTime)
 	{
@@ -88,16 +88,16 @@ void B_ReianaGroundAttackState::Enter()
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&B_ReianaGroundAttackState::ChangeReady2Animation, this), endFrame);
 
-	if (B_Reiana->IsFlipX())
-		B_Reiana->OnFlipX();
+	if (!b_reiana->IsFlipX())
+		b_reiana->OnFlipX();
 
 	start = false;
 	currentAttackTime = 0.f;
 	currentWaitTime = 0.f;
 	action = false;
 
-	startPosition = { 200.f ,B_Reiana->GetPosition().y };
-	B_Reiana->SetPosition(startPosition);
+	startPosition = { 200.f ,b_reiana->GetPosition().y };
+	b_reiana->SetPosition(startPosition);
 }
 
 void B_ReianaGroundAttackState::Exit()
@@ -127,8 +127,8 @@ void B_ReianaGroundAttackState::LateUpdate(float deltaTime)
 
 void B_ReianaGroundAttackState::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(B_Reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,B_Reiana->GetPosition().y - 180 });
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(b_reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
+	hitBox->GetCollider()->SetOffsetPosition({ 0.f,b_reiana->GetPosition().y - 180 });
 	hitBox->SetScale({ 150.f,50.f });
 	hitBox->SetDamage(1000);
 }

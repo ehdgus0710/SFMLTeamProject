@@ -27,11 +27,11 @@ void ReianaIdleState::Enter()
 
 
 	currentdelay = 0.f;
-	if (reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
+	if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())
 	{
 		reiana->OnFlipX();
 	}
-	if (!reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
+	if (reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x && !reiana->IsFlipX())
 	{
 		reiana->OnFlipX();
 	}
@@ -83,6 +83,10 @@ void ReianaIdleState::changeState(float dt)
 		case ReianaStateType::Dash:
 			count++;
 			fsm->ChangeState(ReianaStateType::Dash);
+			break;
+		case ReianaStateType::BackStap:
+			count++;
+			fsm->ChangeState(ReianaStateType::BackStap);
 			break;
 		case ReianaStateType::GroundAttack:
 			count++;

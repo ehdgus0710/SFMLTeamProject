@@ -61,17 +61,12 @@ void ReianaNomalAttackState::Attack(float deltaTime)
 void ReianaNomalAttackState::Wait(float deltaTime)
 {
 	currentDelay += deltaTime;
-
-	animator->ChangeAnimation("dash", false);
-
 	if (rush3)
 	{
 		fsm->ChangeState(ReianaStateType::Idle);
 	}
-
 	if (!playerPosCheck)
 	{
-		CheckFilp();
 		startPosition = reiana->GetPosition();
 		endPosition = { reiana->GetPlayer()->GetPosition().x ,reiana->GetPosition().y };
 		playerPosCheck = true;
@@ -79,6 +74,14 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 		meteorGroundSmoke->SetScale({ 1.f,1.f });
 		meteorGroundSmoke->Start();
 		meteorGroundSmoke->SetPosition(reiana->GetPosition());
+		if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())
+		{
+			reiana->OnFlipX();
+		}
+		if (reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x && !reiana->IsFlipX())
+		{
+			reiana->OnFlipX();
+		}
 		if (!meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
@@ -88,7 +91,11 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 			meteorGroundSmoke->OnFlipX();
 		}
 	}
-	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDelay / delay));
+	if (!rush3)
+	{
+		reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDelay / delay));
+		animator->ChangeAnimation("dash", false);
+	}
 
 	if (currentDelay >= delay)
 	{
@@ -116,18 +123,6 @@ void ReianaNomalAttackState::Start()
 	ReianaBaseState::Start();
 }
 
-void ReianaNomalAttackState::CheckFilp()
-{
-	if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
-	{
-		reiana->OnFlipX();
-	}
-	else if (reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
-	{
-		reiana->OnFlipX();
-	}
-}
-
 void ReianaNomalAttackState::Enter()
 {
 	ReianaBaseState::Enter();
@@ -135,15 +130,6 @@ void ReianaNomalAttackState::Enter()
 	endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	startPosition = reiana->GetPosition();
 	endPosition = { reiana->GetPlayer()->GetPosition().x ,reiana->GetPosition().y };
-
-	if (reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
-	{
-		reiana->OnFlipX();
-	}
-	if (!reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
-	{
-		reiana->OnFlipX();
-	}
 	MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
 	meteorGroundSmoke->SetScale({ 1.f,1.f });
 	meteorGroundSmoke->Start();
@@ -156,10 +142,12 @@ void ReianaNomalAttackState::Enter()
 	{
 		meteorGroundSmoke->OnFlipX();
 	}
+
 	currentDelay = 0.f;
 	currentAttackDelay = 0.f;
 	currentAnimationDelay = 0.f;
 	action = false;
+	checkFilp = false;
 	rush1 = false;
 	rush2 = false;
 	rush3 = false;
@@ -195,7 +183,7 @@ void ReianaNomalAttackState::LateUpdate(float deltaTime)
 void ReianaNomalAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({0.f,reiana->GetPosition().y - 180 });
+	hitBox->GetCollider()->SetOffsetPosition({ 0.f,reiana->GetPosition().y - 180 });
 	hitBox->SetScale({ 150.f,50.f });
 	hitBox->SetDamage(1000);
 }

@@ -41,7 +41,7 @@ void ReianaDashState::Enter()
 	IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 	introLandSmoke->Start();
 	introLandSmoke->SetPosition(reiana->GetPosition());
-	if (!reiana->IsFlipX())
+	if (reiana->IsFlipX())
 		reiana->OnFlipX();
 }
 

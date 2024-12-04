@@ -28,13 +28,13 @@ void B_ReianaIdleState::Enter()
 
 	reiana = dynamic_cast<Reiana*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Reiana", LayerType::Boss));
 
-	if (!B_Reiana->IsFlipX() && B_Reiana->GetPosition().x > B_Reiana->GetPlayer()->GetPosition().x)
+	if (!b_reiana->IsFlipX() && b_reiana->GetPosition().x > b_reiana->GetPlayer()->GetPosition().x)
 	{
-		B_Reiana->OnFlipX();
+		b_reiana->OnFlipX();
 	}
-	if (B_Reiana->IsFlipX() && B_Reiana->GetPosition().x < B_Reiana->GetPlayer()->GetPosition().x)
+	if (b_reiana->IsFlipX() && b_reiana->GetPosition().x < b_reiana->GetPlayer()->GetPosition().x)
 	{
-		B_Reiana->OnFlipX();
+		b_reiana->OnFlipX();
 	}
 	currentdelay = 0.f;
 	count = reiana->GetCount();
@@ -81,6 +81,9 @@ void B_ReianaIdleState::changeState(float dt)
 		{
 		case B_ReianaStateType::Dash:
 			fsm->ChangeState(B_ReianaStateType::Dash);
+			break;
+		case B_ReianaStateType::BackStap:
+			fsm->ChangeState(B_ReianaStateType::BackStap);
 			break;
 		case B_ReianaStateType::GroundAttack:
 			fsm->ChangeState(B_ReianaStateType::GroundAttack);

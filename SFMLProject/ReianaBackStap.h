@@ -8,7 +8,8 @@ protected:
 	sf::Vector2f startPosition;
 	sf::Vector2f endPosition;
 
-	float currentWaitTime = 0.f;
+	float currentTime = 0.f;
+	float time = 0.3f;
 
 private:
 	void BackStap(float deltaTime);

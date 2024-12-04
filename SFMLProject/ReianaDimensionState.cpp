@@ -39,11 +39,11 @@ void ReianaDimensionState::Enter()
 	ReianaBaseState::Enter();	
 	currentTime = 0.f;
 	animator->ChangeAnimation("dimensionPierceAttack", false);
-	if (!reiana->IsFlipX() && reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x)
+	if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())
 	{
 		reiana->OnFlipX();
 	}
-	if (reiana->IsFlipX() && reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x)
+	if (reiana->GetPosition().x > reiana->GetPlayer()->GetPosition().x && !reiana->IsFlipX())
 	{
 		reiana->OnFlipX();
 	}

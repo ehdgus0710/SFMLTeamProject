@@ -14,6 +14,7 @@ ReianaDeadState::~ReianaDeadState()
 
 void ReianaDeadState::Enter()
 {
+	ReianaBaseState::Enter();
 	animator->ChangeAnimation("dead", false);
 }
 

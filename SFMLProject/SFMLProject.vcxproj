@@ -163,6 +163,7 @@
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="B_Reiana.cpp" />
+    <ClCompile Include="B_ReianaBackStap.cpp" />
     <ClCompile Include="B_ReianaBaseState.cpp" />
     <ClCompile Include="B_ReianaDashState.cpp" />
     <ClCompile Include="B_ReianaDeadState.cpp" />
@@ -355,6 +356,7 @@
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="B_Reiana.h" />
+    <ClInclude Include="B_ReianaBackStap.h" />
     <ClInclude Include="B_ReianaBaseState.h" />
     <ClInclude Include="B_ReianaDashState.h" />
     <ClInclude Include="B_ReianaDeadState.h" />

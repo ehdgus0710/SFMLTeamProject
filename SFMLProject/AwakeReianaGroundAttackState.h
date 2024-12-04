@@ -17,7 +17,8 @@ protected:
 
 	float waitTime = 0.6f;
 	float currentWaitTime = 0.f;
-	float attackTime = 0.5f;
+	float endTime = 1.f;
+	float attackTime = 1.5f;
 	float currentAttackTime = 0.f;
 	float damage = 20.f;
 

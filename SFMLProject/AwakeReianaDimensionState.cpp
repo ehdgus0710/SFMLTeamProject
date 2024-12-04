@@ -38,7 +38,7 @@ void AwakeReianaDimensionState::Enter()
 {
 	AwakeReianaBaseState::Enter();
 	currentTime = 0.f;
-	animator->ChangeAnimation("dimensionPierceAttack", false);
+	animator->ChangeAnimation("awakenDimensionPierceAttack", false);
 	if (AwakeReiana->GetPosition().x < AwakeReiana->GetPlayer()->GetPosition().x && AwakeReiana->IsFlipX())
 	{
 		AwakeReiana->OnFlipX();

@@ -35,7 +35,7 @@ void AwakeReianaIdleState::Enter()
 	{
 		AwakeReiana->OnFlipX();
 	}
-	animator->ChangeAnimation("idle", true);
+	animator->ChangeAnimation("awakenIdle", true);
 	AwakeReiana->SetCount(count);
 	if (count == 9)
 	{
@@ -70,7 +70,7 @@ void AwakeReianaIdleState::LateUpdate(float deltaTime)
 
 void AwakeReianaIdleState::changeState(float dt)
 {
-	/*currentdelay += dt;
+	currentdelay += dt;
 	if (currentdelay > delay)
 	{
 		switch ((AwakeReianaStateType)count)
@@ -102,5 +102,5 @@ void AwakeReianaIdleState::changeState(float dt)
 		default:
 			break;
 		}
-	}*/
+	}
 }

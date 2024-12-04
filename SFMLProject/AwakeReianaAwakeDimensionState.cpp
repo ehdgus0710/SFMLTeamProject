@@ -38,19 +38,19 @@ void AwakeReianaAwakeDimensionState::Attack(float deltaTime)
 	{
 		if (rush2)
 		{
-			animator->ChangeAnimation("rushC", false);
+			animator->ChangeAnimation("awakenRushC", false);
 			rush3 = true;
 			OnCreateHitBox();
 		}
 		else if (rush1)
 		{
-			animator->ChangeAnimation("rushB", false);
+			animator->ChangeAnimation("awakenRushB", false);
 			rush2 = true;
 			OnCreateHitBox();
 		}
 		else if (!rush1)
 		{
-			animator->ChangeAnimation("rushA", false);
+			animator->ChangeAnimation("awakenRushA", false);
 			rush1 = true;
 			OnCreateHitBox();
 		}

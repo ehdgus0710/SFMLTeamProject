@@ -19,11 +19,16 @@ AwakeReianaDropAttackState::~AwakeReianaDropAttackState()
 void AwakeReianaDropAttackState::Wait(float deltaTime)
 {
 	currentWaitTime += deltaTime;
-
+	AwakeReiana->SetPosition(AwakeReiana->GetPosition());
 	if (currentWaitTime >= waitTime)
 	{
-		action = true;
 		OnCreateHitBox();
+		action = true;
+	}
+	else if (!waitAnimation)
+	{
+		waitAnimation = true;
+		animator->ChangeAnimation("awakenGoldMeteorReady", false);
 	}
 }
 
@@ -34,7 +39,7 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 	AwakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
 	if (currentDropTime > dropTime)
 	{
-		animator->ChangeAnimation("goldmetorLanding", false);
+		animator->ChangeAnimation("awakenGoldMeteorLanding", false);
 		currentLandingTime += deltaTime;
 		if (!effect)
 		{
@@ -50,7 +55,11 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 			fsm->ChangeState(AwakeReianaStateType::Idle);
 		}
 	}
-
+	else if (!attack)
+	{
+		attack = true;
+		animator->ChangeAnimation("awakenGoldMeteorAttack", false);
+	}
 }
 
 void AwakeReianaDropAttackState::Awake()
@@ -67,17 +76,19 @@ void AwakeReianaDropAttackState::Enter()
 {
 	AwakeReianaBaseState::Enter();
 	rigidbody = AwakeReiana->GetRigidbody();
-	animator->ChangeAnimation("goldMeteorAttack", true);
+	animator->ChangeAnimation("awakenGoldMeteorJump",true);
 
 	currentDropTime = 0.f;
 	currentWaitTime = 0.f;
 	currentLandingTime = 0.f;
 	action = false;
 	effect = false;
+	attack = false;
+	waitAnimation = false;
 	auto playerPos = AwakeReiana->GetPlayer()->GetPosition();
 	endPosition = { playerPos.x, 80.f };
 
-	playerPos -= moveDistance;
+	playerPos -= waitStartPos;
 	startPosition = playerPos;
 
 	playerPos = AwakeReiana->GetPlayer()->GetPosition();

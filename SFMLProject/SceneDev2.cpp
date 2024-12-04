@@ -146,13 +146,13 @@ void SceneDev2::Enter()
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
-	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
-	testReiana->Awake();
-	testReiana->SetPosition({ 1700.f,-500.f });
+	//Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
+	//testReiana->Awake();
+	//testReiana->SetPosition({ 1700.f,-500.f });
 
-	B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
-	testBReiana->Awake();
-	testBReiana->SetPosition({ 200.f,-500.f });
+	//B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
+	//testBReiana->Awake();
+	//testBReiana->SetPosition({ 200.f,-500.f });
 
 	AwakeReiana* testAwakeReiana = AddGameObject(new AwakeReiana("AwakeReiana"), LayerType::Boss);
 	testAwakeReiana->Awake();

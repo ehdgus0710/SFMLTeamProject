@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ReianaBaseState.h"
+#include "B_ReianaBaseState.h"
 
 class HitBoxObject;
 
-class ReianaDropAttackState : public ReianaBaseState
+class B_ReianaDropAttackState : public B_ReianaBaseState
 {
 protected:
 	HitBoxObject* hitBox;
@@ -39,6 +39,6 @@ public:
 	void OnCreateHitBox();
 	void OnDestoryHitBox();
 public:
-	ReianaDropAttackState(ReianaFsm* fsm);
-	~ReianaDropAttackState();
+	B_ReianaDropAttackState(B_ReianaFsm* fsm);
+	~B_ReianaDropAttackState();
 };

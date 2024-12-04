@@ -34,11 +34,21 @@ void ReianaDropAttackState::Drop(float deltaTime)
 	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
 	if (currentDropTime > dropTime)
 	{
-		IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
-		introLandSmoke->Start();
-		introLandSmoke->SetPosition(reiana->GetPosition());
-		OnDestoryHitBox();
-		fsm->ChangeState(ReianaStateType::Idle);
+		animator->ChangeAnimation("goldmetorLanding", false);
+		currentLandingTime += deltaTime;
+		if (!effect)
+		{
+			IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
+			introLandSmoke->SetScale({ 2.f,2.f });
+			introLandSmoke->Start();
+			introLandSmoke->SetPosition(reiana->GetPosition());
+			effect = true;
+		}
+		if (currentLandingTime >= landingTime)
+		{
+			OnDestoryHitBox();
+			fsm->ChangeState(ReianaStateType::Idle);
+		}
 	}
 	
 }
@@ -61,9 +71,11 @@ void ReianaDropAttackState::Enter()
 
 	currentDropTime = 0.f;
 	currentWaitTime = 0.f;
-	action = false;
+	currentLandingTime = 0.f;
+	action = false; 
+	effect = false;
 	auto playerPos = reiana->GetPlayer()->GetPosition();
-	endPosition = { playerPos.x, 0.f };
+	endPosition = { playerPos.x, 80.f };
 
 	playerPos -= moveDistance;
 	startPosition = playerPos;
@@ -108,7 +120,7 @@ void ReianaDropAttackState::LateUpdate(float deltaTime)
 
 void ReianaDropAttackState::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::Enemy, ColliderLayer::Player, true), LayerType::Enemy);
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
 	hitBox->SetScale({ 50.f,100.f });
 
 	DamegeInfo damageInfo;

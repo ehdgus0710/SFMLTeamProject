@@ -11,7 +11,7 @@ Dimension::Dimension(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	animator->AddAnimation(animation, "DimensionPierce");
-
+	SetScale({ 2.f,2.f });
 	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetEndFrameCount()-6);
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
@@ -33,6 +33,7 @@ void Dimension::OnAttack()
 	animationHitBox->SetPosition(position);
 	animationHitBox->SetRotation(rotation + 135.f);
 	animationHitBox->SetScale({ 2.f,2.f });
+	animationHitBox->SetDamage(10.f);
 	animationHitBox->GetCollider()->SetScale({ 150.f, 5.f });
 	animationHitBox->SetOrigin(originPreset);
 	animationHitBox->Awake();

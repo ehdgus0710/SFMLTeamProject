@@ -1,15 +1,16 @@
 #include "stdafx.h"
-#include "Reiana.h"
+#include "B_Reiana.h"
 #include "Rigidbody.h"
 
 #include "Collider.h"
 #include "Animation.h"
 #include "Animator.h"
 #include "Player.h"
+#include "Reiana.h"
 
-Reiana::Reiana(const std::string& name)
+B_Reiana::B_Reiana(const std::string& name)
 	:AnimationGameObject(name)
-	,fsm(this)
+	, fsm(this)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -19,75 +20,72 @@ Reiana::Reiana(const std::string& name)
 	animator->LoadCsv("animators/rayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
-	// animator->CreateAnimation("ReianaIdle", "ReianaIdle", { 150, 192 }, 1, 0.1f, true);
+	// animator->CreateAnimation("B_ReianaIdle", "B_ReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
-Reiana::~Reiana()
+B_Reiana::~B_Reiana()
 {
 }
 
-void Reiana::TakeDamage(const DamegeInfo& damage)
+void B_Reiana::TakeDamage(float damage)
 {
-	currentStatus.hp -= damage.damege;
+	currentStatus.hp -= damage;
 
 	if (currentStatus.hp <= 0)
 		OnDead();
 }
 
-void Reiana::OnDead()
+void B_Reiana::OnDead()
 {
-	// fsm.ChangeState(ReianaStateType::Dead);
+	// fsm.ChangeState(B_ReianaStateType::Dead);
 }
 
-void Reiana::Awake()
+void B_Reiana::Awake()
 {
 	AnimationGameObject::Awake();
 }
 
-void Reiana::Start()
+void B_Reiana::Start()
 {
 	InputManager::GetInstance().BindKey(sf::Keyboard::Q);
 
 	collider->SetOffsetPosition({ 0.f,-100.f });
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
-	animator->ChangeAnimation("ReianaIdle", true);
-	fsm.ChangeState(ReianaStateType::Idle);
+	animator->ChangeAnimation("B_ReianaIdle", true);
+	fsm.ChangeState(B_ReianaStateType::Idle);
 	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
+
 }
 
-void Reiana::Update(const float& deltaTime)
+void B_Reiana::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
-	{
-		fsm.ChangeState(ReianaStateType::Dimension);
-	}
 }
 
-void Reiana::FixedUpdate(const float& deltaTime)
+void B_Reiana::FixedUpdate(const float& deltaTime)
 {
 	fsm.FixedUpdate(deltaTime);
 	rigidBody->FixedUpdate(deltaTime);
 }
 
-void Reiana::LateUpdate(const float& deltaTime)
+void B_Reiana::LateUpdate(const float& deltaTime)
 {
 	fsm.LateUpdate(deltaTime);
 }
 
-void Reiana::OnCollisionEnter(Collider* target)
+void B_Reiana::OnCollisionEnter(Collider* target)
 {
 }
 
-void Reiana::OnCollisionStay(Collider* target)
+void B_Reiana::OnCollisionStay(Collider* target)
 {
 }
 
-void Reiana::OnCollisionEnd(Collider* target)
+void B_Reiana::OnCollisionEnd(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Wall)
 	{
@@ -113,9 +111,4 @@ void Reiana::OnCollisionEnd(Collider* target)
 			rigidBody->SetGround(false);
 		}
 	}
-}
-
-void Reiana::SetCount(int con)
-{
-	count = con;
 }

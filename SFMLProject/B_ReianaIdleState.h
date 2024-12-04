@@ -1,12 +1,15 @@
 #pragma once
 
-#include "ReianaBaseState.h"
+#include "B_ReianaBaseState.h"
 
-class ReianaIdleState : public ReianaBaseState
+class Reiana;
+
+class B_ReianaIdleState : public B_ReianaBaseState
 {
 protected:
+	Reiana* reiana;
+
 	int				count = 1;
-	int				tossCount = 1;
 	float			currentdelay = 0.f;
 	float			delay = 2.f;
 
@@ -22,8 +25,7 @@ public:
 	void LateUpdate(float deltaTime) override;
 	void changeState(float dt);
 public:
-	ReianaIdleState(ReianaFsm* fsm);
-	~ReianaIdleState();
-	int GetCount() { return count; }
+	B_ReianaIdleState(B_ReianaFsm* fsm);
+	~B_ReianaIdleState();
 };
 

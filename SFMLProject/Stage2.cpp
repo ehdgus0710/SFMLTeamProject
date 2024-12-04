@@ -39,6 +39,8 @@ void Stage2::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Reiana);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::PlayerBullet, ColliderLayer::Reiana);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Boss, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Boss, ColliderLayer::PlayerBullet);
@@ -131,7 +133,7 @@ void Stage2::Enter()
 	testYggdrasil->SetPosition({ 960.f, 400.f });
 	testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
 
-	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap","Stage1TileMap" ), LayerType::TileMap);
+	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap", "Stage1TileMap"), LayerType::TileMap);
 	tileMap->LoadCsv("TileMap/Stage2Map1.csv");
 
 	WallCollisionObject* wallObject = AddGameObject(new WallCollisionObject("Wall1"), LayerType::Wall);

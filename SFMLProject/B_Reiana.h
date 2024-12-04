@@ -1,24 +1,25 @@
 #pragma once
 #include "AnimationGameObject.h"
-#include "ReianaFsm.h"
+#include "B_ReianaFsm.h"
 
 class Camera;
 class Rigidbody;
 class Player;
+class Reiana;
 
-class Reiana : public AnimationGameObject
+class B_Reiana : public AnimationGameObject
 {
 protected:
-	ReianaFsm	fsm;
+	Reiana* reiana;
+	B_ReianaFsm	fsm;
 	DefaultStatus	currentStatus;
-	Player*			player;
+	Player* player;
 	bool			isHit = false;
-	int				count;
 public:
-	void TakeDamage(const DamegeInfo& damage);
+	void TakeDamage(float damage);
 	void OnDead();
 
-	ReianaFsm& GetFSM() { return fsm; }
+	B_ReianaFsm& GetFSM() { return fsm; }
 	Player* GetPlayer() { return player; }
 public:
 	bool IsHit() const { return isHit; }
@@ -34,10 +35,8 @@ public:
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
 	void OnCollisionEnd(Collider* target) override;
-	void SetCount(int con);
-	int GetCount() { return count; }
 public:
-	Reiana(const std::string& name = "Reiana");
-	virtual ~Reiana();
-	Reiana& operator= (const Reiana& other) = delete;
+	B_Reiana(const std::string& name = "B_Reiana");
+	virtual ~B_Reiana();
+	B_Reiana& operator= (const B_Reiana& other) = delete;
 };

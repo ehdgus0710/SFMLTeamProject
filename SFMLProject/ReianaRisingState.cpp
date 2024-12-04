@@ -61,6 +61,7 @@ void ReianaRisingState::Enter()
 	endCurrentDelay = 0.f;
 	CurrentRisingDelat = 0.f;
 	count = 1;
+
 }
 
 void ReianaRisingState::Exit()

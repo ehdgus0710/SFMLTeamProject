@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "HitBoxObject.h"
 #include "MeteorGroundSmoke.h"
+#include "Collider.h"
 
 ReianaGroundAttackState::ReianaGroundAttackState(ReianaFsm* fsm)
 	: ReianaBaseState(fsm, ReianaStateType::GroundAttack)
@@ -22,9 +23,14 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 	if (!start)
 	{
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
+		meteorGroundSmoke->SetScale({ 2.f,2.f });
 		meteorGroundSmoke->Start();
 		meteorGroundSmoke->SetPosition(reiana->GetPosition());
-		if (reiana->IsFlipX())
+		if (!meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
+		{
+			meteorGroundSmoke->OnFlipX();
+		}
+		if (meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
@@ -82,13 +88,13 @@ void ReianaGroundAttackState::Enter()
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&ReianaGroundAttackState::ChangeReady2Animation, this), endFrame);
 
-	if(!reiana->IsFlipX())
+	if( reiana->IsFlipX())
 		reiana->OnFlipX();
+
 	start = false;
 	currentAttackTime = 0.f;
 	currentWaitTime = 0.f;
 	action = false;
-	auto playerPos = reiana->GetPlayer()->GetPosition();
 
 	startPosition = { 1700.f ,reiana->GetPosition().y };
 	reiana->SetPosition(startPosition);	

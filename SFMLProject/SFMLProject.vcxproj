@@ -162,6 +162,15 @@
     <ClCompile Include="BackgroundSprite.cpp" />
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="B_Reiana.cpp" />
+    <ClCompile Include="B_ReianaBaseState.cpp" />
+    <ClCompile Include="B_ReianaDashState.cpp" />
+    <ClCompile Include="B_ReianaDeadState.cpp" />
+    <ClCompile Include="B_ReianaDropAttackState.cpp" />
+    <ClCompile Include="B_ReianaFSM.cpp" />
+    <ClCompile Include="B_ReianaGroundAttackState.cpp" />
+    <ClCompile Include="B_ReianaIdleState.cpp" />
+    <ClCompile Include="B_ReianaThreeSwordState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="Dimension.cpp" />
@@ -186,7 +195,6 @@
     <ClCompile Include="ReianaGroundAttackState.cpp" />
     <ClCompile Include="ReianaIdleState.cpp" />
     <ClCompile Include="ReianaNomalAttackState.cpp" />
-    <ClCompile Include="ReianaAroundDimensionState.cpp" />
     <ClCompile Include="ReianaThreeSwordState.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="ColliderGUI.cpp" />
@@ -345,6 +353,15 @@
     <ClInclude Include="BackgroundSprite.h" />
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="B_Reiana.h" />
+    <ClInclude Include="B_ReianaBaseState.h" />
+    <ClInclude Include="B_ReianaDashState.h" />
+    <ClInclude Include="B_ReianaDeadState.h" />
+    <ClInclude Include="B_ReianaDropAttackState.h" />
+    <ClInclude Include="B_ReianaFSM.h" />
+    <ClInclude Include="B_ReianaGroundAttackState.h" />
+    <ClInclude Include="B_ReianaIdleState.h" />
+    <ClInclude Include="B_ReianaThreeSwordState.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="Dimension.h" />
@@ -369,7 +386,6 @@
     <ClInclude Include="ReianaGroundAttackState.h" />
     <ClInclude Include="ReianaIdleState.h" />
     <ClInclude Include="ReianaNomalAttackState.h" />
-    <ClInclude Include="ReianaAroundDimensionState.h" />
     <ClInclude Include="ReianaThreeSwordState.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderGUI.h" />

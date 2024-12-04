@@ -5,6 +5,10 @@
 class ReianaDimensionState : public ReianaBaseState
 {
 protected:
+
+	float time = 1.5f;
+	float currentTime = 0.f;
+
 	void CreateDimension();
 
 

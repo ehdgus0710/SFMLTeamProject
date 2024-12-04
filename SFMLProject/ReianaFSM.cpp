@@ -8,7 +8,6 @@
 #include "ReianaDropAttackState.h"
 #include "ReianaRisingState.h"
 #include "ReianaDimensionState.h"
-#include "ReianaAroundDimensionState.h"
 #include "ReianaDeadState.h"
 #include "ReianaDashState.h"
 
@@ -52,9 +51,6 @@ void ReianaFsm::CreateAllState()
 		case ReianaStateType::ThreeSword:
 			AddState(ReianaStateType::ThreeSword);
 			break;
-		case ReianaStateType::Aruond:
-			AddState(ReianaStateType::Aruond);
-			break;
 		case ReianaStateType::Rising:
 			AddState(ReianaStateType::Rising);
 			break;
@@ -95,9 +91,6 @@ BaseState<ReianaStateType>* ReianaFsm::CreateState(ReianaStateType type)
 		break;
 	case ReianaStateType::ThreeSword:
 		state = new ReianaThreeSwordState(this);
-		break;
-	case ReianaStateType::Aruond:
-		state = new ReianaAroundDimensionState(this);
 		break;
 	case ReianaStateType::Rising:
 		state = new ReianaRisingState(this);

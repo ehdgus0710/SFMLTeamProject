@@ -41,10 +41,10 @@ void Knife::Start()
 	OnCreateHitBox();
 	currentDelay = 0.f;
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
-
 	collider->SetActive(false);
 	collider->SetScale({ 80.f,30.f });
 	effect1->SetPosition(position);
+	effect1->SetScale({ 2.f,2.f });
 
 	animator->ChangeAnimation("idle");
 } 

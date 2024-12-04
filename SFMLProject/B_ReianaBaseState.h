@@ -1,16 +1,16 @@
 #pragma once
 
 #include "BaseState.h"
-#include "Reiana.h"
-#include "ReianaFsm.h"
+#include "B_Reiana.h"
+#include "B_ReianaFsm.h"
 
 class Animator;
 
-class ReianaBaseState : public BaseState<ReianaStateType>
+class B_ReianaBaseState : public BaseState<B_ReianaStateType>
 {
 protected:
-	Reiana* reiana;
-	ReianaFsm* fsm;
+	B_Reiana* B_Reiana;
+	B_ReianaFsm* fsm;
 	Animator* animator;
 
 	std::vector<std::function<void()>>	stateStartEvents;
@@ -30,7 +30,7 @@ public:
 	void LateUpdate(float deltaTime) override;
 
 public:
-	ReianaBaseState(ReianaFsm* fsm, ReianaStateType stateType);
-	virtual ~ReianaBaseState();
+	B_ReianaBaseState(B_ReianaFsm* fsm, B_ReianaStateType stateType);
+	virtual ~B_ReianaBaseState();
 };
 

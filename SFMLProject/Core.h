@@ -88,7 +88,7 @@ enum class ColliderLayer
 	Enemy,
 	Boss,
 	Yggdrasil,
-	Reiana, 
+	Reiana,
 	PlayerBullet,
 	EnemyBullet,
 	SavePoint,
@@ -141,15 +141,28 @@ enum class ReianaStateType
 {
 	Idle,
 	NomalAttack,
+	Dash,
 	GroundAttack,
 	ThreeSword,
-	Aruond,
-	Rising,
 	Dimension,
-	Dash,
 	DropAttack,
+	Rising,
 	Dead,
 
+	End
+};
+
+enum class B_ReianaStateType
+{
+	Idle,
+	Dash,
+	None,
+	GroundAttack,
+	ThreeSword,
+	None2,
+	DropAttack,
+	None3,
+	Dead,
 	End
 };
 

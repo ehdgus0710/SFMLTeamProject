@@ -11,7 +11,8 @@ MeteorGroundSmoke::MeteorGroundSmoke(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/MeteorGroundSmoke.csv");
 	animator->AddAnimation(animation, "MeteorGroundSmoke");
-
+	SetOrigin(Origins::BottomCenter);
+	
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
 

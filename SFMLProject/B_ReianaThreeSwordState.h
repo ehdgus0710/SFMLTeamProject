@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ReianaBaseState.h"
+#include "B_ReianaBaseState.h"
 
-class ReianaThreeSwordState : public ReianaBaseState
+class B_ReianaThreeSwordState : public B_ReianaBaseState
 {
 public:
 	enum class Pos
@@ -39,6 +39,6 @@ public:
 	void FixedUpdate(float fixedDeltaTime) override;
 	void LateUpdate(float deltaTime) override;
 public:
-	ReianaThreeSwordState(ReianaFsm* fsm);
-	~ReianaThreeSwordState();
+	B_ReianaThreeSwordState(B_ReianaFsm* fsm);
+	~B_ReianaThreeSwordState();
 };

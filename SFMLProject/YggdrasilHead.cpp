@@ -50,6 +50,11 @@ void YggdrasilHead::LateUpdate(const float& deltaTime)
 {
 }
 
+void YggdrasilHead::SetAniHead(std::string name, bool loop)
+{
+	animator->ChangeAnimation(name, loop);
+}
+
 void YggdrasilHead::OnCollisionEnter(Collider* target)
 {
 }

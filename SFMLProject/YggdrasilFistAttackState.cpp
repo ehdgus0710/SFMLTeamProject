@@ -2,6 +2,7 @@
 #include "YggdrasilFistAttackState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Animation.h"
 #include "Collider.h"
 #include "GameManager.h"
 #include "Yggdrasil.h"
@@ -49,6 +50,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			CreateLeftEffect();
+			attackBox->OnDestory();
 			hitBoxOn = false;
 			currentAttackTime = 0.f;
 			currentAttackDelay = 0.f;
@@ -69,6 +72,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			CreateRightEffect();
+			attackBox->OnDestory();
 			hitBoxOn = false;
 			currentAttackTime = 0.f;
 			currentAttackDelay = 0.f;
@@ -84,7 +89,6 @@ void YggdrasilFistAttackState::EndAttackWait(float deltaTime)
 
 	if (currentAttackDelay >= waitTime)
 	{
-		attackBox->OnDestory();
 		currentAttackDelay = 0.f;
 		isRecovery = true;
 		isWait = false;
@@ -140,10 +144,40 @@ void YggdrasilFistAttackState::Recovery(float deltaTime)
 	}
 }
 
+void YggdrasilFistAttackState::CreateLeftEffect()
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlam.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "yggdrasilHandSlam");
+	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlam");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 913.f });
+	effect->SetScale(sf::Vector2f::one);
+
+	effect->Awake();
+	effect->Start();
+}
+
+void YggdrasilFistAttackState::CreateRightEffect()
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlam.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "yggdrasilHandSlam");
+	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlam");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 913.f });
+	effect->SetScale(sf::Vector2f::one);
+
+	effect->Awake();
+	effect->Start();
+}
+
 void YggdrasilFistAttackState::Awake()
 {
 	YggdrasilBaseState::Awake();
-
+	
 }
 
 void YggdrasilFistAttackState::Start()
@@ -258,11 +292,21 @@ void YggdrasilFistAttackState::Update(float deltaTime)
 		if (!isAttack)
 		{
 			currentAttackDelay += deltaTime;
+			if (yggdrasil->GetRightFistPos().y >= 700.f && events.size() != 0)
+			{
+				for (auto& posEvent : events)
+				{
+					if (posEvent)
+						posEvent();
+				}
+
+				events.clear();
+			}
 
 			if (currentAttackDelay >= attackDelay)
 			{
 				startPos = yggdrasil->GetLeftFistPos();
-				endPos = { player->GetPosition().x, 913.f };
+				endPos = { player->GetPosition().x, 700.f };
 				isAttack = true;
 				currentAttackTime = 0.f;
 			}
@@ -293,7 +337,7 @@ void YggdrasilFistAttackState::Update(float deltaTime)
 			if (currentAttackDelay >= attackDelay)
 			{
 				startPos = yggdrasil->GetRightFistPos();
-				endPos = { player->GetPosition().x, 913.f };
+				endPos = { player->GetPosition().x, 700.f };
 				isAttack = true;
 				currentAttackTime = 0.f;
 			}
@@ -333,5 +377,6 @@ void YggdrasilFistAttackState::FixedUpdate(float fixedDeltaTime)
 YggdrasilFistAttackState::YggdrasilFistAttackState(YggdrasilFSM* fsm)
 	: YggdrasilBaseState(fsm, YggdrasilStateType::FistAttack)
 {
+	
 }
 

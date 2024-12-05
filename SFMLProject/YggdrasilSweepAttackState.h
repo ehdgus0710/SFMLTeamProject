@@ -23,7 +23,9 @@ class YggdrasilSweepAttackState : public YggdrasilBaseState
 	float		currentAttackDelay;
 	float		attackDelay;
 	float		readyFistDelay;
+	float		effectTime;
 
+	float		effectDelay;
 	float		currentAttackTime;
 	float		attackTime;
 	float		recoveryTime;
@@ -47,6 +49,8 @@ private:
 	void StartRightAttack(float deltaTime);
 	void EndAttackWait(float deltaTime);
 	void Recovery(float deltaTime);
+	void CreateLeftEffect();
+	void CreateRightEffect();
 
 public:
 	void Awake() override;

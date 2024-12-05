@@ -66,6 +66,15 @@ void GameObject::OnDestory()
 	}
 }
 
+void GameObject::SetActive(const bool active)
+{
+	this->active = active;
+	if (collider != nullptr)
+	{
+		collider->SetActive(active);
+	}
+}
+
 void GameObject::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;

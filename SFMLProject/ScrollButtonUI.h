@@ -12,11 +12,14 @@ enum class MoveType
 class ScrollButtonUI : public UISpriteGameObject
 {
 protected:
+	UISpriteGameObject* dotSpriteObject;
+
 	MoveType		moveType;
 	GameObject*		followTargetObject;
 	sf::Vector2f	minPosition;
-	float			minRange;
-	float			maxRange;
+	sf::Vector2f	scrollRectSize;
+
+	float			currentValue;
 
 	std::vector<std::function<void()>>		buttonCollsionEnterEvents;
 	std::vector<std::function<void()>>		buttonCollsionStayEvents;
@@ -28,11 +31,13 @@ public:
 	void SetButtonClickEndEvent(std::function<void()> buttonEvent) { buttonCollsionEndClickEvents.push_back(buttonEvent); }
 	void SetChangeValueEvent(std::function<void(float)> buttonEvent) { changeValueEvents.push_back(buttonEvent); }
 
-	void SetStartPosition(const sf::Vector2f& startPosition, float minValue, float maxValue, float startValue);
+	void SetStartInfo(const sf::Vector2f& startPosition, const sf::Vector2f rectSize, float startValue = 50.f);
+	void ChangeSpriteDot(const std::string& textureId);
 	float GetCurrentPercent();
 
 public:
 	void Start() override;
+	void SetActive(const bool active) override;
 	void Update(const float& deltaTime) override;
 
 	void OnCollisionEnter(Collider* target) override;

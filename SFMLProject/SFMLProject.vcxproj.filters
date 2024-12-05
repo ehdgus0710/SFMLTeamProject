@@ -765,9 +765,6 @@
     <ClCompile Include="B_ReianaBackStap.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PauseUIBar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="AwakeReiana.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -798,8 +795,14 @@
     <ClCompile Include="ScrollButtonUI.cpp">
       <Filter>Core\7. Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="SoundScrollObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseUIBar.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
     <ClCompile Include="SettingUIBar.cpp">
-      <Filter>Core\7. Object\UI</Filter>
+      <Filter>Contants\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1337,9 +1340,6 @@
     <ClInclude Include="B_ReianaBackStap.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PauseUIBar.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="AwakeReiana.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -1370,8 +1370,14 @@
     <ClInclude Include="ScrollButtonUI.h">
       <Filter>Core\7. Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="SoundScrollObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseUIBar.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
     <ClInclude Include="SettingUIBar.h">
-      <Filter>Core\7. Object\UI</Filter>
+      <Filter>Contants\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

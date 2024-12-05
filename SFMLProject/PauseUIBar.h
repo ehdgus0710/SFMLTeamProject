@@ -27,6 +27,7 @@ private:
 	void OnNewGame();
 	void OnControllerBar();
 	void OnSettingBar();
+	void OffSettingBar();
 	void OnEndGame();
 
 	void CreateUIObject();

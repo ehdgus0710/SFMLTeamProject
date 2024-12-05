@@ -25,7 +25,11 @@ public:
 	void SetBgmVolume(float v)
 	{
 		bgmVolume = v;
-		bgm.setVolume(bgmVolume / totalVolum);
+
+		if(totalVolum == 0.f)
+			bgm.setVolume(0.f);
+		else
+			bgm.setVolume(bgmVolume / totalVolum);
 	}
 
 	void SetTotalVolume(float v) { totalVolum = v; }

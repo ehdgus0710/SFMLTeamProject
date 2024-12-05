@@ -13,6 +13,8 @@ public:
 	void SetButtonSize(const sf::Vector2f& size);
 	void SetColliderSize(const sf::Vector2f& size);
 	void SetButtonClickEvent(std::function<void()> buttonEvent) { buttonClickEvents.push_back(buttonEvent); }
+	void SetCollsionEnterEvent(std::function<void()> buttonEvent) { buttonCollsionEnterEvents.push_back(buttonEvent); }
+	void SetCollsionEndEvent(std::function<void()> buttonEvent) { buttonCollsionEndClickEvents.push_back(buttonEvent); }
 
 public:
 	void Start() override;

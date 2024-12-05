@@ -305,6 +305,7 @@
     <ClCompile Include="SkillCoolTimeUI.cpp" />
     <ClCompile Include="SkillFrameUI.cpp" />
     <ClCompile Include="SoundManger.cpp" />
+    <ClCompile Include="SoundScrollObject.cpp" />
     <ClCompile Include="SpriteGameObject.cpp" />
     <ClCompile Include="Stage1.cpp" />
     <ClCompile Include="Stage2.cpp" />
@@ -501,6 +502,7 @@
     <ClInclude Include="SkillCoolTimeUI.h" />
     <ClInclude Include="SkillFrameUI.h" />
     <ClInclude Include="SoundManger.h" />
+    <ClInclude Include="SoundScrollObject.h" />
     <ClInclude Include="SpriteGameObject.h" />
     <ClInclude Include="Stage1.h" />
     <ClInclude Include="Stage2.h" />

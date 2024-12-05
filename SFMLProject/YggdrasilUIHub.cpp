@@ -79,13 +79,13 @@ void YggdrasilUIHub::Start()
 	frontHpBarSprite->SetPosition({ 960.f, 85.f });
 	frontHpBarSprite->SetScale({ 2.5f, 2.5f });
 
-	bottomBackSprite->sortingOrder = 8;
-	topBackSprite->sortingOrder = 8;
-	frontHpBarSprite->sortingOrder = 6;
-	hpBar->sortingOrder = 5;
-	sortingOrder = 4;
-	nameText->sortingOrder = 3;
-	nameText->sortingOrder = 3;
+	bottomBackSprite->sortingOrder = 18;
+	topBackSprite->sortingOrder = 18;
+	frontHpBarSprite->sortingOrder = 16;
+	hpBar->sortingOrder = 15;
+	sortingOrder = 14;
+	nameText->sortingOrder = 13;
+	nameText->sortingOrder = 13;
 
 
 }

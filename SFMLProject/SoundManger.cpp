@@ -119,9 +119,13 @@ void SoundManger::PlaySfx(sf::SoundBuffer& buffer, bool loop)
 void SoundManger::SetSfxVolume(float v)
 {
 	sfxVolume = v;
+	
 	for (auto sound : playing)
 	{
-		sound->setVolume(sfxVolume / totalVolum);
+		if (totalVolum == 0.f)
+			sound->setVolume(0.f);
+		else
+			sound->setVolume(sfxVolume / totalVolum);
 	}
 }
 

@@ -36,7 +36,7 @@ public:
 	void OnDestory();
 	bool GetDestory() { return isDestory; }
 	const bool IsActive() const { return active; }
-	virtual void SetActive(const bool active) { this->active = active; }
+	virtual void SetActive(const bool active);
 	const std::string& GetName() const { return name; }
 	void SetName(const std::string& name) { this->name = name; }
 

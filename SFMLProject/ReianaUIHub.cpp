@@ -56,15 +56,15 @@ void ReianaUIHub::Start()
 	reianaBHPBar->SetMaxHpBarSize({ 318.f,25.f });
 	
 
-	bottomBackSprite->sortingOrder = 8;
-	topBackSprite->sortingOrder = 8;
-	frontHpBarSprite->sortingOrder = 6;
+	bottomBackSprite->sortingOrder = 28;
+	topBackSprite->sortingOrder = 28;
+	frontHpBarSprite->sortingOrder = 26;
 
-	reianaAHPBar->sortingOrder = 5;
-	reianaBHPBar->sortingOrder = 5;
-	sortingOrder = 4;
-	nameText->sortingOrder = 3;
-	nameText->sortingOrder = 3;
+	reianaAHPBar->sortingOrder = 25;
+	reianaBHPBar->sortingOrder = 25;
+	sortingOrder = 24;
+	nameText->sortingOrder = 23;
+	tribeText->sortingOrder = 23;
 }
 
 void ReianaUIHub::ChangeHP(float currentHp, float maxHp)

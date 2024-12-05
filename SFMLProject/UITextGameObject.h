@@ -10,15 +10,17 @@ protected:
 	unsigned int	textSize;
 
 public:
-	void Awake() override;
-	void Start() override;
-	void Render(sf::RenderWindow& window) override;
-
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetString(const std::string& string);
 	void SetString(const std::wstring& string);
+	void ChangeColor(const sf::Color& color);
+
+public:
+	void Awake() override;
+	void Start() override;
+	void Render(sf::RenderWindow& window) override;
 	void Update(const float& deltaTime) override;
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;

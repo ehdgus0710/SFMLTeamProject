@@ -44,6 +44,17 @@ void PauseUIBar::OnSettingBar()
 	for (auto& button : buttons)
 	{
 		button->SetActive(false);
+		button->GetCollider()->SetActive(false);
+	}
+}
+
+void PauseUIBar::OffSettingBar()
+{
+	settingUIBar->SetActive(false);
+
+	for (auto& button : buttons)
+	{
+		button->SetActive(true);
 	}
 }
 
@@ -100,6 +111,7 @@ void PauseUIBar::CreateUIObject()
 	settingButton->Start();
 	settingButton->SetButtonClickEvent(std::bind(&PauseUIBar::OnSettingBar, this));
 
+
 	endGameButton = currentScene->AddGameObject(new TextButton("NameFont", "EndGameButton", 30, { 98 , 73, 59, 255 }, { 174,151,133,255 }), LayerType::UI);
 	endGameButton->SetString(L"게임종료");
 	endGameButton->SetOrigin(Origins::MiddleCenter);
@@ -115,7 +127,7 @@ void PauseUIBar::CreateUIObject()
 	settingUIBar = currentScene->AddGameObject(new SettingUIBar("OptionsFrame", "SettingUIBar"), LayerType::UI);
 	settingUIBar->SetPosition({ 960.f, 550.f });
 	settingUIBar->SetScale({ 3.f,3.f });
-	endGameButton->Start();
+	settingUIBar->SetReturnClickEvent(std::bind(&PauseUIBar::OffSettingBar, this));
 
 	buttons.push_back(goBackButton);
 	buttons.push_back(controllerButton);
@@ -143,15 +155,26 @@ void PauseUIBar::SetActive(const bool active)
 		InputManager::GetInstance().SetInputable(active);
 		prevTimeScale = TimeManager::GetInstance().GetTimeScale();
 		TimeManager::GetInstance().SetTimeScale(0.f);
+
+		this->active = active;
+		SetChildActive(active);
+		settingUIBar->SetActive(false);
 	}
 	else
 	{
-		InputManager::GetInstance().SetInputable(active);
-		TimeManager::GetInstance().SetTimeScale(prevTimeScale);
-	}
+		if (settingUIBar->IsActive())
+		{
+			OffSettingBar();
+		}
+		else
+		{
+			InputManager::GetInstance().SetInputable(active);
+			TimeManager::GetInstance().SetTimeScale(prevTimeScale);
 
-	this->active = active;
-	SetChildActive(active);
+			this->active = active;
+			SetChildActive(active);
+		}
+	}
 }
 
 void PauseUIBar::Start()
@@ -159,11 +182,9 @@ void PauseUIBar::Start()
 	UISpriteGameObject::Start();
 	CreateUIObject();
 
-
 	sortingOrder = 11;
 	pauseText->sortingOrder = 10;
 
-
-	SetActive(false);
 	settingUIBar->SetActive(false);
+	SetActive(false);
 }

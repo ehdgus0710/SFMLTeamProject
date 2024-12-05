@@ -6,8 +6,9 @@ ScrollButtonUI::ScrollButtonUI(MoveType moveType, const std::string& textureID, 
 	: UISpriteGameObject(textureID, name)
 	, moveType(moveType)
 	, followTargetObject(nullptr)
-	, minRange(0.f)
-	, maxRange(100.f)
+	, dotSpriteObject(nullptr)
+	, currentValue(0.f)
+
 {
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::UI);
 }
@@ -16,40 +17,63 @@ ScrollButtonUI::ScrollButtonUI(MoveType moveType, const sf::Vector2f& startPosit
 	: UISpriteGameObject(textureID, name)
 	, moveType(moveType)
 	, followTargetObject(nullptr)
-	, minRange(minRange)
-	, maxRange(maxRange) 
+	, dotSpriteObject(nullptr)
+	, currentValue(0.f)
+
 {
 	position = startPosition;
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::UI);
 }
 
-
-void ScrollButtonUI::SetStartPosition(const sf::Vector2f& minPosition, float minValue, float maxValue, float startValue)
+void ScrollButtonUI::SetStartInfo(const sf::Vector2f& startPosition, const sf::Vector2f rectSize, float startValue)
 {
-	position = minPosition;
+	scrollRectSize = rectSize;
+	collider->SetScale(scrollRectSize);
+	position = startPosition;
 	this->minPosition = position;
-	minRange = minValue;
-	maxRange = maxValue;
-
-	startValue = Utils::Clamp(startValue, minRange, maxRange);
 
 	if (moveType == MoveType::LeftRight)
-		position.x += startValue;
+	{
+		this->minPosition.x -= collider->GetScale().x * 0.5f;
+		startValue = Utils::Clamp(startValue, 0.f, collider->GetScale().x);
+		//position.x = minPosition.x + startValue;
+	}
 	else
-		position.y += startValue;
+	{
+		this->minPosition.y -= collider->GetScale().y * 0.5f;
+		startValue = Utils::Clamp(startValue, 0.f, collider->GetScale().y);
+		// position.y = minPosition.y + startValue;
+	}
+
+	currentValue = startValue;
+
+	if (dotSpriteObject == nullptr)
+	{
+		Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
+		dotSpriteObject = currentScene->AddGameObject(new UISpriteGameObject("OptionsAudioDot", "button"), LayerType::UI);
+		dotSpriteObject->SetPosition({ this->minPosition.x + currentValue * scrollRectSize.x * 0.01f , this->minPosition.y });
+		dotSpriteObject->SetScale({ 3.f,3.f });
+		dotSpriteObject->SetOrigin(Origins::MiddleCenter);
+	}
+
+}
+
+void ScrollButtonUI::ChangeSpriteDot(const std::string& texId)
+{
+	dotSpriteObject->ChangeSprite(texId);
 }
 
 float ScrollButtonUI::GetCurrentPercent()
 {
 	if (moveType == MoveType::LeftRight)
 	{
-		float percent = position.x - minPosition.x;
-		return (percent / maxRange) * 100.f;
+		float percent = dotSpriteObject->GetPosition().x - minPosition.x;
+		return (percent / scrollRectSize.x) * 100.f;
 	}
 	else
 	{
-		float percent = position.y - minPosition.y;
-		return (percent / maxRange) * 100.f;
+		float percent = dotSpriteObject->GetPosition().y - minPosition.y;
+		return (percent / scrollRectSize.y) * 100.f;
 	}
 }
 
@@ -57,6 +81,15 @@ void ScrollButtonUI::Start()
 {
 	UISpriteGameObject::Start();
 	collider->Reset();
+
+	sortingOrder = 4;
+	dotSpriteObject->sortingOrder = 3;
+}
+
+void ScrollButtonUI::SetActive(const bool active)
+{
+	UISpriteGameObject::SetActive(active);
+	dotSpriteObject->SetActive(active);
 }
 
 void ScrollButtonUI::Update(const float& deltaTime)
@@ -65,8 +98,9 @@ void ScrollButtonUI::Update(const float& deltaTime)
 	{
 		if (InputManager::GetInstance().GetKeyPressed(sf::Mouse::Left))
 		{
-			 position.x = Utils::Clamp(followTargetObject->GetPosition().x, minPosition.x, minPosition.x + maxRange);
-			 SetPosition(position);
+			sf::Vector2f dotPos = dotSpriteObject->GetPosition();
+			dotPos.x = Utils::Clamp(followTargetObject->GetPosition().x, minPosition.x, minPosition.x + scrollRectSize.x);
+			dotSpriteObject->SetPosition(dotPos);
 
 			 for (auto& changeEvent : changeValueEvents)
 			 {

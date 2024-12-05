@@ -63,6 +63,12 @@ void UITextGameObject::SetString(const std::wstring& string)
 	SetOrigin(originPreset);
 }
 
+void UITextGameObject::ChangeColor(const sf::Color& color)
+{
+	textColor = color;
+	text.setFillColor(textColor);
+}
+
 void UITextGameObject::Update(const float& deltaTime)
 {
 	UIGameObject::Update(deltaTime);

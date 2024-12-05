@@ -8,6 +8,8 @@
 #include "MeteorGroundSmoke.h"
 #include "Collider.h"
 #include "AwakeGroundDimention.h"
+#include "AwakenTeleport.h"
+#include "AwakenGroundAttackRazer.h"
 
 AwakeReianaGroundAttackState::AwakeReianaGroundAttackState(AwakeReianaFsm* fsm)
 	: AwakeReianaBaseState(fsm, AwakeReianaStateType::GroundAttack)
@@ -43,20 +45,20 @@ void AwakeReianaGroundAttackState::Attack(float deltaTime)
 	startPosition = { 1700.f ,awakeReiana->GetPosition().y };
 	awakeReiana->SetPosition(startPosition);
 	endPosition = awakeReiana->GetPosition() + sf::Vector2f::left * moveDistance;
-	awakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*5));
-	AwakeGroundDimention* awakeGroundDimention = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeGroundDimention("GroundDimension"), LayerType::EnemyBullet);
-	awakeGroundDimention->SetPosition(awakeReiana->GetPosition());
-	awakeGroundDimention->Start();
+	awakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*10));
+
 	if (currentAttackTime > endTime)
 	{
 		awakeReiana->OnFlipX();
 		animator->ChangeAnimation("awakenMeteorGroundEnd", false);
-		endTime = 10.f;
+		int endFream = animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
+		animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&AwakeReianaGroundAttackState::SetIdle, this), endFream);
+		endTime = 3.f;
 	}
-	if (currentAttackTime > attackTime)
+	if (!attackFin&&currentAttackTime > attackTime)
 	{
 		OnDestoryHitBox();
-		fsm->ChangeState(AwakeReianaStateType::Idle);
+		attackFin = true;
 	}
 }
 
@@ -66,9 +68,23 @@ void AwakeReianaGroundAttackState::Wait(float deltaTime)
 
 	if (currentWaitTime >= waitTime)
 	{
+		for (int i = 0; i < 6; ++i)
+		{
+			AwakenGroundAttackRazer* awakenGroundAttackRazer = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenGroundAttackRazer(""), LayerType::BackGround_Forward);
+			awakenGroundAttackRazer->SetPosition({ awakeReiana->GetPosition().x - (ryzerDistance * i),awakeReiana->GetPosition().y });
+			awakenGroundAttackRazer->Start();
+		}
+		AwakeGroundDimention* awakeGroundDimention = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeGroundDimention("GroundDimension"), LayerType::BackGround_Forward);
+		awakeGroundDimention->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y -100.f});
+		awakeGroundDimention->Start();
 		OnCreateHitBox();
 		action = true;
 	}
+}
+
+void AwakeReianaGroundAttackState::SetIdle()
+{
+	fsm->ChangeState(AwakeReianaStateType::Idle);
 }
 
 void AwakeReianaGroundAttackState::ChangeReady2Animation()
@@ -103,11 +119,15 @@ void AwakeReianaGroundAttackState::Enter()
 	start = false;
 	currentAttackTime = 0.f;
 	currentWaitTime = 0.f;
-	endTime = 1.f;
+	endTime = 1.5f;
 	action = false;
 
 	startPosition = { 1700.f ,awakeReiana->GetPosition().y };
 	awakeReiana->SetPosition(startPosition);
+
+	AwakenTeleport* awakenTeleport = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenTeleport(""), LayerType::BackGround_Forward);
+	awakenTeleport->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y - 100.f });
+	awakenTeleport->Start();
 }
 
 void AwakeReianaGroundAttackState::Exit()

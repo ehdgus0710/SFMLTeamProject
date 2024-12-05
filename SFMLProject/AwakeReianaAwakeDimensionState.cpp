@@ -73,7 +73,7 @@ void AwakeReianaAwakeDimensionState::Wait(float deltaTime)
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
 		meteorGroundSmoke->SetScale({ 1.f,1.f });
 		meteorGroundSmoke->Start();
-		meteorGroundSmoke->SetPosition(awakeReiana->GetPosition());
+		meteorGroundSmoke->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y });
 		if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
 		{
 			awakeReiana->OnFlipX();
@@ -122,9 +122,8 @@ void AwakeReianaAwakeDimensionState::Enter()
 
 	endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
-	meteorGroundSmoke->SetScale({ 1.f,1.f });
+	meteorGroundSmoke->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y});
 	meteorGroundSmoke->Start();
-	meteorGroundSmoke->SetPosition(awakeReiana->GetPosition());
 	if (!meteorGroundSmoke->IsFlipX() && !awakeReiana->IsFlipX())
 	{
 		meteorGroundSmoke->OnFlipX();

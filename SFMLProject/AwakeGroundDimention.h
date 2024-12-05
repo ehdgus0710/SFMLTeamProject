@@ -9,7 +9,8 @@ protected:
 public:
 	void Start() override;
 public:
-	AwakeGroundDimention(const std::string& name = "Dimension");
+	AwakeGroundDimention(const std::string& name = "AwakeGroundDimention");
 	virtual ~AwakeGroundDimention() = default;
 	AwakeGroundDimention& operator= (const AwakeGroundDimention& other) = delete;
 };
+

@@ -256,6 +256,18 @@
     <Filter Include="Contants\Object\ReianaB\FSM">
       <UniqueIdentifier>{55bfc89a-fdf8-4494-ba90-e14842c94bf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\AwakeReiana">
+      <UniqueIdentifier>{84c7246f-71ea-40b7-bd60-ec0bf15446d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\AwakeReiana\AwakeReianaState">
+      <UniqueIdentifier>{d544473c-0fb5-4249-8618-fbd9067ef235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\AwakeReiana\FSM">
+      <UniqueIdentifier>{4989f4dc-30b6-4354-b34a-3daa7afd32e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\AwakeReiana\Object">
+      <UniqueIdentifier>{eed13e94-c6c2-45b6-ae87-e27052622ff7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -762,44 +774,68 @@
     <ClCompile Include="B_ReianaThreeSwordState.cpp">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClCompile>
-    <ClCompile Include="AwakeReiana.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaBaseState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaDeadState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaDimensionState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaDropAttackState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaFSM.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaGroundAttackState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaIdleState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AwakeReianaAwakeDimensionState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="B_ReianaBackStap.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="PauseUIBar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="B_ReianaBackStap.cpp">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReiana.cpp">
+      <Filter>Contants\Object\AwakeReiana</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaDeadState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
     <ClCompile Include="AwakeReianaDiagonalDropState.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaDimensionState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaDropAttackState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaGroundAttackState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaIdleState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaAwakeDimensionState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaBaseState.cpp">
+      <Filter>Contants\Object\AwakeReiana\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaFSM.cpp">
+      <Filter>Contants\Object\AwakeReiana\FSM</Filter>
     </ClCompile>
     <ClCompile Include="AwakeGroundDimention.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Awakning.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenDeadCreate.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenDeadDelete.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenDropEnd.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenDropSide.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenDropStart.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenTeleport.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakenGroundAttackRazer.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1334,44 +1370,68 @@
     <ClInclude Include="B_ReianaThreeSwordState.h">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClInclude>
-    <ClInclude Include="AwakeReiana.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaBaseState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaDeadState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaDimensionState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaDropAttackState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaFSM.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaGroundAttackState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaIdleState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaAwakeDimensionState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="B_ReianaBackStap.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="PauseUIBar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="B_ReianaBackStap.h">
+      <Filter>Contants\Object\ReianaB\State</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReiana.h">
+      <Filter>Contants\Object\AwakeReiana</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaDeadState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
     <ClInclude Include="AwakeReianaDiagonalDropState.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaDimensionState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaDropAttackState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaGroundAttackState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaIdleState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaAwakeDimensionState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaBaseState.h">
+      <Filter>Contants\Object\AwakeReiana\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaFSM.h">
+      <Filter>Contants\Object\AwakeReiana\FSM</Filter>
     </ClInclude>
     <ClInclude Include="AwakeGroundDimention.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Awakning.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenDeadCreate.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenDeadDelete.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenDropEnd.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenDropSide.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenDropStart.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenTeleport.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakenGroundAttackRazer.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

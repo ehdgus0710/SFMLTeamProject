@@ -57,7 +57,20 @@ void SceneDev2::LoadResources()
 	TEXTURE_MANAGER.Load("RisingPierceReady", "graphics/boss/Rayanna/effects/RisingPierceReady.png");
 	TEXTURE_MANAGER.Load("TwinMeteor", "graphics/boss/Rayanna/effects/TwinMeteor.png");
 	TEXTURE_MANAGER.Load("TwinMeteorSign", "graphics/boss/Rayanna/effects/TwinMeteorSign.png");
-	TEXTURE_MANAGER.Load("GroundDimension", "graphics/boss/Rayanna/effects/GroundDimension.png");
+	TEXTURE_MANAGER.Load("DimensionDelete", "graphics/boss/Rayanna/effects/GroundDimension.png");
+	TEXTURE_MANAGER.Load("Awake", "graphics/boss/Rayanna/effects/awake.png");
+	TEXTURE_MANAGER.Load("DeadCreate", "graphics/boss/Rayanna/effects/deadCreate.png");
+	TEXTURE_MANAGER.Load("DeadDelete", "graphics/boss/Rayanna/effects/deadDelete.png");
+	TEXTURE_MANAGER.Load("DimensionDelete", "graphics/boss/Rayanna/effects/dimensionDelete.png");
+	TEXTURE_MANAGER.Load("DropSide", "graphics/boss/Rayanna/effects/dropSide.png");
+	TEXTURE_MANAGER.Load("DropStart", "graphics/boss/Rayanna/effects/dropStart.png");
+	TEXTURE_MANAGER.Load("DropEnd", "graphics/boss/Rayanna/effects/dropEnd.png");
+	TEXTURE_MANAGER.Load("GroundAttack", "graphics/boss/Rayanna/effects/groundAttack.png");
+	TEXTURE_MANAGER.Load("GroundAttackPreparation", "graphics/boss/Rayanna/effects/groundAttackPreparation.png");
+	TEXTURE_MANAGER.Load("GroundAttackRazer", "graphics/boss/Rayanna/effects/groundAttackRazer.png");
+	TEXTURE_MANAGER.Load("GroundAttackThunder", "graphics/boss/Rayanna/effects/groundAttackThunder.png");
+	TEXTURE_MANAGER.Load("Teleport", "graphics/boss/Rayanna/effects/teleport.png");
+
 }
 
 void SceneDev2::TestEffect()

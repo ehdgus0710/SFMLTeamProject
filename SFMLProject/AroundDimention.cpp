@@ -5,16 +5,16 @@
 #include "AroundDimention.h"
 #include "AnimationHitBox.h"
 
-void AroundDimention::CreateAnimator()
-{
-}
 
 AroundDimention::AroundDimention(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name)
 	: AnimationHitBox(owner, thisLayerType, targetLayer, texId, name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	animator->AddAnimation(animation, "DimensionPierce");
-	
+}
+
+void AroundDimention::CreateAnimator()
+{
 }
 
 void AroundDimention::Start()

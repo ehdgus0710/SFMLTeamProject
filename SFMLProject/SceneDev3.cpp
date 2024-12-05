@@ -80,15 +80,28 @@ void SceneDev3::Enter()
 	TEXTURE_MANAGER.Load("TwinMeteor", "graphics/boss/Rayanna/effects/TwinMeteor.png");
 	TEXTURE_MANAGER.Load("TwinMeteorSign", "graphics/boss/Rayanna/effects/TwinMeteorSign.png");
 
-
 	TEXTURE_MANAGER.Load("AwakenRayanna", "graphics/boss/Rayanna/AwakenRayanna.png");
-	
+
 	// Player UI
 	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
 	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
 	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
+
+	TEXTURE_MANAGER.Load("Awake", "graphics/boss/Rayanna/effects/awake.png");
+	TEXTURE_MANAGER.Load("DeadCreate", "graphics/boss/Rayanna/effects/deadCreate.png");
+	TEXTURE_MANAGER.Load("DeadDelete", "graphics/boss/Rayanna/effects/deadDelete.png");
+	TEXTURE_MANAGER.Load("DimensionDelete", "graphics/boss/Rayanna/effects/dimensionDelete.png");
+	TEXTURE_MANAGER.Load("DropSide", "graphics/boss/Rayanna/effects/dropSide.png");
+	TEXTURE_MANAGER.Load("DropStart", "graphics/boss/Rayanna/effects/dropStart.png");
+	TEXTURE_MANAGER.Load("DropEnd", "graphics/boss/Rayanna/effects/dropEnd.png");
+	TEXTURE_MANAGER.Load("GroundAttack", "graphics/boss/Rayanna/effects/groundAttack.png");
+	TEXTURE_MANAGER.Load("GroundAttackPreparation", "graphics/boss/Rayanna/effects/groundAttackPreparation.png");
+	TEXTURE_MANAGER.Load("GroundAttackRazer", "graphics/boss/Rayanna/effects/groundAttackRazer.png");
+	TEXTURE_MANAGER.Load("GroundAttackThunder", "graphics/boss/Rayanna/effects/groundAttackThunder.png");
+	TEXTURE_MANAGER.Load("Teleport", "graphics/boss/Rayanna/effects/teleport.png");
+
 
 	AnimationGameObject* effect1 = AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::Player);
 	effect1->Awake();
@@ -101,12 +114,16 @@ void SceneDev3::Enter()
 
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenedThunder.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "AwakenedThunder");
+
 	animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierce");
+
 	animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
+
 	animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceImpact.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceImpact");
+
 	animation = new Animation("animations/Enemy/Rayanna/Effects/goldMeteorLandingSmoke.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "goldMeteorLandingSmoke");
 

@@ -7,6 +7,7 @@
 #include "HitBoxObject.h"
 #include "MeteorGroundSmoke.h"
 #include "Collider.h"
+#include "AwakeGroundDimention.h"
 
 ReianaGroundAttackState::ReianaGroundAttackState(ReianaFsm* fsm)
 	: ReianaBaseState(fsm, ReianaStateType::GroundAttack)

@@ -798,6 +798,9 @@
     <ClCompile Include="AwakeReianaDiagonalDropState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="AwakeGroundDimention.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1365,6 +1368,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="AwakeReianaDiagonalDropState.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeGroundDimention.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -64,7 +64,7 @@ void AwakeReiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(AwakeReianaStateType::Dead);
+		fsm.ChangeState(AwakeReianaStateType::GroundAttack);
 	}
 }
 

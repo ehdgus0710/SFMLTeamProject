@@ -7,6 +7,7 @@
 #include "HitBoxObject.h"
 #include "MeteorGroundSmoke.h"
 #include "Collider.h"
+#include "AwakeGroundDimention.h"
 
 AwakeReianaGroundAttackState::AwakeReianaGroundAttackState(AwakeReianaFsm* fsm)
 	: AwakeReianaBaseState(fsm, AwakeReianaStateType::GroundAttack)
@@ -43,6 +44,9 @@ void AwakeReianaGroundAttackState::Attack(float deltaTime)
 	awakeReiana->SetPosition(startPosition);
 	endPosition = awakeReiana->GetPosition() + sf::Vector2f::left * moveDistance;
 	awakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*5));
+	AwakeGroundDimention* awakeGroundDimention = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeGroundDimention("GroundDimension"), LayerType::EnemyBullet);
+	awakeGroundDimention->Start();
+	awakeGroundDimention->SetPosition(awakeReiana->GetPosition());
 	if (currentAttackTime > endTime)
 	{
 		awakeReiana->OnFlipX();

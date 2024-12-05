@@ -2,6 +2,7 @@
 #include "YggdrasilSpecialAttackState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Animation.h"
 #include "Collider.h"
 #include "GameManager.h"
 #include "Yggdrasil.h"
@@ -64,8 +65,29 @@ void YggdrasilSpecialAttackState::Recovery(float deltaTime)
 	}
 }
 
+void YggdrasilSpecialAttackState::CreateEffect()
+{
+	AnimationGameObject* effect[20];  	
+	Animation* animation[20]; 
+	for (int i = 0; i < 20; ++i)
+	{
+		effect[i] = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+		animation[i] = (new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlamBoom.csv"));
+		effect[i]->GetAnimator()->AddAnimation(animation[i], "yggdrasilHandSlamBoom");
+		effect[i]->GetAnimator()->ChangeAnimation("yggdrasilHandSlamBoom");
+
+		animation[i]->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect[i]), animation[i]->GetEndFrameCount());
+		effect[i]->SetPosition({Utils::RandomRange(yggdrasil->GetPosition().x - 1000,yggdrasil->GetPosition().x + 1000), 800.f});
+		effect[i]->SetScale(sf::Vector2f::one);
+
+		effect[i]->Awake();
+		effect[i]->Start();
+	}
+}
+
 void YggdrasilSpecialAttackState::HitBoxOn()
 {
+	CreateEffect();
 	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, false, (sf::Vector2f::right * 30.f)), LayerType::EnemyBullet);
 	attackBox->SetScale({ 2000.f,50.f });
 	attackBox->SetDamage(10);

@@ -48,6 +48,7 @@ private:
 	void StartSpecialAttack(float deltaTime);
 	void EndAttackWait(float deltaTime);
 	void Recovery(float deltaTime);
+	void CreateEffect();
 
 	void HitBoxOn();
 	void HitBoxOff();

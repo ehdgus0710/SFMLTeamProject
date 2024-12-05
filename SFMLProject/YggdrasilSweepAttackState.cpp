@@ -2,6 +2,7 @@
 #include "YggdrasilSweepAttackState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Animation.h"
 #include "Collider.h"
 #include "GameManager.h"
 #include "Yggdrasil.h"
@@ -24,7 +25,12 @@ void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 
 void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 {
-	
+	effectTime += deltaTime;
+	if (effectTime > effectDelay)
+	{
+		CreateLeftEffect();
+		effectTime = 0.f;
+	}
 	currentAttackTime += deltaTime;
 	lStartPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
@@ -49,6 +55,12 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 
 void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 {
+	effectTime += deltaTime;
+	if (effectTime > effectDelay)
+	{
+		CreateRightEffect();
+		effectTime = 0.f;
+	}
 	currentAttackTime += deltaTime;
 	rStartPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	rEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
@@ -98,6 +110,36 @@ void YggdrasilSweepAttackState::Recovery(float deltaTime)
 	}
 }
 
+void YggdrasilSweepAttackState::CreateLeftEffect()
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilGrogy.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "yggdrasilGrogy");
+	effect->GetAnimator()->ChangeAnimation("yggdrasilGrogy");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 913.f });
+	effect->SetScale(sf::Vector2f::one);
+
+	effect->Awake();
+	effect->Start();
+}
+
+void YggdrasilSweepAttackState::CreateRightEffect()
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilGrogy.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "yggdrasilGrogy");
+	effect->GetAnimator()->ChangeAnimation("yggdrasilGrogy");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 913.f });
+	effect->SetScale(sf::Vector2f::one);
+
+	effect->Awake();
+	effect->Start();
+}
+
 void YggdrasilSweepAttackState::Awake()
 {
 	YggdrasilBaseState::Awake();
@@ -112,6 +154,7 @@ void YggdrasilSweepAttackState::Start()
 void YggdrasilSweepAttackState::Enter()
 {
 	YggdrasilBaseState::Enter();
+	
 	if (!yggdrasil->GetPhaseUp())
 	{
 		yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
@@ -127,6 +170,8 @@ void YggdrasilSweepAttackState::Enter()
 		switchFist = false;
 		onAttack = true;
 
+		effectTime = 0.f;
+		effectDelay = 0.05f;
 		currentAttackDelay = 0.f;
 		currentAttackTime = 0.f;
 		currentRecoveryTime = 0.f;
@@ -152,6 +197,8 @@ void YggdrasilSweepAttackState::Enter()
 		switchFist = false;
 		onAttack = true;
 
+		effectTime = 0.f;
+		effectDelay = 0.01f;
 		currentAttackDelay = 0.f;
 		currentAttackTime = 0.f;
 		currentRecoveryTime = 0.f;

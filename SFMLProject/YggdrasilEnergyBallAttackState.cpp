@@ -81,6 +81,7 @@ void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector
 		look.Normalized();
 		yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(look);
 		yggdrasilEnergyBallBig[attackCount]->Shoot();
+		CreateEffect();
 	}
 	else
 	{
@@ -119,6 +120,17 @@ void YggdrasilEnergyBallAttackState::SetEnergySmallBallPos()
 
 void YggdrasilEnergyBallAttackState::CreateEffect()
 {
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/P2EnergyCorpsExplosion.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "P2EnergyCorpsExplosion");
+	effect->GetAnimator()->ChangeAnimation("P2EnergyCorpsExplosion");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition({ yggdrasilEnergyBallBig[attackCount]->GetPosition().x, 913.f});
+	effect->SetScale(sf::Vector2f::one * 3.f );
+
+	effect->Awake();
+	effect->Start();
 }
 
 void YggdrasilEnergyBallAttackState::Awake()

@@ -7,16 +7,17 @@
 #include "Collider.h"
 
 AwakeGroundDimention::AwakeGroundDimention(const std::string& name)
-	: AnimationGameObject("name")
+	: AnimationGameObject("AwakeGroundDimention")
 {
-	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/GroundDimension.csv");
-	animator->AddAnimation(animation, "GroundDimension");
+	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/awakenGroundDimension.csv");
+	animator->AddAnimation(animation, "awakenGroundDimension");
 	SetScale({ 2.5f,1.f });
 }
 
 
 void AwakeGroundDimention::Start()
 {
+	TEXTURE_MANAGER.Load("DimensionDelete", "graphics/boss/Rayanna/effects/GroundDimension.png");
 	AnimationGameObject::Start();
-	animator->ChangeAnimation("GroundDimension");
+	animator->ChangeAnimation("awakenGroundDimension");
 }

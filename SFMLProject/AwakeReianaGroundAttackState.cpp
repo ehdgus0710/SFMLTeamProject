@@ -45,8 +45,8 @@ void AwakeReianaGroundAttackState::Attack(float deltaTime)
 	endPosition = awakeReiana->GetPosition() + sf::Vector2f::left * moveDistance;
 	awakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*5));
 	AwakeGroundDimention* awakeGroundDimention = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeGroundDimention("GroundDimension"), LayerType::EnemyBullet);
-	awakeGroundDimention->Start();
 	awakeGroundDimention->SetPosition(awakeReiana->GetPosition());
+	awakeGroundDimention->Start();
 	if (currentAttackTime > endTime)
 	{
 		awakeReiana->OnFlipX();

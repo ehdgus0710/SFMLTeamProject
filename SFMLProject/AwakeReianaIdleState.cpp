@@ -27,16 +27,16 @@ void AwakeReianaIdleState::Enter()
 
 
 	currentdelay = 0.f;
-	if (AwakeReiana->GetPosition().x < AwakeReiana->GetPlayer()->GetPosition().x && AwakeReiana->IsFlipX())
+	if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 	}
-	if (AwakeReiana->GetPosition().x > AwakeReiana->GetPlayer()->GetPosition().x && !AwakeReiana->IsFlipX())
+	if (awakeReiana->GetPosition().x > awakeReiana->GetPlayer()->GetPosition().x && !awakeReiana->IsFlipX())
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 	}
 	animator->ChangeAnimation("awakenIdle", true);
-	AwakeReiana->SetCount(count);
+	awakeReiana->SetCount(count);
 	if (count == 9)
 	{
 		count = 1;

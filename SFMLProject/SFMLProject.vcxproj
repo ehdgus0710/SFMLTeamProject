@@ -161,6 +161,7 @@
     <ClCompile Include="AwakeReiana.cpp" />
     <ClCompile Include="AwakeReianaBaseState.cpp" />
     <ClCompile Include="AwakeReianaDeadState.cpp" />
+    <ClCompile Include="AwakeReianaDiagonalDropState.cpp" />
     <ClCompile Include="AwakeReianaDimensionState.cpp" />
     <ClCompile Include="AwakeReianaDropAttackState.cpp" />
     <ClCompile Include="AwakeReianaFSM.cpp" />
@@ -364,6 +365,7 @@
     <ClInclude Include="AwakeReiana.h" />
     <ClInclude Include="AwakeReianaBaseState.h" />
     <ClInclude Include="AwakeReianaDeadState.h" />
+    <ClInclude Include="AwakeReianaDiagonalDropState.h" />
     <ClInclude Include="AwakeReianaDimensionState.h" />
     <ClInclude Include="AwakeReianaDropAttackState.h" />
     <ClInclude Include="AwakeReianaFSM.h" />

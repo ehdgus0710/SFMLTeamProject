@@ -8,6 +8,7 @@ protected:
 
 public:
 	void Enter() override;
+	void OnDead();
 public:
 	AwakeReianaDeadState(AwakeReianaFsm* fsm);
 	~AwakeReianaDeadState();

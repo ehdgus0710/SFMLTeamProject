@@ -19,7 +19,7 @@ AwakeReianaDropAttackState::~AwakeReianaDropAttackState()
 void AwakeReianaDropAttackState::Wait(float deltaTime)
 {
 	currentWaitTime += deltaTime;
-	AwakeReiana->SetPosition(AwakeReiana->GetPosition());
+	awakeReiana->SetPosition(awakeReiana->GetPosition());
 	if (currentWaitTime >= waitTime)
 	{
 		OnCreateHitBox();
@@ -36,7 +36,7 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 {
 	currentDropTime += deltaTime;
 
-	AwakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
+	awakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
 	if (currentDropTime > dropTime)
 	{
 		animator->ChangeAnimation("awakenGoldMeteorLanding", false);
@@ -46,7 +46,7 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 			IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 			introLandSmoke->SetScale({ 2.f,2.f });
 			introLandSmoke->Start();
-			introLandSmoke->SetPosition(AwakeReiana->GetPosition());
+			introLandSmoke->SetPosition(awakeReiana->GetPosition());
 			effect = true;
 		}
 		if (currentLandingTime >= landingTime)
@@ -75,7 +75,7 @@ void AwakeReianaDropAttackState::Start()
 void AwakeReianaDropAttackState::Enter()
 {
 	AwakeReianaBaseState::Enter();
-	rigidbody = AwakeReiana->GetRigidbody();
+	rigidbody = awakeReiana->GetRigidbody();
 	animator->ChangeAnimation("awakenGoldMeteorJump",true);
 
 	currentDropTime = 0.f;
@@ -85,17 +85,17 @@ void AwakeReianaDropAttackState::Enter()
 	effect = false;
 	attack = false;
 	waitAnimation = false;
-	auto playerPos = AwakeReiana->GetPlayer()->GetPosition();
+	auto playerPos = awakeReiana->GetPlayer()->GetPosition();
 	endPosition = { playerPos.x, 80.f };
 
 	playerPos -= waitStartPos;
 	startPosition = playerPos;
 
-	playerPos = AwakeReiana->GetPlayer()->GetPosition();
+	playerPos = awakeReiana->GetPlayer()->GetPosition();
 
 
 
-	AwakeReiana->SetPosition(startPosition);
+	awakeReiana->SetPosition(startPosition);
 	rigidbody->SetActive(false);
 }
 
@@ -131,14 +131,14 @@ void AwakeReianaDropAttackState::LateUpdate(float deltaTime)
 
 void AwakeReianaDropAttackState::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(AwakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(awakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
 	hitBox->SetScale({ 50.f,100.f });
 
 	DamegeInfo damageInfo;
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = true;
 	damageInfo.knockbackDuration = 0.5f;
-	damageInfo.owner = AwakeReiana;
+	damageInfo.owner = awakeReiana;
 	damageInfo.knockbackVelocity = { 100.f,0.f };
 	damageInfo.hitDirection = sf::Vector2f::down;
 	hitBox->SetDamage(damageInfo);

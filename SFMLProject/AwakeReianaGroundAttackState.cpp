@@ -26,26 +26,26 @@ void AwakeReianaGroundAttackState::Attack(float deltaTime)
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
 		meteorGroundSmoke->SetScale({ 2.f,2.f });
 		meteorGroundSmoke->Start();
-		meteorGroundSmoke->SetPosition(AwakeReiana->GetPosition());
-		if (!meteorGroundSmoke->IsFlipX() && !AwakeReiana->IsFlipX())
+		meteorGroundSmoke->SetPosition(awakeReiana->GetPosition());
+		if (meteorGroundSmoke->IsFlipX() && !awakeReiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
-		if (meteorGroundSmoke->IsFlipX() && AwakeReiana->IsFlipX())
+		if (!meteorGroundSmoke->IsFlipX() && awakeReiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
 		start = true;
 	}
 	currentAttackTime += deltaTime;
-	endPosition = AwakeReiana->GetPosition();
-	startPosition = { 1700.f ,AwakeReiana->GetPosition().y };
-	AwakeReiana->SetPosition(startPosition);
-	endPosition = AwakeReiana->GetPosition() + sf::Vector2f::left * moveDistance;
-	AwakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*5));
+	endPosition = awakeReiana->GetPosition();
+	startPosition = { 1700.f ,awakeReiana->GetPosition().y };
+	awakeReiana->SetPosition(startPosition);
+	endPosition = awakeReiana->GetPosition() + sf::Vector2f::left * moveDistance;
+	awakeReiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*5));
 	if (currentAttackTime > endTime)
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 		animator->ChangeAnimation("awakenMeteorGroundEnd", false);
 		endTime = 10.f;
 	}
@@ -93,8 +93,8 @@ void AwakeReianaGroundAttackState::Enter()
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&AwakeReianaGroundAttackState::ChangeReady2Animation, this), endFrame);
 
-	if (!AwakeReiana->IsFlipX())
-		AwakeReiana->OnFlipX();
+	if (!awakeReiana->IsFlipX())
+		awakeReiana->OnFlipX();
 
 	start = false;
 	currentAttackTime = 0.f;
@@ -102,8 +102,8 @@ void AwakeReianaGroundAttackState::Enter()
 	endTime = 1.f;
 	action = false;
 
-	startPosition = { 1700.f ,AwakeReiana->GetPosition().y };
-	AwakeReiana->SetPosition(startPosition);
+	startPosition = { 1700.f ,awakeReiana->GetPosition().y };
+	awakeReiana->SetPosition(startPosition);
 }
 
 void AwakeReianaGroundAttackState::Exit()
@@ -133,19 +133,18 @@ void AwakeReianaGroundAttackState::LateUpdate(float deltaTime)
 
 void AwakeReianaGroundAttackState::OnCreateHitBox()
 {
-	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(AwakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,AwakeReiana->GetPosition().y - 180 });
+	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(awakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
+	hitBox->GetCollider()->SetOffsetPosition({ 0.f,awakeReiana->GetPosition().y - 180 });
 	hitBox->SetScale({ 100.f,50.f });
 	DamegeInfo damageInfo;
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = true;
 	damageInfo.knockbackDuration = 0.2f;
-	damageInfo.owner = AwakeReiana;
+	damageInfo.owner = awakeReiana;
 	damageInfo.knockbackVelocity = { 50.f,0.f };
-	damageInfo.hitDirection = (AwakeReiana->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::Vector2::right);
+	damageInfo.hitDirection = (awakeReiana->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::Vector2::right);
 	hitBox->SetDamage(damageInfo);
 }
-
 void AwakeReianaGroundAttackState::OnDestoryHitBox()
 {
 	hitBox->OnDestory();

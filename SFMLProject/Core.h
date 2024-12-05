@@ -177,6 +177,7 @@ enum class AwakeReianaStateType
 	Dimension,
 	DropAttack,
 	GroundAttack,
+	DiagonalDrop,
 	Dead,
 
 	End

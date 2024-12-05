@@ -15,6 +15,15 @@ AwakeReianaDeadState::~AwakeReianaDeadState()
 void AwakeReianaDeadState::Enter()
 {
 	AwakeReianaBaseState::Enter();
-	animator->ChangeAnimation("dead", false);
+	animator->ChangeAnimation("awakenDarkDeadBody", false);
+	Animation* animation = new Animation();
+	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
+	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&AwakeReianaDeadState::OnDead, this), endFrame);
 }
+
+void AwakeReianaDeadState::OnDead()
+{
+	awakeReiana->SetActive(false);
+}
+
 

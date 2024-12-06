@@ -25,7 +25,7 @@ Stage1::Stage1()
 	loadPath = "Stage1.json";
 
 
-	cameraLimitRect = { 0.f, 3840.f, 0.f, 1080.f };
+	cameraLimitRect = { -400.f, 2340.f, 0.f, 1080.f };
 	currentCameraLimitRect = cameraLimitRect;
 }
 
@@ -78,48 +78,18 @@ void Stage1::LoadResources()
 	TEXTURE_MANAGER.Load("bossidle", "graphics/objects/bossidle.png");
 	TEXTURE_MANAGER.Load("KeyF", "graphics/UI/Key/F.png");
 
-	// Yggdrasil
-	TEXTURE_MANAGER.Load("YggdrasilBody", "graphics/boss/Yggdrasil/Body.png");
-	TEXTURE_MANAGER.Load("YggdrasilHead", "graphics/boss/Yggdrasil/Head.png");
-	TEXTURE_MANAGER.Load("YggdrasilMouth", "graphics/boss/Yggdrasil/Mouth.png");
-	TEXTURE_MANAGER.Load("YggdrasilRightHand", "graphics/boss/Yggdrasil/Right_Hand.png");
-	TEXTURE_MANAGER.Load("YggdrasilLeftHand", "graphics/boss/Yggdrasil/Left_Hand.png");
-
-
-	// Yggdrasil Background
-	TEXTURE_MANAGER.Load("YggdrasilbossBackground1", "graphics/boss/Yggdrasil/backgrounds/bossBackground1.png");
-	TEXTURE_MANAGER.Load("YggdrasilbossBackground2", "graphics/boss/Yggdrasil/backgrounds/bossBackground2.png");
-
-	// Yggdrasil Effects
-	TEXTURE_MANAGER.Load("YggdrasilGrogy", "graphics/boss/Yggdrasil/effects/Grogy.png");
-	TEXTURE_MANAGER.Load("YggdrasilHandSlam", "graphics/boss/Yggdrasil/effects/HandSlam.png");
-	TEXTURE_MANAGER.Load("YggdrasilHandSlamBoom", "graphics/boss/Yggdrasil/effects/HandSlam_Boom.png");
-	TEXTURE_MANAGER.Load("EnergyBomb", "graphics/boss/Yggdrasil/effects/EnergyBomb.png");
-	TEXTURE_MANAGER.Load("ChargingTrail", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsChargingTrail.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsExplosion", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsExplosion.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsProjectile", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsProjectile.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsProjectileEmerge", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsProjectileEmerge.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsSpark", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsSpark.png");
-	TEXTURE_MANAGER.Load("P2EnergyCorpsStartImpact", "graphics/boss/Yggdrasil/effects/P2EnergyCorpsStartImpact.png");
-
-	// map
-	TEXTURE_MANAGER.Load("Stage1TileMap", "graphics/TileMap/1_Tile01.png");
+	// Background
+	TEXTURE_MANAGER.Load("lobbyBackground", "graphics/backgrounds/lobbyBackground.png");
+	TEXTURE_MANAGER.Load("lobby", "graphics/backgrounds/lobby.png");
+	TEXTURE_MANAGER.Load("lobbyBackColor", "graphics/backgrounds/08.png");
+	TEXTURE_MANAGER.Load("DuegenEntrance", "graphics/backgrounds/Duegen_Entrance.png");
+	
 	// Player UI
 	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
 	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
 	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
-
-	// Yggdrasil UI
-	TEXTURE_MANAGER.Load("BossHealthBarFirstPhase", "graphics/UI/BossUI/BossHealthBar_FirstPhase.png");
-	TEXTURE_MANAGER.Load("BossHealthBarSecondPhase", "graphics/UI/BossUI/BossHealthBar_SecondPhase.png");
-	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseBottomBack", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_BottomBack.png");
-	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseFront", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_Front.png");
-	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseTopBack", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_Top_Back.png");
-	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseBottomBack", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Bottom_Back.png");
-	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseFront", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Front.png");
-	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseTop", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Top_Back.png");
 
 }
 
@@ -150,22 +120,39 @@ void Stage1::Enter()
 	LoadResources();
 	CollisitionCheck();
 
-	BackgroundSprite* backgroundObject = AddGameObject(new BackgroundSprite("YggdrasilbossBackground1", "YggdrasilBackground1"), LayerType::BackGround_Back);
+	BackgroundSprite* backgroundObject = AddGameObject(new BackgroundSprite("lobbyBackground", "lobbyBackground"), LayerType::BackGround_Back);
 
-	backgroundObject->SetCameraFollow(mainCamera);
-	backgroundObject->SetScale({ 3.f, 3.f });
+	backgroundObject->SetScale({ 2.f, 2.f });
 	backgroundObject->SetOrigin(Origins::MiddleCenter);
+	backgroundObject->SetPosition({ 960.f, -260.f });
+	backgroundObject->sortingOrder = 3;
 
+	SpriteGameObject* background = AddGameObject(new BackgroundSprite("lobby", "lobby"), LayerType::BackGround_Back);
+	background->SetScale({ 3.f, 3.f });
+	background->SetOrigin(Origins::MiddleCenter);
+	background->SetPosition({ 1200.f, -160.f });
+	background->sortingOrder = 2;
+
+	SpriteGameObject* duegenEntrance = AddGameObject(new BackgroundSprite("DuegenEntrance", "DuegenEntrance"), LayerType::TileMap);
+	duegenEntrance->SetScale({ 3.f, 3.f });
+	duegenEntrance->SetOrigin(Origins::MiddleCenter);
+	duegenEntrance->SetPosition({ 960.f, 40.f });
 	/*TileMapController* tilemapController = AddGameObject(new TileMapController("Stage1"), LayerType::TileMap);
 	tilemapController->SetSpriteSheetId("Stage1TileMap");
 	tilemapController->SetCellSize({ 32.f,32.f });*/
 
+	SpriteGameObject* backColor = AddGameObject(new BackgroundSprite("lobbyBackColor", "lobbyBackColor"), LayerType::BackGround_Back);
+	backColor->SetScale({ 3.f, 3.f });
+	backColor->SetOrigin(Origins::MiddleCenter);
+	backColor->SetPosition({ 1200.f, 0.f });
+	backColor->sortingOrder = 4;
 
-	TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap", "Stage1TileMap"), LayerType::TileMap);
-	tileMap->LoadCsv("TileMap/Stage1Map1.csv");
+	/*TileMap* tileMap = AddGameObject(new TileMap("Stage1TileMap", "Stage1TileMap"), LayerType::TileMap);
+	tileMap->SetTileInfo("Stage1TileMap", { 16,16 }, { 32.f,32.f }, { 32,32 });*/
+	// tileMap->LoadCsv("TileMap/Stage1Map1.csv");
 
 	WallCollisionObject* wallObject = AddGameObject(new WallCollisionObject("Wall1"), LayerType::Wall);
-	wallObject->SetPosition({ 1182.f, 1408.f });
+	wallObject->SetPosition({ 1182.f, 1300.f });
 	wallObject->SetScale({ 3280.f, 960.f });
 	wallObject->SetOrigin(Origins::MiddleCenter);
 
@@ -175,11 +162,10 @@ void Stage1::Enter()
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
 
 	DoorObject* doorObject = AddGameObject(new DoorObject("KeyF",SceneIds::Stage2, "Boos1Door"), LayerType::BackGround_Forward);
-	doorObject->SetPosition({ 900.f, 700.f });
+	doorObject->SetPosition({ 765.f, 582.f });
 
 	DoorObject* boos2Door = AddGameObject(new DoorObject("KeyF", SceneIds::Stage3, "Boos2Door"), LayerType::BackGround_Forward);
-	boos2Door->SetPosition({ 1300.f, 700.f });
-
+	boos2Door->SetPosition({ 1800.f, 582.f });
 
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);

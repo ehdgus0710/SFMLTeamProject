@@ -47,23 +47,32 @@ void B_Reiana::Awake()
 
 void B_Reiana::Start()
 {
-	InputManager::GetInstance().BindKey(sf::Keyboard::Q);
+	InputManager::GetInstance().BindKey(sf::Keyboard::W);
 
 	collider->SetOffsetPosition({ 0.f,-100.f });
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
+	reiana = dynamic_cast<Reiana*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Reiana", LayerType::Enemy));
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("B_ReianaIdle", true);
 	fsm.ChangeState(B_ReianaStateType::Idle);
 	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
-
 }
 
 void B_Reiana::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
+
+	if (reiana->GetHp() < 0)
+	{
+		fsm.ChangeState(B_ReianaStateType::Dead);
+	}
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::W))
+	{
+		fsm.ChangeState(B_ReianaStateType::Dead);
+	}
 }
 
 void B_Reiana::FixedUpdate(const float& deltaTime)

@@ -11,6 +11,7 @@ class B_Reiana : public AnimationGameObject
 {
 protected:
 	Reiana* b_reiana;
+	Reiana* reiana;
 	B_ReianaFsm	fsm;
 	DefaultStatus	currentStatus;
 	Player* player;

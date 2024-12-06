@@ -24,6 +24,7 @@ public:
 	bool IsHit() const { return isHit; }
 
 	void SetHp(float hp) { currentStatus.hp = hp; }
+	float GetHp() { return currentStatus.hp; }
 public:
 	void Awake() override;
 	void Start() override;

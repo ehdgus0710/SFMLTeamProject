@@ -166,6 +166,9 @@ void InputManager::UpdateEvent(const sf::Event* ev)
 		mousePosition = sf::Mouse::getPosition(*WindowManager::GetInstance().GetRenderWindow());
 		break;
 	}
+
+	if(ev->type == sf::Event::KeyPressed && (ev->key.code > sf::Keyboard::Key::Unknown && ev->key.code < sf::Keyboard::Key::KeyCount) 
+		|| (ev->key.code >= sf::Mouse::Button::Left && ev->key.code < sf::Mouse::Button::ButtonCount))
 	isInput = true;
 }
 

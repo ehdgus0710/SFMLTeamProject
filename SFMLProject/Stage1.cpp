@@ -25,7 +25,7 @@ Stage1::Stage1()
 	loadPath = "Stage1.json";
 
 
-	cameraLimitRect = { -400.f, 2340.f, 0.f, 1080.f };
+	cameraLimitRect = { -400.f, 2340.f,-1000.f, 1080.f };
 	currentCameraLimitRect = cameraLimitRect;
 }
 
@@ -156,6 +156,16 @@ void Stage1::Enter()
 	wallObject->SetScale({ 3280.f, 960.f });
 	wallObject->SetOrigin(Origins::MiddleCenter);
 
+	WallCollisionObject* leftWallObject = AddGameObject(new WallCollisionObject("leftWallObject"), LayerType::Wall);
+	leftWallObject->SetPosition({ -464.f, -32.f });
+	leftWallObject->SetScale({ 96.f, 2304.f });
+	leftWallObject->SetOrigin(Origins::MiddleCenter);
+
+	WallCollisionObject* rightWallObject = AddGameObject(new WallCollisionObject("rightWallObject"), LayerType::Wall);
+	rightWallObject->SetPosition({ 2448.f, 384.f });
+	rightWallObject->SetScale({ 192.f, 1600.f });
+	rightWallObject->SetOrigin(Origins::MiddleCenter);
+
 	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 0, -500.f });
@@ -169,6 +179,7 @@ void Stage1::Enter()
 
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+	mainCamera->SetCameraPosition(testPlayer->GetPosition());
 
 	pauseUIBar = AddGameObject(new PauseUIBar("PauseFrame", "PauseFrame"), LayerType::UI);
 	pauseUIBar->SetScale({ 3.f,3.f });

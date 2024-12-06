@@ -261,7 +261,7 @@ void Player::Update(const float& deltaTime)
 			fsm.ChangeState(PlayerStateType::Skill1);
 	}
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S) && head->IsActive())
 	{
 		if (!isSkll2CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill2 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
 			fsm.ChangeState(PlayerStateType::Skill2);

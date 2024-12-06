@@ -103,12 +103,12 @@ void WallCollisionObject::OnCollisionStay(Collider * target)
 			{
 				if (rect.leftPosition > targetRect.leftPosition &&  rect.leftPosition < targetRect.rightPosition)
 				{
-					object->SetPosition(sf::Vector2f{ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y } - target->GetOffsetPosition());
+					object->SetPosition(sf::Vector2f{ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
 				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition > targetRect.leftPosition)
 				{
-					object->SetPosition(sf::Vector2f{ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y } - target->GetOffsetPosition());
+					object->SetPosition(sf::Vector2f{ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y } );
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
 				else if (rect.rightPosition > targetRect.rightPosition && rect.leftPosition < targetRect.leftPosition

@@ -336,6 +336,8 @@
     <ClCompile Include="TriggerObject.cpp" />
     <ClCompile Include="UIAnimationObject.cpp" />
     <ClCompile Include="UIButtonObject.cpp" />
+    <ClCompile Include="UIFadeInOutSpriteObject.cpp" />
+    <ClCompile Include="UIFadeTextGameObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UIRectangleShapeObject.cpp" />
     <ClCompile Include="UISpriteGameObject.cpp" />
@@ -541,6 +543,8 @@
     <ClInclude Include="TriggerObject.h" />
     <ClInclude Include="UIAnimationObject.h" />
     <ClInclude Include="UIButtonObject.h" />
+    <ClInclude Include="UIFadeInOutSpriteObject.h" />
+    <ClInclude Include="UIFadeTextGameObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UIRectangleShapeObject.h" />
     <ClInclude Include="UISpriteGameObject.h" />

@@ -849,6 +849,12 @@
     <ClCompile Include="SoundScrollObject.cpp">
       <Filter>Contants\UI\SettingUI</Filter>
     </ClCompile>
+    <ClCompile Include="UIFadeInOutSpriteObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIFadeTextGameObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1453,6 +1459,12 @@
     </ClInclude>
     <ClInclude Include="SettingUIBar.h">
       <Filter>Contants\UI\SettingUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFadeInOutSpriteObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFadeTextGameObject.h">
+      <Filter>Contants\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

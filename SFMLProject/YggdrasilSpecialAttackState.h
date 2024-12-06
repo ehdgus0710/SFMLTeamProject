@@ -33,6 +33,7 @@ class YggdrasilSpecialAttackState : public YggdrasilBaseState
 
 	bool		readyAttack;
 	bool		isWait;
+	bool		isStartWait;
 	bool		isAttack;
 	bool		isRecovery;
 	bool		onAttack;
@@ -47,6 +48,7 @@ private:
 	void StartSpecialAttack(float deltaTime);
 	void EndAttackWait(float deltaTime);
 	void Recovery(float deltaTime);
+	void CreateEffect();
 
 	void HitBoxOn();
 	void HitBoxOff();

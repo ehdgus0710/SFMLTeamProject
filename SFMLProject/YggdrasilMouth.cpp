@@ -15,6 +15,7 @@ YggdrasilMouth::YggdrasilMouth(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
+	rigidBody->Disable();
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss, sf::Vector2f::zero, sf::Vector2f(100.f, 100.f));
 	SetScale({ 3.5f, 3.5f });
 	animator->LoadCsv("animators/yggdrasilMouth.csv");
@@ -49,6 +50,11 @@ void YggdrasilMouth::FixedUpdate(const float& deltaTime)
 
 void YggdrasilMouth::LateUpdate(const float& deltaTime)
 {
+}
+
+void YggdrasilMouth::SetAniMouth(std::string name, bool loop)
+{
+	animator->ChangeAnimation(name, loop);
 }
 
 void YggdrasilMouth::OnCollisionEnter(Collider* target)

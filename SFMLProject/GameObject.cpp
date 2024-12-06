@@ -58,6 +58,9 @@ void GameObject::SetDestory(bool destory)
 
 void GameObject::OnDestory()
 {
+	if (isDestory)
+		return;
+
 	isDestory = true;
 
 	if (collider != nullptr)

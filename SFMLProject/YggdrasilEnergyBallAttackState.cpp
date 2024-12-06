@@ -40,6 +40,7 @@ void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector
 			yggdrasilEnergyBallSmall[i]->Awake();
 			yggdrasilEnergyBallSmall[i]->GetCollider()->SetScale({ 50.f,50.f });
 			yggdrasilEnergyBallSmall[i]->Start();
+			yggdrasilEnergyBallSmall[i]->SetDamage(10);
 			yggdrasilEnergyBallSmall[i]->Shoot();
 
 			if (i == 0)
@@ -81,6 +82,11 @@ void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector
 		look.Normalized();
 		yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(look);
 		yggdrasilEnergyBallBig[attackCount]->Shoot();
+		bool ball = yggdrasilEnergyBallBig[attackCount]->IsActive();
+		if (ball == false)
+		{
+			CreateEffect();
+		}
 	}
 	else
 	{
@@ -91,6 +97,7 @@ void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector
 		yggdrasilEnergyBallBig[attackCount]->Awake();
 		yggdrasilEnergyBallBig[attackCount]->GetCollider()->SetScale({ 80.f,80.f });
 		yggdrasilEnergyBallBig[attackCount]->Start();
+		yggdrasilEnergyBallBig[attackCount]->SetDamage(15);
 		yggdrasilEnergyBallBig[attackCount]->SetPlayer(player);
 		yggdrasilEnergyBallBig[attackCount]->SetSpeed(speed);
 		yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(sf::Vector2f::down);
@@ -119,6 +126,17 @@ void YggdrasilEnergyBallAttackState::SetEnergySmallBallPos()
 
 void YggdrasilEnergyBallAttackState::CreateEffect()
 {
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/P2EnergyCorpsExplosion.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "P2EnergyCorpsExplosion");
+	effect->GetAnimator()->ChangeAnimation("P2EnergyCorpsExplosion");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition({ yggdrasilEnergyBallBig[attackCount]->GetPosition().x, 913.f });
+	effect->SetScale(sf::Vector2f::one * 3.f);
+
+	effect->Awake();
+	effect->Start();
 }
 
 void YggdrasilEnergyBallAttackState::Awake()
@@ -167,7 +185,6 @@ void YggdrasilEnergyBallAttackState::Enter()
 	else
 	{
 		isShoot = false;
-
 		speed = 1000.f;
 		attackCount = 0;
 		maxAttackCount = 10;

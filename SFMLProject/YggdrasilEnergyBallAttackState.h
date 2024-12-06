@@ -11,6 +11,7 @@ protected:
 	YggdrasilEnergyBallBig*		yggdrasilEnergyBallBig[2];
 	YggdrasilEnergyBallSmall*	yggdrasilEnergyBallSmall[8];
 
+
 	sf::Vector2f startPos;
 	sf::Vector2f look;
 

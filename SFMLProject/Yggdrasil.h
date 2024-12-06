@@ -38,18 +38,28 @@ public:
 	void LateUpdate(const float& deltaTime) override;
 
 	sf::Vector2f GetHeadPos();
+	sf::Vector2f GetMouthPos();
 	sf::Vector2f GetLeftFistPos();
 	sf::Vector2f GetRightFistPos();
 	
 	void TakeDamage(const DamegeInfo& damage);
 	void OnDead();
 
+	void SetAnimeBody(std::string name, bool loop);
+	void SetAnimeHead(std::string name, bool loop);
+	void SetAnimeMouth(std::string name, bool loop);
 	void SetAnimeLeftHand(std::string name, bool loop);
 	void SetAnimeRightHand(std::string name, bool loop);
 
 	void SetHeadPos(sf::Vector2f pos);
+	void SetMouthPos(sf::Vector2f pos);
 	void SetLeftFistPos(sf::Vector2f pos);
 	void SetRightFistPos(sf::Vector2f pos);
+
+	void SetHeadRota(float rota);
+	void SetMouthRota(float rota);
+	void SetLeftFistRota(float rota);
+	void SetRightFistRota(float rota);
 
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;

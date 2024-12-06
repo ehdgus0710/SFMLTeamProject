@@ -18,10 +18,13 @@ protected:
 	int				currentAttackCount;
 
 private:
-	void EvenetClear();
+	void ClearEndAttackEvenet();
 	void CreateEffect(GameObject* object);
 	void StartMove();
 	void EndMove();
+
+	void SetAnimationEvent();
+	void ClearAttackEvent();
 public:
 
 	void StartAttack();
@@ -30,6 +33,8 @@ public:
 	void SequenceAttack();
 	void OnCreateHitBox();
 	void OnDestoryHitBox();
+
+	void SetChangeAnimationKey(int index) override;
 public:
 	void Awake() override;
 	void Start() override;

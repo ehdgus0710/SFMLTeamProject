@@ -44,6 +44,7 @@ void SceneManager::Release()
 void SceneManager::ChangeScene(SceneIds id)
 {
 	sceneVec[(int)currentScene]->Exit();
+	TimeManager::GetInstance().SetTimeScale(1.f);
 	currentScene = id;
 	sceneVec[(int)currentScene]->Enter();
 }

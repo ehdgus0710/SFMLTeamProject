@@ -28,6 +28,13 @@ PlayerJumpAttackState::~PlayerJumpAttackState()
 {
 }
 
+void PlayerJumpAttackState::SetChangeAnimationKey(int index)
+{
+	ClearEvenet();
+	PlayerBaseState::SetChangeAnimationKey(index);
+	SetAttackEvnet();
+}
+
 void PlayerJumpAttackState::Start()
 {
 	rigidbody = player->GetRigidbody();
@@ -89,10 +96,7 @@ void PlayerJumpAttackState::OnStartAttack()
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->Reset();
 	animation->Play(1.f, false);
-	animation->SetAnimationEndEvent(std::bind(&PlayerJumpAttackState::OnEndAttack, this), animation->GetFrameCount() - 1);
-	animation->SetAnimationStartEvent(std::bind(&PlayerJumpAttackState::OnCreateHitBox, this), 1);
-	animation->SetAnimationEndEvent(std::bind(&PlayerJumpAttackState::OnDestoryHitBox, this), 1);
-
+	SetAttackEvnet();
 	sequenceAttack = false;
 }
 
@@ -102,7 +106,7 @@ void PlayerJumpAttackState::OnEndAttack()
 	{
 		if (sequenceAttack)
 		{
-			animator->GetCurrentAnimation()->ClearEndEvent(animator->GetCurrentAnimation()->GetFrameCount() - 1);
+			animator->GetCurrentAnimation()->ClearEndEvent(animator->GetCurrentAnimation()->GetEndFrameCount());
 			OnStartAttack();
 		}
 		else
@@ -142,6 +146,14 @@ void PlayerJumpAttackState::ClearEvenet()
 	animation->ClearEndEvent(animation->GetFrameCount() - 1);
 	animation->ClearStartEvent(1);
 	animation->ClearEndEvent(1);
+}
+
+void PlayerJumpAttackState::SetAttackEvnet()
+{
+	Animation* animation = animator->GetCurrentAnimation();
+	animation->SetAnimationEndEvent(std::bind(&PlayerJumpAttackState::OnEndAttack, this), animation->GetEndFrameCount());
+	animation->SetAnimationStartEvent(std::bind(&PlayerJumpAttackState::OnCreateHitBox, this), 1);
+	animation->SetAnimationEndEvent(std::bind(&PlayerJumpAttackState::OnDestoryHitBox, this), 1);
 }
 
 void PlayerJumpAttackState::CreateEffect(GameObject* object)

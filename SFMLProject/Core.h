@@ -89,6 +89,7 @@ enum class ColliderLayer
 	Boss,
 	Yggdrasil,
 	Reiana,
+	PlayerHead,
 	PlayerBullet,
 	EnemyBullet,
 	SavePoint,

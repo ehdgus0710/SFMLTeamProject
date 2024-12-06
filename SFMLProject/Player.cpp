@@ -180,6 +180,18 @@ void Player::Awake()
 	currentDashCount = dashCount;
 	currentJumpCount = jumpCount;
 	dashDelayTime = 1.3f;
+
+	// Player UI
+	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
+	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
+	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
+	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
+	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
+
+	// Player Font
+	ResourcesManager<sf::Font>::GetInstance().Load("Status", "fonts/Perfect DOS VGA 437.ttf", true);
+	ResourcesManager<sf::Font>::GetInstance().Load("NameFont2", "fonts/NotoSans-Bold.ttf", true);
+	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
 }
 
 void Player::Start()

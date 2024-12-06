@@ -19,6 +19,8 @@ Reiana::Reiana(const std::string& name)
 	animator->LoadCsv("animators/rayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
+	currentStatus.hp = 150;
+	currentStatus.maxHp = 150;
 	// animator->CreateAnimation("ReianaIdle", "ReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
@@ -30,8 +32,14 @@ void Reiana::TakeDamage(const DamegeInfo& damage)
 {
 	currentStatus.hp -= damage.damege;
 
-	if (currentStatus.hp <= 0)
+	if (currentStatus.hp <= 0.f)
+	{
+		currentStatus.hp = 0.f;
 		OnDead();
+	}
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void Reiana::OnDead()
@@ -56,7 +64,9 @@ void Reiana::Start()
 	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
-	currentStatus.hp = 150.f;
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void Reiana::Update(const float& deltaTime)

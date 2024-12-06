@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "Animator.h"
 #include "Player.h"
+#include "ReianaUIHub.h"
 
 AwakeReiana::AwakeReiana(const std::string& name)
 	:AnimationGameObject(name)
@@ -19,6 +20,8 @@ AwakeReiana::AwakeReiana(const std::string& name)
 	animator->LoadCsv("animators/awakenRayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
+	currentStatus.hp = 150;
+	currentStatus.maxHp = 150;
 	// animator->CreateAnimation("AwakeReianaIdle", "AwakeReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
@@ -30,13 +33,19 @@ void AwakeReiana::TakeDamage(const DamegeInfo& damage)
 {
 	currentStatus.hp -= damage.damege;
 
-	if (currentStatus.hp <= 0)
+	if (currentStatus.hp <= 0.f)
+	{
+		currentStatus.hp = 0.f;
 		OnDead();
+	}
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void AwakeReiana::OnDead()
 {
-	// fsm.ChangeState(AwakeReianaStateType::Dead);
+	fsm.ChangeState(AwakeReianaStateType::Dead);
 }
 
 void AwakeReiana::Awake()
@@ -57,6 +66,9 @@ void AwakeReiana::Start()
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
 
+	reianaUIHub->ChangePhase();
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void AwakeReiana::Update(const float& deltaTime)

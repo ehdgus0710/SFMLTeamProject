@@ -5,6 +5,9 @@
 #include "Player.h"
 
 #include "Reiana.h"
+#include "B_Reiana.h"
+#include "AwakeReiana.h"
+
 #include "Yggdrasil.h"
 
 HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType,ColliderLayer targetLayerType, const std::string& name)
@@ -154,15 +157,29 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 
 			if(yggdrasil)
 				yggdrasil->TakeDamage(damageInfo);
-			else if (dynamic_cast<Reiana*>(target->GetOwner()))
-				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			else
+			{
+				if (dynamic_cast<Reiana*>(target->GetOwner()))
+					static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+				else if (dynamic_cast<B_Reiana*>(target->GetOwner()))
+					static_cast<B_Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+				else if (dynamic_cast<AwakeReiana*>(target->GetOwner()))
+					static_cast<AwakeReiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			}
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Yggdrasil)
 		{
 			static_cast<Yggdrasil*>(target->GetOwner())->TakeDamage(damageInfo);
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Reiana)
-			static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+		{
+			if (dynamic_cast<Reiana*>(target->GetOwner()))
+				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			else if (dynamic_cast<B_Reiana*>(target->GetOwner()))
+				static_cast<B_Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			else if (dynamic_cast<AwakeReiana*>(target->GetOwner()))
+				static_cast<AwakeReiana*>(target->GetOwner())->TakeDamage(damageInfo);
+		}
 
 		for (auto& hitEvent : startHitEvents)
 		{

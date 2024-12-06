@@ -209,7 +209,7 @@ void PlayerAttackState::SequenceAttack()
 
 void PlayerAttackState::OnCreateHitBox()
 {
-	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Boss, true, sf::Vector2f::right * 50.f), LayerType::PlayerBullet);
+	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Reiana, true, sf::Vector2f::right * 50.f), LayerType::PlayerBullet);
 	attackBox->SetScale({ 150.f,150.f });
 	attackBox->SetDamage(damageInfo);
 

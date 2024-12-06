@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "Awakning.h"
 #include "AwakeReiana.h"
+#include "ReianaUIHub.h"
 
 B_ReianaDeadState::B_ReianaDeadState(B_ReianaFsm* fsm)
 	:B_ReianaBaseState(fsm, B_ReianaStateType::Dead)
@@ -26,9 +27,14 @@ void B_ReianaDeadState::Enter()
 
 void B_ReianaDeadState::SetAwakenReiana()
 {
+	ReianaUIHub* uiHub = b_reiana->GetReianaUIHub();
+
 	b_reiana->SetActive(false);
-	AwakeReiana* awakeReiana = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeReiana(""), LayerType::Enemy);
+	AwakeReiana* awakeReiana = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeReiana(""), LayerType::Boss);
+	uiHub->SetAwakeReiana(awakeReiana);
+	awakeReiana->SetReianaUIHub(uiHub);
 	awakeReiana->SetPosition(b_reiana->GetPosition());
+
 	awakeReiana->Start();
 }
 

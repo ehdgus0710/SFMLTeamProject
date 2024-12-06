@@ -92,8 +92,4 @@ void YggdrasilUIHub::Start()
 }
 void YggdrasilUIHub::Update(const float& deltaTime)
 {
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
-	{
-		ChangePhase();
-	}
 }

@@ -80,7 +80,8 @@ void Head::OnCollisionEnter(Collider* target)
 		else
 			rigidBody->ResetVelocity();
 	}
-	else if (target->GetColliderLayer() == ColliderLayer::Enemy && isThrow)
+	else if ((target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Boss 
+		|| target->GetColliderLayer() == ColliderLayer::Yggdrasil || target->GetColliderLayer() == ColliderLayer::Reiana) && isThrow)
 	{
 		// ((Enemy*)target->GetOwner())->TakeDamage(10);
 		EndThrow();

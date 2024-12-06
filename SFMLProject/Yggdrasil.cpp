@@ -102,6 +102,9 @@ void Yggdrasil::Start()
 	phase1Hp = 1000;
 	phase2Hp = 1000;
 
+	currentStatus.hp = (float)phase1Hp;
+	currentStatus.maxHp = (float)phase1Hp;
+
 	phaseUp = false;
 
 
@@ -175,6 +178,7 @@ void Yggdrasil::TakeDamage(const DamegeInfo& damage)
 			phaseUp = true;
 			currentStatus.hp = (float)phase2Hp;
 			currentStatus.maxHp = (float)phase2Hp;
+			yggdrasilUIHub->ChangePhase();
 		}
 	}
 

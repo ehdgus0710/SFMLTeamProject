@@ -41,8 +41,6 @@ public:
 	void Start() override;
 	void Update(const float& deltaTime) override;
 	void Render(sf::RenderWindow& renderWindow) override;
-
-	void OnCollisionEnter(Collider* target) override;
 	void CreateAnimator() override;
 
 	sf::FloatRect GetLocalBounds() const;

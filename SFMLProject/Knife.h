@@ -13,6 +13,9 @@ protected:
 	AnimationGameObject* effect1;
 	float				delayTime = 1.0f;
 	float				currentDelay = 0.f;
+
+private:
+	void CreateEffect();
 public:
 	void Start() override;
 	void Update(const float& deltaTime) override;

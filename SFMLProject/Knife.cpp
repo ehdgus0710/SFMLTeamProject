@@ -16,6 +16,7 @@ Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targe
 	TEXTURE_MANAGER.Load("Knife", "graphics/HomingPierce_Ready_8.png");
 	animator->CreateAnimation("Knife", "idle", { 96,31 }, 1, 0.1f);
 
+
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = true;
 	damageInfo.knockbackDuration = 0.5f;
@@ -23,27 +24,32 @@ Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targe
 	damageInfo.knockbackVelocity = { 100.f,0.f };
 }
 
-void Knife::Start()
+void Knife::CreateEffect()
 {
-	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player"));
-
-	AnimationBullet::Start();	
-	Bullet::SetSpeed(2000.f);
-
 	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
 	Animation* animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/HomingPierceReady.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "HomingPierceReady");
 	effect1->GetAnimator()->ChangeAnimation("HomingPierceReady");
-	effect1->Awake();
-	effect1->Start();
-	OnCreateHitBox();
-	currentDelay = 0.f;
-	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
-	collider->SetActive(false);
-	collider->SetScale({ 80.f,30.f });
 	effect1->SetPosition(position);
 	effect1->SetScale({ 2.f,2.f });
+	effect1->Awake();
+	effect1->Start();
+	currentDelay = 0.f;
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
+}
+
+void Knife::Start()
+{
+	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player",LayerType::Player));
+
+	AnimationBullet::Start();	
+	Bullet::SetSpeed(2000.f);
+
+	CreateEffect();
+
+	collider->SetActive(false);
+	collider->SetScale({ 80.f,30.f });
 
 	animator->ChangeAnimation("idle");
 } 
@@ -79,6 +85,7 @@ void Knife::OnCreateHitBox()
 	collider->SetActive(true);
 	damageInfo.hitDirection = moveDirection;
 	SetDamage(damageInfo);
+	OnAutoDestory();
 }
 
 void Knife::OnDestoryHitBox()

@@ -46,9 +46,9 @@ public:
 	void Release() override;
 	void Update(const float& deltaTime) override;
 
-	virtual void OnCollisionEnter(Collider* target);
-	virtual void OnCollisionStay(Collider* target);
-	virtual void OnCollisionEnd(Collider* target);
+	void OnCollisionEnter(Collider* target) override;
+	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
 
 public:
 	bool SaveCsv(const std::string& filePath) const override;

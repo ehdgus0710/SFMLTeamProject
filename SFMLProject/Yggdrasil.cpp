@@ -16,6 +16,7 @@
 #include "YggdrasilRightHand.h"
 #include "YggdrasilEnergyBallBig.h"
 #include "YggdrasilEnergyBallSmall.h"
+#include "YggdrasilUIHub.h"
 #include "Player.h"
 
 
@@ -39,6 +40,16 @@ Yggdrasil::~Yggdrasil()
 void Yggdrasil::Awake()
 {
 	AnimationGameObject::Awake();
+
+	// Yggdrasil UI
+	TEXTURE_MANAGER.Load("BossHealthBarFirstPhase", "graphics/UI/BossUI/BossHealthBar_FirstPhase.png");
+	TEXTURE_MANAGER.Load("BossHealthBarSecondPhase", "graphics/UI/BossUI/BossHealthBar_SecondPhase.png");
+	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseBottomBack", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_BottomBack.png");
+	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseFront", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_Front.png");
+	TEXTURE_MANAGER.Load("YggdrasilFirstPhaseTopBack", "graphics/boss/Yggdrasil/UI/Ch1BossFirstPhase_Top_Back.png");
+	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseBottomBack", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Bottom_Back.png");
+	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseFront", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Front.png");
+	TEXTURE_MANAGER.Load("YggdrasilSecondPhaseTop", "graphics/boss/Yggdrasil/UI/Ch1BossSecondPhase_Top_Back.png");
 }
 
 void Yggdrasil::Start()
@@ -80,6 +91,11 @@ void Yggdrasil::Start()
 	yggdrasilRightHand->GetCollider()->SetScale({ 150.f,150.f });
 	yggdrasilRightHand->GetRigidbody()->SetActive(false);
 
+	yggdrasilUIHub = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilUIHub("YggdrasilUIHub"), LayerType::InGameUI);
+	yggdrasilUIHub->SetOrigin(Origins::BottomLeft);
+	yggdrasilUIHub->SetScale({ 3.5f,3.5f });
+	yggdrasilUIHub->SetPosition({ 0, 1075.f });
+
 	attackTime = 0;
 	attackDelay = 3.f;
 
@@ -97,10 +113,10 @@ void Yggdrasil::Start()
 void Yggdrasil::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	/*if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
 		phaseUp = true;
-	}
+	}*/
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	{
 		fsm.ChangeState(YggdrasilStateType::Dead);
@@ -143,10 +159,27 @@ sf::Vector2f Yggdrasil::GetRightFistPos()
 
 void Yggdrasil::TakeDamage(const DamegeInfo& damage)
 {
-	/*currentStatus.hp -= damage.damege;
+	if (fsm.GetCurrentStateType() == YggdrasilStateType::Dead)
+		return;
 
-	if (currentStatus.hp <= 0)
-		OnDead();*/
+	currentStatus.hp -= damage.damege;
+
+	if (currentStatus.hp <= 0.f)
+	{
+		currentStatus.hp = 0.f;
+		/*isDead = true;
+		fsm.ChangeState(PlayerStateType::Dead);*/
+
+		if (!phaseUp)
+		{
+			phaseUp = true;
+			currentStatus.hp = (float)phase2Hp;
+			currentStatus.maxHp = (float)phase2Hp;
+		}
+	}
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void Yggdrasil::OnDead()

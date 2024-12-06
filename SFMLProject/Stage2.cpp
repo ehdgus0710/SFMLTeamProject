@@ -14,6 +14,7 @@
 Stage2::Stage2()
 	: Scene(SceneIds::Stage2)
 	, player(nullptr)
+	, pauseUIBar(nullptr)
 {
 	savePath = "Stage2.json";
 	loadPath = "Stage2.json";
@@ -55,6 +56,8 @@ void Stage2::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::UI, ColliderLayer::UI);
 }
 
 void Stage2::LoadResources()
@@ -157,10 +160,11 @@ void Stage2::Enter()
 	mainCamera->SetFollowTarget(testPlayer, true);
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 
-	YggdrasilUIHub* yggdrasilUIHub = AddGameObject(new YggdrasilUIHub("YggdrasilUIHub"), LayerType::InGameUI);
-	yggdrasilUIHub->SetOrigin(Origins::BottomLeft);
-	yggdrasilUIHub->SetScale({ 3.5f,3.5f });
-	yggdrasilUIHub->SetPosition({ 0, 1075.f });
+	
+
+	pauseUIBar = AddGameObject(new PauseUIBar("PauseFrame", "PauseFrame"), LayerType::UI);
+	pauseUIBar->SetScale({ 3.f,3.f });
+	pauseUIBar->SetPosition({ mainCamera->GetView().getSize().x * 0.5f, 450.f });
 	/*AnimationGameObject* testPlayer = AddGameObject(new AnimationGameObject("Object"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 500, 500.f });
@@ -182,7 +186,12 @@ void Stage2::Release()
 
 void Stage2::Update(float dt)
 {
-	Scene::Update(dt);
+	Scene::Update(dt);	
+	
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Escape))
+	{
+		pauseUIBar->SetActive(!pauseUIBar->IsActive());
+	}
 }
 
 void Stage2::Render(sf::RenderWindow& window)

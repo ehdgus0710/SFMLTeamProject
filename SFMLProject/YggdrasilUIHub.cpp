@@ -88,6 +88,7 @@ void YggdrasilUIHub::Start()
 	nameText->sortingOrder = 13;
 
 
+	yggdrasil->SetChangeHpAction(std::bind(&YggdrasilUIHub::ChangeHP, this, std::placeholders::_1, std::placeholders::_2));
 }
 void YggdrasilUIHub::Update(const float& deltaTime)
 {

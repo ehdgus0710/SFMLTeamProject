@@ -7,6 +7,7 @@ class YggdrasilHead;
 class YggdrasilLeftHand;
 class YggdrasilRightHand;
 class Player;
+class YggdrasilUIHub;
 
 class Yggdrasil : public AnimationGameObject
 {
@@ -18,6 +19,7 @@ protected:
 	YggdrasilRightHand*			yggdrasilRightHand;
 
 	GameObject*					gameObject;
+	YggdrasilUIHub*				yggdrasilUIHub;
 
 	DefaultStatus				currentStatus;
 	sf::Sprite					sprite;
@@ -30,6 +32,8 @@ protected:
 	float						attackDelay;
 
 	bool						phaseUp;
+
+	std::function<void(float, float)> changeHpAction;
 public:
 	void Awake() override;
 	void Start() override;
@@ -76,6 +80,7 @@ public:
 	void SetPhaseUp(bool phase) { phaseUp = phase; }
 	bool GetPhaseUp() { return phaseUp; }
 
+	void SetChangeHpAction(std::function<void(float, float)> action) { changeHpAction = action; }
 public:
 	Yggdrasil(const std::string& name = "Player");
 	virtual ~Yggdrasil();

@@ -3,6 +3,7 @@
 
 class Yggdrasil;
 class Player;
+class PauseUIBar;
 
 class Stage2 : public Scene
 {
@@ -13,6 +14,7 @@ private:
 	Rectangle	cameraLimitRect;
 	Rectangle	bossClearCameraLimitRect;
 	Rectangle	currentCameraLimitRect;
+	PauseUIBar* pauseUIBar;
 
 public:
 	void CollisitionCheck();

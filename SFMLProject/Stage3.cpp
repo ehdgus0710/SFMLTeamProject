@@ -7,6 +7,7 @@
 #include "PauseUIBar.h"
 Stage3::Stage3()
 	: Scene(SceneIds::Stage3)
+	, pauseUIBar(nullptr)
 {
 	savePath = "Stage3.json";
 	loadPath = "Stage3.json";
@@ -32,6 +33,7 @@ void Stage3::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Yggdrasil, ColliderLayer::PlayerHead);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::PlayerHead);
 
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
@@ -77,7 +79,6 @@ void Stage3::LoadResources()
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseFront",		"graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Front.png");
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseBottomBack", "graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Bottom_Back.png");
 
-	TEXTURE_MANAGER.Load("PauseFrame", "graphics/UI/Pause_Frame.png");
 }
 
 void Stage3::Init()
@@ -87,6 +88,9 @@ void Stage3::Init()
 	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
 	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
 	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
+
+	// UI ¿É¼Ç
+	TEXTURE_MANAGER.Load("PauseFrame", "graphics/UI/Pause_Frame.png");
 
 	Scene::Init();
 }

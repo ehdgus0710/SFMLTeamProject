@@ -27,11 +27,11 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 		meteorGroundSmoke->SetScale({ 2.f,2.f });
 		meteorGroundSmoke->Start();
 		meteorGroundSmoke->SetPosition(reiana->GetPosition());
-		if (!meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
+		if (meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
-		if (meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
+		if (!meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}

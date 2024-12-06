@@ -75,7 +75,7 @@ void B_ReianaDropAttackState::Enter()
 	action = false;
 	effect = false;
 	auto playerPos = b_reiana->GetPlayer()->GetPosition();
-	endPosition = { playerPos.x, 80.f };
+	endPosition = { playerPos.x, 900.f };
 
 	playerPos -= moveDistance;
 	startPosition = playerPos;

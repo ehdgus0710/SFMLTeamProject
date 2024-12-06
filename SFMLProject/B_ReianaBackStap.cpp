@@ -34,8 +34,8 @@ void B_ReianaBackStap::Enter()
 {
 	B_ReianaBaseState::Enter();
 	animator->ChangeAnimation("dash", false);
-	startPosition = { -100.f,-200.f };
-	endPosition = { 200.f,80.f };
+	startPosition = { -100.f,500.f };
+	endPosition = { 200.f,900.f };
 	currentTime = 0.f;
 }
 

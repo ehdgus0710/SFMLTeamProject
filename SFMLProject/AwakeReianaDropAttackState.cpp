@@ -101,7 +101,7 @@ void AwakeReianaDropAttackState::Enter()
 	attack = false;
 	waitAnimation = false;
 	auto playerPos = awakeReiana->GetPlayer()->GetPosition();
-	endPosition = { playerPos.x, 80.f };
+	endPosition = { playerPos.x, 900.f };
 
 	playerPos -= waitStartPos;
 	startPosition = playerPos;

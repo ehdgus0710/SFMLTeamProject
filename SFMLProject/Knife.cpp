@@ -16,7 +16,6 @@ Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targe
 	TEXTURE_MANAGER.Load("Knife", "graphics/HomingPierce_Ready_8.png");
 	animator->CreateAnimation("Knife", "idle", { 96,31 }, 1, 0.1f);
 
-
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = true;
 	damageInfo.knockbackDuration = 0.5f;

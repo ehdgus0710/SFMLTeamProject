@@ -13,7 +13,7 @@ AwakeDemensionWaitEffect::AwakeDemensionWaitEffect(const std::string& name)
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakeDemensionWaitEffect.csv");
 	animator->AddAnimation(animation, "AwakeDemensionWaitEffect");
 	SetScale({ 5.f,2.f });
-	randomPos = { (float)Utils::RandomRange(500, 1500), (float)Utils::RandomRange(-300, -100) };
+	randomPos = { (float)Utils::RandomRange(500, 1500), (float)Utils::RandomRange(300, 600) };
 	SetPosition(randomPos);
 	SetRotation(Utils::RandomRange(1, 180));
 }

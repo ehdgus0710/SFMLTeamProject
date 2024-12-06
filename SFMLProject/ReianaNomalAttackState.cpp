@@ -82,11 +82,11 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 		{
 			reiana->OnFlipX();
 		}
-		if (!meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
+		if (meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
-		if (meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
+		if (!meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
@@ -134,11 +134,11 @@ void ReianaNomalAttackState::Enter()
 	meteorGroundSmoke->SetScale({ 1.f,1.f });
 	meteorGroundSmoke->Start();
 	meteorGroundSmoke->SetPosition(reiana->GetPosition());
-	if (!meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
+	if (meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
 	{
 		meteorGroundSmoke->OnFlipX();
 	}
-	if (meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
+	if (!meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
 	{
 		meteorGroundSmoke->OnFlipX();
 	}

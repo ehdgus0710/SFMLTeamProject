@@ -56,6 +56,7 @@ void Reiana::Start()
 	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
+	currentStatus.hp = 150.f;
 }
 
 void Reiana::Update(const float& deltaTime)

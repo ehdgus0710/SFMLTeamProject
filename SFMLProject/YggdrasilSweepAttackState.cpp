@@ -36,16 +36,16 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
 	{
-		attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
-		attackBox->SetScale({ 400.f,400.f });
-		attackBox->SetDamage(10);
+		attackBox1 = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+		attackBox1->SetScale({ 400.f,400.f });
+		attackBox1->SetDamage(10);
 	}
-	attackBox->SetPosition(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
+	attackBox1->SetPosition(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 
 	if (currentAttackTime >= attackTime)
 	{
-		attackBox->OnDestory();
+		attackBox1->OnDestory();
 	}
 
 	if (currentAttackTime >= readyFistTime)
@@ -70,16 +70,16 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	rEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
 	{
-		attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilRightHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
-		attackBox->SetScale({ 400.f,400.f });
-		attackBox->SetDamage(10);
+		attackBox2 = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilRightHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
+		attackBox2->SetScale({ 400.f,400.f });
+		attackBox2->SetDamage(10);
 	}
-	attackBox->SetPosition(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
+	attackBox2->SetPosition(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 
 	if (currentAttackTime >= attackTime)
 	{
-		attackBox->OnDestory();
+		attackBox2->OnDestory();
 	}
 
 	if (currentAttackTime >= readyFistTime)

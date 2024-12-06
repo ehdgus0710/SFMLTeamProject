@@ -6,7 +6,8 @@ class HitBoxObject;
 
 class YggdrasilSweepAttackState : public YggdrasilBaseState
 {
-	HitBoxObject*	attackBox;
+	HitBoxObject*	attackBox1;
+	HitBoxObject*	attackBox2;
 
 	sf::Vector2f	lFirstPos;
 	sf::Vector2f	rFirstPos;

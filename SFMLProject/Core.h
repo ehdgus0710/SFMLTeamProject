@@ -127,6 +127,24 @@ enum class PlayerStateType
 	End
 };
 
+enum class SkeletonSpearStateType
+{
+	Idle,
+	Run,
+	Break,
+	Jump,
+	Hit,
+	Dead,
+	Falling,
+	Dash,
+	Attack,
+	JumpAttack,
+	Skill1,
+	Skill2,
+	End
+};
+
+
 enum class YggdrasilStateType
 {
 	Idle,

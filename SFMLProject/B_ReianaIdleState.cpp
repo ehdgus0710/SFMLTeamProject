@@ -37,9 +37,14 @@ void B_ReianaIdleState::Enter()
 		b_reiana->OnFlipX();
 	}
 	currentdelay = 0.f;
+
 	count = reiana->GetCount();
 	animator->ChangeAnimation("idle", true);
 
+	if (reiana->GetHp() <= 0)
+	{
+		fsm->ChangeState(B_ReianaStateType::Dead);
+	}
 }
 
 void B_ReianaIdleState::Exit()

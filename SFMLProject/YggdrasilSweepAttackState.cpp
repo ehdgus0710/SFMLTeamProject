@@ -43,9 +43,13 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 	attackBox->SetPosition(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 
-	if (currentAttackTime >= readyFistTime)
+	if (currentAttackTime >= attackTime)
 	{
 		attackBox->OnDestory();
+	}
+
+	if (currentAttackTime >= readyFistTime)
+	{
 		hitBoxOn = false;
 		switchFist = true;
 		++attackCount;
@@ -73,9 +77,13 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	attackBox->SetPosition(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 
-	if (currentAttackTime >= readyFistTime)
+	if (currentAttackTime >= attackTime)
 	{
 		attackBox->OnDestory();
+	}
+
+	if (currentAttackTime >= readyFistTime)
+	{
 		hitBoxOn = false;
 		switchFist = true;
 		++attackCount;

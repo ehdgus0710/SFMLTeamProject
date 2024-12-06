@@ -1,8 +1,5 @@
 #pragma once
 #include "YggdrasilBaseState.h"
-
-#include "YggdrasilBaseState.h"
-
 class Player;
 class yggdrasil;
 

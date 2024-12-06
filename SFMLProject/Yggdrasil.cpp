@@ -25,6 +25,7 @@ Yggdrasil::Yggdrasil(const std::string& name)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
+	rigidBody->Disable();
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Boss);
 	SetScale({ 4.f, 4.f });
 
@@ -98,7 +99,7 @@ void Yggdrasil::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
-		phaseUp = !phaseUp;
+		phaseUp = true;
 	}
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	{

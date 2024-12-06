@@ -7,6 +7,12 @@
 #include "Yggdrasil.h"
 #include "Player.h"
 
+
+void YggdrasilIdleState::Moves(float dt)
+{
+	
+}
+
 void YggdrasilIdleState::Awake()
 {
 	YggdrasilBaseState::Awake();
@@ -16,33 +22,48 @@ void YggdrasilIdleState::Start()
 {
 	YggdrasilBaseState::Start();
 	changeOn = false;
-	attackTime = 0.f;
+	
+	//yggdrasil = static_cast<Yggdrasil*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Yggdrasil", LayerType::Boss));
+
 }
 
 void YggdrasilIdleState::Enter()
 {
 	YggdrasilBaseState::Enter();
+
+	attackTime = 0.f;
+	attackDelay = 5.f;;
+	choiceAttack = 0;
+
 	if (yggdrasil->GetPhaseUp())
 	{
-		attackTime = 0.f;
-		attackDelay = 2.5f;
-		choiceAttack = 0;
 		yggdrasil->SetAnimeLeftHand("phase2HandLeftIdle", true);
 		yggdrasil->SetAnimeRightHand("phase2HandRightIdle", true);
 		yggdrasil->SetAnimeBody("yggdrasilPhase2Body", false);
 		yggdrasil->SetAnimeHead("yggdrasilPhase2Head", false);
 		yggdrasil->SetAnimeMouth("yggdrasilPhase2Mouth", false);
+
+		hStartPos = yggdrasil->GetHeadPos();
+		hEndPos = { yggdrasil->GetHeadPos().x,  yggdrasil->GetPosition().y + 10.f };
+		bStartPos = yggdrasil->GetPosition();
+		bEndPos = { yggdrasil->GetPosition().x, yggdrasil->GetPosition().y + 10.f };
+		mStartPos = yggdrasil->GetMouthPos();
+		mEndPos = { yggdrasil->GetMouthPos().x, yggdrasil->GetPosition().y + 10.f };
 	}
 	else
 	{
-		attackTime = 0.f;
-		attackDelay = 5.f;;
-		choiceAttack = 0;
 		yggdrasil->SetAnimeLeftHand("phase1HandLeftIdle", true);
 		yggdrasil->SetAnimeRightHand("phase1HandRightIdle", true);
 		yggdrasil->SetAnimeBody("yggdrasilPhase1Body", false);
 		yggdrasil->SetAnimeHead("yggdrasilPhase1Head", false);
 		yggdrasil->SetAnimeMouth("yggdrasilPhase1Mouth", false);
+
+		hStartPos = yggdrasil->GetHeadPos();
+		hEndPos = { yggdrasil->GetHeadPos().x,  yggdrasil->GetPosition().y + 10.f };
+		bStartPos = yggdrasil->GetPosition();
+		bEndPos = { yggdrasil->GetPosition().x, yggdrasil->GetPosition().y + 10.f };
+		mStartPos = yggdrasil->GetMouthPos();
+		mEndPos = { yggdrasil->GetMouthPos().x, yggdrasil->GetPosition().y + 10.f };
 	}
 }
 
@@ -52,6 +73,7 @@ void YggdrasilIdleState::Exit()
 
 void YggdrasilIdleState::Update(float deltaTime)
 {
+
 	attackTime += deltaTime;
 
 	if (yggdrasil->GetPhaseUp() && !changeOn)

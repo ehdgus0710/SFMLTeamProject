@@ -20,8 +20,16 @@ void YggdrasilDeadState::Enter()
 	hEndPos = { yggdrasil->GetHeadPos().x - 150.f, 700.f };
 	mStartPos = yggdrasil->GetMouthPos();
 	mEndPos = { yggdrasil->GetMouthPos().x + 40.f, 860.f };
-	yggdrasil->SetAnimeLeftHand("phase1HandLeftGrap", false);
-	yggdrasil->SetAnimeRightHand("phase1HandRightGrap", false);
+	if (!yggdrasil->GetPhaseUp())
+	{
+		yggdrasil->SetAnimeLeftHand("phase1HandLeftGrap", false);
+		yggdrasil->SetAnimeRightHand("phase1HandRightGrap", false);
+	}
+	else
+	{
+		yggdrasil->SetAnimeLeftHand("phase2HandLeftGrap", false);
+		yggdrasil->SetAnimeRightHand("phase2HandRightGrap", false);
+	}
 	deadTime = 0.f;
 	deadDelay = 3.f;
 }

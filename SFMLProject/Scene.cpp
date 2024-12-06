@@ -71,6 +71,9 @@ void Scene::Release()
 	{
 		for (auto& object : objectVector)
 		{
+			if (object->GetDestory())
+				continue;
+
 			object->Release();
 			delete object;
 		}
@@ -79,6 +82,13 @@ void Scene::Release()
 	// gameObjectVectors.clear();
 
 	for (auto& object : destroyObjects)
+	{
+		object->Release();
+		delete object;
+	}
+	destroyObjects.clear();
+
+	for (auto& object : createGameObjectVectors)
 	{
 		object->Release();
 		delete object;

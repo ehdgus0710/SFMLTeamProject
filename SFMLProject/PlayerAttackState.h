@@ -25,6 +25,8 @@ private:
 
 	void SetAnimationEvent();
 	void ClearAttackEvent();
+
+	void MoveAttack();
 public:
 
 	void StartAttack();

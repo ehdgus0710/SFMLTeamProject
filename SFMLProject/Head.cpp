@@ -8,6 +8,8 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Yggdrasil.h"
+#include "Reiana.h"
 
 Head::Head(const std::string& name)
 	: SpriteGameObject("SkulHead", name)
@@ -22,6 +24,9 @@ Head::Head(const std::string& name)
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::PlayerHead);
 	scale = { 3.f, 3.f };
+
+	damageInfo.damege = 15.f;
+	damageInfo.owner = this;
 }
 
 Head::~Head()
@@ -83,7 +88,27 @@ void Head::OnCollisionEnter(Collider* target)
 	else if ((target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Boss 
 		|| target->GetColliderLayer() == ColliderLayer::Yggdrasil || target->GetColliderLayer() == ColliderLayer::Reiana) && isThrow)
 	{
-		// ((Enemy*)target->GetOwner())->TakeDamage(10);
+		if (target->GetColliderLayer() == ColliderLayer::Enemy)
+		{
+			((Enemy*)target->GetOwner())->TakeDamage(damageInfo);
+		}
+		else if (target->GetColliderLayer() == ColliderLayer::Boss)
+		{
+			Yggdrasil* yggdrasil = dynamic_cast<Yggdrasil*>(target->GetOwner());
+
+			if (yggdrasil)
+				yggdrasil->TakeDamage(damageInfo);
+			else if (dynamic_cast<Reiana*>(target->GetOwner()))
+				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+		}
+		else if (target->GetColliderLayer() == ColliderLayer::Yggdrasil)
+		{
+			static_cast<Yggdrasil*>(target->GetOwner())->TakeDamage(damageInfo);
+		}
+		else if (target->GetColliderLayer() == ColliderLayer::Reiana)
+		{
+			static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+		}
 		EndThrow();
 	}
 }

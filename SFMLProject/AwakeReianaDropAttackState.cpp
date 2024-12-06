@@ -56,10 +56,8 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 			
 			awakenDropSide1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropSide(), LayerType::EnemyBullet);
 			awakenDropSide2 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropSide(), LayerType::EnemyBullet);
-			awakenDropSide1->Start();
-			awakenDropSide2->Start();
 			awakenDropSide1->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60 });
-			awakenDropSide2->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60 });
+			awakenDropSide2->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60});
 			awakenDropSide2->OnFlipX();
 			AwakenDropEnd* awakenDropEnd = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropEnd(), LayerType::EnemyBullet);
 			awakenDropEnd->Start();
@@ -127,11 +125,11 @@ void AwakeReianaDropAttackState::Update(float deltaTime)
 	AwakeReianaBaseState::Update(deltaTime);
 	if (awakenDropSide1 != nullptr)
 	{
-		awakenDropSide1->Move(deltaTime);
+		awakenDropSide1->Move(deltaTime,awakeReiana->GetPosition());
 	}
 	if (awakenDropSide2 != nullptr)
 	{
-		awakenDropSide2->Move2(deltaTime);
+		awakenDropSide2->Move2(deltaTime,awakeReiana->GetPosition());
 	}
 	if (!action)
 		Wait(deltaTime);

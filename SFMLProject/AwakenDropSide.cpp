@@ -9,26 +9,53 @@
 AwakenDropSide::AwakenDropSide(const std::string& name)
 	: AnimationGameObject("AwakenDropSideEffect")
 {
+	animationHitBox = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationHitBox(nullptr, ColliderLayer::EnemyBullet, ColliderLayer::Player, "AwakenedThunder"), LayerType::EnemyBullet);
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDropSideEffect.csv");
-	animator->AddAnimation(animation, "AwakenDropSideEffect");
+	animationHitBox->GetAnimator()->AddAnimation(animation, "AwakenDropSideEffect");
+	animationHitBox->GetAnimator()->ChangeAnimation("AwakenDropSideEffect");
+	animationHitBox->GetAnimator()->SetAnimationSpeed(2.f);
+	animationHitBox->SetRotation(rotation);
+	animationHitBox->SetScale({ 2.5f,2.5f });
+	animationHitBox->SetDamage(10.f);
+	animationHitBox->GetCollider()->SetScale({ 80.f, 120.f });
+	animationHitBox->Awake();
+	animationHitBox->Start();
+	animationHitBox->GetCollider()->SetRotation(rotation);
+	animationHitBox->SetOrigin(Origins::BottomCenter);
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, animationHitBox), animation->GetEndFrameCount());
 	speed = 100.f;
-	SetScale({ 2.5f, 2.5f });
-	SetOrigin(Origins::BottomCenter);
+	//animator->AddAnimation(animation, "AwakenDropSideEffect");
+	//SetScale({ 2.5f, 2.5f });
 }
 
-void AwakenDropSide::Move(float deltaTime)
+void AwakenDropSide::Move(float deltaTime, sf::Vector2f pos)
 {
-	auto pos = GetPosition();
+	if (!setPos)
+	{
+		auto posi = pos;
+		posi.y = posi.y + 80;
+		animationHitBox->SetPosition(posi);
+		setPos = true;
+	}
+	auto posi = animationHitBox->GetPosition();
 	speed *= 1.01f;
-	pos.x = pos.x + speed * deltaTime;
-	SetPosition(pos);
+	posi.x = posi.x + speed * deltaTime;
+	animationHitBox->SetPosition(posi);
 }
-void AwakenDropSide::Move2(float deltaTime)
+void AwakenDropSide::Move2(float deltaTime, sf::Vector2f pos)
 {
-	auto pos = GetPosition();
+	if (!setPosLeft)
+	{
+		auto posi = pos;
+		posi.y = posi.y + 80;
+		animationHitBox->SetPosition(posi);
+		setPosLeft = true;
+	}
+	animationHitBox->SetScale({ -2.5f,2.5f });
+	auto posi = animationHitBox->GetPosition();
 	speed *= 1.01f;
-	pos.x = pos.x - speed * deltaTime;
-	SetPosition(pos);
+	posi.x = posi.x - speed * deltaTime;
+	animationHitBox->SetPosition(posi);
 }
 
 void AwakenDropSide::Start()

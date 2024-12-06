@@ -53,6 +53,7 @@ void AwakeReianaAwakeDimensionState::Attack(float deltaTime)
 	{
 		if (rush2)
 		{
+			animator->SetAnimationSpeed(1.2f);
 			animator->ChangeAnimation("awakenRushC", false);
 			rush3 = true;
 			OnCreateHitBox();
@@ -83,7 +84,7 @@ void AwakeReianaAwakeDimensionState::Wait(float deltaTime)
 	{
 		for (auto dimension : dimensionList)
 		{
-			dimension->ChangeAnimation();
+			dimension->ChangeAttackAnimation();
 		}
 		fsm->ChangeState(AwakeReianaStateType::Idle);
 	}
@@ -169,6 +170,8 @@ void AwakeReianaAwakeDimensionState::Enter()
 	animationDelay = 0.5f;
 	dimensionCreateTime = 1.0f;
 	dimensionCreateCurrentTime = 0.f;
+	dimensionList.clear();
+	animator->SetAnimationSpeed(1.0f);
 	action = false;
 	checkFilp = false;
 	rush1 = false;

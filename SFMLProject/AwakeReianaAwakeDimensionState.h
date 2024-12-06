@@ -19,7 +19,7 @@ protected:
 	float currentAttackDelay = 0.f;
 	float animationDelay = 0.5f;
 	float currentAnimationDelay = 0.f;
-	float dimensionCreateTime = 0.3f;
+	float dimensionCreateTime = 0.2f;
 	float dimensionCreateCurrentTime = 0.f;
 
 	int endFrame;

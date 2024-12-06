@@ -14,6 +14,7 @@ protected:
 	Player* player;
 	bool			isHit = false;
 	int				count;
+
 public:
 	void TakeDamage(const DamegeInfo& damage);
 	void OnDead();

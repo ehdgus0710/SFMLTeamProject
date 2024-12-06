@@ -13,7 +13,7 @@ protected:
 
 public:
 	void Start() override;
-	void ChangeAnimation();
+	void ChangeAttackAnimation();
 public:
 	AwakeDemensionWaitEffect(const std::string& name = "AwakeDemensionWaitEffect");
 	virtual ~AwakeDemensionWaitEffect() = default;

@@ -852,6 +852,9 @@
     <ClCompile Include="AwakeDemensionWaitEffect.cpp">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="AwakeReianaAwakeState.cpp">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1462,6 +1465,9 @@
     </ClInclude>
     <ClInclude Include="AwakeDemensionWaitEffect.h">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaAwakeState.h">
+      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

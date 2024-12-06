@@ -169,6 +169,7 @@
     <ClCompile Include="AwakenGroundAttackRazer.cpp" />
     <ClCompile Include="AwakenTeleport.cpp" />
     <ClCompile Include="AwakeReiana.cpp" />
+    <ClCompile Include="AwakeReianaAwakeState.cpp" />
     <ClCompile Include="AwakeReianaBaseState.cpp" />
     <ClCompile Include="AwakeReianaDeadState.cpp" />
     <ClCompile Include="AwakeReianaDiagonalDropState.cpp" />
@@ -387,6 +388,7 @@
     <ClInclude Include="AwakenGroundAttackRazer.h" />
     <ClInclude Include="AwakenTeleport.h" />
     <ClInclude Include="AwakeReiana.h" />
+    <ClInclude Include="AwakeReianaAwakeState.h" />
     <ClInclude Include="AwakeReianaBaseState.h" />
     <ClInclude Include="AwakeReianaDeadState.h" />
     <ClInclude Include="AwakeReianaDiagonalDropState.h" />

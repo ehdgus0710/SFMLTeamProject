@@ -12,6 +12,7 @@ AwakenDropStart::AwakenDropStart(const std::string& name)
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDropStartEffect.csv");
 	animator->AddAnimation(animation, "AwakenDropStartEffect");
 	SetScale({ 2.f,2.f });
+	animator->SetAnimationSpeed(2.f);
 	SetOrigin(Origins::BottomCenter);
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }

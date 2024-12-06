@@ -8,6 +8,7 @@
 #include "AwakeReianaDropAttackState.h"
 #include "AwakeReianaDeadState.h"
 #include "AwakeReianaDiagonalDropState.h"
+#include "AwakeReianaAwakeState.h"
 
 AwakeReianaFsm::AwakeReianaFsm(AwakeReiana* owner)
 	: owner(owner)
@@ -58,6 +59,9 @@ void AwakeReianaFsm::CreateAllState()
 		case AwakeReianaStateType::Dead:
 			AddState(AwakeReianaStateType::Dead);
 			break;
+		case AwakeReianaStateType::Awake:
+			AddState(AwakeReianaStateType::Awake);
+			break;
 		case AwakeReianaStateType::End:
 			break;
 		default:
@@ -92,6 +96,9 @@ BaseState<AwakeReianaStateType>* AwakeReianaFsm::CreateState(AwakeReianaStateTyp
 		break;
 	case AwakeReianaStateType::Dead:
 		state = new AwakeReianaDeadState(this);
+		break;
+	case AwakeReianaStateType::Awake:
+		state = new AwakeReianaAwakeState(this);
 		break;
 	case AwakeReianaStateType::End:
 		break;

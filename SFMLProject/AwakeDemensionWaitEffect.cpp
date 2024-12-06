@@ -24,14 +24,14 @@ void AwakeDemensionWaitEffect::Start()
 	animator->ChangeAnimation("AwakeDemensionWaitEffect");
 }
 
-void AwakeDemensionWaitEffect::ChangeAnimation()
+void AwakeDemensionWaitEffect::ChangeAttackAnimation()
 {
+	this->OnDestory();
 	changePos = GetPosition();
 	changeRot = GetRotation();
-	OnDestory();
 	AwakeGroundDimention* awakeGroundDimention = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeGroundDimention(), LayerType::EnemyBullet);
 	awakeGroundDimention->Start();
 	awakeGroundDimention->SetPosition(changePos);
 	awakeGroundDimention->SetRotation(changeRot);
-	awakeGroundDimention->GetAnimator()->GetAnimation("AwakeGroundAttackDelay")->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, awakeGroundDimention),8);
+	awakeGroundDimention->OnAttack();
 }

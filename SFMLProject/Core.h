@@ -180,6 +180,7 @@ enum class AwakeReianaStateType
 	GroundAttack,
 	DiagonalDrop,
 	Dead,
+	Awake,
 
 	End
 };

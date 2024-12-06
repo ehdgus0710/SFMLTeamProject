@@ -194,6 +194,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="Dimension.cpp" />
+    <ClCompile Include="DoorObject.cpp" />
     <ClCompile Include="HpBarUI.cpp" />
     <ClCompile Include="IntroLandSmoke.cpp" />
     <ClCompile Include="Knife.cpp" />
@@ -412,6 +413,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="Dimension.h" />
+    <ClInclude Include="DoorObject.h" />
     <ClInclude Include="HpBarUI.h" />
     <ClInclude Include="IntroLandSmoke.h" />
     <ClInclude Include="Knife.h" />

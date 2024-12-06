@@ -270,7 +270,7 @@ void Player::Update(const float& deltaTime)
 	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && fsm.GetCurrentStateType() != PlayerStateType::Hit && fsm.GetCurrentStateType() != PlayerStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
 		fsm.ChangeState(PlayerStateType::Falling);
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
+	/*if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	{
 		DamegeInfo damageInfo;
 		damageInfo.damege = 10.f;
@@ -291,7 +291,7 @@ void Player::Update(const float& deltaTime)
 		damageInfo.knockbackVelocity = { 800.f,- 600.f };
 		damageInfo.hitDirection = sf::Vector2f::Normalized(damageInfo.knockbackVelocity);
 		TakeDamage(damageInfo);
-	}
+	}*/
 }
 
 void Player::FixedUpdate(const float& deltaTime)

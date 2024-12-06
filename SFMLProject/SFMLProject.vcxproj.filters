@@ -271,6 +271,9 @@
     <Filter Include="Contants\UI\SettingUI">
       <UniqueIdentifier>{53ca4776-fd91-4174-a01b-8463605c0117}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Door">
+      <UniqueIdentifier>{a1669ab9-b54d-4aec-b6fb-a09f5d4e9f71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -854,6 +857,9 @@
     </ClCompile>
     <ClCompile Include="UIFadeTextGameObject.cpp">
       <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorObject.cpp">
+      <Filter>Contants\Object\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1465,6 +1471,9 @@
     </ClInclude>
     <ClInclude Include="UIFadeTextGameObject.h">
       <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorObject.h">
+      <Filter>Contants\Object\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

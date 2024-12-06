@@ -48,6 +48,9 @@ void TitleScene::Enter()
 	ResourcesManager<sf::Texture>::GetInstance().Load("TitleLogo", "graphics/UI/Title/Title_Logo2.png", true);
 	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
 
+
+	ResourcesManager<sf::Texture>::GetInstance().Load("Bossidle", "graphics/objects/bossidle.png", true);
+
 	fadeOutUI = AddGameObject(new FadeOutUI("FadeOut"), LayerType::UI);
 	fadeOutUI->SetScale({ 3000.f, 3000.f });
 	fadeOutUI->SetPosition({ 1000.f,1000.f });
@@ -128,7 +131,7 @@ void TitleScene::Update(float dt)
 		fadeOutUI->AddFadeOutEndEvent(std::bind(&TitleScene::StartGame, this));
 	}
 	if(isStartGame)
-		SceneManager::GetInstance().ChangeScene(SceneIds::Stage2);
+		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
 }
 
 void TitleScene::Render(sf::RenderWindow& window)
@@ -154,13 +157,13 @@ void TitleScene::OnStartFadeInEvent()
 
 void TitleScene::OnTextFadeIn()
 {
-	messageText->StartFadeIn();
+	messageText->StartFadeIn(1.5f);
 	messageText->AddFadeInEndEvent(std::bind(&TitleScene::OnTextFadeOut, this));
 }
 
 void TitleScene::OnTextFadeOut()
 {
-	messageText->StartFadeOut();
+	messageText->StartFadeOut(1.5f);
 	messageText->AddFadeOutEndEvent(std::bind(&TitleScene::OnTextFadeIn, this));
 }
 

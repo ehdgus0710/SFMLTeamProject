@@ -51,7 +51,7 @@ void AwakeReiana::Start()
 	collider->SetOffsetPosition({ 0.f,-100.f });
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
-	animator->ChangeAnimation("awakeReianaIdle", true);
+	animator->ChangeAnimation("awakenReianaIdle", true);
 	fsm.ChangeState(AwakeReianaStateType::Idle);
 	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
@@ -64,7 +64,7 @@ void AwakeReiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(AwakeReianaStateType::Idle);
+		fsm.ChangeState(AwakeReianaStateType::GroundAttack);
 	}
 }
 

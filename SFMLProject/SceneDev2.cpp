@@ -63,6 +63,20 @@ void SceneDev2::LoadResources()
 	TEXTURE_MANAGER.Load("RisingPierceReady", "graphics/boss/Rayanna/effects/RisingPierceReady.png");
 	TEXTURE_MANAGER.Load("TwinMeteor", "graphics/boss/Rayanna/effects/TwinMeteor.png");
 	TEXTURE_MANAGER.Load("TwinMeteorSign", "graphics/boss/Rayanna/effects/TwinMeteorSign.png");
+	TEXTURE_MANAGER.Load("DimensionDelete", "graphics/boss/Rayanna/effects/GroundDimension.png");
+	TEXTURE_MANAGER.Load("Awake", "graphics/boss/Rayanna/effects/awake.png");
+	TEXTURE_MANAGER.Load("DeadCreate", "graphics/boss/Rayanna/effects/deadCreate.png");
+	TEXTURE_MANAGER.Load("DeadDelete", "graphics/boss/Rayanna/effects/deadDelete.png");
+	TEXTURE_MANAGER.Load("DimensionDelete", "graphics/boss/Rayanna/effects/dimensionDelete.png");
+	TEXTURE_MANAGER.Load("DropSide", "graphics/boss/Rayanna/effects/dropSide.png");
+	TEXTURE_MANAGER.Load("DropStart", "graphics/boss/Rayanna/effects/dropStart.png");
+	TEXTURE_MANAGER.Load("DropEnd", "graphics/boss/Rayanna/effects/dropEnd.png");
+	TEXTURE_MANAGER.Load("GroundAttack", "graphics/boss/Rayanna/effects/groundAttack.png");
+	TEXTURE_MANAGER.Load("GroundAttackPreparation", "graphics/boss/Rayanna/effects/groundAttackPreparation.png");
+	TEXTURE_MANAGER.Load("GroundAttackRazer", "graphics/boss/Rayanna/effects/groundAttackRazer.png");
+	TEXTURE_MANAGER.Load("GroundAttackThunder", "graphics/boss/Rayanna/effects/groundAttackThunder.png");
+	TEXTURE_MANAGER.Load("Teleport", "graphics/boss/Rayanna/effects/teleport.png");
+
 }
 
 void SceneDev2::TestEffect()
@@ -79,20 +93,20 @@ void SceneDev2::TestEffect()
 	Animation* animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/AwakenedThunder.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "AwakenedThunder");
-	animation = new Animation();
 
+	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierce");
-	animation = new Animation();
 
+	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
-	animation = new Animation();
 
+	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/DimensionPierceImpact.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "DimensionPierceImpact");
-	animation = new Animation();
 
+	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/goldMeteorLandingSmoke.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "goldMeteorLandingSmoke");
 
@@ -124,6 +138,10 @@ void SceneDev2::TestEffect()
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/TwinMeteorSign.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "TwinMeteorSign");
 
+	animation = new Animation();
+	animation->loadFromFile("animations/Enemy/Rayanna/Effects/GroundDimension.csv");
+	effect1->GetAnimator()->AddAnimation(animation, "GroundDimension");
+	
 	effect1->GetAnimator()->ChangeAnimation("AwakenedThunder", true);
 	currentPos += addPos;
 
@@ -152,13 +170,13 @@ void SceneDev2::Enter()
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
-	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
-	testReiana->Awake();
-	testReiana->SetPosition({ 1700.f,-500.f });
+	//Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
+	//testReiana->Awake();
+	//testReiana->SetPosition({ 1700.f,-500.f });
 
-	B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
-	testBReiana->Awake();
-	testBReiana->SetPosition({ 200.f,-500.f });
+	//B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
+	//testBReiana->Awake();
+	//testBReiana->SetPosition({ 200.f,-500.f });
 
 	AwakeReiana* testAwakeReiana = AddGameObject(new AwakeReiana("AwakeReiana"), LayerType::Boss);
 	testAwakeReiana->Awake();

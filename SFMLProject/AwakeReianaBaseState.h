@@ -9,7 +9,7 @@ class Animator;
 class AwakeReianaBaseState : public BaseState<AwakeReianaStateType>
 {
 protected:
-	AwakeReiana* AwakeReiana;
+	AwakeReiana* awakeReiana;
 	AwakeReianaFsm* fsm;
 	Animator* animator;
 

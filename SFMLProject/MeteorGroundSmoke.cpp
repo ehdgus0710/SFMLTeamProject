@@ -9,6 +9,7 @@
 MeteorGroundSmoke::MeteorGroundSmoke(const std::string& name)
 	: AnimationGameObject(name)
 {
+
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/MeteorGroundSmoke.csv");
 	animator->AddAnimation(animation, "MeteorGroundSmoke");
 	SetOrigin(Origins::BottomCenter);

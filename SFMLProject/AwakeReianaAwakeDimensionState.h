@@ -9,17 +9,19 @@ class AwakeReianaAwakeDimensionState : public AwakeReianaBaseState
 protected:
 	HitBoxObject* hitBox;
 
-	float delay = 0.3f;
+	float delay = 0.5f;
 	float currentDelay = 0.f;
-	float attackDelay = 0.5f;
+	float attackDelay = 0.3f;
 	float currentAttackDelay = 0.f;
-	float animationDelay = 1.0f;
+	float animationDelay = 0.5f;
 	float currentAnimationDelay = 0.f;
 
 	int endFrame;
-	sf::Vector2f startPosition;
-	sf::Vector2f endPosition;
 
+	float leftPosition = 100.f;
+	float rightPosition = 100.f;
+
+	bool move = false;
 	bool action = false;
 	bool rush1 = false;
 	bool rush2 = false;
@@ -33,7 +35,6 @@ public:
 	void MoveSet();
 	void Awake() override;
 	void Start() override;
-	void CheckFilp();
 
 
 	void Enter() override;

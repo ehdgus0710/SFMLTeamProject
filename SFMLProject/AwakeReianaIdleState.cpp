@@ -27,16 +27,16 @@ void AwakeReianaIdleState::Enter()
 
 
 	currentdelay = 0.f;
-	if (AwakeReiana->GetPosition().x < AwakeReiana->GetPlayer()->GetPosition().x && AwakeReiana->IsFlipX())
+	if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 	}
-	if (AwakeReiana->GetPosition().x > AwakeReiana->GetPlayer()->GetPosition().x && !AwakeReiana->IsFlipX())
+	if (awakeReiana->GetPosition().x > awakeReiana->GetPlayer()->GetPosition().x && !awakeReiana->IsFlipX())
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 	}
-	animator->ChangeAnimation("idle", true);
-	AwakeReiana->SetCount(count);
+	animator->ChangeAnimation("awakenIdle", true);
+	awakeReiana->SetCount(count);
 	if (count == 9)
 	{
 		count = 1;
@@ -70,7 +70,7 @@ void AwakeReianaIdleState::LateUpdate(float deltaTime)
 
 void AwakeReianaIdleState::changeState(float dt)
 {
-	/*currentdelay += dt;
+	currentdelay += dt;
 	if (currentdelay > delay)
 	{
 		switch ((AwakeReianaStateType)count)
@@ -102,5 +102,5 @@ void AwakeReianaIdleState::changeState(float dt)
 		default:
 			break;
 		}
-	}*/
+	}
 }

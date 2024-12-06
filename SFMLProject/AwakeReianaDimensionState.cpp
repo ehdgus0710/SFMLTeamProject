@@ -18,7 +18,7 @@ void AwakeReianaDimensionState::CreateDimension()
 {
 	Dimension* dimension = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Dimension(), LayerType::EnemyBullet);
 	dimension->SetActive(true);
-	dimension->SetPosition(AwakeReiana->GetPlayer()->GetPosition());
+	dimension->SetPosition(awakeReiana->GetPlayer()->GetPosition());
 	dimension->SetRotation((float)Utils::RandomRange(1, 180));
 	dimension->Awake();
 	dimension->Start();
@@ -38,14 +38,14 @@ void AwakeReianaDimensionState::Enter()
 {
 	AwakeReianaBaseState::Enter();
 	currentTime = 0.f;
-	animator->ChangeAnimation("dimensionPierceAttack", false);
-	if (AwakeReiana->GetPosition().x < AwakeReiana->GetPlayer()->GetPosition().x && AwakeReiana->IsFlipX())
+	animator->ChangeAnimation("awakenDimensionPierceAttack", false);
+	if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 	}
-	if (AwakeReiana->GetPosition().x > AwakeReiana->GetPlayer()->GetPosition().x && !AwakeReiana->IsFlipX())
+	if (awakeReiana->GetPosition().x > awakeReiana->GetPlayer()->GetPosition().x && !awakeReiana->IsFlipX())
 	{
-		AwakeReiana->OnFlipX();
+		awakeReiana->OnFlipX();
 	}
 	CreateDimension();
 }

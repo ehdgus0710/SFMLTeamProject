@@ -154,7 +154,7 @@ void HitBoxObject::OnCollisionEnter(Collider* target)
 
 			if(yggdrasil)
 				yggdrasil->TakeDamage(damageInfo);
-			else
+			else if (dynamic_cast<Reiana*>(target->GetOwner()))
 				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Yggdrasil)

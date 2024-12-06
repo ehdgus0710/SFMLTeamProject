@@ -94,6 +94,7 @@ enum class ColliderLayer
 	EnemyBullet,
 	SavePoint,
 	CleraPoint,
+	Door,
 
 	UI,
 

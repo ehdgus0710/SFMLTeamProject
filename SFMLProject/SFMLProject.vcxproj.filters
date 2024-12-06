@@ -268,6 +268,12 @@
     <Filter Include="Contants\Object\AwakeReiana\Object">
       <UniqueIdentifier>{eed13e94-c6c2-45b6-ae87-e27052622ff7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\UI\SettingUI">
+      <UniqueIdentifier>{53ca4776-fd91-4174-a01b-8463605c0117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Door">
+      <UniqueIdentifier>{a1669ab9-b54d-4aec-b6fb-a09f5d4e9f71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -774,9 +780,6 @@
     <ClCompile Include="B_ReianaThreeSwordState.cpp">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClCompile>
-    <ClCompile Include="PauseUIBar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="B_ReianaBackStap.cpp">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClCompile>
@@ -837,23 +840,26 @@
     <ClCompile Include="AwakenGroundAttackRazer.cpp">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="PauseUIBar.cpp">
+      <Filter>Contants\UI\SettingUI</Filter>
+    </ClCompile>
     <ClCompile Include="ScrollButtonUI.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\UI\SettingUI</Filter>
     </ClCompile>
     <ClCompile Include="SettingUIBar.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\UI\SettingUI</Filter>
     </ClCompile>
     <ClCompile Include="SoundScrollObject.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\UI\SettingUI</Filter>
     </ClCompile>
-    <ClCompile Include="AwakeGroundAttackDelay.cpp">
-      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    <ClCompile Include="UIFadeInOutSpriteObject.cpp">
+      <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="AwakeDemensionWaitEffect.cpp">
-      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    <ClCompile Include="UIFadeTextGameObject.cpp">
+      <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="AwakeReianaAwakeState.cpp">
-      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    <ClCompile Include="DoorObject.cpp">
+      <Filter>Contants\Object\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1388,9 +1394,6 @@
     <ClInclude Include="B_ReianaThreeSwordState.h">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClInclude>
-    <ClInclude Include="PauseUIBar.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="B_ReianaBackStap.h">
       <Filter>Contants\Object\ReianaB\State</Filter>
     </ClInclude>
@@ -1451,23 +1454,26 @@
     <ClInclude Include="AwakenGroundAttackRazer.h">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClInclude>
+    <ClInclude Include="SoundScrollObject.h">
+      <Filter>Contants\UI\SettingUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseUIBar.h">
+      <Filter>Contants\UI\SettingUI</Filter>
+    </ClInclude>
     <ClInclude Include="ScrollButtonUI.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\UI\SettingUI</Filter>
     </ClInclude>
     <ClInclude Include="SettingUIBar.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\UI\SettingUI</Filter>
     </ClInclude>
-    <ClInclude Include="SoundScrollObject.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="UIFadeInOutSpriteObject.h">
+      <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="AwakeGroundAttackDelay.h">
-      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    <ClInclude Include="UIFadeTextGameObject.h">
+      <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="AwakeDemensionWaitEffect.h">
-      <Filter>Contants\Object\AwakeReiana\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="AwakeReianaAwakeState.h">
-      <Filter>Contants\Object\AwakeReiana\AwakeReianaState</Filter>
+    <ClInclude Include="DoorObject.h">
+      <Filter>Contants\Object\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

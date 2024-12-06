@@ -1,14 +1,22 @@
 #pragma once
 #include "Scene.h"
 
+class PauseUIBar;
 
-class Stage1 :
-    public Scene
+class Stage1 : public Scene
 {
-protected:
+private:
+	Rectangle	cameraLimitRect;
+	Rectangle	currentCameraLimitRect;
+	PauseUIBar* pauseUIBar;
+
+	SceneIds	changeSceneIds;
+	bool		isChangeScene;
+
 public:
 	void CollisitionCheck();
 	void LoadResources();
+	void SetChangeScene(SceneIds id);
 
 public:
 	void Init() override;

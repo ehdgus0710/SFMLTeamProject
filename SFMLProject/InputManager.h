@@ -40,7 +40,7 @@ private:
 	std::vector<sf::Mouse::Button>					mouseUpDownStateVector;
 	sf::Vector2i									mousePosition;
 	bool											isInputable;
-
+	bool											isInput;
 
 public:
 	bool BindKey(const sf::Keyboard::Key& key);
@@ -66,6 +66,8 @@ public:
 	bool GetKeyPressed(const sf::Mouse::Button& button);
 	bool GetKeyUp(const sf::Mouse::Button& button);
 	bool GetKeyNone(const sf::Mouse::Button& button);
+
+	bool GetInputKey() { return isInput; }
 
 	float GetAxisRaw(Axis axis);
 	float GetAxis(Axis axis);

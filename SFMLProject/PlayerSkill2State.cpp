@@ -27,7 +27,7 @@ void PlayerSkill2State::Enter()
 	animator->ChangeAnimation("littleboneSkillMove");
 	Animation* animation = animator->GetCurrentAnimation();
 
-	animation->SetAnimationStartEvent(std::bind(&PlayerSkill2State::OnEndAniamtion, this), animation->GetFrameCount() - 1);
+	animation->SetAnimationStartEvent(std::bind(&PlayerSkill2State::OnEndAniamtion, this), animation->GetEndFrameCount());
 
 	player->GetRigidbody()->SetActive(false);
 	player->SetPosition(player->GetHeadPosition() + 23.5f * sf::Vector2f::up);
@@ -41,7 +41,7 @@ void PlayerSkill2State::Exit()
 
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->ClearEndEvent(1);
-	animation->ClearEndEvent(animation->GetFrameCount() - 1);
+	animation->ClearEndEvent(animation->GetEndFrameCount());
 }
 
 void PlayerSkill2State::Update(float deltaTime)
@@ -56,7 +56,7 @@ void PlayerSkill2State::FixedUpdate(float fixedDeltaTime)
 void PlayerSkill2State::OnEndAniamtion()
 {
 	Animation* animation = animator->GetCurrentAnimation();
-	animation->ClearEndEvent(animation->GetFrameCount() - 1);
+	animation->ClearEndEvent(animation->GetEndFrameCount());
 
 	player->GetRigidbody()->SetActive(true);
 	player->GetRigidbody()->ResetDropSpeed();

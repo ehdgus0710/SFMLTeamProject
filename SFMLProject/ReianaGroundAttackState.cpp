@@ -24,7 +24,7 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 	if (!start)
 	{
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
-		meteorGroundSmoke->SetScale({ 2.f,2.f });
+		meteorGroundSmoke->SetScale({ 3.f,3.f });
 		meteorGroundSmoke->Start();
 		meteorGroundSmoke->SetPosition(reiana->GetPosition());
 		if (meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())

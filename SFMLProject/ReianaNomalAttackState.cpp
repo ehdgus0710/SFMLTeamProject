@@ -71,7 +71,7 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 		endPosition = { reiana->GetPlayer()->GetPosition().x ,reiana->GetPosition().y };
 		playerPosCheck = true;
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
-		meteorGroundSmoke->SetScale({ 1.f,1.f });
+		meteorGroundSmoke->SetScale({ 2.f,2.f });
 		meteorGroundSmoke->Start();
 		meteorGroundSmoke->SetPosition(reiana->GetPosition());
 		if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())
@@ -183,9 +183,9 @@ void ReianaNomalAttackState::LateUpdate(float deltaTime)
 void ReianaNomalAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,reiana->GetPosition().y - 180 });
+	hitBox->GetCollider()->SetOffsetPosition({ 0.f,- 80.f });
 	hitBox->SetScale({ 150.f,50.f });
-	hitBox->SetDamage(1000);
+	hitBox->SetDamage(10);
 }
 
 void ReianaNomalAttackState::OnDestoryHitBox()

@@ -46,7 +46,8 @@ void AwakeReianaAwakeDimensionState::Attack(float deltaTime)
 			currentAttackDelay = 0.f;
 			action = false;
 			animation = false;
-			OnDestoryHitBox();
+			if(!rush3)
+				OnDestoryHitBox();
 		}
 	}
 	else if (currentAttackDelay >= attackDelay)
@@ -56,7 +57,6 @@ void AwakeReianaAwakeDimensionState::Attack(float deltaTime)
 			animator->SetAnimationSpeed(1.2f);
 			animator->ChangeAnimation("awakenRushC", false);
 			rush3 = true;
-			OnCreateHitBox();
 			animationDelay = 4.f;
 		}
 		else if (rush1)
@@ -209,9 +209,9 @@ void AwakeReianaAwakeDimensionState::LateUpdate(float deltaTime)
 void AwakeReianaAwakeDimensionState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(awakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,awakeReiana->GetPosition().y - 180 });
+	hitBox->GetCollider()->SetOffsetPosition({ 0.f,-80.f });
 	hitBox->SetScale({ 150.f,50.f });
-	hitBox->SetDamage(1000);
+	hitBox->SetDamage(10);
 }
 
 void AwakeReianaAwakeDimensionState::OnDestoryHitBox()

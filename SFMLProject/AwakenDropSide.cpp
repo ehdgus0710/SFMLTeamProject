@@ -11,12 +11,33 @@ AwakenDropSide::AwakenDropSide(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDropSideEffect.csv");
 	animator->AddAnimation(animation, "AwakenDropSideEffect");
-	SetScale({ 1.f,1.f });
-	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
+	speed = 100.f;
+	SetScale({ 2.5f, 2.5f });
+	SetOrigin(Origins::BottomCenter);
+}
+
+void AwakenDropSide::Move(float deltaTime)
+{
+	auto pos = GetPosition();
+	speed *= 1.01f;
+	pos.x = pos.x + speed * deltaTime;
+	SetPosition(pos);
+}
+void AwakenDropSide::Move2(float deltaTime)
+{
+	auto pos = GetPosition();
+	speed *= 1.01f;
+	pos.x = pos.x - speed * deltaTime;
+	SetPosition(pos);
 }
 
 void AwakenDropSide::Start()
 {
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("AwakenDropSideEffect");
+}
+
+void AwakenDropSide::Delete()
+{
+	OnDestory();
 }

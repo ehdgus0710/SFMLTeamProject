@@ -849,6 +849,9 @@
     <ClCompile Include="AwakeGroundAttackDelay.cpp">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="AwakeDemensionWaitEffect.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1455,6 +1458,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="AwakeGroundAttackDelay.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeDemensionWaitEffect.h">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClInclude>
   </ItemGroup>

@@ -77,6 +77,7 @@ void SceneDev2::LoadResources()
 	TEXTURE_MANAGER.Load("GroundAttackThunder", "graphics/boss/Rayanna/effects/groundAttackThunder.png");
 	TEXTURE_MANAGER.Load("Teleport", "graphics/boss/Rayanna/effects/teleport.png");
 	TEXTURE_MANAGER.Load("GroundAttackDelay", "graphics/boss/Rayanna/effects/GroundAttackDelay.png");
+	TEXTURE_MANAGER.Load("AwakeDimension", "graphics/boss/Rayanna/effects/AwakeDimension.png");
 
 }
 

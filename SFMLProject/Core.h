@@ -268,5 +268,6 @@ enum class BossType
 enum class SkullType
 {
 	Littlebone,
+	Spear,
 	End
 };

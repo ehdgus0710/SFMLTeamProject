@@ -9,8 +9,7 @@ SkeletonSpearAttackState::SkeletonSpearAttackState(SkeletonSpearFSM* fsm)
 	: SkeletonSpearBaseState(fsm, SkeletonSpearStateType::Attack)
 	, attackMoveSpeed(300.f)
 {
-	animationKeys.push_back("littleboneAttack");
-	animationKeys.push_back("noheadlittleboneAttack");
+	animationKeys.push_back("spearAttackA");
 
 
 	damageInfo.damege = 10.f;
@@ -101,7 +100,7 @@ void SkeletonSpearAttackState::StartAttack()
 		rigidbody->SetVelocity((skeletonSpear->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
 
 	currentAttackCount = 1;
-	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "1", false);
+	animator->ChangeAnimation("spearAttackA", false);
 
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->SetAnimationEndEvent(std::bind(&SkeletonSpearAttackState::EndAttack, this), animation->GetFrameCount() - 1);
@@ -118,7 +117,23 @@ void SkeletonSpearAttackState::NextAttack()
 		rigidbody->SetVelocity((skeletonSpear->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
 
 	currentAttackCount = 2;
-	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "2", true);
+	animator->ChangeAnimation("spearAttackB", true);
+
+	Animation* animation = animator->GetCurrentAnimation();
+
+	animation->SetAnimationStartEvent(std::bind(&SkeletonSpearAttackState::EndMove, this), 1);
+	animation->SetAnimationEndEvent(std::bind(&SkeletonSpearAttackState::EndAttack, this), animation->GetFrameCount() - 1);
+	animation->SetAnimationStartEvent(std::bind(&SkeletonSpearAttackState::OnCreateHitBox, this), 1);
+	animation->SetAnimationEndEvent(std::bind(&SkeletonSpearAttackState::OnDestoryHitBox, this), 1);
+}
+
+void SkeletonSpearAttackState::LastAttack()
+{
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) || InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+		rigidbody->SetVelocity((skeletonSpear->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
+
+	currentAttackCount = 3;
+	animator->ChangeAnimation("spearAttackC", true);
 
 	Animation* animation = animator->GetCurrentAnimation();
 
@@ -148,6 +163,10 @@ void SkeletonSpearAttackState::SequenceAttack()
 	if (currentAttackCount == 1)
 	{
 		NextAttack();
+	}
+	else if (currentAttackCount == 2)
+	{
+		LastAttack();
 	}
 	else
 	{

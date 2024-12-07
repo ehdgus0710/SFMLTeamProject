@@ -1,0 +1,16 @@
+ANIMATIONCSVPATH,ANIMAIONID
+,
+animations/Skul/spear/spearAttackA.csv,spearAttackA
+animations/Skul/spear/spearAttackB.csv,spearAttackB
+animations/Skul/spear/spearAttackC.csv,spearAttackC
+animations/Skul/spear/spearDash.csv,spearDash
+animations/Skul/spear/spearFalling.csv,spearFalling
+animations/Skul/spear/spearFallRepeat.csv,spearFallRepeat
+animations/Skul/spear/spearIdle.csv,spearIdle
+animations/Skul/spear/spearJump.csv,spearJump
+animations/Skul/spear/spearJumpAttack.csv,spearJumpAttack
+animations/Skul/spear/spearJumpAttackReady.csv,spearJumpAttackReady
+animations/Skul/spear/spearParry.csv,spearParry
+animations/Skul/spear/spearParryAttack.csv,spearParryAttack
+animations/Skul/spear/spearPierce.csv,spearPierce
+animations/Skul/spear/spearRun.csv,spearRun

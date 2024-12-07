@@ -2,6 +2,8 @@
 #include "SkeletonSpearDashState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Animation.h"
+#include "HitBoxObject.h"
 
 
 SkeletonSpearDashState::SkeletonSpearDashState(SkeletonSpearFSM* fsm)
@@ -11,8 +13,14 @@ SkeletonSpearDashState::SkeletonSpearDashState(SkeletonSpearFSM* fsm)
 	, currentTime(0.f)
 	, rigidbody(nullptr)
 {
-	animationKeys.push_back("littleboneDash");
-	animationKeys.push_back("noheadlittleboneDash");
+	animationKeys.push_back("spearDash");
+
+	damageInfo.damege = 20.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.2f;
+	damageInfo.owner = skeletonSpear;
+	damageInfo.knockbackVelocity = { 30.f,0.f };
+	damageInfo.hitDirection = sf::Vector2f::down;
 }
 
 SkeletonSpearDashState::~SkeletonSpearDashState()
@@ -28,6 +36,46 @@ void SkeletonSpearDashState::StartDash()
 	currentTime = 0.f;
 }
 
+void SkeletonSpearDashState::OnCreateHitBox()
+{
+	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(skeletonSpear, ColliderLayer::PlayerBullet, ColliderLayer::Boss, true, sf::Vector2f::right * 50.f), LayerType::PlayerBullet);
+	attackBox->SetScale({ 150.f,150.f });
+	attackBox->SetDamage(damageInfo);
+
+	attackBox->AddStartHitEvent(std::bind(&SkeletonSpearDashState::CreateEffect, this, std::placeholders::_1));
+	attackBox->Start();
+}
+
+void SkeletonSpearDashState::OnDestoryHitBox()
+{
+	attackBox->OnDestory();
+	attackBox->SetActive(false);
+	attackBox = nullptr;
+
+	Animation* animation = animator->GetCurrentAnimation();
+	animation->ClearStartEvent(1);
+	animation->ClearEndEvent(1);
+}
+
+void SkeletonSpearDashState::CreateEffect(GameObject* object)
+{
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
+	Animation* animation(new Animation("animations/Effect/normalAttack.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "NormalAttack");
+	effect->GetAnimator()->ChangeAnimation("NormalAttack");
+
+	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+	effect->SetPosition(object->GetPosition());
+
+	if (skeletonSpear->IsFlipX())
+		effect->SetScale({ effect->GetScale().x * -2.f ,effect->GetScale().y * 2.f });
+	else
+		effect->SetScale(sf::Vector2f::one * 2.f);
+
+	effect->Awake();
+	effect->Start();
+}
+
 void SkeletonSpearDashState::Start()
 {
 	rigidbody = skeletonSpear->GetRigidbody();
@@ -36,6 +84,7 @@ void SkeletonSpearDashState::Start()
 void SkeletonSpearDashState::Enter()
 {
 	SkeletonSpearBaseState::Enter();
+	OnCreateHitBox();
 	rigidbody->ResetDropSpeed();
 	rigidbody->ResetVelocity();
 	rigidbody->Disable();
@@ -45,6 +94,7 @@ void SkeletonSpearDashState::Enter()
 
 void SkeletonSpearDashState::Exit()
 {
+	OnDestoryHitBox();
 	rigidbody->SetActive(true);
 	SkeletonSpearBaseState::Exit();
 }
@@ -56,7 +106,9 @@ void SkeletonSpearDashState::Update(float deltaTime)
 	skeletonSpear->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currentTime / dashTime));
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
+	{
 		isExtraDash = true;
+	}
 
 	if (currentTime >= dashTime + 0.1f)
 	{
@@ -67,9 +119,13 @@ void SkeletonSpearDashState::Update(float deltaTime)
 		else
 		{
 			if (rigidbody->IsGround())
+			{
 				fsm->ChangeState(SkeletonSpearStateType::Idle);
+			}
 			else
+			{
 				fsm->ChangeState(SkeletonSpearStateType::Falling);
+			}
 		}
 	}
 

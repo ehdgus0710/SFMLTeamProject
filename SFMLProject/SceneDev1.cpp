@@ -5,6 +5,7 @@
 #include "GameInclude.h"
 
 #include "Yggdrasil.h"
+#include "SkeletonSpear.h"
 
 void SceneDev1::Init()
 {
@@ -22,16 +23,23 @@ void SceneDev1::Enter()
 	CollisitionCheck();
 
 
-	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
-	testPlayer->Awake();
-	mainCamera->SetFollowTarget(testPlayer, true);
-	testPlayer->SetPosition({ 0, -500.f });
-	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
+	//Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
+	//testPlayer->Awake();
+	//mainCamera->SetFollowTarget(testPlayer, true);
+	//testPlayer->SetPosition({ 0, -500.f });
+	//testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
-	Yggdrasil* testYggdrasil = AddGameObject(new Yggdrasil("Yggdrasil"), LayerType::Enemy);
-	testYggdrasil->Awake();
-	testYggdrasil->SetPosition({ 0, -350.f });
-	testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
+	SkeletonSpear* testSkeletonSpear = AddGameObject(new SkeletonSpear("SkeletonSpear"), LayerType::Player);
+	mainCamera->SetFollowTarget(testSkeletonSpear, true);
+	testSkeletonSpear->SetPosition({ 0, -500.f });
+	testSkeletonSpear->GetCollider()->SetScale({ 100.f,100.f });
+	testSkeletonSpear->Awake();
+
+
+	//Yggdrasil* testYggdrasil = AddGameObject(new Yggdrasil("Yggdrasil"), LayerType::Enemy);
+	//testYggdrasil->Awake();
+	//testYggdrasil->SetPosition({ 0, -350.f });
+	//testYggdrasil->GetCollider()->SetScale({ 1000.f,1000.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });

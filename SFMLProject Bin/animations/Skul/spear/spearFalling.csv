@@ -1,0 +1,5 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false)
+SkulSpear,spearFalling,0
+
+,80,50,0,335,80,50,0.100000
+,80,50,80,335,80,50,0.100000

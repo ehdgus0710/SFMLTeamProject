@@ -26,6 +26,7 @@ public:
 
 	void StartAttack();
 	void NextAttack();
+	void LastAttack();
 	void EndAttack();
 	void SequenceAttack();
 	void OnCreateHitBox();

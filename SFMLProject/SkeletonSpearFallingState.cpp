@@ -7,8 +7,7 @@
 SkeletonSpearFallingState::SkeletonSpearFallingState(SkeletonSpearFSM* fsm)
 	: SkeletonSpearBaseState(fsm, SkeletonSpearStateType::Falling)
 {
-	animationKeys.push_back("littleboneFalling");
-	animationKeys.push_back("noheadlittleboneFalling");
+	animationKeys.push_back("spearFalling");
 }
 
 SkeletonSpearFallingState::~SkeletonSpearFallingState()

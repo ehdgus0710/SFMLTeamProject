@@ -14,7 +14,7 @@
 #include "PlayerUIHub.h"
 
 SkeletonSpear::SkeletonSpear(const std::string& name)
-	: AnimationGameObject(name)
+	: Player(name)
 	, fsm(this)
 	, isJump(false)
 	, currentStatus(150.f, 500.f, 200.f, 350.f)
@@ -30,19 +30,19 @@ SkeletonSpear::SkeletonSpear(const std::string& name)
 	, isNoneHead(false)
 	, currentSkill1CoolTime(0.f)
 	, currentSkill2CoolTime(0.f)
-	, skill1CoolTime(2.f)
-	, skill2CoolTime(3.f)
+	, skill1CoolTime(10.f)
+	, skill2CoolTime(12.f)
 	, isSkll1CoolTime(false)
 	, isSkll2CoolTime(false)
-	, skullType(SkullType::Littlebone)
+	, skullType(SkullType::Spear)
 
 {
+	ResourcesManager<sf::Texture>::GetInstance().Load("SkulSpear", "graphics/skul/SkulSpear.png", true);
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
 
-	animator->LoadCsv("animators/littlebone.csv");
-	animator->LoadCsv("animators/noheadlittlebone.csv");
+	animator->LoadCsv("animators/spearSkul.csv");
 
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);
@@ -116,22 +116,6 @@ void SkeletonSpear::OnDownJump()
 	}
 }
 
-void SkeletonSpear::OnSkill1CoolTime()
-{
-	isSkll1CoolTime = true;
-	currentSkill1CoolTime = 0.f;
-
-	playerUI->OnSkill1CoolTime();
-}
-
-void SkeletonSpear::OnSkill2CoolTime()
-{
-	isSkll2CoolTime = true;
-	currentSkill2CoolTime = 0.f;
-
-	playerUI->OnSkill2CoolTime();
-}
-
 void SkeletonSpear::SetMaxHp(float maxHp)
 {
 	currentStatus.maxHp = maxHp;
@@ -142,6 +126,8 @@ void SkeletonSpear::SetMaxHp(float maxHp)
 void SkeletonSpear::Awake()
 {
 	AnimationGameObject::Awake();
+	SetOrigin(Origins::BottomCenter);
+	collider->SetOffsetPosition({ 0.f, -45.f });
 	currentDashCount = dashCount;
 	currentJumpCount = jumpCount;
 	dashDelayTime = 1.3f;
@@ -167,13 +153,12 @@ void SkeletonSpear::Start()
 
 	SetScale({ 3.f,3.f });
 	collider->SetScale({ 16.f,32.f });
-	collider->SetOffsetPosition({ 0.f, -5.f });
 
-	playerUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
-
-	playerUI->SetOrigin(Origins::BottomLeft);
-	playerUI->SetScale({ 3.5f,3.5f });
-	playerUI->SetPosition({ 0, 1075.f });
+	//playerUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
+	//
+	//playerUI->SetOrigin(Origins::BottomLeft);
+	//playerUI->SetScale({ 3.5f,3.5f });
+	//playerUI->SetPosition({ 0, 1075.f });
 }
 
 void SkeletonSpear::Update(const float& deltaTime)
@@ -200,6 +185,7 @@ void SkeletonSpear::Update(const float& deltaTime)
 		if (currentSkill1CoolTime >= skill1CoolTime)
 		{
 			isSkll1CoolTime = false;
+			currentSkill1CoolTime = 0.f;
 		}
 	}
 
@@ -211,19 +197,29 @@ void SkeletonSpear::Update(const float& deltaTime)
 			skill2CooltimeAction(currentSkill2CoolTime, skill2CoolTime);
 
 		if (currentSkill2CoolTime >= skill2CoolTime)
+		{
 			isSkll2CoolTime = false;
+			currentSkill2CoolTime = 0.f;
+		}
 	}
+
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
 		if (!isSkll1CoolTime && fsm.GetCurrentStateType() != SkeletonSpearStateType::Skill1 && fsm.GetCurrentStateType() != SkeletonSpearStateType::Dead)
+		{
+			isSkll1CoolTime = true;
 			fsm.ChangeState(SkeletonSpearStateType::Skill1);
+		}
 	}
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
 	{
 		if (!isSkll2CoolTime && fsm.GetCurrentStateType() != SkeletonSpearStateType::Skill2 && fsm.GetCurrentStateType() != SkeletonSpearStateType::Dead)
+		{
+			isSkll2CoolTime = true;
 			fsm.ChangeState(SkeletonSpearStateType::Skill2);
+		}
 	}
 
 	if (fsm.GetCurrentStateType() != SkeletonSpearStateType::Falling && fsm.GetCurrentStateType() != SkeletonSpearStateType::Hit && fsm.GetCurrentStateType() != SkeletonSpearStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)

@@ -1,10 +1,14 @@
 #pragma once
 #include "SkeletonSpearBaseState.h"
+class HitBoxObject;
+
 
 class SkeletonSpearDashState : public SkeletonSpearBaseState
 {
 protected:
 	Rigidbody* rigidbody;
+	HitBoxObject* attackBox;
+	DamegeInfo		damageInfo;
 
 	sf::Vector2f	dashEndPos;
 	sf::Vector2f	dashStartPos;
@@ -15,6 +19,10 @@ protected:
 
 private:
 	void StartDash();
+	void OnCreateHitBox();
+	void OnDestoryHitBox();
+	void CreateEffect(GameObject* object);
+
 
 public:
 	void Start() override;

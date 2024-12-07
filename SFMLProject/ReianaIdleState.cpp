@@ -52,7 +52,16 @@ void ReianaIdleState::Exit()
 void ReianaIdleState::Update(float deltaTime)
 {
 	ReianaBaseState::Update(deltaTime);
-	changeState(deltaTime);
+	currentStartDelay += deltaTime;
+
+	if (!start && startDelay <= currentStartDelay)
+	{
+		start = true;
+	}
+	if (start)
+	{
+		changeState(deltaTime);
+	}
 }
 
 void ReianaIdleState::FixedUpdate(float fixedDeltaTime)

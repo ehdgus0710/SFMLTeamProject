@@ -15,7 +15,7 @@ protected:
 	sf::Vector2f moveDistance = { 1500.f, 0.f };
 
 
-	float waitTime = 0.6f;
+	float waitTime = 0.3f;
 	float currentWaitTime = 0.f;
 	float attackTime = 0.5f;
 	float currentAttackTime = 0.f;

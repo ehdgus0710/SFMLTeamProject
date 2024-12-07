@@ -109,7 +109,14 @@ void AwakeReianaAwakeDimensionState::Wait(float deltaTime)
 		awakeReiana->SetPosition({ -500.f,-1000 });
 		if (moveTime < moveCurrentTime)
 		{
-			awakeReiana->SetPosition({ awakeReiana->GetPlayer()->GetPosition().x + rightPosition, 900 });
+			if (awakeReiana->IsFlipX())
+			{
+				awakeReiana->SetPosition({ awakeReiana->GetPlayer()->GetPosition().x - rightPosition, 900 });
+			}
+			else
+			{
+				awakeReiana->SetPosition({ awakeReiana->GetPlayer()->GetPosition().x + rightPosition, 900 });
+			}
 			animator->ChangeAnimation("dash", false);
 			AwakenTeleport* awakenTeleport1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenTeleport(), LayerType::EnemyBullet);
 			awakenTeleport1->Start();
@@ -183,6 +190,10 @@ void AwakeReianaAwakeDimensionState::Enter()
 void AwakeReianaAwakeDimensionState::Exit()
 {
 	AwakeReianaBaseState::Exit();
+	if (hitBox != nullptr)
+	{
+		OnDestoryHitBox();
+	}
 }
 
 void AwakeReianaAwakeDimensionState::Update(float deltaTime)
@@ -209,9 +220,16 @@ void AwakeReianaAwakeDimensionState::LateUpdate(float deltaTime)
 void AwakeReianaAwakeDimensionState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(awakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,-80.f });
 	hitBox->SetScale({ 150.f,50.f });
-	hitBox->SetDamage(10);
+	hitBox->SetDamage(10);	
+	if (!awakeReiana->IsFlipX())
+	{
+		hitBox->GetCollider()->SetOffsetPosition({ -50.f,-100.f });
+	}
+	else
+	{
+		hitBox->GetCollider()->SetOffsetPosition({ 50.f,-100.f });
+	}
 }
 
 void AwakeReianaAwakeDimensionState::OnDestoryHitBox()

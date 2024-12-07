@@ -40,8 +40,7 @@ void B_ReianaIdleState::Enter()
 
 	count = reiana->GetCount();
 	animator->ChangeAnimation("idle", true);
-
-	if (reiana->GetHp() <= 0)
+	if (b_reiana->IsDead())
 	{
 		fsm->ChangeState(B_ReianaStateType::Dead);
 	}
@@ -56,12 +55,20 @@ void B_ReianaIdleState::Exit()
 void B_ReianaIdleState::Update(float deltaTime)
 {
 	B_ReianaBaseState::Update(deltaTime);
+	currentStartdelay += deltaTime;
 	if (count <= 9 && reiana->GetCount() != count)
 	{
 		currentdelay = 0.f;
 		count = reiana->GetCount();
 	}
-	changeState(deltaTime);
+	if (!start && startDelay <= currentStartdelay)
+	{
+		start = true;
+	}
+	if (start)
+	{
+		changeState(deltaTime);
+	}
 }
 
 void B_ReianaIdleState::FixedUpdate(float fixedDeltaTime)

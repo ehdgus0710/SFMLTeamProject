@@ -18,7 +18,7 @@ B_ReianaDeadState::~B_ReianaDeadState()
 void B_ReianaDeadState::Enter()
 {
 	Awakning* awakning = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Awakning(""), LayerType::EnemyBullet);
-	awakning->SetPosition(b_reiana->GetPosition());
+	awakning->SetPosition({ b_reiana->GetPosition().x,b_reiana->GetPosition().y + 60 });
 	awakning->Start();
 	int EndFream = animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->ChangeAnimation("awaken", false);

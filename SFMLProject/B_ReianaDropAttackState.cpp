@@ -31,7 +31,7 @@ void B_ReianaDropAttackState::Drop(float deltaTime)
 {
 	currentDropTime += deltaTime;
 
-	b_reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
+	b_reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime*2));
 	if (currentDropTime > dropTime)
 	{
 		animator->ChangeAnimation("goldmetorLanding", false);
@@ -121,8 +121,16 @@ void B_ReianaDropAttackState::LateUpdate(float deltaTime)
 void B_ReianaDropAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(b_reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
-	hitBox->SetScale({ 50.f,100.f });
-	hitBox->SetDamage(1000);
+	hitBox->SetScale({ 100.f,100.f });
+	hitBox->SetDamage(10);
+
+	DamegeInfo damageInfo;
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.2f;
+	damageInfo.owner = b_reiana;
+	damageInfo.knockbackVelocity = { 50.f,0.f };
+	damageInfo.hitDirection = sf::Vector2f::down;
 }
 
 void B_ReianaDropAttackState::OnDestoryHitBox()

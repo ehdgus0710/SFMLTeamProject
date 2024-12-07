@@ -12,7 +12,11 @@ protected:
 	int				count = 1;
 	float			currentdelay = 0.f;
 	float			delay = 1.f;
+	
+	float			startDelay = 2.f;
+	float			currentStartdelay = 0.f;
 
+	bool			start = false;
 	bool			dash = false;
 public:
 	void Awake() override;

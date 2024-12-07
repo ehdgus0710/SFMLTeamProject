@@ -22,23 +22,29 @@ void RisingReady::Start()
 
 	AnimationBullet::Start();
 
-	AnimationGameObject* effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
+	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
 	Animation* animation = new Animation();
 	animation = new Animation();
 	animation->loadFromFile("animations/Enemy/Rayanna/Effects/RisingPierceReady.csv");
 	effect1->GetAnimator()->AddAnimation(animation, "RisingPierceReady");
 	effect1->GetAnimator()->ChangeAnimation("RisingPierceReady");
-	effect1->SetPosition({ reiana->GetPosition().x,reiana->GetPosition().y + 30.f});
+	sf::Vector2f reianaPos = { reiana->GetPosition().x,reiana->GetPosition().y +60};
+	effect1->SetPosition(reianaPos + (reiana->IsFlipX() ? risingReadyPos : -risingReadyPos));
 	effect1->Awake();
 	effect1->Start();
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
 	effect1->SetOrigin(Origins::BottomCenter);
-	effect1->SetScale({ 2.f,2.f });
+	effect1->SetScale({ 3.f,3.f });
 }
 void RisingReady::Update(const float& deltaTime)
 {
 
 	AnimationBullet::Update(deltaTime);
+}
+
+sf::Vector2f RisingReady::GetEffectPos()
+{
+	return effect1->GetPosition();
 }
 
 void RisingReady::setDelay(float delay)

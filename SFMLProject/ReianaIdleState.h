@@ -9,7 +9,10 @@ protected:
 	int				tossCount = 1;
 	float			currentdelay = 0.f;
 	float			delay = 1.f;
+	float			currentStartDelay = 0.f;
+	float			startDelay = 2.f;
 
+	bool			start = false;
 	bool			dash = false;
 public:
 	void Awake() override;

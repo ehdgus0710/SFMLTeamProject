@@ -24,20 +24,18 @@ void AwakeReianaIdleState::Start()
 void AwakeReianaIdleState::Enter()
 {
 	AwakeReianaBaseState::Enter();
-
-
 	currentdelay = 0.f;
-	if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
-	{
-		awakeReiana->OnFlipX();
-	}
-	if (awakeReiana->GetPosition().x > awakeReiana->GetPlayer()->GetPosition().x && !awakeReiana->IsFlipX())
-	{
-		awakeReiana->OnFlipX();
-	}
 	animator->ChangeAnimation("awakenIdle", true);
 	awakeReiana->SetCount(count);
-	if (count == 9)
+	if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && !awakeReiana->IsFlipX())
+	{
+		awakeReiana->OnFlipX();
+	}
+	if (awakeReiana->GetPosition().x > awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
+	{
+		awakeReiana->OnFlipX();
+	}
+	if (count == 5)
 	{
 		count = 1;
 	}
@@ -52,7 +50,16 @@ void AwakeReianaIdleState::Exit()
 void AwakeReianaIdleState::Update(float deltaTime)
 {
 	AwakeReianaBaseState::Update(deltaTime);
-	changeState(deltaTime);
+	currentStartDelay += deltaTime;
+
+	if (!start && startDelay <= currentStartDelay)
+	{
+		start = true;
+	}
+	if (start)
+	{
+		changeState(deltaTime);
+	}
 }
 
 void AwakeReianaIdleState::FixedUpdate(float fixedDeltaTime)

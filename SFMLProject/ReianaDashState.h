@@ -11,8 +11,8 @@ protected:
 	sf::Vector2f reianaPos;
 	sf::Vector2f cameraFixPos;
 
-	float ySpeed = 400.f;
-	float xSpeed = 3000.f;
+	float ySpeed = 300.f;
+	float xSpeed = 2000.f;
 	float currentWaitTime = 0.f;
 
 private:

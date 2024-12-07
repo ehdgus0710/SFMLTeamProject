@@ -184,10 +184,10 @@ void Stage3::Enter()
 
 
 	Reiana* reiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
-	reiana->SetPosition({ 500.f,500.f });
+	reiana->SetPosition({ 1700.f,500.f });
 
 	B_Reiana* b_Reiana = AddGameObject(new B_Reiana("b_Reiana"), LayerType::Boss);
-	b_Reiana->SetPosition({ 100.f,500.f });
+	b_Reiana->SetPosition({ 200.f,500.f });
 	
 	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();

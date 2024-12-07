@@ -35,6 +35,7 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
+		
 		start = true;
 	}
 	currentAttackTime += deltaTime;
@@ -43,7 +44,7 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 	reiana->SetPosition(startPosition);
 	endPosition = reiana->GetPosition() + sf::Vector2f::left * moveDistance;
 	animator->ChangeAnimation("meteorAttack", false);
-	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime));
+	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*2));
 
 	if (currentAttackTime > attackTime)
 	{
@@ -129,7 +130,8 @@ void ReianaGroundAttackState::LateUpdate(float deltaTime)
 void ReianaGroundAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
-	hitBox->SetScale({ 100.f,50.f });
+	hitBox->SetScale({ 150.f,50.f });
+	hitBox->GetCollider()->SetOffsetPosition({ 0,-80.f });
 
 	DamegeInfo damageInfo;
 	damageInfo.damege = 10.f;

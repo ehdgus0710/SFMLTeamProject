@@ -11,12 +11,15 @@ class ReianaUIHub;
 class B_Reiana : public AnimationGameObject
 {
 protected:
+	Reiana*			reiana;
 	B_Reiana*		b_reiana;
 	B_ReianaFsm		fsm;
 	DefaultStatus	currentStatus;
 	Player*			player;
 	ReianaUIHub*	reianaUIHub;
 	bool			isHit = false;
+	bool			dead = false;
+
 	std::function<void(float, float)> changeHpAction;
 public:
 	void TakeDamage(const DamegeInfo& damage);
@@ -27,6 +30,7 @@ public:
 public:
 	bool IsHit() const { return isHit; }
 	void SetHp(float hp) { currentStatus.hp = hp; }
+	bool IsDead() { return dead; }
 
 	void SetChangeHpAction(std::function<void(float, float)> action) { changeHpAction = action; }
 	void SetReianaUIHub(ReianaUIHub* uiHub) { reianaUIHub = uiHub; }

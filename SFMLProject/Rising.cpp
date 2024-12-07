@@ -39,7 +39,7 @@ void Rising::Start()
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect1), animation->GetFrameCount() - 1);
 	SetPosition(reiana->GetPosition());
 	effect1->SetOrigin(Origins::BottomCenter);
-	effect1->SetScale({ 2.f,2.f });
+	effect1->SetScale({ 3.5f,3.f });
 
 }
 void Rising::Update(const float& deltaTime)

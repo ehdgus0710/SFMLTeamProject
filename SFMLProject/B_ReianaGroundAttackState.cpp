@@ -42,7 +42,7 @@ void B_ReianaGroundAttackState::Attack(float deltaTime)
 	b_reiana->SetPosition(startPosition);
 	endPosition = b_reiana->GetPosition() + sf::Vector2f::left * moveDistance;
 	animator->ChangeAnimation("meteorAttack", false);
-	b_reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime));
+	b_reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentAttackTime / attackTime*2));
 
 	if (currentAttackTime > attackTime)
 	{
@@ -128,9 +128,16 @@ void B_ReianaGroundAttackState::LateUpdate(float deltaTime)
 void B_ReianaGroundAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(b_reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,b_reiana->GetPosition().y - 180 });
+	hitBox->GetCollider()->SetOffsetPosition({ 0,-80.f });
 	hitBox->SetScale({ 150.f,50.f });
-	hitBox->SetDamage(1000);
+
+	DamegeInfo damageInfo;
+	damageInfo.damege = 10.f;
+	damageInfo.useKnockback = true;
+	damageInfo.knockbackDuration = 0.2f;
+	damageInfo.owner = b_reiana;
+	damageInfo.knockbackVelocity = { 50.f,0.f };
+	damageInfo.hitDirection = (b_reiana->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::Vector2::right);
 }
 
 void B_ReianaGroundAttackState::OnDestoryHitBox()

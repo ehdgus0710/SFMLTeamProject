@@ -20,8 +20,8 @@ AwakeReiana::AwakeReiana(const std::string& name)
 	animator->LoadCsv("animators/awakenRayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
-	currentStatus.hp = 150;
-	currentStatus.maxHp = 150;
+	currentStatus.hp = 10;
+	currentStatus.maxHp = 10;
 	// animator->CreateAnimation("AwakeReianaIdle", "AwakeReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
@@ -62,9 +62,10 @@ void AwakeReiana::Start()
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("awakenReianaIdle", true);
 	fsm.ChangeState(AwakeReianaStateType::Awake);
-	collider->SetScale({ 60.f,82.f });
+	collider->SetScale({ 60.f,60.f });
 	SetOrigin(Origins::BottomCenter);
-	SetScale({ -2.5f,2.5f });
+	SetScale({ -3.5f,3.5f });
+	OnFlipX();
 
 	reianaUIHub->ChangePhase();
 	if (changeHpAction != nullptr)
@@ -77,7 +78,7 @@ void AwakeReiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(AwakeReianaStateType::AwakeDimension);
+		fsm.ChangeState(AwakeReianaStateType::DropAttack);
 	}
 }
 

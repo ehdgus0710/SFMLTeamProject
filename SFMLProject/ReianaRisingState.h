@@ -11,13 +11,14 @@ public:
 	Rising* rising;
 	RisingReady* risingReady;
 
-	sf::Vector2f risingPos{ 45.f ,0.f };
+	sf::Vector2f risingPos{ 60.f ,0.f };
+	sf::Vector2f risingReadyPos;
 
-	float RisingDelat = 0.05f;
+	float RisingDelat = 0.03f;
 	float CurrentRisingDelat;
 	int count;
 	
-	float startDelay = 1.f;
+	float startDelay = 0.8f;
 	float startCurrentDelay;
 	float endDelay = 1.f;
 	float endCurrentDelay;

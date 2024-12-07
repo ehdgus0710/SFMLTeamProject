@@ -9,6 +9,11 @@ AnimationBullet::AnimationBullet(GameObject* owner, ColliderLayer thisLayerType,
 	CreateAnimator();
 }
 
+AnimationBullet::AnimationBullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayerMask, const std::string& texId, const std::string& name)
+	: Bullet(owner, thisLayerType, targetLayer, texId, name)
+{
+	CreateAnimator();
+}
 void AnimationBullet::Start()
 {
 	SetScale(scale);

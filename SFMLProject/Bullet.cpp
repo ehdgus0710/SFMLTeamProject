@@ -19,6 +19,16 @@ Bullet::Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer tar
 	CreateCollider(ColliderType::Rectangle, thisLayerType);
 }
 
+Bullet::Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayerMask, const std::string& texId, const std::string& name)
+	: HitBoxObject(owner, thisLayerType, targetLayerMask, name)
+	, textureID(texId)
+	, speed(700.f)
+	, lifeTime(10.f)
+	, currentLifeTime(0.f)
+	, isShoot(false)
+{
+	CreateCollider(ColliderType::Rectangle, thisLayerType);
+}
 
 void Bullet::Start()
 {

@@ -25,7 +25,7 @@ void Dimension::Start()
 
 void Dimension::OnAttack()
 {
-	AnimationHitBox* animationHitBox = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationHitBox(nullptr, ColliderLayer::EnemyBullet, ColliderLayer::Player, "AwakenedThunder"), LayerType::EnemyBullet);
+	AnimationHitBox* animationHitBox = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationHitBox(nullptr, ColliderLayer::EnemyBullet,ColliderLayer::Player, "AwakenedThunder"), LayerType::EnemyBullet);
 	
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	animationHitBox->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");

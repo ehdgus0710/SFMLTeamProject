@@ -53,6 +53,7 @@ public:
 
 public:
 	Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name = "Bullet");
+	Bullet(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayerMask, const std::string& texId, const std::string& name = "Bullet");
 	virtual ~Bullet() = default;
 	Bullet& operator= (const Bullet& other) = delete;
 };

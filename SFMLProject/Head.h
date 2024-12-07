@@ -11,6 +11,7 @@ class Head : public SpriteGameObject
 protected:
 	Player*			player;
 	DamegeInfo							damageInfo;
+	ColliderLayerMask								targetLayerMask;
 
 	sf::Vector2f	skill1StartPos;
 	sf::Vector2f	skillEndPos;

@@ -55,6 +55,9 @@ Player::~Player()
 
 void Player::TakeDamage(const DamegeInfo& damage)
 {
+	if (fsm.GetCurrentStateType() == PlayerStateType::Dash)
+		return;
+
 	currentStatus.hp -= damage.damege;
 
 
@@ -76,17 +79,6 @@ void Player::TakeDamage(const DamegeInfo& damage)
 
 	if (changeHpAction != nullptr)
 		changeHpAction(currentStatus.hp, currentStatus.maxHp);
-}
-
-void Player::AddItem(ItemType itemType)
-{
-}
-void Player::Attack()
-{
-}
-
-void Player::OnAttackEnd()
-{
 }
 
 void Player::OnDownJump()

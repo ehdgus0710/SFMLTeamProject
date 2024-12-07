@@ -10,6 +10,8 @@
 #include "Enemy.h"
 #include "Yggdrasil.h"
 #include "Reiana.h"
+#include "B_Reiana.h"
+#include "AwakeReiana.h"
 
 Head::Head(const std::string& name)
 	: SpriteGameObject("SkulHead", name)
@@ -27,6 +29,7 @@ Head::Head(const std::string& name)
 
 	damageInfo.damege = 15.f;
 	damageInfo.owner = this;
+	targetLayerMask = ColliderLayerMask::EnemyAll;
 }
 
 Head::~Head()
@@ -85,8 +88,7 @@ void Head::OnCollisionEnter(Collider* target)
 		else
 			rigidBody->ResetVelocity();
 	}
-	else if ((target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Boss 
-		|| target->GetColliderLayer() == ColliderLayer::Yggdrasil || target->GetColliderLayer() == ColliderLayer::Reiana) && isThrow)
+	else if (((1 << (int)target->GetColliderLayer()) & (int)targetLayerMask) && isThrow)
 	{
 		if (target->GetColliderLayer() == ColliderLayer::Enemy)
 		{
@@ -94,12 +96,20 @@ void Head::OnCollisionEnter(Collider* target)
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Boss)
 		{
+			// 임시 추가
 			Yggdrasil* yggdrasil = dynamic_cast<Yggdrasil*>(target->GetOwner());
 
 			if (yggdrasil)
 				yggdrasil->TakeDamage(damageInfo);
-			else if (dynamic_cast<Reiana*>(target->GetOwner()))
-				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			else
+			{
+				if (dynamic_cast<Reiana*>(target->GetOwner()))
+					static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+				else if (dynamic_cast<B_Reiana*>(target->GetOwner()))
+					static_cast<B_Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+				else if (dynamic_cast<AwakeReiana*>(target->GetOwner()))
+					static_cast<AwakeReiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			}
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Yggdrasil)
 		{
@@ -107,7 +117,12 @@ void Head::OnCollisionEnter(Collider* target)
 		}
 		else if (target->GetColliderLayer() == ColliderLayer::Reiana)
 		{
-			static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			if (dynamic_cast<Reiana*>(target->GetOwner()))
+				static_cast<Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			else if (dynamic_cast<B_Reiana*>(target->GetOwner()))
+				static_cast<B_Reiana*>(target->GetOwner())->TakeDamage(damageInfo);
+			else if (dynamic_cast<AwakeReiana*>(target->GetOwner()))
+				static_cast<AwakeReiana*>(target->GetOwner())->TakeDamage(damageInfo);
 		}
 		EndThrow();
 	}

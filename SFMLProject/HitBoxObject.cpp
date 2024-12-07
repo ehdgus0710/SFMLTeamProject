@@ -18,7 +18,7 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType,Collid
 	, lifeTime(0.f)
 	, currentLifeTime(0.f)
 	, useLifeTime(false)
-	, hitLayer(0)
+	, targetLayerMask((ColliderLayerMask)(1 << (int)targetLayer))
 	, isAutoDestory(false)
 {
 	CreateCollider(ColliderType::Rectangle, thisLayerType);
@@ -33,7 +33,7 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, Colli
 	, lifeTime(0.f)
 	, currentLifeTime(0.f)
 	, useLifeTime(false)
-	, hitLayer(0)
+	, targetLayerMask((ColliderLayerMask)(1 << (int)targetLayer))
 	, isAutoDestory(false)
 {
 	CreateCollider(ColliderType::Rectangle, thisLayerType);
@@ -44,12 +44,41 @@ HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, Colli
 	}
 }
 
+HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayer, const std::string& name)
+	: GameObject(name)
+	, owner(owner)
+	, targetLayerMask(targetLayer)
+	, isOwnerFollow(false)
+	, lifeTime(0.f)
+	, currentLifeTime(0.f)
+	, useLifeTime(false)
+	, isAutoDestory(false)
+{
+}
+
+HitBoxObject::HitBoxObject(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayer, bool ownerFollow, const sf::Vector2f& offsetPos, const std::string& name)
+
+	: GameObject(name)
+	, owner(owner)
+	, isOwnerFollow(ownerFollow)
+	, offsetPosition(offsetPos)
+	, lifeTime(0.f)
+	, currentLifeTime(0.f)
+	, useLifeTime(false)
+	, targetLayerMask(targetLayer)
+	, isAutoDestory(false)
+{
+}
+
 HitBoxObject::~HitBoxObject()
 {
 }
 
 void HitBoxObject::OwnerFollow()
 {
+	if (owner == nullptr)
+		return;
+
 	if (owner->GetScale().x < 0.f)
 		SetPosition(owner->GetPosition() - offsetPosition);
 	else
@@ -133,8 +162,13 @@ void HitBoxObject::Update(const float& deltaTime)
 
 void HitBoxObject::OnCollisionEnter(Collider* target)
 {
-	if (target->GetColliderLayer() == targetLayer)
+	if (((1 << (int)target->GetColliderLayer()) & (int)targetLayerMask))
 	{
+		if (std::find(hitTargets.begin(), hitTargets.end(), target) != hitTargets.end())
+			return;
+
+		hitTargets.push_back(target);
+
 		if (target->GetColliderLayer() == ColliderLayer::Player)
 		{
 			Player* player = static_cast<Player*>(target->GetOwner());

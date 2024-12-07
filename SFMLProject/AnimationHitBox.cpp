@@ -3,8 +3,14 @@
 #include "Animator.h"
 #include "Collider.h"
 
-AnimationHitBox::AnimationHitBox(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name)
-	: HitBoxObject(owner, thisLayerType, targetLayer, name)
+AnimationHitBox::AnimationHitBox(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name, bool ownerFollow, const sf::Vector2f& offsetPos)
+	: HitBoxObject(owner, thisLayerType, targetLayer, ownerFollow, offsetPos, name)
+{
+	CreateAnimator();
+}
+
+AnimationHitBox::AnimationHitBox(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayer, const std::string& texId, const std::string& name, bool ownerFollow, const sf::Vector2f& offsetPos)
+	: HitBoxObject(owner, thisLayerType, targetLayer, ownerFollow, offsetPos, name)
 {
 	CreateAnimator();
 }

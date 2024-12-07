@@ -48,9 +48,6 @@ protected:
 	std::function<void(float, float)> skill2CooltimeAction;
 public:
 	void TakeDamage(const DamegeInfo& damage);
-	void AddItem(ItemType itemType);
-	void Attack();
-	void OnAttackEnd();
 	void OnDownJump();
 	void OnThrowHead();
 	void OnGetHead();

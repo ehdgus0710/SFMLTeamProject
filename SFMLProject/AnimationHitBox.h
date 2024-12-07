@@ -18,7 +18,8 @@ public:
 	void Render(sf::RenderWindow& renderWindow) override;
 	void CreateAnimator() override;
 public:
-	AnimationHitBox(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name = "HitBox");
+	AnimationHitBox(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targetLayer, const std::string& texId, const std::string& name = "AnimationHitBox", bool ownerFollow = false, const sf::Vector2f& offsetPos = sf::Vector2f::zero);
+	AnimationHitBox(GameObject* owner, ColliderLayer thisLayerType, ColliderLayerMask targetLayer, const std::string& texId, const std::string& name = "AnimationHitBox", bool ownerFollow = false, const sf::Vector2f& offsetPos = sf::Vector2f::zero);
 	virtual ~AnimationHitBox() = default;
 	AnimationHitBox& operator= (const AnimationHitBox& other) = delete;
 };

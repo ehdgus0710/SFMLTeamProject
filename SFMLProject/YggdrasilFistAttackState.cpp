@@ -50,6 +50,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
 			CreateLeftEffect();
 			attackBox->OnDestory();
 			hitBoxOn = false;
@@ -74,6 +75,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
 			CreateRightEffect();
 			attackBox->OnDestory();
 			hitBoxOn = false;
@@ -190,7 +192,10 @@ void YggdrasilFistAttackState::Start()
 
 void YggdrasilFistAttackState::Enter()
 {
+
 	YggdrasilBaseState::Enter();
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_FistSlam", "ElderEnt_FistSlam.wav");
+
 	if (!yggdrasil->GetPhaseUp())
 	{
 		yggdrasil->SetAnimeLeftHand("phase1HandLeftTakedown", false);

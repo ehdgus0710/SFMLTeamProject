@@ -70,6 +70,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 		currentAttackTime += deltaTime;
 		yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(startPos, endPos, currentAttackTime / attackTime));
 
+
+
 		if (currentAttackTime >= attackTime)
 		{
 			CreateRightEffect();
@@ -147,13 +149,13 @@ void YggdrasilFistAttackState::Recovery(float deltaTime)
 void YggdrasilFistAttackState::CreateLeftEffect()
 {
 	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
-	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlam.csv"));
-	effect->GetAnimator()->AddAnimation(animation, "yggdrasilHandSlam");
-	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlam");
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlamBoom.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "yggdrasilHandSlamBoom");
+	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlamBoom");
 
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
-	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 913.f });
-	effect->SetScale(sf::Vector2f::one);
+	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 660.f });
+	effect->SetScale(sf::Vector2f::one * 2.5f);
 
 	effect->Awake();
 	effect->Start();
@@ -162,13 +164,13 @@ void YggdrasilFistAttackState::CreateLeftEffect()
 void YggdrasilFistAttackState::CreateRightEffect()
 {
 	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
-	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlam.csv"));
-	effect->GetAnimator()->AddAnimation(animation, "yggdrasilHandSlam");
-	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlam");
+	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/yggdrasilHandSlamBoom.csv"));
+	effect->GetAnimator()->AddAnimation(animation, "yggdrasilHandSlamBoom");
+	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlamBoom");
 
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
-	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 913.f });
-	effect->SetScale(sf::Vector2f::one);
+	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 660.f });
+	effect->SetScale(sf::Vector2f::one * 2.5f);
 
 	effect->Awake();
 	effect->Start();

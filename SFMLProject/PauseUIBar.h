@@ -19,7 +19,7 @@ private:
 	TextButton*					settingButton;
 	TextButton*					endGameButton;
 	MouseObject*				mouseObject;
-	BackgroundColorBox*		backgroundRect;
+	BackgroundColorBox*			backgroundRect;
 
 	std::vector<TextButton*>	buttons;
 	float						prevTimeScale;
@@ -31,6 +31,7 @@ private:
 	void OnSettingBar();
 	void OffSettingBar();
 	void OnEndGame();
+	void OnPlayUIMoveSound();
 
 	void CreateUIObject();
 	void SetChildActive(const bool active);

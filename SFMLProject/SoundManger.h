@@ -29,10 +29,15 @@ public:
 		if(totalVolum == 0.f)
 			bgm.setVolume(0.f);
 		else
-			bgm.setVolume(bgmVolume / totalVolum);
+			bgm.setVolume(bgmVolume * totalVolum * 0.01f);
 	}
 
-	void SetTotalVolume(float v) { totalVolum = v; }
+	void SetTotalVolume(float v) 
+	{ 
+		totalVolum = v;
+		bgm.setVolume(bgmVolume * totalVolum * 0.01f);
+		SetSfxVolume(sfxVolume);
+	}
 	void SetSfxVolume(float v);
 
 	void Init(int totalChannels = 64);

@@ -5,22 +5,24 @@ class UITextGameObject;
 class TextButton;
 class MouseObject;
 class SettingUIBar;
+class BackgroundColorBox;
 
 class PauseUIBar : public UISpriteGameObject
 {
 private:
-	SettingUIBar*		settingUIBar;
-	UITextGameObject*	pauseText;
+	SettingUIBar*				settingUIBar;
+	UITextGameObject*			pauseText;
 	
-	TextButton*			goBackButton;
-	TextButton*			newGameButton;
-	TextButton*			controllerButton;
-	TextButton*			settingButton;
-	TextButton*			endGameButton;
-	MouseObject*		mouseObject;
+	TextButton*					goBackButton;
+	TextButton*					newGameButton;
+	TextButton*					controllerButton;
+	TextButton*					settingButton;
+	TextButton*					endGameButton;
+	MouseObject*				mouseObject;
+	BackgroundColorBox*		backgroundRect;
 
-	std::vector<TextButton*> buttons;
-	float				prevTimeScale;
+	std::vector<TextButton*>	buttons;
+	float						prevTimeScale;
 
 private:
 	void OffUIBar();

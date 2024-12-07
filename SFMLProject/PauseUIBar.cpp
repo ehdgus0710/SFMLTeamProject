@@ -7,6 +7,7 @@
 #include "MouseObject.h"
 #include "Collider.h"
 #include "SettingUIBar.h"
+#include "BackgroundColorBox.h"
 
 
 PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
@@ -68,6 +69,12 @@ void PauseUIBar::CreateUIObject()
 {
 	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
 
+	backgroundRect = currentScene->AddGameObject(new BackgroundColorBox(), LayerType::UI);
+	backgroundRect->SetColor(sf::Color::Black - sf::Color(0, 0, 0, 80.f));
+	backgroundRect->SetScale({ 3000.f, 2000.f });
+	backgroundRect->Start();
+
+	backgroundRect->sortingOrder = 12;
 
 	sf::Vector2f pos = { position.x, 340.f };
 	pauseText = currentScene->AddGameObject(new UITextGameObject("NameFont", "pauseText", 30, { 174,151,133,255 }), LayerType::UI);
@@ -146,7 +153,7 @@ void PauseUIBar::SetChildActive(const bool active)
 	endGameButton->SetActive(active);
 	goBackButton->SetActive(active);
 	mouseObject->SetActive(active);
-
+	backgroundRect->SetActive(active);
 }
 
 void PauseUIBar::SetActive(const bool active)

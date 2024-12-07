@@ -55,7 +55,8 @@ void Yggdrasil::Awake()
 void Yggdrasil::Start()
 {
 	AnimationGameObject::Start();
-
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Chapter1_Boss", "AudioClip/Stage1/Chapter1_Boss.wav");
+	SoundManger::GetInstance().PlayBgm("Chapter1_Boss");
 	animator->ChangeAnimation("phase1Head", true);
 
 

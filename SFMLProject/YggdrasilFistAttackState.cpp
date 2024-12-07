@@ -51,6 +51,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 		if (currentAttackTime >= attackTime)
 		{
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
+			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateLeftEffect();
 			attackBox->OnDestory();
 			hitBoxOn = false;
@@ -76,6 +77,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 		if (currentAttackTime >= attackTime)
 		{
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
+			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateRightEffect();
 			attackBox->OnDestory();
 			hitBoxOn = false;
@@ -156,7 +158,7 @@ void YggdrasilFistAttackState::CreateLeftEffect()
 	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlamBoom");
 
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
-	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 660.f });
+	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 680.f });
 	effect->SetScale(sf::Vector2f::one * 2.5f);
 
 	effect->Awake();
@@ -171,7 +173,7 @@ void YggdrasilFistAttackState::CreateRightEffect()
 	effect->GetAnimator()->ChangeAnimation("yggdrasilHandSlamBoom");
 
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
-	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 660.f });
+	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 680.f });
 	effect->SetScale(sf::Vector2f::one * 2.5f);
 
 	effect->Awake();
@@ -187,6 +189,7 @@ void YggdrasilFistAttackState::Awake()
 void YggdrasilFistAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_FistSlam", "AudioClip/Stage1/ElderEnt_FistSlam.wav");
 	changeOn = false;
 }
 
@@ -194,7 +197,6 @@ void YggdrasilFistAttackState::Enter()
 {
 
 	YggdrasilBaseState::Enter();
-	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_FistSlam", "ElderEnt_FistSlam.wav");
 
 	if (!yggdrasil->GetPhaseUp())
 	{

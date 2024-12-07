@@ -20,10 +20,16 @@ PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
 	, endGameButton(nullptr)
 	, mouseObject(nullptr)
 	, settingUIBar(nullptr)
-
+	, backgroundRect(nullptr)
 {
 	prevTimeScale = TimeManager::GetInstance().GetTimeScale();
 	InputManager::GetInstance().BindKey(sf::Keyboard::Escape);
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIOpen", "AudioClip/UI/UI_Open.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIClose", "AudioClip/UI/UI_Close.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIMenuMove", "AudioClip/UI/UI_MenuMove.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIMenuClose", "AudioClip/UI/UI_MenuClose.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIMenuOpen", "AudioClip/UI/UI_MenuOpen.wav");
 }
 
 void PauseUIBar::OffUIBar()
@@ -70,7 +76,7 @@ void PauseUIBar::CreateUIObject()
 	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
 
 	backgroundRect = currentScene->AddGameObject(new BackgroundColorBox(), LayerType::UI);
-	backgroundRect->SetColor(sf::Color::Black - sf::Color(0, 0, 0, 80.f));
+	backgroundRect->SetColor(sf::Color::Black - sf::Color(0, 0, 0, 80));
 	backgroundRect->SetScale({ 3000.f, 2000.f });
 	backgroundRect->Start();
 
@@ -167,6 +173,7 @@ void PauseUIBar::SetActive(const bool active)
 		this->active = active;
 		SetChildActive(active);
 		settingUIBar->SetActive(false);
+		SoundManger::GetInstance().PlaySfx("UIOpen");
 	}
 	else
 	{
@@ -177,8 +184,12 @@ void PauseUIBar::SetActive(const bool active)
 		else
 		{
 			InputManager::GetInstance().SetInputable(active);
-			TimeManager::GetInstance().SetTimeScale(prevTimeScale);
 
+			if (TimeManager::GetInstance().GetTimeScale() == 0.f)
+				SoundManger::GetInstance().PlaySfx("UIClose");
+
+			TimeManager::GetInstance().SetTimeScale(prevTimeScale);
+	
 			this->active = active;
 			SetChildActive(active);
 		}

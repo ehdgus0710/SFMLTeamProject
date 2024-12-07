@@ -70,7 +70,7 @@ void TitleScene::Enter()
 	titleLogo->SetActive(false);
 
 	messageText = AddGameObject(new UIFadeTextGameObject("NameFont", "InputKeyText",40, { 142 , 109 ,231, 255}), LayerType::UI);
-	messageText->SetString(L"¾Æ¹« Å°³ª ´©¸£¼¼¿ä");	
+	messageText->SetString(L"ï¿½Æ¹ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");	
 	messageText->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.9f });
 	messageText->SetOrigin(Origins::MiddleCenter);
 	messageText->SetActive(false);
@@ -107,7 +107,6 @@ void TitleScene::Update(float dt)
 	}
 	if (isStartGame)
 	{
-		SoundManger::GetInstance().StopBgm();
 		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
 	}
 }

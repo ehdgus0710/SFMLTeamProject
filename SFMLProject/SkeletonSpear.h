@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AnimationGameObject.h"
-#include "PlayerFSM.h"
+#include "SkeletonSpearFSM.h"
 #include "PlayerSaveData.h"
 
 class Camera;
@@ -13,9 +13,8 @@ class PlayerUIHub;
 class SkeletonSpear : public AnimationGameObject
 {
 protected:
-	Head* head;
 	PlayerUIHub* playerUI;
-	PlayerFSM		fsm;
+	SkeletonSpearFSM		fsm;
 	DefaultStatus	currentStatus;
 	SkullType		skullType;
 
@@ -53,13 +52,11 @@ public:
 	void Attack();
 	void OnAttackEnd();
 	void OnDownJump();
-	void OnThrowHead();
-	void OnGetHead();
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }
 
-	PlayerFSM& GetFSM() { return fsm; }
+	SkeletonSpearFSM& GetFSM() { return fsm; }
 	SkullType GetSkullType() { return skullType; }
 public:
 	void OnSkill1CoolTime();
@@ -77,9 +74,6 @@ public:
 	void SetCurrentJumpCount(int count) { currentJumpCount = count; }
 	int GetCurrentJumpCount() { return currentJumpCount; }
 	int GetDashCount() { return dashCount; }
-
-	void SetHeadPosition(sf::Vector2f pos);
-	sf::Vector2f GetHeadPosition();
 
 	void OnDash() { --currentDashCount; }
 	int GetCurrentDashCount() { return currentDashCount; }

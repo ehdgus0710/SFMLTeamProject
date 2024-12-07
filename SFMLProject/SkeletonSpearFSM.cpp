@@ -72,7 +72,7 @@ void SkeletonSpearFSM::CreateAllState()
 	}
 }
 
-BaseState<SkeletonStateType>* SkeletonSpearFSM::CreateState(SkeletonStateType type)
+BaseState<SkeletonSpearStateType>* SkeletonSpearFSM::CreateState(SkeletonSpearStateType type)
 {
 	SkeletonSpearBaseState* state = nullptr;
 
@@ -109,7 +109,7 @@ BaseState<SkeletonStateType>* SkeletonSpearFSM::CreateState(SkeletonStateType ty
 		state = new SkeletonSpearSkill1State(this);
 		break;
 	case SkeletonSpearStateType::Skill2:
-		state = new SkeletonSpearSkill2State(this);
+	//	state = new SkeletonSpearSkill2State(this);
 		break;
 	case SkeletonSpearStateType::End:
 		break;
@@ -126,7 +126,7 @@ SkeletonSpearBaseState* SkeletonSpearFSM::GetCurrentState()
 	return (SkeletonSpearBaseState*)stateMap[currentStateType];
 }
 
-SkeletonSpearBaseState* SkeletonSpearFSM::GetState(PlayerStateType type)
+SkeletonSpearBaseState* SkeletonSpearFSM::GetState(SkeletonSpearStateType type)
 {
 	auto iter = stateMap.find(type);
 	if (iter != stateMap.end())

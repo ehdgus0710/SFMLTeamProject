@@ -9,8 +9,8 @@
 #include "GameManager.h"
 #include "Camera.h"
 #include "InGameScoreUI.h"
-#include "PlayerBaseState.h"
-#include "PlayerHitState.h"
+#include "SkeletonSpearBaseState.h"
+#include "SkeletonSpearHitState.h"
 #include "PlayerUIHub.h"
 
 SkeletonSpear::SkeletonSpear(const std::string& name)
@@ -66,10 +66,10 @@ void SkeletonSpear::TakeDamage(const DamegeInfo& damage)
 	}
 	else
 	{
-		if (damage.useKnockback && fsm.GetCurrentStateType() != PlayerStateType::Hit && fsm.GetCurrentStateType() != PlayerStateType::Dead)
+		if (damage.useKnockback && fsm.GetCurrentStateType() != SkeletonSpearStateType::Hit && fsm.GetCurrentStateType() != SkeletonSpearStateType::Dead)
 		{
-			static_cast<PlayerHitState*>(fsm.GetState(PlayerStateType::Hit))->SetDamageInfo(damage);
-			fsm.ChangeState(PlayerStateType::Hit);
+			static_cast<SkeletonSpearHitState*>(fsm.GetState(SkeletonSpearStateType::Hit))->SetDamageInfo(damage);
+			fsm.ChangeState(SkeletonSpearStateType::Hit);
 		}
 	}
 
@@ -112,7 +112,7 @@ void SkeletonSpear::OnDownJump()
 	if (!isGround)
 	{
 		rigidBody->SetGround(false);
-		fsm.ChangeState(PlayerStateType::Falling);
+		fsm.ChangeState(SkeletonSpearStateType::Falling);
 	}
 }
 
@@ -200,7 +200,6 @@ void SkeletonSpear::Update(const float& deltaTime)
 		if (currentSkill1CoolTime >= skill1CoolTime)
 		{
 			isSkll1CoolTime = false;
-			OnGetHead();
 		}
 	}
 
@@ -217,18 +216,18 @@ void SkeletonSpear::Update(const float& deltaTime)
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
 	{
-		if (!isSkll1CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill1 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
-			fsm.ChangeState(PlayerStateType::Skill1);
+		if (!isSkll1CoolTime && fsm.GetCurrentStateType() != SkeletonSpearStateType::Skill1 && fsm.GetCurrentStateType() != SkeletonSpearStateType::Dead)
+			fsm.ChangeState(SkeletonSpearStateType::Skill1);
 	}
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S))
 	{
-		if (!isSkll2CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill2 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
-			fsm.ChangeState(PlayerStateType::Skill2);
+		if (!isSkll2CoolTime && fsm.GetCurrentStateType() != SkeletonSpearStateType::Skill2 && fsm.GetCurrentStateType() != SkeletonSpearStateType::Dead)
+			fsm.ChangeState(SkeletonSpearStateType::Skill2);
 	}
 
-	if (fsm.GetCurrentStateType() != PlayerStateType::Falling && fsm.GetCurrentStateType() != PlayerStateType::Hit && fsm.GetCurrentStateType() != PlayerStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
-		fsm.ChangeState(PlayerStateType::Falling);
+	if (fsm.GetCurrentStateType() != SkeletonSpearStateType::Falling && fsm.GetCurrentStateType() != SkeletonSpearStateType::Hit && fsm.GetCurrentStateType() != SkeletonSpearStateType::JumpAttack && rigidBody->GetActive() && rigidBody->GetCurrentVelocity().y > 0.f)
+		fsm.ChangeState(SkeletonSpearStateType::Falling);
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	{
@@ -263,6 +262,10 @@ void SkeletonSpear::FixedUpdate(const float& deltaTime)
 void SkeletonSpear::LateUpdate(const float& deltaTime)
 {
 	fsm.LateUpdate(deltaTime);
+}
+
+void SkeletonSpear::OnCollisionEnter(Collider* target)
+{
 }
 
 void SkeletonSpear::OnCollisionStay(Collider* target)

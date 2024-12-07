@@ -5,7 +5,7 @@
 #include "Animation.h"
 
 SkeletonSpearBaseState::SkeletonSpearBaseState(SkeletonSpearFSM* fsm, SkeletonSpearStateType stateType)
-	: BaseState<PlayerStateType>(stateType)
+	: BaseState<SkeletonSpearStateType>(stateType)
 	, fsm(fsm)
 	, skeletonSpear(fsm->GetSkeletonSpear())
 	, animator(nullptr)

@@ -7,15 +7,15 @@ class SkeletonSpearBaseState;
 class SkeletonSpearFSM : public FSMController<SkeletonSpearStateType>
 {
 protected:
-	SkeletonSpearFSM* owner;
+	SkeletonSpear* owner;
 
 private:
 	void CreateAllState();
 
 public:
-	BaseState<PlayerStateType>* CreateState(PlayerStateType type);
+	BaseState<SkeletonSpearStateType>* CreateState(SkeletonSpearStateType type);
 	SkeletonSpearBaseState* GetCurrentState();
-	SkeletonSpearBaseState* GetState(PlayerStateType type);
+	SkeletonSpearBaseState* GetState(SkeletonSpearStateType type);
 	SkeletonSpear* GetSkeletonSpear() { return owner; }
 
 public:

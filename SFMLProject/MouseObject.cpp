@@ -24,7 +24,10 @@ void MouseObject::Start()
 
 void MouseObject::Update(const float& deltaTime)
 {
-	SetPosition(SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(InputManager::GetInstance().GetMousePosition()));
+	if(layerType == LayerType::UI || layerType == LayerType::InGameUI)
+		SetPosition(SceneManager::GetInstance().GetCurrentScene()->ScreenToUI(InputManager::GetInstance().GetMousePosition()));
+	else
+		SetPosition(SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(InputManager::GetInstance().GetMousePosition()));
 }
 void MouseObject::SetOrigin(Origins preset)
 {

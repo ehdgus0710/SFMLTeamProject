@@ -53,6 +53,7 @@ void ReianaBackStap::Update(float deltaTime)
 	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentTime / time*3));
 	if (currentTime > time + 0.1)
 	{
+		SoundManger::GetInstance().PlaySfx("Leiana_MeteorGround_Ready", false);
 		fsm->ChangeState(ReianaStateType::Idle);
 		IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 		introLandSmoke->SetScale({ 2.f,2.f });

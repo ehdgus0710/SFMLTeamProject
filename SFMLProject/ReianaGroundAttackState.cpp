@@ -35,7 +35,7 @@ void ReianaGroundAttackState::Attack(float deltaTime)
 		{
 			meteorGroundSmoke->OnFlipX();
 		}
-		
+		SoundManger::GetInstance().PlaySfx("Leiana_MeteorGround", false);
 		start = true;
 	}
 	currentAttackTime += deltaTime;

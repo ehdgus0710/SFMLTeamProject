@@ -33,7 +33,10 @@ void B_ReianaGroundAttackState::Attack(float deltaTime)
 		if (!meteorGroundSmoke->IsFlipX() && b_reiana->IsFlipX())
 		{
 			meteorGroundSmoke->OnFlipX();
-		}
+		}		
+		SoundManger::GetInstance().PlaySfx("Leiana_MeteorGround", false);
+
+
 		start = true;
 	}
 	currentAttackTime += deltaTime;
@@ -95,7 +98,6 @@ void B_ReianaGroundAttackState::Enter()
 	currentAttackTime = 0.f;
 	currentWaitTime = 0.f;
 	action = false;
-
 	startPosition = { 200.f ,b_reiana->GetPosition().y };
 	b_reiana->SetPosition(startPosition);
 }

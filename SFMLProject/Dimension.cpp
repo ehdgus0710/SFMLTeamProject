@@ -11,6 +11,7 @@ Dimension::Dimension(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	animator->AddAnimation(animation, "DimensionPierce");
+	SoundManger::GetInstance().PlaySfx("Leiana_DarkDimensionPierce_Sign");
 	SetScale({ 3.f,3.f });
 	animation->SetAnimationEndEvent(std::bind(&Dimension::OnAttack, this), animation->GetEndFrameCount()-3);
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
@@ -26,7 +27,7 @@ void Dimension::Start()
 void Dimension::OnAttack()
 {
 	AnimationHitBox* animationHitBox = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationHitBox(nullptr, ColliderLayer::EnemyBullet,ColliderLayer::Player, "AwakenedThunder"), LayerType::EnemyBullet);
-	
+	SoundManger::GetInstance().PlaySfx("Leiana_DarkDimensionPierce_Impact");
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierceAttack.csv");
 	animationHitBox->GetAnimator()->AddAnimation(animation, "DimensionPierceAttack");
 	animationHitBox->GetAnimator()->ChangeAnimation("DimensionPierceAttack");

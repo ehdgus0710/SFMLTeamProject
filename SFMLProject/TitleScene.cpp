@@ -107,8 +107,8 @@ void TitleScene::Update(float dt)
 	}
 	if (isStartGame)
 	{
-		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
 		SoundManger::GetInstance().StopBgm();
+		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
 	}
 }
 

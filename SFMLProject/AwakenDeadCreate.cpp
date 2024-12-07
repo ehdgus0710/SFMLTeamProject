@@ -9,7 +9,7 @@
 AwakenDeadCreate::AwakenDeadCreate(const std::string& name)
 	: AnimationGameObject("AwakenDeadStart")
 {
-
+	SoundManger::GetInstance().PlaySfx("Leiana_Awaken_Dead", false);
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDeadStart.csv");
 	animator->AddAnimation(animation, "AwakenDeadStart");
 	SetScale({ 2.f,2.f });

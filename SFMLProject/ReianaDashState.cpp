@@ -53,8 +53,8 @@ void ReianaDashState::Exit()
 void ReianaDashState::Update(float deltaTime)
 {
 	ReianaBaseState::Update(deltaTime);
-	movePosition.x = movePosition.x + xSpeed * deltaTime;
-	movePosition.y = movePosition.y - ySpeed * deltaTime;
+	movePosition.x = movePosition.x + xSpeed * deltaTime*3;
+	movePosition.y = movePosition.y - ySpeed * deltaTime*3;
 	reiana->SetPosition(movePosition);
 	if (cameraFixPos.x <= reiana->GetPosition().x)
 	{

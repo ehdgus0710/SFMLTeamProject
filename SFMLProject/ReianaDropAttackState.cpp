@@ -31,7 +31,7 @@ void ReianaDropAttackState::Drop(float deltaTime)
 {
 	currentDropTime += deltaTime;
 
-	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime));
+	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentDropTime / dropTime*2));
 	if (currentDropTime > dropTime)
 	{
 		animator->ChangeAnimation("goldmetorLanding", false);

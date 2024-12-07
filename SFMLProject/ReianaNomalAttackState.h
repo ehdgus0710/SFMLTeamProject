@@ -11,10 +11,13 @@ protected:
 
 	float delay = 0.3f;
 	float currentDelay = 0.f;
-	float attackDelay = 0.5f;
+	float attackDelay = 0.2f;
 	float currentAttackDelay = 0.f;
-	float animationDelay = 1.0f;
+	float animationDelay = 0.8f;
 	float currentAnimationDelay = 0.f;
+
+	sf::Vector2f smokePos = { 200.f,0.f };
+
 
 	int endFrame;
 	sf::Vector2f startPosition;

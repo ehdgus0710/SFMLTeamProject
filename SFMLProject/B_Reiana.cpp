@@ -69,13 +69,15 @@ void B_Reiana::Start()
 	InputManager::GetInstance().BindKey(sf::Keyboard::W);
 
 	collider->SetOffsetPosition({ 0.f,-100.f });
+	reiana = dynamic_cast<Reiana*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Reiana", LayerType::Boss));
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("B_ReianaIdle", true);
 	fsm.ChangeState(B_ReianaStateType::Idle);
-	collider->SetScale({ 60.f,82.f });
+	collider->SetScale({ 60.f,60.f });
 	SetOrigin(Origins::BottomCenter);
-	SetScale({ -2.5f,2.5f });
+	SetScale({ -3.5f,3.5f });
+	OnFlipX();
 
 
 	if (changeHpAction != nullptr)
@@ -87,9 +89,10 @@ void B_Reiana::Update(const float& deltaTime)
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::W))
+	if (!dead&&reiana->GetHp()<=0)
 	{
-		fsm.ChangeState(B_ReianaStateType::Dead);
+		fsm.ChangeState(B_ReianaStateType::Dash);
+		dead = true;
 	}
 }
 

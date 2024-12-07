@@ -4,6 +4,7 @@
 #include "Rigidbody.h"
 #include "Dimension.h"
 #include "Animator.h"
+#include "AwakenDimention.h"
 
 AwakeReianaDimensionState::AwakeReianaDimensionState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::Dimension)
@@ -16,7 +17,7 @@ AwakeReianaDimensionState::~AwakeReianaDimensionState()
 
 void AwakeReianaDimensionState::CreateDimension()
 {
-	Dimension* dimension = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Dimension(), LayerType::EnemyBullet);
+	AwakenDimention* dimension = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDimention(), LayerType::EnemyBullet);
 	dimension->SetActive(true);
 	dimension->SetPosition(awakeReiana->GetPlayer()->GetPosition());
 	dimension->SetRotation((float)Utils::RandomRange(1, 180));

@@ -68,12 +68,12 @@ void AwakeReianaGroundAttackState::Wait(float deltaTime)
 
 	if (currentWaitTime >= waitTime)
 	{
-		for (int i = 0; i < 6; ++i)
-		{
-			AwakenGroundAttackRazer* awakenGroundAttackRazer = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenGroundAttackRazer(""), LayerType::BackGround_Forward);
-			awakenGroundAttackRazer->SetPosition({ awakeReiana->GetPosition().x - (ryzerDistance * i),awakeReiana->GetPosition().y });
-			awakenGroundAttackRazer->Start();
-		}
+		//for (int i = 0; i < 6; ++i)
+		//{
+		//	AwakenGroundAttackRazer* awakenGroundAttackRazer = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenGroundAttackRazer(""), LayerType::BackGround_Forward);
+		//	awakenGroundAttackRazer->SetPosition({ awakeReiana->GetPosition().x - (ryzerDistance * i),awakeReiana->GetPosition().y });
+		//	awakenGroundAttackRazer->Start();
+		//}
 		AwakeGroundDimention* awakeGroundDimention = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakeGroundDimention("GroundDimension"), LayerType::BackGround_Forward);
 		awakeGroundDimention->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y -100.f});
 		awakeGroundDimention->Start();
@@ -113,7 +113,7 @@ void AwakeReianaGroundAttackState::Enter()
 	int endFrame = (int)animator->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	animator->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&AwakeReianaGroundAttackState::ChangeReady2Animation, this), endFrame);
 
-	if (!awakeReiana->IsFlipX())
+	if (awakeReiana->IsFlipX())
 		awakeReiana->OnFlipX();
 
 	start = false;
@@ -121,6 +121,7 @@ void AwakeReianaGroundAttackState::Enter()
 	currentWaitTime = 0.f;
 	endTime = 1.5f;
 	action = false;
+	attackFin = false;
 
 	startPosition = { 1700.f ,awakeReiana->GetPosition().y };
 	awakeReiana->SetPosition(startPosition);
@@ -133,6 +134,10 @@ void AwakeReianaGroundAttackState::Enter()
 void AwakeReianaGroundAttackState::Exit()
 {
 	AwakeReianaBaseState::Exit();
+	if (hitBox != nullptr)
+	{
+		OnDestoryHitBox();
+	}
 }
 
 void AwakeReianaGroundAttackState::Update(float deltaTime)
@@ -158,7 +163,7 @@ void AwakeReianaGroundAttackState::LateUpdate(float deltaTime)
 void AwakeReianaGroundAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(awakeReiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,awakeReiana->GetPosition().y - 180 });
+	hitBox->GetCollider()->SetOffsetPosition({ 0.f,-80.f });
 	hitBox->SetScale({ 100.f,50.f });
 	DamegeInfo damageInfo;
 	damageInfo.damege = 10.f;

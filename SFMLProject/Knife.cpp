@@ -18,8 +18,8 @@ Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targe
 
 
 	damageInfo.damege = 10.f;
-	damageInfo.useKnockback = true;
-	damageInfo.knockbackDuration = 0.5f;
+	damageInfo.useKnockback = false;
+	damageInfo.knockbackDuration = 0.1f;
 	damageInfo.owner = this;
 	damageInfo.knockbackVelocity = { 100.f,0.f };
 }
@@ -44,7 +44,7 @@ void Knife::Start()
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player",LayerType::Player));
 
 	AnimationBullet::Start();	
-	Bullet::SetSpeed(2000.f);
+	Bullet::SetSpeed(3000.f);
 
 	CreateEffect();
 

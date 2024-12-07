@@ -105,6 +105,10 @@ void AwakeReianaDiagonalDropState::Exit()
 {
 	AwakeReianaBaseState::Exit();
 	rigidbody->SetActive(true);
+	if (hitBox != nullptr)
+	{
+		OnDestoryHitBox();
+	}
 }
 
 void AwakeReianaDiagonalDropState::Update(float deltaTime)

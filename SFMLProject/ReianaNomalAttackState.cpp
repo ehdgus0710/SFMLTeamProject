@@ -73,7 +73,6 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
 		meteorGroundSmoke->SetScale({ 2.f,2.f });
 		meteorGroundSmoke->Start();
-		meteorGroundSmoke->SetPosition(reiana->GetPosition());
 		if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())
 		{
 			reiana->OnFlipX();
@@ -82,14 +81,21 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 		{
 			reiana->OnFlipX();
 		}
-		if (meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
+		if (meteorGroundSmoke->IsFlipX())
 		{
-			meteorGroundSmoke->OnFlipX();
+			if (!reiana->IsFlipX())
+			{
+				meteorGroundSmoke->OnFlipX();
+			}
 		}
-		if (!meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
+		else if (!meteorGroundSmoke->IsFlipX())
 		{
-			meteorGroundSmoke->OnFlipX();
+			if (reiana->IsFlipX())
+			{
+				meteorGroundSmoke->OnFlipX();
+			}
 		}
+		meteorGroundSmoke->SetPosition(reiana->GetPosition() + (meteorGroundSmoke->IsFlipX() ? smokePos : -smokePos));
 	}
 	if (!rush3)
 	{
@@ -131,18 +137,25 @@ void ReianaNomalAttackState::Enter()
 	startPosition = reiana->GetPosition();
 	endPosition = { reiana->GetPlayer()->GetPosition().x ,reiana->GetPosition().y };
 	MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
-	meteorGroundSmoke->SetScale({ 1.f,1.f });
+	meteorGroundSmoke->SetScale({ 2.f,2.f });
 	meteorGroundSmoke->Start();
 	meteorGroundSmoke->SetPosition(reiana->GetPosition());
-	if (meteorGroundSmoke->IsFlipX() && !reiana->IsFlipX())
+	if (meteorGroundSmoke->IsFlipX())
 	{
-		meteorGroundSmoke->OnFlipX();
+		meteorGroundSmoke->SetPosition(reiana->GetPosition() - smokePos);
+		if (!reiana->IsFlipX())
+		{
+			meteorGroundSmoke->OnFlipX();
+		}
 	}
-	if (!meteorGroundSmoke->IsFlipX() && reiana->IsFlipX())
+	else if (!meteorGroundSmoke->IsFlipX())
 	{
-		meteorGroundSmoke->OnFlipX();
+		meteorGroundSmoke->SetPosition(reiana->GetPosition() + smokePos);
+		if (reiana->IsFlipX())
+		{
+			meteorGroundSmoke->OnFlipX();
+		}
 	}
-
 	currentDelay = 0.f;
 	currentAttackDelay = 0.f;
 	currentAnimationDelay = 0.f;
@@ -183,8 +196,15 @@ void ReianaNomalAttackState::LateUpdate(float deltaTime)
 void ReianaNomalAttackState::OnCreateHitBox()
 {
 	hitBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, true, sf::Vector2f::zero, "groundAttack"), LayerType::EnemyBullet);
-	hitBox->GetCollider()->SetOffsetPosition({ 0.f,- 80.f });
-	hitBox->SetScale({ 150.f,50.f });
+	if (reiana->IsFlipX())
+	{
+		hitBox->GetCollider()->SetOffsetPosition({ -50.f,-100.f });
+	}
+	else
+	{
+		hitBox->GetCollider()->SetOffsetPosition({ 50.f,-100.f });
+	}
+	hitBox->SetScale({ 200.f,50.f });
 	hitBox->SetDamage(10);
 }
 

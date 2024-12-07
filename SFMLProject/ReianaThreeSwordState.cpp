@@ -39,15 +39,15 @@ void ReianaThreeSwordState::CreateKnife()
 		{
 		case ReianaThreeSwordState::Pos::POS1:
 			knife->SetPosition(reiana->GetPosition() + plusPos1);
-			knife->setDelay(1.f);
+			knife->setDelay(1.4f);
 			break;
 		case ReianaThreeSwordState::Pos::POS2:
 			knife->SetPosition(reiana->GetPosition() + plusPos2);
-			knife->setDelay(1.f);
+			knife->setDelay(1.6f);
 			break;
 		case ReianaThreeSwordState::Pos::POS3:
 			knife->SetPosition(reiana->GetPosition() + plusPos3);
-			knife->setDelay(1.5f);
+			knife->setDelay(1.8f);
 			break;
 		default:
 			break;
@@ -59,15 +59,15 @@ void ReianaThreeSwordState::CreateKnife()
 		{
 		case ReianaThreeSwordState::Pos::POS1:
 			knife->SetPosition(reiana->GetPosition() - plusFlipPos1);
-			knife->setDelay(1.f);
+			knife->setDelay(1.4f);
 			break;
 		case ReianaThreeSwordState::Pos::POS2:
 			knife->SetPosition(reiana->GetPosition() - plusFlipPos2);
-			knife->setDelay(1.f);
+			knife->setDelay(1.6f);
 			break;
 		case ReianaThreeSwordState::Pos::POS3:
 			knife->SetPosition(reiana->GetPosition() - plusFlipPos3);
-			knife->setDelay(1.5f);
+			knife->setDelay(1.8f);
 			break;
 		default:
 			break;
@@ -84,7 +84,7 @@ void ReianaThreeSwordState::Enter()
 	count = 1;
 	currentDelay = 0.f;
 	currentChangeTime = 0.f;
-	delayTime = 1.f;
+	delayTime = 0.5f;
 	animator->ChangeAnimation("homingpierceReady", false);
 	fix = false;
 	if (reiana->GetPosition().x < reiana->GetPlayer()->GetPosition().x && reiana->IsFlipX())

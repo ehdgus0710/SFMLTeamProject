@@ -34,7 +34,7 @@ void ReianaBackStap::Enter()
 {
 	ReianaBaseState::Enter();
 	animator->ChangeAnimation("dash", false);
-	startPosition = { 2000.f,500.f };
+	startPosition = { 2200.f,500.f };
 	endPosition = { 1700.f,900.f };
 	currentTime = 0.f;
 	if (!reiana->IsFlipX())
@@ -50,7 +50,7 @@ void ReianaBackStap::Update(float deltaTime)
 {
 	ReianaBaseState::Update(deltaTime);
 	currentTime += deltaTime;
-	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentTime / time));
+	reiana->SetPosition(sf::Vector2f::Lerp(startPosition, endPosition, currentTime / time*3));
 	if (currentTime > time + 0.1)
 	{
 		fsm->ChangeState(ReianaStateType::Idle);

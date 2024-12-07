@@ -33,11 +33,11 @@ void ReianaRisingState::CreateRising()
 	{
 		Rising* rising = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Rising(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "RisingPierce"), LayerType::EnemyBullet);
 		rising->Start();
-		rising->SetPosition(reiana->GetPosition() + (risingPos * count));
+		rising->SetPosition(risingReadyPos + (risingPos * count));
 
 		Rising* rising1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new Rising(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "RisingPierce"), LayerType::EnemyBullet);
 		rising1->Start();
-		rising1->SetPosition(reiana->GetPosition() - (risingPos * count));
+		rising1->SetPosition(risingReadyPos - (risingPos * count));
 
 		if (count == 8)
 		{
@@ -56,6 +56,7 @@ void ReianaRisingState::Enter()
 	ReianaBaseState::Enter();
 	RisingReady* risingReady = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new RisingReady(reiana, ColliderLayer::EnemyBullet, ColliderLayer::Player, "RisingPierceReady"), LayerType::EnemyBullet);
 	risingReady->Start();
+	risingReadyPos = risingReady->GetEffectPos();
 	animator->ChangeAnimation("risingPierceReady", false);
 	startCurrentDelay = 0.f;
 	endCurrentDelay = 0.f;

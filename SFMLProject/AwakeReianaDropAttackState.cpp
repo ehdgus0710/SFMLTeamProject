@@ -57,7 +57,7 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 			awakenDropSide1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropSide(), LayerType::EnemyBullet);
 			awakenDropSide2 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropSide(), LayerType::EnemyBullet);
 			awakenDropSide1->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60 });
-			awakenDropSide2->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60});
+			awakenDropSide2->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60 });		
 			awakenDropSide2->OnFlipX();
 			AwakenDropEnd* awakenDropEnd = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropEnd(), LayerType::EnemyBullet);
 			awakenDropEnd->Start();
@@ -118,6 +118,10 @@ void AwakeReianaDropAttackState::Exit()
 {
 	AwakeReianaBaseState::Exit();
 	rigidbody->SetActive(true);
+	if (hitBox != nullptr)
+	{
+		OnDestoryHitBox();
+	}
 }
 
 void AwakeReianaDropAttackState::Update(float deltaTime)

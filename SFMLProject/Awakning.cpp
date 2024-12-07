@@ -11,7 +11,7 @@ Awakning::Awakning(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenNing.csv");
 	animator->AddAnimation(animation, "AwakenNing");
-	SetScale({ 2.f,2.f });
+	SetScale({ 4.f,4.f });
 	animator->SetAnimationSpeed(2.f);
 	SetOrigin(Origins::BottomCenter);
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());

@@ -2,14 +2,18 @@
 #include "PlayerDashState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Scene.h"
+#include "Camera.h"
 
 
 PlayerDashState::PlayerDashState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dash)
 	, isExtraDash(false)
-	, dashTime(0.3f)
+	, dashTime(0.25f)
 	, currentTime(0.f)
 	, rigidbody(nullptr)
+	, isGround(false)
+	, moveDirection(0.f)
 {
 	animationKeys.push_back("littleboneDash");
 	animationKeys.push_back("noheadlittleboneDash");
@@ -21,9 +25,19 @@ PlayerDashState::~PlayerDashState()
 
 void PlayerDashState::StartDash()
 {
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
+	{
+		if (!player->IsFlipX())
+			player->OnFlipX();
+	}
+	else if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	{
+		if (player->IsFlipX())
+			player->OnFlipX();
+	}
+
 	animator->ChangeAnimation(animationKeys[GetAnimationIndex()], false);
-	dashEndPos = player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::left : sf::Vector2f::right) * 400.f;
-	dashStartPos = player->GetPosition();
+	moveDirection = player->IsFlipX() ? -1.f : 1.f;
 	player->OnDash();
 	currentTime = 0.f;
 }
@@ -38,26 +52,27 @@ void PlayerDashState::Enter()
 	PlayerBaseState::Enter();
 	rigidbody->ResetDropSpeed();
 	rigidbody->ResetVelocity();
-	rigidbody->Disable();
+
+	isGround = rigidbody->IsGround();
+	rigidbody->SetGround(true);
 	isExtraDash = false;
 	StartDash();
 }
 
 void PlayerDashState::Exit()
 {
-	rigidbody->SetActive(true);
+	rigidbody->SetGround(isGround);
 	PlayerBaseState::Exit();
 }
 
 void PlayerDashState::Update(float deltaTime)
 {
  	PlayerBaseState::Update(deltaTime);
-	currentTime += deltaTime;
-	player->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currentTime / dashTime));
 
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
 		isExtraDash = true;
 
+	currentTime += deltaTime;
 	if (currentTime >= dashTime + 0.1f)
 	{
 		if (isExtraDash && player->GetCurrentDashCount() > 0)
@@ -78,4 +93,13 @@ void PlayerDashState::Update(float deltaTime)
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
 	}
+}
+
+void PlayerDashState::FixedUpdate(float fixedDeltaTime)
+{
+	if (currentTime < dashTime)
+		rigidbody->SetVelocity({ moveDirection * 1500.f , 0.f });
+	else
+		rigidbody->SetVelocity({0.f , 0.f });
+
 }

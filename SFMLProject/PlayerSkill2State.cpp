@@ -46,6 +46,14 @@ void PlayerSkill2State::Exit()
 
 void PlayerSkill2State::Update(float deltaTime)
 {
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
+	{
+		player->GetRigidbody()->SetActive(true);
+		player->GetRigidbody()->ResetDropSpeed();
+		player->GetRigidbody()->ResetVelocity();
+
+		fsm->ChangeState(PlayerStateType::Dash);
+	}
 }
 
 void PlayerSkill2State::FixedUpdate(float fixedDeltaTime)

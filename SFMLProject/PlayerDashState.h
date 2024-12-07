@@ -6,11 +6,11 @@ class PlayerDashState : public PlayerBaseState
 protected:
 	Rigidbody*		rigidbody;
 
-	sf::Vector2f	dashEndPos;
-	sf::Vector2f	dashStartPos;
+	float			moveDirection;
 	float			dashTime;
 	float			currentTime;
 
+	bool			isGround;
 	bool			isExtraDash;
 
 private:
@@ -22,6 +22,7 @@ public:
 	void Enter() override;
 	void Exit() override;
 	void Update(float deltaTime) override;
+	void FixedUpdate(float fixedDeltaTime) override;
 public:
 	PlayerDashState(PlayerFSM* fsm);
 	~PlayerDashState();

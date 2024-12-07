@@ -5,7 +5,7 @@
 
 
 SkeletonSpearSkill1State::SkeletonSpearSkill1State(SkeletonSpearFSM* fsm)
-	: SkeletonSpearBaseState(fsm, SkeletonSpearStateType::Dash)
+	: SkeletonSpearBaseState(fsm, SkeletonSpearStateType::Skill1)
 	, isExtraDash(false)
 	, dashTime(0.3f)
 	, currentTime(0.f)

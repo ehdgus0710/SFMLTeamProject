@@ -109,7 +109,7 @@ BaseState<SkeletonSpearStateType>* SkeletonSpearFSM::CreateState(SkeletonSpearSt
 		state = new SkeletonSpearSkill1State(this);
 		break;
 	case SkeletonSpearStateType::Skill2:
-	//	state = new SkeletonSpearSkill2State(this);
+		state = new SkeletonSpearSkill2State(this);
 		break;
 	case SkeletonSpearStateType::End:
 		break;

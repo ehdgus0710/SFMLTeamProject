@@ -14,7 +14,7 @@
 #include "PlayerUIHub.h"
 
 SkeletonSpear::SkeletonSpear(const std::string& name)
-	: AnimationGameObject(name)
+	: Player(name)
 	, fsm(this)
 	, isJump(false)
 	, currentStatus(150.f, 500.f, 200.f, 350.f)
@@ -169,11 +169,11 @@ void SkeletonSpear::Start()
 	collider->SetScale({ 16.f,32.f });
 	collider->SetOffsetPosition({ 0.f, -5.f });
 
-	playerUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
-
-	playerUI->SetOrigin(Origins::BottomLeft);
-	playerUI->SetScale({ 3.5f,3.5f });
-	playerUI->SetPosition({ 0, 1075.f });
+	//playerUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new PlayerUIHub("PlayerUiFrame"), LayerType::InGameUI);
+	//
+	//playerUI->SetOrigin(Origins::BottomLeft);
+	//playerUI->SetScale({ 3.5f,3.5f });
+	//playerUI->SetPosition({ 0, 1075.f });
 }
 
 void SkeletonSpear::Update(const float& deltaTime)

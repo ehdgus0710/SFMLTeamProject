@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AnimationGameObject.h"
+#include "Player.h"
 #include "SkeletonSpearFSM.h"
 #include "PlayerSaveData.h"
 
@@ -10,7 +10,7 @@ class Head;
 class GameObject;
 class PlayerUIHub;
 
-class SkeletonSpear : public AnimationGameObject
+class SkeletonSpear : public Player
 {
 protected:
 	PlayerUIHub* playerUI;
@@ -66,6 +66,7 @@ public:
 	bool IsNoneHead() { return isNoneHead; }
 
 	void SetIsJump(bool jump) { isJump = jump; }
+	void SetDashCount(int count) { dashCount = count; }
 
 	bool IsJump() const { return isJump; }
 	float GetCurrentHP() const { return currentStatus.hp; }

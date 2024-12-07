@@ -49,6 +49,73 @@ void Camera::CameraLimit()
 	camera.setCenter(cameraPosition);
 }
 
+void Camera::CameraShake(float deltaTime)
+{
+	currentShakeTime += deltaTime;
+
+	if (currentShakeTime >= shakeTime)
+	{
+		currentCameraShakePosition = sf::Vector2f::zero;
+		currentShakeTime = 0.f;
+		useCameraShake = false;
+		camera.setCenter(cameraPosition);
+	}
+	else
+	{
+		currentCameraShakePosition += shakeDirection * deltaTime * shakePower;
+
+		if (shakeDirection.x < 0.f && currentCameraShakePosition.x <= -shakeRange.x)
+		{
+			shakeDirection.x = Utils::RandomRange(0.5f, 1.f);
+		}
+		else if (shakeDirection.x > 0.f && currentCameraShakePosition.x >= shakeRange.x)
+		{
+			shakeDirection.x = Utils::RandomRange(0.5f, 1.f) * -1.f;
+		}
+
+		if (shakeDirection.y < 0.f && currentCameraShakePosition.y <= -shakeRange.y)
+		{
+			shakeDirection.y = Utils::RandomRange(0.5f, 1.f);
+		}
+		else if (shakeDirection.y > 0.f && currentCameraShakePosition.y >= shakeRange.y)
+		{
+			shakeDirection.y = Utils::RandomRange(0.5f, 1.f) * -1.f;
+		}
+		camera.setCenter(cameraPosition + currentCameraShakePosition);
+	}
+
+}
+
+void Camera::SetCameraShake(const sf::Vector2f shakeRange, MoveDirection moveType, float shakePower, float shakeTime)
+{
+	this->shakeRange = shakeRange;
+	this->moveType = moveType;
+	this->shakeTime = shakeTime;
+	this->shakePower = shakePower;
+	currentCameraShakePosition = sf::Vector2f::zero;
+	currentShakeTime = 0.f;
+
+	switch (moveType)
+	{
+	case MoveDirection::LeftAndRight:
+		shakeDirection = sf::Vector2f(Utils::RandomRange(0.5f, 1.f), 0.f);
+		break;
+	case MoveDirection::UpAndDown:
+		shakeDirection = sf::Vector2f(0.f, Utils::RandomRange(0.5f, 1.f));
+		break;
+	case MoveDirection::Random:
+		shakeDirection = sf::Vector2f(Utils::RandomRange(0.5f, 1.f), Utils::RandomRange(0.5f, 1.f));
+		break;
+	case MoveDirection::end:
+		break;
+	default:
+		break;
+	}
+
+	shakeDirection.Normalized();	
+	useCameraShake = true;
+}
+
 void Camera::SetCameraPosition(const sf::Vector2f& position)
 {
 	cameraPosition = position; 
@@ -109,6 +176,8 @@ void Camera::Update(const float& deltaTime)
 		CameraLimit();
 	}
 	
+	if (useCameraShake)
+		CameraShake(deltaTime);
 }
 
 bool Camera::SaveCsv(const std::string& filePath) const

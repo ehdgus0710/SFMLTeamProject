@@ -1,5 +1,13 @@
 #pragma once
 
+enum class MoveDirection
+{
+	LeftAndRight,
+	UpAndDown,
+	Random,
+	end,
+};
+
 class Camera : public Entity
 {
 protected:
@@ -23,12 +31,25 @@ protected:
 	bool			useCameraLimit;
 	bool			useLerpFollowTarget;
 
+
+	sf::Vector2f	currentCameraShakePosition;
+	sf::Vector2f	shakeRange;
+	sf::Vector2f	shakeDirection;
+	MoveDirection	moveType;
+	float			shakeTime;
+	float			currentShakeTime;
+	float			shakePower;
+	bool			useCameraShake;
+
 private:
 	void CameraLimit();
+	void CameraShake(float deltaTime);
 
 public:
 	void SetActive(bool active) { isActive = active; }
 	bool IsActive() { return isActive; }
+
+	void SetCameraShake(const sf::Vector2f shakeRange, MoveDirection moveType, float shakePower,float shakeTime);
 
 public:
 	void SetViewInfo(const sf::View& view) { camera = view; }

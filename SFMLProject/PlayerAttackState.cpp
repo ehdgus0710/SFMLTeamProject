@@ -25,6 +25,15 @@ PlayerAttackState::~PlayerAttackState()
 {
 }
 
+void PlayerAttackState::SetChangeAnimationKey(int index)
+{
+	ClearAttackEvent();
+	ClearEndAttackEvenet();
+	
+	PlayerBaseState::SetChangeAnimationKey(index);
+	SetAnimationEvent();
+}
+
 void PlayerAttackState::Awake()
 {
 	PlayerBaseState::Awake();
@@ -61,10 +70,10 @@ void PlayerAttackState::FixedUpdate(float fixedDeltaTime)
 {
 }
 
-void PlayerAttackState::EvenetClear()
+void PlayerAttackState::ClearEndAttackEvenet()
 {
 	Animation* animation = animator->GetCurrentAnimation();
-	animator->GetCurrentAnimation()->ClearEndEvent(animation->GetFrameCount() - 1);
+	animator->GetCurrentAnimation()->ClearEndEvent(animation->GetEndFrameCount());
 }
 
 void PlayerAttackState::CreateEffect(GameObject* object)
@@ -95,37 +104,78 @@ void PlayerAttackState::EndMove()
 	rigidbody->ResetVelocity();
 }
 
+void PlayerAttackState::SetAnimationEvent()
+{
+	Animation* animation = animator->GetCurrentAnimation();
+
+	if (currentAttackCount == 1)
+	{
+		animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::EndMove, this), 2);
+		animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::OnCreateHitBox, this), 2);
+		animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::OnDestoryHitBox, this), 2);
+	}
+	else
+	{
+		animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::EndMove, this), 1);
+		animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::OnCreateHitBox, this), 1);
+		animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::OnDestoryHitBox, this), 1);
+	}
+	animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), animation->GetEndFrameCount());
+}
+
+void PlayerAttackState::ClearAttackEvent()
+{
+	Animation* animation = animator->GetCurrentAnimation();
+	if (currentAttackCount == 1)
+	{
+		animation->ClearStartEvent(2);
+		animation->ClearEndEvent(2);
+	}
+	else
+	{
+		animation->ClearStartEvent(1);
+		animation->ClearEndEvent(1);
+	}
+}
+
+void PlayerAttackState::MoveAttack()
+{
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
+	{
+		if (!player->IsFlipX())
+			player->OnFlipX();
+
+		rigidbody->SetVelocity(sf::Vector2f::left * attackMoveSpeed);
+	
+	}
+	else if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	{
+		if (player->IsFlipX())
+			player->OnFlipX();
+
+		rigidbody->SetVelocity(sf::Vector2f::right * attackMoveSpeed);
+	}
+
+}
+
 void PlayerAttackState::StartAttack()
 {
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) || InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
-		rigidbody->SetVelocity((player->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
+	MoveAttack();
 
 	currentAttackCount = 1;
 	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "1", false);
 
-	Animation* animation = animator->GetCurrentAnimation();
-	animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), animation->GetFrameCount() - 1);
-
-	animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::EndMove, this), 2);
-	animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::OnCreateHitBox, this), 2);
-	animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::OnDestoryHitBox, this), 2);
-
+	SetAnimationEvent();
 }
 
 void PlayerAttackState::NextAttack()
 {
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) || InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
-		rigidbody->SetVelocity((player->IsFlipX() ? sf::Vector2f::left * attackMoveSpeed : sf::Vector2f::right * attackMoveSpeed));
+	MoveAttack();
 
 	currentAttackCount = 2;
 	animator->ChangeAnimation(animationKeys[GetAnimationIndex()] + "2", true);
 
-	Animation* animation = animator->GetCurrentAnimation();
-
-	animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::EndMove, this), 1);
-	animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::EndAttack, this), animation->GetFrameCount() - 1);
-	animation->SetAnimationStartEvent(std::bind(&PlayerAttackState::OnCreateHitBox, this), 1);
-	animation->SetAnimationEndEvent(std::bind(&PlayerAttackState::OnDestoryHitBox, this), 1);
+	SetAnimationEvent();
 }
 
 void PlayerAttackState::EndAttack()
@@ -137,14 +187,14 @@ void PlayerAttackState::EndAttack()
 	else
 	{
 		rigidbody->ResetVelocity();
-		EvenetClear();
+		ClearEndAttackEvenet();
 		fsm->ChangeState(PlayerStateType::Idle);
 	}
 }
 
 void PlayerAttackState::SequenceAttack()
 {
-	EvenetClear();
+	ClearEndAttackEvenet();
 	if (currentAttackCount == 1)
 	{
 		NextAttack();
@@ -159,7 +209,7 @@ void PlayerAttackState::SequenceAttack()
 
 void PlayerAttackState::OnCreateHitBox()
 {
-	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Boss, true, sf::Vector2f::right * 50.f), LayerType::PlayerBullet);
+	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Reiana, true, sf::Vector2f::right * 50.f), LayerType::PlayerBullet);
 	attackBox->SetScale({ 150.f,150.f });
 	attackBox->SetDamage(damageInfo);
 
@@ -173,16 +223,5 @@ void PlayerAttackState::OnDestoryHitBox()
 	attackBox->SetActive(false);
 	attackBox = nullptr;
 
-	if (currentAttackCount == 1)
-	{
-		Animation* animation = animator->GetCurrentAnimation();
-		animation->ClearStartEvent(2);
-		animation->ClearEndEvent(2);
-	}
-	else
-	{
-		Animation* animation = animator->GetCurrentAnimation();
-		animation->ClearStartEvent(1);
-		animation->ClearEndEvent(1);
-	}
+	ClearAttackEvent();
 }

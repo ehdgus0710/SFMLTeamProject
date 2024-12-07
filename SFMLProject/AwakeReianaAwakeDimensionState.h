@@ -3,20 +3,27 @@
 #include "AwakeReianaBaseState.h"
 
 class HitBoxObject;
+class AwakeDemensionWaitEffect;
 
 class AwakeReianaAwakeDimensionState : public AwakeReianaBaseState
 {
 protected:
 	HitBoxObject* hitBox;
 
+	std::list<AwakeDemensionWaitEffect*> dimensionList;
+	float moveTime = 0.5f;
+	float moveCurrentTime = 0.f;
 	float delay = 0.5f;
 	float currentDelay = 0.f;
 	float attackDelay = 0.3f;
 	float currentAttackDelay = 0.f;
 	float animationDelay = 0.5f;
 	float currentAnimationDelay = 0.f;
+	float dimensionCreateTime = 0.2f;
+	float dimensionCreateCurrentTime = 0.f;
 
 	int endFrame;
+	int dimensionCount;
 
 	float leftPosition = 100.f;
 	float rightPosition = 100.f;

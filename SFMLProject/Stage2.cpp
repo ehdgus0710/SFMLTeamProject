@@ -20,7 +20,7 @@ Stage2::Stage2()
 	loadPath = "Stage2.json";
 
 
-	cameraLimitRect = { 0.f, 3840.f, 0.f, 1080.f };
+	cameraLimitRect = { -400.f, 2440.f, 0.f, 1080.f };
 	currentCameraLimitRect = cameraLimitRect;
 }
 

@@ -22,6 +22,7 @@ PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
 
 {
 	prevTimeScale = TimeManager::GetInstance().GetTimeScale();
+	InputManager::GetInstance().BindKey(sf::Keyboard::Escape);
 }
 
 void PauseUIBar::OffUIBar()

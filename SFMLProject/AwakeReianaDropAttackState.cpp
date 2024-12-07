@@ -6,6 +6,9 @@
 #include "Animation.h"
 #include "HitBoxObject.h"
 #include "IntroLandSmoke.h"
+#include "AwakenDropEnd.h"
+#include "AwakenDropStart.h"
+#include "AwakenDropSide.h"
 
 AwakeReianaDropAttackState::AwakeReianaDropAttackState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::DropAttack)
@@ -22,6 +25,9 @@ void AwakeReianaDropAttackState::Wait(float deltaTime)
 	awakeReiana->SetPosition(awakeReiana->GetPosition());
 	if (currentWaitTime >= waitTime)
 	{
+		AwakenDropStart* awakenDropStart = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropStart(), LayerType::BackGround_Forward);
+		awakenDropStart->Start();
+		awakenDropStart->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 900 });
 		OnCreateHitBox();
 		action = true;
 	}
@@ -46,7 +52,16 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 			IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 			introLandSmoke->SetScale({ 2.f,2.f });
 			introLandSmoke->Start();
-			introLandSmoke->SetPosition(awakeReiana->GetPosition());
+			introLandSmoke->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y });
+			
+			awakenDropSide1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropSide(), LayerType::EnemyBullet);
+			awakenDropSide2 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropSide(), LayerType::EnemyBullet);
+			awakenDropSide1->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60 });
+			awakenDropSide2->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 60});
+			awakenDropSide2->OnFlipX();
+			AwakenDropEnd* awakenDropEnd = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenDropEnd(), LayerType::EnemyBullet);
+			awakenDropEnd->Start();
+			awakenDropEnd->SetPosition({ awakeReiana->GetPosition().x,awakeReiana->GetPosition().y + 30 });
 			effect = true;
 		}
 		if (currentLandingTime >= landingTime)
@@ -86,14 +101,14 @@ void AwakeReianaDropAttackState::Enter()
 	attack = false;
 	waitAnimation = false;
 	auto playerPos = awakeReiana->GetPlayer()->GetPosition();
-	endPosition = { playerPos.x, 80.f };
+	endPosition = { playerPos.x, 900.f };
 
 	playerPos -= waitStartPos;
 	startPosition = playerPos;
 
 	playerPos = awakeReiana->GetPlayer()->GetPosition();
 
-
+	
 
 	awakeReiana->SetPosition(startPosition);
 	rigidbody->SetActive(false);
@@ -108,7 +123,14 @@ void AwakeReianaDropAttackState::Exit()
 void AwakeReianaDropAttackState::Update(float deltaTime)
 {
 	AwakeReianaBaseState::Update(deltaTime);
-
+	if (awakenDropSide1 != nullptr)
+	{
+		awakenDropSide1->Move(deltaTime,awakeReiana->GetPosition());
+	}
+	if (awakenDropSide2 != nullptr)
+	{
+		awakenDropSide2->Move2(deltaTime,awakeReiana->GetPosition());
+	}
 	if (!action)
 		Wait(deltaTime);
 	else

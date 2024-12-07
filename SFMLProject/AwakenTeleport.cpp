@@ -11,6 +11,8 @@ AwakenTeleport::AwakenTeleport(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenTeleport.csv");
 	animator->AddAnimation(animation, "AwakenTeleport");
+	animator->SetAnimationSpeed(2.f);
+	SetOrigin(Origins::BottomCenter);
 	SetScale({ 2.f,2.f });
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }

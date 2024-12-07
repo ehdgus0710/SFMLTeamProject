@@ -2,13 +2,25 @@
 #include "Scene.h"
 
 class FadeOutUI;
+class SpriteGameObject;
+class UIFadeInOutSpriteObject;
+class UIFadeTextGameObject;
+
 class TitleScene : public Scene
 {
 private:
 	FadeOutUI* fadeOutUI;
+	SpriteGameObject* titleSprite;
+	UIFadeInOutSpriteObject* titleLogo;
+	UIFadeTextGameObject* messageText;
 
 	bool isStartGame;
-	bool isEndGame;
+	bool isStartGameFade;
+
+private:
+	void OnStartFadeInEvent();
+	void OnTextFadeIn();
+	void OnTextFadeOut();
 
 public:
 	void CollisitionCheck();

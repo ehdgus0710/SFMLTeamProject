@@ -120,10 +120,6 @@ void Bullet::Render(sf::RenderWindow& renderWindow)
 	collider->Render(renderWindow);
 }
 
-void Bullet::OnCollisionEnter(Collider* target)
-{
-}
-
 void Bullet::CreateAnimator()
 {
 	if (animator == nullptr)

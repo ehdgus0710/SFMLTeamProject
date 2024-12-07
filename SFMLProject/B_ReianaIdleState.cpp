@@ -37,9 +37,14 @@ void B_ReianaIdleState::Enter()
 		b_reiana->OnFlipX();
 	}
 	currentdelay = 0.f;
+
 	count = reiana->GetCount();
 	animator->ChangeAnimation("idle", true);
 
+	if (reiana->GetHp() <= 0)
+	{
+		fsm->ChangeState(B_ReianaStateType::Dead);
+	}
 }
 
 void B_ReianaIdleState::Exit()
@@ -51,7 +56,7 @@ void B_ReianaIdleState::Exit()
 void B_ReianaIdleState::Update(float deltaTime)
 {
 	B_ReianaBaseState::Update(deltaTime);
-	if (count < 6 && reiana->GetCount() != count)
+	if (count <= 9 && reiana->GetCount() != count)
 	{
 		currentdelay = 0.f;
 		count = reiana->GetCount();
@@ -100,16 +105,18 @@ void B_ReianaIdleState::changeState(float dt)
 			{
 				fsm->ChangeState(B_ReianaStateType::Dash);
 				dash = true;
+				delay = 2.0;
 			}
 			else
 			{
-				count++;
 				fsm->ChangeState(B_ReianaStateType::DropAttack);
 				dash = false;
+				count++;
+				delay = 1.0;
 			}
 			break;
 		case B_ReianaStateType::Dead:
-			fsm->ChangeState(B_ReianaStateType::Idle);
+			fsm->ChangeState(B_ReianaStateType::Dead);
 			break;
 		case B_ReianaStateType::End:
 			break;

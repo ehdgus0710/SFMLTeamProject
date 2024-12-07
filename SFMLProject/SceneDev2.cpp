@@ -76,6 +76,8 @@ void SceneDev2::LoadResources()
 	TEXTURE_MANAGER.Load("GroundAttackRazer", "graphics/boss/Rayanna/effects/groundAttackRazer.png");
 	TEXTURE_MANAGER.Load("GroundAttackThunder", "graphics/boss/Rayanna/effects/groundAttackThunder.png");
 	TEXTURE_MANAGER.Load("Teleport", "graphics/boss/Rayanna/effects/teleport.png");
+	TEXTURE_MANAGER.Load("GroundAttackDelay", "graphics/boss/Rayanna/effects/GroundAttackDelay.png");
+	TEXTURE_MANAGER.Load("AwakeDimension", "graphics/boss/Rayanna/effects/AwakeDimension.png");
 
 }
 
@@ -170,17 +172,17 @@ void SceneDev2::Enter()
 	testPlayer->SetPosition({ 0, -500.f });
 	testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
-	//Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
-	//testReiana->Awake();
-	//testReiana->SetPosition({ 1700.f,-500.f });
+	Reiana* testReiana = AddGameObject(new Reiana("Reiana"), LayerType::Boss);
+	testReiana->Awake();
+	testReiana->SetPosition({ 1700.f,-500.f });
 
-	//B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
-	//testBReiana->Awake();
-	//testBReiana->SetPosition({ 200.f,-500.f });
+	B_Reiana* testBReiana = AddGameObject(new B_Reiana("Reiana"), LayerType::Boss);
+	testBReiana->Awake();
+	testBReiana->SetPosition({ 200.f,-500.f });
 
-	AwakeReiana* testAwakeReiana = AddGameObject(new AwakeReiana("AwakeReiana"), LayerType::Boss);
-	testAwakeReiana->Awake();
-	testAwakeReiana->SetPosition({ 800.f,-500.f });
+	//AwakeReiana* testAwakeReiana = AddGameObject(new AwakeReiana("AwakeReiana"), LayerType::Boss);
+	//testAwakeReiana->Awake();
+	//testAwakeReiana->SetPosition({ 800.f,-500.f });
 
 	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
 	wallCollision->SetScale({ 10000.f, 30.f });

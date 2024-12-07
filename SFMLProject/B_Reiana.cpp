@@ -20,6 +20,9 @@ B_Reiana::B_Reiana(const std::string& name)
 	animator->LoadCsv("animators/rayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
+	currentStatus.hp = 150;
+	currentStatus.maxHp = 150;
+
 	// animator->CreateAnimation("B_ReianaIdle", "B_ReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
@@ -27,12 +30,28 @@ B_Reiana::~B_Reiana()
 {
 }
 
-void B_Reiana::TakeDamage(float damage)
+void B_Reiana::TakeDamage(const DamegeInfo& damage)
 {
-	currentStatus.hp -= damage;
+	currentStatus.hp -= damage.damege;
 
-	if (currentStatus.hp <= 0)
+	if (currentStatus.hp <= 0.f)
+	{
+		currentStatus.hp = 0.f;
 		OnDead();
+		/*isDead = true;
+		fsm.ChangeState(PlayerStateType::Dead);*/
+
+		/*if (!phaseUp)
+		{
+			phaseUp = true;
+			currentStatus.hp = (float)phase2Hp;
+			currentStatus.maxHp = (float)phase2Hp;
+			yggdrasilUIHub->ChangePhase();
+		}*/
+	}
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void B_Reiana::OnDead()
@@ -47,7 +66,7 @@ void B_Reiana::Awake()
 
 void B_Reiana::Start()
 {
-	InputManager::GetInstance().BindKey(sf::Keyboard::Q);
+	InputManager::GetInstance().BindKey(sf::Keyboard::W);
 
 	collider->SetOffsetPosition({ 0.f,-100.f });
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
@@ -58,12 +77,20 @@ void B_Reiana::Start()
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
 
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void B_Reiana::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
+
+	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::W))
+	{
+		fsm.ChangeState(B_ReianaStateType::Dead);
+	}
 }
 
 void B_Reiana::FixedUpdate(const float& deltaTime)

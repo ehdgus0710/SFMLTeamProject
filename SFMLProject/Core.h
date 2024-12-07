@@ -94,6 +94,7 @@ enum class ColliderLayer
 	EnemyBullet,
 	SavePoint,
 	CleraPoint,
+	Door,
 
 	UI,
 
@@ -198,6 +199,7 @@ enum class AwakeReianaStateType
 	GroundAttack,
 	DiagonalDrop,
 	Dead,
+	Awake,
 
 	End
 };

@@ -4,10 +4,12 @@
 
 FadeOutUI::FadeOutUI(const std::string& name)
 	: UIGameObject(name)
-	, isFadeOutEnd(false)
-	, isStartFadeOut(false)
+	, isEndFadeInOut(false)
+	, isStartFadeInOut(false)
 	, currentAlpha(0.f)
-	, speed(300.f)
+	, isFadeIn(false)
+	, currentTime(0.f)
+	, fadeTime(1.f)
 {
 	currentColor = sf::Color::Black;
 	currentColor.a = 0;
@@ -17,7 +19,7 @@ FadeOutUI::FadeOutUI(const std::string& name)
 
 void FadeOutUI::EndFadeOut()
 {
-	if (!isFadeOutEnd)
+	if (!isEndFadeInOut)
 		return;
 
 	for (auto& endEvnet : fadeOutEndEvenets)
@@ -26,13 +28,13 @@ void FadeOutUI::EndFadeOut()
 			endEvnet();
 	}
 
-	isFadeOutEnd = false;
+	isEndFadeInOut = false;
 	fadeOutEndEvenets.clear();
 }
 
-void FadeOutUI::StartFadeOut()
+void FadeOutUI::StartFadeOut(float time)
 {
-	if (isStartFadeOut)
+	if (isStartFadeInOut)
 		return;
 
 	for (auto& startEvenet : fadeOutStartEvenets)
@@ -42,11 +44,51 @@ void FadeOutUI::StartFadeOut()
 	}
 	fadeOutStartEvenets.clear();
 
+	fadeTime = time;
+	currentTime = 0.f;
 	currentColor = sf::Color::Black;
 	currentColor.a = 0;
 	currentAlpha = 0.f;
 	fadeOutRect.setFillColor(currentColor);
-	isStartFadeOut = true;
+	isStartFadeInOut = true;
+}
+
+void FadeOutUI::EndFadeIn()
+{
+	if (!isEndFadeInOut)
+		return;
+
+	for (auto& endEvnet : fadeInEndEvenets)
+	{
+		if (endEvnet)
+			endEvnet();
+	}
+
+	isFadeIn = false;
+	isEndFadeInOut = false;
+	fadeInEndEvenets.clear();
+}
+
+void FadeOutUI::StartFadeIn(float time)
+{
+	if (isStartFadeInOut)
+		return;
+
+	for (auto& startEvenet : fadeInStartEvenets)
+	{
+		if (startEvenet)
+			startEvenet();
+	}
+	fadeInStartEvenets.clear();
+
+	fadeTime = time;
+	currentTime = 0.f;
+	currentColor = sf::Color::Black;
+	currentColor.a = 255;
+	currentAlpha = 255.f;
+	fadeOutRect.setFillColor(currentColor);
+	isStartFadeInOut = true;
+	isFadeIn = true;
 }
 
 void FadeOutUI::SetPosition(const sf::Vector2f& pos)
@@ -75,18 +117,28 @@ void FadeOutUI::Start()
 
 void FadeOutUI::Update(const float& deltaTime)
 {
-	if (!isStartFadeOut)
+	if (!isStartFadeInOut)
 		return;
 
-	currentAlpha += speed * TimeManager::GetInstance().GetUnScaleDeletaTime();
+	currentTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
+
+	if (isFadeIn)
+		currentAlpha = Utils::Lerp(255, 0, currentTime / fadeTime);
+	else
+		currentAlpha = Utils::Lerp(0, 255, currentTime / fadeTime);
+
 	currentColor.a = (unsigned int)currentAlpha;
 	fadeOutRect.setFillColor(currentColor);
 
-	if (currentColor.a == 255)
+	if (currentTime >= fadeTime)
 	{
-		isFadeOutEnd = true;
-		isStartFadeOut = false;
-		EndFadeOut();
+		isEndFadeInOut = true;
+		isStartFadeInOut = false;
+
+		if (isFadeIn)
+			EndFadeIn();
+		else
+			EndFadeOut();
 	}
 }
 void FadeOutUI::SetOrigin(Origins preset)

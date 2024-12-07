@@ -20,9 +20,13 @@ private:
 	void OnCreateHitBox();
 	void OnDestoryHitBox();
 	void ClearEvenet();
-public:
-	void Start() override;
 
+	void SetAttackEvnet();
+
+public:
+	void SetChangeAnimationKey(int index) override;
+
+	void Start() override;
 	void Enter() override;
 	void Exit() override;
 	void Update(float deltaTime) override;

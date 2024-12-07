@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "Animator.h"
 #include "Player.h"
+#include "ReianaUIHub.h"
 
 AwakeReiana::AwakeReiana(const std::string& name)
 	:AnimationGameObject(name)
@@ -19,6 +20,8 @@ AwakeReiana::AwakeReiana(const std::string& name)
 	animator->LoadCsv("animators/awakenRayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
+	currentStatus.hp = 150;
+	currentStatus.maxHp = 150;
 	// animator->CreateAnimation("AwakeReianaIdle", "AwakeReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
@@ -30,13 +33,19 @@ void AwakeReiana::TakeDamage(const DamegeInfo& damage)
 {
 	currentStatus.hp -= damage.damege;
 
-	if (currentStatus.hp <= 0)
+	if (currentStatus.hp <= 0.f)
+	{
+		currentStatus.hp = 0.f;
 		OnDead();
+	}
+
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void AwakeReiana::OnDead()
 {
-	// fsm.ChangeState(AwakeReianaStateType::Dead);
+	fsm.ChangeState(AwakeReianaStateType::Dead);
 }
 
 void AwakeReiana::Awake()
@@ -52,10 +61,14 @@ void AwakeReiana::Start()
 	player = dynamic_cast<Player*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	AnimationGameObject::Start();
 	animator->ChangeAnimation("awakenReianaIdle", true);
-	fsm.ChangeState(AwakeReianaStateType::Idle);
+	fsm.ChangeState(AwakeReianaStateType::Awake);
 	collider->SetScale({ 60.f,82.f });
 	SetOrigin(Origins::BottomCenter);
 	SetScale({ -2.5f,2.5f });
+
+	reianaUIHub->ChangePhase();
+	if (changeHpAction != nullptr)
+		changeHpAction(currentStatus.hp, currentStatus.maxHp);
 }
 
 void AwakeReiana::Update(const float& deltaTime)
@@ -64,7 +77,7 @@ void AwakeReiana::Update(const float& deltaTime)
 	animator->Update(deltaTime);
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
 	{
-		fsm.ChangeState(AwakeReianaStateType::GroundAttack);
+		fsm.ChangeState(AwakeReianaStateType::AwakeDimension);
 	}
 }
 

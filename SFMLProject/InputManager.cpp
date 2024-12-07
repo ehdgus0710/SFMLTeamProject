@@ -22,6 +22,7 @@ void InputManager::SetInputable(bool active)
 
 InputManager::InputManager()
 	: isInputable(false)
+	, isInput(false)
 {
 }
 
@@ -49,6 +50,7 @@ bool InputManager::BindMouseButton(const sf::Mouse::Button& mouseButton)
 
 void InputManager::UpDownCheck()
 {
+	isInput = false;
 	int size = (int)keyUpDownStateVector.size();
 	for (int i = 0; i < size; ++i)
 	{
@@ -164,6 +166,10 @@ void InputManager::UpdateEvent(const sf::Event* ev)
 		mousePosition = sf::Mouse::getPosition(*WindowManager::GetInstance().GetRenderWindow());
 		break;
 	}
+
+	if(ev->type == sf::Event::KeyPressed && (ev->key.code > sf::Keyboard::Key::Unknown && ev->key.code < sf::Keyboard::Key::KeyCount) 
+		|| (ev->key.code >= sf::Mouse::Button::Left && ev->key.code < sf::Mouse::Button::ButtonCount))
+	isInput = true;
 }
 
 void InputManager::Update(float deltaTime)

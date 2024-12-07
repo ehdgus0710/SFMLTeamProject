@@ -6,6 +6,7 @@
 #include "AwakenDeadCreate.h"
 #include "AwakenDeadDelete.h"
 #include "Scene.h"
+#include "ReianaUIHub.h"
 
 AwakeReianaDeadState::AwakeReianaDeadState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::Dead)
@@ -46,6 +47,7 @@ void AwakeReianaDeadState::DeleteEffect()
 void AwakeReianaDeadState::OnDead()
 {
 	awakeReiana->SetActive(false);
+	//awakeReiana->GetReianaUIHub()->SetActive(false);
 }
 
 

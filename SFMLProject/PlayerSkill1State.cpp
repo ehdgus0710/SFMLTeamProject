@@ -53,7 +53,7 @@ void PlayerSkill1State::Enter()
 	animator->ChangeAnimation("littleboneThrowHead");
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->SetAnimationStartEvent(std::bind(&PlayerSkill1State::OnThrowHead, this), 1);
-	animation->SetAnimationStartEvent(std::bind(&PlayerSkill1State::OnEndAniamtion, this), animation->GetFrameCount() - 1);
+	animation->SetAnimationStartEvent(std::bind(&PlayerSkill1State::OnEndAniamtion, this), animation->GetEndFrameCount());
 
 	player->GetRigidbody()->SetActive(false);
 }
@@ -64,7 +64,7 @@ void PlayerSkill1State::Exit()
 
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->ClearEndEvent(1);
-	animation->ClearEndEvent(animation->GetFrameCount() - 1);
+	animation->ClearEndEvent(animation->GetEndFrameCount());
 }
 
 void PlayerSkill1State::Update(float deltaTime)

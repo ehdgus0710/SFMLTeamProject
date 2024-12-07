@@ -158,6 +158,8 @@
     <ClCompile Include="AnimationToolGUI.cpp" />
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AroundDimention.cpp" />
+    <ClCompile Include="AwakeDemensionWaitEffect.cpp" />
+    <ClCompile Include="AwakeGroundAttackDelay.cpp" />
     <ClCompile Include="AwakeGroundDimention.cpp" />
     <ClCompile Include="AwakenDeadCreate.cpp" />
     <ClCompile Include="AwakenDeadDelete.cpp" />
@@ -167,6 +169,7 @@
     <ClCompile Include="AwakenGroundAttackRazer.cpp" />
     <ClCompile Include="AwakenTeleport.cpp" />
     <ClCompile Include="AwakeReiana.cpp" />
+    <ClCompile Include="AwakeReianaAwakeState.cpp" />
     <ClCompile Include="AwakeReianaBaseState.cpp" />
     <ClCompile Include="AwakeReianaDeadState.cpp" />
     <ClCompile Include="AwakeReianaDiagonalDropState.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="Dimension.cpp" />
+    <ClCompile Include="DoorObject.cpp" />
     <ClCompile Include="HpBarUI.cpp" />
     <ClCompile Include="IntroLandSmoke.cpp" />
     <ClCompile Include="Knife.cpp" />
@@ -350,6 +354,8 @@
     <ClCompile Include="TriggerObject.cpp" />
     <ClCompile Include="UIAnimationObject.cpp" />
     <ClCompile Include="UIButtonObject.cpp" />
+    <ClCompile Include="UIFadeInOutSpriteObject.cpp" />
+    <ClCompile Include="UIFadeTextGameObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UIRectangleShapeObject.cpp" />
     <ClCompile Include="UISpriteGameObject.cpp" />
@@ -388,6 +394,8 @@
     <ClInclude Include="AnimationToolGUI.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AroundDimention.h" />
+    <ClInclude Include="AwakeDemensionWaitEffect.h" />
+    <ClInclude Include="AwakeGroundAttackDelay.h" />
     <ClInclude Include="AwakeGroundDimention.h" />
     <ClInclude Include="AwakenDeadCreate.h" />
     <ClInclude Include="AwakenDeadDelete.h" />
@@ -397,6 +405,7 @@
     <ClInclude Include="AwakenGroundAttackRazer.h" />
     <ClInclude Include="AwakenTeleport.h" />
     <ClInclude Include="AwakeReiana.h" />
+    <ClInclude Include="AwakeReianaAwakeState.h" />
     <ClInclude Include="AwakeReianaBaseState.h" />
     <ClInclude Include="AwakeReianaDeadState.h" />
     <ClInclude Include="AwakeReianaDiagonalDropState.h" />
@@ -424,6 +433,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="Dimension.h" />
+    <ClInclude Include="DoorObject.h" />
     <ClInclude Include="HpBarUI.h" />
     <ClInclude Include="IntroLandSmoke.h" />
     <ClInclude Include="Knife.h" />
@@ -569,6 +579,8 @@
     <ClInclude Include="TriggerObject.h" />
     <ClInclude Include="UIAnimationObject.h" />
     <ClInclude Include="UIButtonObject.h" />
+    <ClInclude Include="UIFadeInOutSpriteObject.h" />
+    <ClInclude Include="UIFadeTextGameObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UIRectangleShapeObject.h" />
     <ClInclude Include="UISpriteGameObject.h" />

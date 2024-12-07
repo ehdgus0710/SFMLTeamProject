@@ -11,7 +11,8 @@ AwakenDropEnd::AwakenDropEnd(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDropEnd.csv");
 	animator->AddAnimation(animation, "AwakenDropEnd");
-	SetScale({ 1.f,1.f });
+	SetScale({ 3.f,3.f });
+	SetOrigin(Origins::BottomCenter);
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
 

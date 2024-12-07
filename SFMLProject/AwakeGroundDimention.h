@@ -8,6 +8,7 @@ protected:
 	sf::Vector2f			moveDirection;
 public:
 	void Start() override;
+	void OnAttack();
 public:
 	AwakeGroundDimention(const std::string& name = "AwakeGroundDimention");
 	virtual ~AwakeGroundDimention() = default;

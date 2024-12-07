@@ -34,8 +34,8 @@ void ReianaBackStap::Enter()
 {
 	ReianaBaseState::Enter();
 	animator->ChangeAnimation("dash", false);
-	startPosition = { 2000.f,-200.f };
-	endPosition = { 1700.f,80.f };
+	startPosition = { 2000.f,500.f };
+	endPosition = { 1700.f,900.f };
 	currentTime = 0.f;
 	if (!reiana->IsFlipX())
 		reiana->OnFlipX();

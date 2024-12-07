@@ -5,6 +5,7 @@
 class Camera;
 class Rigidbody;
 class Player;
+class ReianaUIHub;
 
 class AwakeReiana : public AnimationGameObject
 {
@@ -12,18 +13,27 @@ protected:
 	AwakeReianaFsm	fsm;
 	DefaultStatus	currentStatus;
 	Player* player;
+	ReianaUIHub* reianaUIHub;
+
 	bool			isHit = false;
 	int				count;
+
+	std::function<void(float, float)> changeHpAction;
+
 public:
 	void TakeDamage(const DamegeInfo& damage);
 	void OnDead();
 
 	AwakeReianaFsm& GetFSM() { return fsm; }
 	Player* GetPlayer() { return player; }
+
+	void SetReianaUIHub(ReianaUIHub* uiHub) { reianaUIHub = uiHub; }
+	ReianaUIHub* GetReianaUIHub() { return reianaUIHub; }
 public:
 	bool IsHit() const { return isHit; }
-
 	void SetHp(float hp) { currentStatus.hp = hp; }
+
+	void SetChangeHpAction(std::function<void(float, float)> action) { changeHpAction = action; }
 public:
 	void Awake() override;
 	void Start() override;

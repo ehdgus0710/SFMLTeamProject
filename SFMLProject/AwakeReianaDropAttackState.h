@@ -3,7 +3,7 @@
 #include "AwakeReianaBaseState.h"
 
 class HitBoxObject;
-
+class AwakenDropSide;
 class AwakeReianaDropAttackState : public AwakeReianaBaseState
 {
 protected:
@@ -14,8 +14,10 @@ protected:
 	sf::Vector2f moveDistance = { 0, 1000.f };
 	sf::Vector2f waitStartPos = { 0, 700.f };
 	sf::Vector2f waitEndPos;
+	AwakenDropSide* awakenDropSide1;
+	AwakenDropSide* awakenDropSide2;
 
-	float landingTime = 0.5f;
+	float landingTime = 1.5f;
 	float currentLandingTime = 0.f;
 	float waitTime = 0.5f;
 	float currentWaitTime = 0.f;

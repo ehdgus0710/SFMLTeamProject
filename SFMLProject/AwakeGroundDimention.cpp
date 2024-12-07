@@ -10,6 +10,7 @@ AwakeGroundDimention::AwakeGroundDimention(const std::string& name)
 	: AnimationGameObject("AwakeGroundDimention")
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/awakenGroundDimension.csv");
+	SoundManger::GetInstance().PlaySfx("Leiana_DarkDimensionPierce_Impact");
 	animator->AddAnimation(animation, "awakenGroundDimension");
 	SetScale({ 10.f,2.f });
 	animator->SetAnimationSpeed(2.f);

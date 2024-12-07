@@ -9,8 +9,7 @@ SkeletonSpearRunState::SkeletonSpearRunState(SkeletonSpearFSM* fsm)
 	, horizontal(0.f)
 	, isLeftRun(false)
 {
-	animationKeys.push_back("littleboneRun");
-	animationKeys.push_back("noheadlittleboneRun");
+	animationKeys.push_back("spearRun");
 }
 
 SkeletonSpearRunState::~SkeletonSpearRunState()

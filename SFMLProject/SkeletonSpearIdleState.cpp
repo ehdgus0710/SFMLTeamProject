@@ -6,8 +6,7 @@
 SkeletonSpearIdleState::SkeletonSpearIdleState(SkeletonSpearFSM* fsm)
 	: SkeletonSpearBaseState(fsm, SkeletonSpearStateType::Idle)
 {
-	animationKeys.push_back("littleboneIdle");
-	animationKeys.push_back("noheadlittleboneIdle");
+	animationKeys.push_back("spearIdle");
 }
 
 SkeletonSpearIdleState::~SkeletonSpearIdleState()

@@ -11,8 +11,7 @@ SkeletonSpearSkill2State::SkeletonSpearSkill2State(SkeletonSpearFSM* fsm)
 	, currentTime(0.f)
 	, rigidbody(nullptr)
 {
-	animationKeys.push_back("littleboneDash");
-	animationKeys.push_back("noheadlittleboneDash");
+	animationKeys.push_back("spearDash");
 }
 
 SkeletonSpearSkill2State::~SkeletonSpearSkill2State()
@@ -42,6 +41,7 @@ void SkeletonSpearSkill2State::Enter()
 
 	skillOnTime = 0.f;
 	skillEndTime = 10.f;
+	skeletonSpear->SetDashCount(1000);
 	StartDash();
 }
 
@@ -56,15 +56,10 @@ void SkeletonSpearSkill2State::Update(float deltaTime)
 	SkeletonSpearBaseState::Update(deltaTime);
 	currentTime += deltaTime;
 	skillOnTime += deltaTime;
-	skeletonSpear->SetPosition(sf::Vector2f::Lerp(dashStartPos, dashEndPos, currentTime / dashTime));
-
 	if (skillOnTime >= skillEndTime)
 	{
-		skeletonSpear->SetDashCount(1000);
+		skeletonSpear->SetDashCount(2);
 	}
-
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
-		isExtraDash = true;
 
 	if (currentTime >= dashTime + 0.1f)
 	{
@@ -79,11 +74,5 @@ void SkeletonSpearSkill2State::Update(float deltaTime)
 			else
 				fsm->ChangeState(SkeletonSpearStateType::Falling);
 		}
-	}
-
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && skeletonSpear->GetCurrentJumpCount() > 0)
-	{
-		skeletonSpear->SetCurrentJumpCount(skeletonSpear->GetCurrentJumpCount() - 1);
-		fsm->ChangeState(SkeletonSpearStateType::Jump);
 	}
 }

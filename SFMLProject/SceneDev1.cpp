@@ -30,10 +30,10 @@ void SceneDev1::Enter()
 	//testPlayer->GetCollider()->SetScale({ 100.f,100.f });
 
 	SkeletonSpear* testSkeletonSpear = AddGameObject(new SkeletonSpear("SkeletonSpear"), LayerType::Player);
-	testSkeletonSpear->Awake();
 	mainCamera->SetFollowTarget(testSkeletonSpear, true);
 	testSkeletonSpear->SetPosition({ 0, -500.f });
 	testSkeletonSpear->GetCollider()->SetScale({ 100.f,100.f });
+	testSkeletonSpear->Awake();
 
 
 	//Yggdrasil* testYggdrasil = AddGameObject(new Yggdrasil("Yggdrasil"), LayerType::Enemy);

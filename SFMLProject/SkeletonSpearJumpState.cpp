@@ -6,8 +6,7 @@
 SkeletonSpearJumpState::SkeletonSpearJumpState(SkeletonSpearFSM* fsm)
 	: SkeletonSpearBaseState(fsm, SkeletonSpearStateType::Jump)
 {
-	animationKeys.push_back("littleboneJump");
-	animationKeys.push_back("noheadlittleboneJump");
+	animationKeys.push_back("spearJump");
 }
 
 SkeletonSpearJumpState::~SkeletonSpearJumpState()

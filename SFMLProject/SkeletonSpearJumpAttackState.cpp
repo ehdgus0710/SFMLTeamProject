@@ -12,8 +12,7 @@ SkeletonSpearJumpAttackState::SkeletonSpearJumpAttackState(SkeletonSpearFSM* fsm
 	, attackBox(nullptr)
 	, sequenceAttack(false)
 {
-	animationKeys.push_back("littleboneJumpAttack");
-	animationKeys.push_back("noheadlittleboneJumpAttack");
+	animationKeys.push_back("spearJumpAttack");
 
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = true;

@@ -152,6 +152,16 @@ void Stage2::Enter()
 	wallObject->SetScale({ 3280.f, 960.f });
 	wallObject->SetOrigin(Origins::MiddleCenter);
 
+	WallCollisionObject* leftWall = AddGameObject(new WallCollisionObject("LeftWall"), LayerType::Wall);
+	leftWall->SetPosition({ -632.f, 592.f });
+	leftWall->SetScale({ 464.f, 1568.f });
+	leftWall->SetOrigin(Origins::MiddleCenter);
+
+	WallCollisionObject* rightWall = AddGameObject(new WallCollisionObject("RightWall"), LayerType::Wall);
+	rightWall->SetPosition({ 2530.f, 344.f });
+	rightWall->SetScale({ 176.f, 1264.f });
+	rightWall->SetOrigin(Origins::MiddleCenter);
+
 	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();
 	testPlayer->SetPosition({ 0, -500.f });

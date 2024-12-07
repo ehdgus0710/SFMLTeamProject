@@ -70,7 +70,7 @@ void TitleScene::Enter()
 	titleLogo->SetActive(false);
 
 	messageText = AddGameObject(new UIFadeTextGameObject("NameFont", "InputKeyText",40, { 142 , 109 ,231, 255}), LayerType::UI);
-	messageText->SetString(L"�ƹ� Ű�� ��������");	
+	messageText->SetString(L"아무 키나 누르세요");	
 	messageText->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.9f });
 	messageText->SetOrigin(Origins::MiddleCenter);
 	messageText->SetActive(false);

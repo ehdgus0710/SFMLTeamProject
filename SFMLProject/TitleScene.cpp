@@ -1,18 +1,14 @@
 #include "stdafx.h"
 #include "TitleScene.h"
 
-#include "TileMap.h"
-
 #include "RectSpriteGameObject.h"
 #include "MouseObject.h"
 #include "UIButtonObject.h"
 #include "TextButton.h"
-#include "BackgroundColorBox.h"
 #include "Collider.h"
 #include "InGameUIHub.h"
 
 #include "FadeOutUI.h"
-#include "GameManager.h"
 #include "UIFadeInOutSpriteObject.h"
 #include "UIFadeTextGameObject.h"
 
@@ -42,6 +38,7 @@ void TitleScene::Init()
 
 void TitleScene::Enter()
 {
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Adventurer", "AudioClip/Title/Adventurer.wav");
 
 	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
 	ResourcesManager<sf::Texture>::GetInstance().Load("TitleScreen", "graphics/UI/Title/Title_Art2.png", true);
@@ -54,8 +51,6 @@ void TitleScene::Enter()
 	fadeOutUI = AddGameObject(new FadeOutUI("FadeOut"), LayerType::UI);
 	fadeOutUI->SetScale({ 3000.f, 3000.f });
 	fadeOutUI->SetPosition({ 1000.f,1000.f });
-	//fadeOut->SetOrigin(Origins)
-	//fadeOutUI->SetActive(false);
 	fadeOutUI->AddFadeOutEndEvent(std::bind(&TitleScene::StartGame, this));
 	fadeOutUI->sortingOrder = -1;
 	fadeOutUI->StartFadeIn(1.f);
@@ -82,31 +77,11 @@ void TitleScene::Enter()
 
 	MouseObject* mouse = AddGameObject(new MouseObject(), LayerType::UI);
 
-	/*TextButton* button = AddGameObject(new TextButton("DungGeunMo", "Start Button", 100), LayerType::InGameUI);
-	button->SetOrigin(Origins::MiddleCenter);
-	button->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.6f });
-	button->SetString("Start Button");
-	button->SetButtonClickEvent(std::bind(&FadeOutUI::StartFadeOut, fadeOutUI));
-	button->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
-
-	TextButton* endButton = AddGameObject(new TextButton("DungGeunMo", "End Button", 100), LayerType::InGameUI);
-	endButton->SetOrigin(Origins::MiddleCenter);
-	endButton->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.75f });
-	endButton->SetString("End Button");
-	endButton->SetButtonClickEvent(std::bind(&TitleScene::EndGame, this));
-	endButton->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
-
-	TileMap* tilemap = AddGameObject(new TileMap("",""), LayerType::TileMap);
-	tilemap->LoadCsv("tileMap/Stage1TileMap1.csv");
-	tilemap->SetPosition(sf::Vector2f::down * -64.f);
-
-	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);*/
-
 	CollisitionCheck();
 
 	Scene::Enter();
 
-	// fadeOutUI->SetActive(false);
+	SoundManger::GetInstance().PlayBgm("Adventurer");
 }
 
 void TitleScene::Exit()
@@ -130,8 +105,11 @@ void TitleScene::Update(float dt)
 		fadeOutUI->StartFadeOut();
 		fadeOutUI->AddFadeOutEndEvent(std::bind(&TitleScene::StartGame, this));
 	}
-	if(isStartGame)
+	if (isStartGame)
+	{
 		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
+		SoundManger::GetInstance().StopBgm();
+	}
 }
 
 void TitleScene::Render(sf::RenderWindow& window)

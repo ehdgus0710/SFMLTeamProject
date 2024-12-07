@@ -5,6 +5,7 @@
 #include "Dimension.h"
 #include "Animator.h"
 #include "AwakenDimention.h"
+#include "Scene.h"
 
 AwakeReianaDimensionState::AwakeReianaDimensionState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::Dimension)

@@ -48,7 +48,7 @@ void TitleScene::Enter()
 	ResourcesManager<sf::Texture>::GetInstance().Load("TitleLogo", "graphics/UI/Title/Title_Logo2.png", true);
 	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
 
-
+	
 	ResourcesManager<sf::Texture>::GetInstance().Load("Bossidle", "graphics/objects/bossidle.png", true);
 
 	fadeOutUI = AddGameObject(new FadeOutUI("FadeOut"), LayerType::UI);

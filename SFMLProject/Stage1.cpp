@@ -115,6 +115,7 @@ void Stage1::Init()
 
 void Stage1::Enter()
 {
+	ResourcesManager<sf::Texture>::GetInstance().Load("SkulSpear", "graphics/skul/SkulSpear.png", true);
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
 	LoadResources();

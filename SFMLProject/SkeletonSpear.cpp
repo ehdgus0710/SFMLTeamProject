@@ -34,15 +34,15 @@ SkeletonSpear::SkeletonSpear(const std::string& name)
 	, skill2CoolTime(3.f)
 	, isSkll1CoolTime(false)
 	, isSkll2CoolTime(false)
-	, skullType(SkullType::Littlebone)
+	, skullType(SkullType::Spear)
 
 {
+	ResourcesManager<sf::Texture>::GetInstance().Load("SkulSpear", "graphics/skul/SkulSpear.png", true);
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
 
-	animator->LoadCsv("animators/littlebone.csv");
-	animator->LoadCsv("animators/noheadlittlebone.csv");
+	animator->LoadCsv("animators/spearSkul.csv");
 
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);

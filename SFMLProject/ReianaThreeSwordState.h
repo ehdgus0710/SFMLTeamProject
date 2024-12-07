@@ -17,6 +17,7 @@ protected:
 	float currentDelay;
 	float changeTime;
 	float currentChangeTime;
+	
 
 	sf::Vector2f plusPos1 = { -200.f,-10.f };
 	sf::Vector2f plusPos2 = { -160.f,-120.f };
@@ -25,7 +26,7 @@ protected:
 	sf::Vector2f plusFlipPos2 = { -160.f, 120.f };
 	sf::Vector2f plusFlipPos3 = { -50.f , 200.f };
 	int count = 1;
-
+	bool createKnufe = false;
 	bool fix;
 public:
 	void Awake() override;

@@ -25,6 +25,7 @@ void AwakeReianaGroundAttackState::Attack(float deltaTime)
 {
 	if (!start)
 	{
+		SoundManger::GetInstance().PlaySfx("Leiana_DarkDimensionRush_Sign", false);
 		animator->ChangeAnimation("awakenMeteorAttack", false);
 		MeteorGroundSmoke* meteorGroundSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new MeteorGroundSmoke(), LayerType::EnemyBullet);
 		meteorGroundSmoke->SetScale({ 2.f,2.f });
@@ -128,6 +129,7 @@ void AwakeReianaGroundAttackState::Enter()
 
 	AwakenTeleport* awakenTeleport = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenTeleport(""), LayerType::BackGround_Forward);
 	awakenTeleport->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y - 100.f });
+	SoundManger::GetInstance().PlaySfx("Leiana_DarkGoldenMeteor_Ready", false);
 	awakenTeleport->Start();
 }
 

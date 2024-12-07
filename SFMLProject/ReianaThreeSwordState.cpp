@@ -96,6 +96,7 @@ void ReianaThreeSwordState::Enter()
 		reiana->OnFlipX();
 	}
 	CreateKnife();
+	createKnufe = false;
 
 }
 
@@ -116,8 +117,12 @@ void ReianaThreeSwordState::Update(float deltaTime)
 	if (currentDelay > delayTime)
 	{
 		animator->ChangeAnimation("homingPierce", false);
-		CreateKnife();
 		delayTime = 100.f;
+		if (!createKnufe)
+		{
+		CreateKnife();
+		createKnufe = true;
+		}
 	}
 	else if (!fix&&currentDelay > delayTime / 2)
 	{

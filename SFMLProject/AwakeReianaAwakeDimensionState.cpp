@@ -93,6 +93,7 @@ void AwakeReianaAwakeDimensionState::Wait(float deltaTime)
 		AwakenTeleport* awakenTeleport = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenTeleport(), LayerType::EnemyBullet);
 		awakenTeleport->Start();
 		awakenTeleport->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y });
+		SoundManger::GetInstance().PlaySfx("Leiana_Teleport_Out", false);
 		playerPosCheck = true;
 		if (awakeReiana->GetPosition().x < awakeReiana->GetPlayer()->GetPosition().x && awakeReiana->IsFlipX())
 		{
@@ -119,6 +120,7 @@ void AwakeReianaAwakeDimensionState::Wait(float deltaTime)
 			}
 			animator->ChangeAnimation("dash", false);
 			AwakenTeleport* awakenTeleport1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AwakenTeleport(), LayerType::EnemyBullet);
+			SoundManger::GetInstance().PlaySfx("Leiana_Teleport_In", false);
 			awakenTeleport1->Start();
 			awakenTeleport1->SetPosition({ awakeReiana->GetPosition().x, awakeReiana->GetPosition().y });
 			move = true;

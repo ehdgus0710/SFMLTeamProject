@@ -21,7 +21,7 @@ void RisingReady::Start()
 	reiana = dynamic_cast<Reiana*>(SCENE_MANAGER.GetCurrentScene()->FindGameObject("Reiana"));
 
 	AnimationBullet::Start();
-
+	SoundManger::GetInstance().PlaySfx("Leiana_Awakening_Sign");
 	effect1 = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new AnimationGameObject("AwakenedThunder"), LayerType::EnemyBullet);
 	Animation* animation = new Animation();
 	animation = new Animation();

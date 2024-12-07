@@ -15,6 +15,11 @@ ReianaDeadState::~ReianaDeadState()
 void ReianaDeadState::Enter()
 {
 	ReianaBaseState::Enter();
+	if (!onDead)
+	{
+		SoundManger::GetInstance().PlaySfx("Leiana_Dead", false);
+		onDead = true;
+	}
 	animator->ChangeAnimation("awakenReady", false);
 }
 

@@ -15,7 +15,7 @@ Knife::Knife(GameObject* owner, ColliderLayer thisLayerType, ColliderLayer targe
 {
 	TEXTURE_MANAGER.Load("Knife", "graphics/HomingPierce_Ready_8.png");
 	animator->CreateAnimation("Knife", "idle", { 96,31 }, 1, 0.1f);
-
+	
 
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = false;
@@ -47,7 +47,7 @@ void Knife::Start()
 	Bullet::SetSpeed(3000.f);
 
 	CreateEffect();
-
+	SoundManger::GetInstance().PlaySfx("Leiana_HomingPierce_Ready", false);
 	collider->SetActive(false);
 	collider->SetScale({ 80.f,30.f });
 
@@ -67,6 +67,7 @@ void Knife::Update(const float& deltaTime)
 
 		if (currentDelay >= delayTime)
 		{
+			SoundManger::GetInstance().PlaySfx("Leiana_DarkHomingPierce", false);
 			OnCreateHitBox();
 			isShoot = true;
 		}

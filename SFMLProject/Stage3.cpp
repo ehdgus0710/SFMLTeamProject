@@ -64,7 +64,31 @@ void Stage3::LoadResources()
 
 	// Rayanna
 	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
-
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Chapter2", "AudioClip/Stage2/Chapter2.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Chapter2_Boss_Awaken", "AudioClip/Stage2/Chapter2_Boss_Awaken.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Awakening", "AudioClip/Stage2/Leiana_Awakening.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Awakening_Impact", "AudioClip/Stage2/Leiana_Awakening_Impact.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Awaken_Dead", "AudioClip/Stage2/Leiana_Awaken_Dead.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkDimensionRush_Impact", "AudioClip/Stage2/Leiana_DarkDimensionRush_Impact.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkDimensionRush_Sign", "AudioClip/Stage2/Leiana_DarkDimensionRush_Sign.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkGoldenMeteor_Ready", "AudioClip/Stage2/Leiana_DarkGoldenMeteor_Ready.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkMeteor_Impact", "AudioClip/Stage2/Leiana_DarkMeteor_Impact.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Dead", "AudioClip/Stage2/Leiana_Dead.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_MeteorGround", "AudioClip/Stage2/Leiana_MeteorGround.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_MeteorGround_Ready", "AudioClip/Stage2/Leiana_MeteorGround_Ready.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Landing", "AudioClip/Stage2/Leiana_Landing.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_HomingPierce_Ready", "AudioClip/Stage2/Leiana_HomingPierce_Ready.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Teleport_In", "AudioClip/Stage2/Leiana_Teleport_In.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Teleport_Out", "AudioClip/Stage2/Leiana_Teleport_Out.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_FootStep", "AudioClip/Stage2/Leiana_FootStep.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkHomingPierce", "AudioClip/Stage2/Leiana_DarkHomingPierce.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DimensionPierce_Sign", "AudioClip/Stage2/Leiana_DimensionPierce_Sign.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkDimensionPierce_Sign", "AudioClip/Stage2/Leiana_DarkDimensionPierce_Sign.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_Awakening_Sign", "AudioClip/Stage2/Leiana_Awakening_Sign.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_DarkDimensionPierce_Impact", "AudioClip/Stage2/Leiana_DarkDimensionPierce_Impact.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Leiana_HomingPierce_Ready", "AudioClip/Stage2/Leiana_HomingPierce_Ready.wav");
+	
+	
 	// Rayanna Effects
 	TEXTURE_MANAGER.Load("AwakenedThunder", "graphics/boss/Rayanna/effects/AwakenedThunder.png");
 	TEXTURE_MANAGER.Load("DimensionPierce", "graphics/boss/Rayanna/effects/DimensionPierce.png");
@@ -149,6 +173,8 @@ void Stage3::Enter()
 
 	mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 
+	
+
 	LoadResources();
 	CollisitionCheck();
 
@@ -209,6 +235,8 @@ void Stage3::Enter()
 	InputManager::GetInstance().BindKey(sf::Keyboard::Escape);
 
 	Scene::Enter();
+
+	SoundManger::GetInstance().PlayBgm("Chapter2", true);
 }
 
 void Stage3::Exit()

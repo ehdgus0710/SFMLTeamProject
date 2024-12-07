@@ -9,6 +9,8 @@
 Awakning::Awakning(const std::string& name)
 	: AnimationGameObject("AwakenNing")
 {
+	SoundManger::GetInstance().StopBgm();
+	SoundManger::GetInstance().PlaySfx("Leiana_Awakening", false);
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenNing.csv");
 	animator->AddAnimation(animation, "AwakenNing");
 	SetScale({ 4.f,4.f });

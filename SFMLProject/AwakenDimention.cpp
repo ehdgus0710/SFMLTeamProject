@@ -9,6 +9,7 @@
 AwakenDimention::AwakenDimention(const std::string& name)
 	: AnimationGameObject("AwakenDimention")
 {
+	SoundManger::GetInstance().PlaySfx("Leiana_DarkDimensionRush_Impact", false);
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/DimensionPierce.csv");
 	animator->AddAnimation(animation, "DimensionPierce");
 	SetScale({ 3.f,3.f });

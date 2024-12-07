@@ -34,6 +34,7 @@ void AwakeReianaDropAttackState::Wait(float deltaTime)
 	else if (!waitAnimation)
 	{
 		waitAnimation = true;
+		SoundManger::GetInstance().PlaySfx("Leiana_DarkGoldenMeteor_Ready");
 		animator->ChangeAnimation("awakenGoldMeteorReady", false);
 	}
 }
@@ -49,6 +50,7 @@ void AwakeReianaDropAttackState::Drop(float deltaTime)
 		currentLandingTime += deltaTime;
 		if (!effect)
 		{
+			SoundManger::GetInstance().PlaySfx("Leiana_DarkMeteor_Impact", false);
 			IntroLandSmoke* introLandSmoke = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new IntroLandSmoke(), LayerType::EnemyBullet);
 			introLandSmoke->SetScale({ 2.f,2.f });
 			introLandSmoke->Start();

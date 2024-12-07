@@ -93,13 +93,6 @@ void Stage3::LoadResources()
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseFront",		"graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Front.png");
 	TEXTURE_MANAGER.Load("Ch2BossSecondPhaseBottomBack", "graphics/boss/Rayanna/UI/Ch2BossSecondPhase_Bottom_Back.png");
 
-	// ���� 
-	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
-	TEXTURE_MANAGER.Load("Little Bone", "graphics/skul/Little Bone.png");
-	TEXTURE_MANAGER.Load("LittleBoneSkill", "graphics/skul/LittleBoneSkill.png");
-	TEXTURE_MANAGER.Load("PlayerHitEffect", "graphics/effects/HitEffect.png");
-	TEXTURE_MANAGER.Load("NormalAttack", "graphics/effects/Normal_Attack.png");
-
 	// Rayanna
 	TEXTURE_MANAGER.Load("RayannaB", "graphics/boss/Rayanna/RayannaB.png");
 	TEXTURE_MANAGER.Load("AwakenRayanna", "graphics/boss/Rayanna/AwakenRayanna.png");
@@ -170,10 +163,6 @@ void Stage3::Enter()
 	backgroundObject1->SetPosition({ 960.f, 500.f });
 	backgroundObject1->SetScale({ 2.5f, 2.5f });
 	backgroundObject1->SetOrigin(Origins::MiddleCenter);
-
-	/*TileMapController* tilemapController = AddGameObject(new TileMapController("Stage3"), LayerType::TileMap);
-	tilemapController->SetSpriteSheetId("Stage3TileMap");
-	tilemapController->SetCellSize({ 32.f,32.f });*/
 
 	TileMap* tileMap = AddGameObject(new TileMap("Stage3TileMap", "Stage3TileMap"), LayerType::TileMap);
 	tileMap->LoadCsv("TileMap/Stage3Map1.csv");

@@ -107,10 +107,13 @@ void PlayerUIHub::Start()
 
 	// Player UI
 	TEXTURE_MANAGER.Load("PlayerUiFrame", "graphics/UI/PlayerUI/player_ui_frame.png");
+	TEXTURE_MANAGER.Load("SkulSkill2Frame", "graphics/UI/PlayerUI/player_skill2_frame.png");
 	TEXTURE_MANAGER.Load("SkulSimbul", "graphics/UI/PlayerUI/Skul.png");
 	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
+
+	
 
 	player = static_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 	Scene* scene = SceneManager::GetInstance().GetCurrentScene();
@@ -176,13 +179,14 @@ void PlayerUIHub::Start()
 		subSkullSpriteUI->SetActive(false);
 		subSkullFrame->SetActive(false);
 	}
-
+	
 	playerHpBar->sortingOrder = 20;
 	hpText->sortingOrder = 19;
 	maxHPText->sortingOrder = 19;
 	playerSimbolUI->sortingOrder = 17;
 	subSkullFrame->sortingOrder = 16;
 	subSkullSpriteUI->sortingOrder = 15;
+	playerSkill2Frame->sortingOrder = 15;
 	playerSkill1->sortingOrder = 14;
 	playerSkill2->sortingOrder = 14;
 

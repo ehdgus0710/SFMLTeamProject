@@ -125,7 +125,7 @@ void SoundManger::SetSfxVolume(float v)
 		if (totalVolum == 0.f)
 			sound->setVolume(0.f);
 		else
-			sound->setVolume(sfxVolume / totalVolum);
+			sound->setVolume(sfxVolume * totalVolum * 0.01f);
 	}
 }
 

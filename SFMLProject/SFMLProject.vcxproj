@@ -163,6 +163,7 @@
     <ClCompile Include="AwakeGroundDimention.cpp" />
     <ClCompile Include="AwakenDeadCreate.cpp" />
     <ClCompile Include="AwakenDeadDelete.cpp" />
+    <ClCompile Include="AwakenDimention.cpp" />
     <ClCompile Include="AwakenDropEnd.cpp" />
     <ClCompile Include="AwakenDropSide.cpp" />
     <ClCompile Include="AwakenDropStart.cpp" />
@@ -400,6 +401,7 @@
     <ClInclude Include="AwakeGroundDimention.h" />
     <ClInclude Include="AwakenDeadCreate.h" />
     <ClInclude Include="AwakenDeadDelete.h" />
+    <ClInclude Include="AwakenDimention.h" />
     <ClInclude Include="AwakenDropEnd.h" />
     <ClInclude Include="AwakenDropSide.h" />
     <ClInclude Include="AwakenDropStart.h" />

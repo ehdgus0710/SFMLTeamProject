@@ -5,9 +5,10 @@
 class AwakeReianaDimensionState : public AwakeReianaBaseState
 {
 protected:
-
 	float time = 1.5f;
 	float currentTime = 0.f;
+
+public:
 
 	void CreateDimension();
 

@@ -927,6 +927,9 @@
     <ClCompile Include="AwakenDimention.cpp">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClCompile>
+    <ClCompile Include="YggdrasilPhaseUpState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1594,6 +1597,9 @@
     </ClInclude>
     <ClInclude Include="AwakenDimention.h">
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilPhaseUpState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

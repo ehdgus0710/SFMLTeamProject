@@ -11,7 +11,6 @@
 #include "FadeOutUI.h"
 #include "UIFadeInOutSpriteObject.h"
 #include "UIFadeTextGameObject.h"
-#include "GameManager.h"
 
 
 TitleScene::TitleScene()
@@ -71,7 +70,7 @@ void TitleScene::Enter()
 	titleLogo->SetActive(false);
 
 	messageText = AddGameObject(new UIFadeTextGameObject("NameFont", "InputKeyText",40, { 142 , 109 ,231, 255}), LayerType::UI);
-	messageText->SetString(L"ì•„ë¬´ í‚¤ë‚˜ ëˆ„ë¥´ì„¸ìš”");	
+	messageText->SetString(L"¾Æ¹« Å°³ª ´©¸£¼¼¿ä");	
 	messageText->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.9f });
 	messageText->SetOrigin(Origins::MiddleCenter);
 	messageText->SetActive(false);
@@ -79,8 +78,6 @@ void TitleScene::Enter()
 	MouseObject* mouse = AddGameObject(new MouseObject(), LayerType::UI);
 
 	CollisitionCheck();
-
-	GameManager::GetInstance().Reset();
 
 	Scene::Enter();
 

@@ -91,6 +91,8 @@ void Stage1::LoadResources()
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
 
+	// sound
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Chapter1BGM", "AudioClip/Stage1/Chapter1.wav");
 }
 
 void Stage1::SetChangeScene(SceneIds id)
@@ -186,6 +188,7 @@ void Stage1::Enter()
 	pauseUIBar->SetScale({ 3.f,3.f });
 	pauseUIBar->SetPosition({ mainCamera->GetView().getSize().x * 0.5f, 450.f });
 
+	SoundManger::GetInstance().PlayBgm("Chapter1BGM");
 	Scene::Enter();
 }
 

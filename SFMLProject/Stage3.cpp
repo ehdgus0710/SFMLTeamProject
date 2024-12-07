@@ -229,6 +229,11 @@ void Stage3::Update(float dt)
 	{
 		pauseUIBar->SetActive(!pauseUIBar->IsActive());
 	}
+
+	if (GameManager::GetInstance().IsChangeScene())
+	{
+		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
+	}
 }
 
 void Stage3::Render(sf::RenderWindow& window)

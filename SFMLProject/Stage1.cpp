@@ -16,6 +16,7 @@
 #include "SkillCoolTimeUI.h"
 #include "PauseUIBar.h"
 #include "DoorObject.h"
+#include "FadeOutUI.h"
 
 Stage1::Stage1()
 	: Scene(SceneIds::Stage1)
@@ -189,6 +190,21 @@ void Stage1::Enter()
 	pauseUIBar->SetPosition({ mainCamera->GetView().getSize().x * 0.5f, 450.f });
 
 	SoundManger::GetInstance().PlayBgm("Chapter1BGM");
+
+	if (GameManager::GetInstance().IsRestart())
+	{
+		testPlayer->SetPosition(GameManager::GetInstance().GetRestartPosition());
+		mainCamera->SetCameraPosition(testPlayer->GetPosition());
+		GameManager::GetInstance().Reset();
+
+		FadeOutUI* fadeOutUI = AddGameObject(new FadeOutUI("FadeOut"), LayerType::UI);
+		fadeOutUI->SetScale({ 3000.f, 3000.f });
+		fadeOutUI->SetPosition({ 1000.f,1000.f });
+		fadeOutUI->sortingOrder = -1;
+		fadeOutUI->StartFadeIn(2.f);
+		sf::Vector2f resolutionSize = sf::Vector2f(WindowManager::GetInstance().GetResolutionSize());
+	}
+
 	Scene::Enter();
 }
 

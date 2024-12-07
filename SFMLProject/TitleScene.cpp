@@ -11,6 +11,7 @@
 #include "FadeOutUI.h"
 #include "UIFadeInOutSpriteObject.h"
 #include "UIFadeTextGameObject.h"
+#include "GameManager.h"
 
 
 TitleScene::TitleScene()
@@ -78,6 +79,8 @@ void TitleScene::Enter()
 	MouseObject* mouse = AddGameObject(new MouseObject(), LayerType::UI);
 
 	CollisitionCheck();
+
+	GameManager::GetInstance().Reset();
 
 	Scene::Enter();
 

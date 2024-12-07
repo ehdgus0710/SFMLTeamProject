@@ -7,12 +7,17 @@
 
 PlayerDeadState::PlayerDeadState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dead)
+	, currentTime(0.f)
+	, deadStateTime(1.f)
 {
 }
 
 void PlayerDeadState::Enter()
 {
 	PlayerBaseState::Enter();
+
+	GameManager::GetInstance().PlayerDead();
+	TimeManager::GetInstance().SetTimeScale(0.f);
 }
 
 void PlayerDeadState::Exit()
@@ -22,6 +27,10 @@ void PlayerDeadState::Exit()
 
 void PlayerDeadState::Update(float deltaTime)
 {
+	currentTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
+
+	if (currentTime >= deadStateTime)
+		GameManager::GetInstance().OnChangeScene();
 }
 
 void PlayerDeadState::FixedUpdate(float fixedDeltaTime)

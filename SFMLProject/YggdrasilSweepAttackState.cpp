@@ -43,7 +43,7 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 	attackBox1->SetPosition(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, currentAttackTime / attackTime));
 
-	if (currentAttackTime >= attackTime)
+	if (currentAttackTime >= attackTime - 0.5f)
 	{
 		attackBox1->OnDestory();
 	}
@@ -77,7 +77,7 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	attackBox2->SetPosition(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, currentAttackTime / attackTime));
 
-	if (currentAttackTime >= attackTime)
+	if (currentAttackTime >= attackTime - 0.5f)
 	{
 		attackBox2->OnDestory();
 	}
@@ -127,7 +127,7 @@ void YggdrasilSweepAttackState::CreateLeftEffect()
 
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
 	effect->SetPosition({ yggdrasil->GetLeftFistPos().x, 913.f });
-	effect->SetScale(sf::Vector2f::one);
+	effect->SetScale(sf::Vector2f::one * 3);
 
 	effect->Awake();
 	effect->Start();
@@ -142,7 +142,7 @@ void YggdrasilSweepAttackState::CreateRightEffect()
 
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
 	effect->SetPosition({ yggdrasil->GetRightFistPos().x, 913.f });
-	effect->SetScale(sf::Vector2f::one);
+	effect->SetScale(sf::Vector2f::one * 3);
 
 	effect->Awake();
 	effect->Start();

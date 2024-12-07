@@ -169,12 +169,6 @@
     <Filter Include="Contants\Object\Player">
       <UniqueIdentifier>{da450f9f-2676-436b-8904-480965c27d5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Object\Player\PlayerState">
-      <UniqueIdentifier>{6f9243a3-ec4b-41e5-8989-63b1ce601bda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Object\Player\FSM">
-      <UniqueIdentifier>{9ee87c8a-ce22-425f-b436-0692dc5cfee0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contants\Object\WallCollisionObject">
       <UniqueIdentifier>{1df1e9f9-6715-4536-afae-ad96420b1c88}</UniqueIdentifier>
     </Filter>
@@ -273,6 +267,24 @@
     </Filter>
     <Filter Include="Contants\Object\Door">
       <UniqueIdentifier>{a1669ab9-b54d-4aec-b6fb-a09f5d4e9f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Spear">
+      <UniqueIdentifier>{9e19dc8e-eee9-4de0-b163-df0692901244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Normal">
+      <UniqueIdentifier>{fbf96498-8813-4e4e-9850-8b30367c76c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Normal\PlayerState">
+      <UniqueIdentifier>{6f9243a3-ec4b-41e5-8989-63b1ce601bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Normal\FSM">
+      <UniqueIdentifier>{9ee87c8a-ce22-425f-b436-0692dc5cfee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Spear\FSM">
+      <UniqueIdentifier>{2857e4ee-d431-4af5-8989-92fc813221d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Spear\State">
+      <UniqueIdentifier>{96d207c4-7b77-4b0a-b243-3ab0d2585390}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -433,16 +445,16 @@
       <Filter>Core\Utils</Filter>
     </ClCompile>
     <ClCompile Include="PlayerDeadState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerIdleState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerJumpState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerRunState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="BaseState.cpp">
       <Filter>Core\6. Componet\6. FSM</Filter>
@@ -451,10 +463,7 @@
       <Filter>Core\6. Componet\6. FSM</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHitState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Contants\Object\Player</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="TileMapController.cpp">
       <Filter>Contants\Object\TileMapController</Filter>
@@ -469,10 +478,10 @@
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFSM.cpp">
-      <Filter>Contants\Object\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\Normal\FSM</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBaseState.cpp">
-      <Filter>Contants\Object\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\Normal\FSM</Filter>
     </ClCompile>
     <ClCompile Include="EnemyFSM.cpp">
       <Filter>Contants\Object\Enemy</Filter>
@@ -517,7 +526,7 @@
       <Filter>Manager\0. Framework</Filter>
     </ClCompile>
     <ClCompile Include="PlayerAttackState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="SpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
@@ -573,14 +582,11 @@
     <ClCompile Include="AnimationGameObject.cpp">
       <Filter>Contants\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Head.cpp">
-      <Filter>Contants\Object\Player</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerDashState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFallingState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="Reiana.cpp">
       <Filter>Contants\Object\Reiana</Filter>
@@ -628,13 +634,13 @@
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSkill2State.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSkill1State.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerJumpAttackState.cpp">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="ScaffoldingObject.cpp">
       <Filter>Contants\Object\WallCollisionObject</Filter>
@@ -861,6 +867,63 @@
     <ClCompile Include="DoorObject.cpp">
       <Filter>Contants\Object\Door</Filter>
     </ClCompile>
+    <ClCompile Include="SkeletonSpear.cpp">
+      <Filter>Contants\Object\Player\Spear</Filter>
+    </ClCompile>
+    <ClCompile Include="Head.cpp">
+      <Filter>Contants\Object\Player\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Contants\Object\Player\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearAttackState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearBaseState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearDashState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearDeadState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearFallingState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearHitState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearIdleState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearJumpAttackState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearJumpState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearRunState.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearSkill1State.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearSkill2State.cpp">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonSpearFSM.cpp">
+      <Filter>Contants\Object\Player\Spear\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeReianaAwakeState.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeDemensionWaitEffect.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AwakeGroundAttackDelay.cpp">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1035,16 +1098,16 @@
       <Filter>Core\Utils</Filter>
     </ClInclude>
     <ClInclude Include="PlayerRunState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerDeadState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerIdleState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerJumpState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="BaseState.h">
       <Filter>Core\6. Componet\6. FSM</Filter>
@@ -1053,10 +1116,7 @@
       <Filter>Core\6. Componet\6. FSM</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHitState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Contants\Object\Player</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="TileMapController.h">
       <Filter>Contants\Object\TileMapController</Filter>
@@ -1074,10 +1134,10 @@
       <Filter>Contants\0. Editor\Imgui\GUI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFSM.h">
-      <Filter>Contants\Object\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\Normal\FSM</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBaseState.h">
-      <Filter>Contants\Object\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\Normal\FSM</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFSM.h">
       <Filter>Contants\Object\Enemy</Filter>
@@ -1125,7 +1185,7 @@
       <Filter>Manager\0. Framework</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAttackState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="SpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
@@ -1184,14 +1244,11 @@
     <ClInclude Include="AnimationGameObject.h">
       <Filter>Contants\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Head.h">
-      <Filter>Contants\Object\Player</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerDashState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFallingState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="Reiana.h">
       <Filter>Contants\Object\Reiana</Filter>
@@ -1239,13 +1296,13 @@
       <Filter>Contants\Scene\ContantsScene</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSkill2State.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSkill1State.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerJumpAttackState.h">
-      <Filter>Contants\Object\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\Normal\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="ScaffoldingObject.h">
       <Filter>Contants\Object\WallCollisionObject</Filter>
@@ -1474,6 +1531,63 @@
     </ClInclude>
     <ClInclude Include="DoorObject.h">
       <Filter>Contants\Object\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpear.h">
+      <Filter>Contants\Object\Player\Spear</Filter>
+    </ClInclude>
+    <ClInclude Include="Head.h">
+      <Filter>Contants\Object\Player\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Contants\Object\Player\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearAttackState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearBaseState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearDashState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearDeadState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearFallingState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearHitState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearIdleState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearJumpAttackState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearJumpState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearRunState.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearSkill1State.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearSkill2State.h">
+      <Filter>Contants\Object\Player\Spear\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonSpearFSM.h">
+      <Filter>Contants\Object\Player\Spear\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeReianaAwakeState.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeGroundAttackDelay.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AwakeDemensionWaitEffect.h">
+      <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -61,7 +61,8 @@ void YggdrasilDeadState::Update(float deltaTime)
 
 		ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Door, ColliderLayer::Player);
 		GameManager::GetInstance().OnRestart();
-		DoorObject* clearDoor = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new DoorObject("KeyF", SceneIds::Stage1, "ClearDoor"), LayerType::BackGround_Forward);
+		DoorObject* clearDoor = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new DoorObject("KeyF", SceneIds::Stage1, "ClearDoor"), LayerType::Player);
+		clearDoor->sortingOrder = 10;
 		clearDoor->SetPosition({ 960.f, 650.f });
 		clearDoor->Start();
 	}

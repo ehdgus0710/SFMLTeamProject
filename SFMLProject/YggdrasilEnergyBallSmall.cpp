@@ -24,6 +24,12 @@ void YggdrasilEnergyBallSmall::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Wall)
 	{
+		if (position.y < 800.f)
+		{
+			OnDestory();
+			return;
+		}
+
 		lastPos = position;
 		OnDestory();
 		AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);

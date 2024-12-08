@@ -46,6 +46,12 @@ void YggdrasilEnergyBallBig::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Wall)
 	{
+		if (position.y < 800.f)
+		{
+			OnDestory();
+			return;
+		}
+
 		ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_EnergyBomb_Fire", "AudioClip/Stage1/ElderEnt_EnergyBomb_Fire.wav");
 		SoundManger::GetInstance().PlaySfx("ElderEnt_EnergyBomb_Fire");
 		lastPos = position;

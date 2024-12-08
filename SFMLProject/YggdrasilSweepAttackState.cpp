@@ -247,6 +247,18 @@ void YggdrasilSweepAttackState::Enter()
 void YggdrasilSweepAttackState::Exit()
 {
 	YggdrasilBaseState::Exit();
+
+	if (attackBox1)
+	{
+		attackBox1->OnDestory();
+		attackBox1 = nullptr;
+	}
+
+	if (attackBox2)
+	{
+		attackBox2->OnDestory();
+		attackBox2 = nullptr;
+	}
 }
 
 void YggdrasilSweepAttackState::Update(float deltaTime)

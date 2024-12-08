@@ -60,13 +60,11 @@ void Player::TakeDamage(const DamegeInfo& damage)
 
 	currentStatus.hp -= damage.damege;
 
-
-
 	if (currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
-		/*isDead = true;
-		fsm.ChangeState(PlayerStateType::Dead);*/
+		isDead = true;
+		fsm.ChangeState(PlayerStateType::Dead);
 	}
 	else
 	{
@@ -295,6 +293,12 @@ void Player::FixedUpdate(const float& deltaTime)
 void Player::LateUpdate(const float& deltaTime)
 {
 	fsm.LateUpdate(deltaTime);
+}
+
+void Player::Render(sf::RenderWindow& renderWindow)
+{
+	if(!isDead)
+		AnimationGameObject::Render(renderWindow);
 }
 
 void Player::OnCollisionEnter(Collider* target)

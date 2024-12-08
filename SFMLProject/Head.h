@@ -24,6 +24,7 @@ protected:
 	bool			onSkill;
 
 public:
+	void DeadThrowHead();
 	void ThrowHead();
 	void EndThrow();
 	void SetPlayer(Player* player);

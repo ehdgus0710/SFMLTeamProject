@@ -19,9 +19,13 @@ protected:
 
 	float speed;
 	float deadTime;
+	float recoveryTime;
 	float deadDelay;
-public:
+	float recoveryDelay;
 
+	bool posMove;
+public:
+	void LowPos(float deltaTime);
 public:
 	// void Awake() override;
 	// void Start() override;

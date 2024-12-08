@@ -930,6 +930,9 @@
     <ClCompile Include="YggdrasilPhaseUpState.cpp">
       <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
     </ClCompile>
+    <ClCompile Include="YggdrasilRecoveryState.cpp">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1599,6 +1602,9 @@
       <Filter>Contants\Object\AwakeReiana\Object</Filter>
     </ClInclude>
     <ClInclude Include="YggdrasilPhaseUpState.h">
+      <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="YggdrasilRecoveryState.h">
       <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
     </ClInclude>
   </ItemGroup>

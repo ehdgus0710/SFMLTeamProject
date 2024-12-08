@@ -177,6 +177,8 @@ enum class YggdrasilStateType
 	SweepAttack,
 	EnergyBallAttack,
 	YggdrasilSpecialAttack,
+	YggdrasilPhaseUp,
+	YggdrasilRecovery,
 	Dead,
 
 	End

@@ -30,11 +30,11 @@ bool TimeManager::IsFixedUpdate()
 
 void TimeManager::Init()
 {
-	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
+	/*ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
 	clock.restart();
 	frameText.setCharacterSize(30);
 	frameText.setPosition({});
-	frameText.setFont(ResourcesManager<sf::Font>::GetInstance().Get("KOMIKAP"));
+	frameText.setFont(ResourcesManager<sf::Font>::GetInstance().Get("KOMIKAP"));*/
 
 	currentFixedTimestep = 1.f / (float)frameTarget;
 	fixedDeltaTime = currentFixedTimestep;
@@ -53,7 +53,7 @@ void TimeManager::Update()
 	realTime += realDeltatime;
 	time += deltaTime;
 
-	FrameCheck();
+	// FrameCheck();
 }
 
 void TimeManager::Render(sf::RenderWindow& renderWindow)

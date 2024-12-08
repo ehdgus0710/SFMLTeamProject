@@ -35,7 +35,7 @@ public:
 	void SetTotalVolume(float v) 
 	{ 
 		totalVolum = v;
-		bgm.setVolume(bgmVolume * totalVolum * 0.01f);
+		SetBgmVolume(bgmVolume);
 		SetSfxVolume(sfxVolume);
 	}
 	void SetSfxVolume(float v);

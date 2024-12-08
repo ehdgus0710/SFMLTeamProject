@@ -6,6 +6,10 @@ void SoundManger::Init(int totalChannels)
 	{
 		waiting.push_back(new sf::Sound());
 	}
+
+	SetTotalVolume(totalVolum);
+	SetBgmVolume(bgmVolume);
+	SetSfxVolume(sfxVolume);
 }
 
 void SoundManger::Release()
@@ -47,7 +51,7 @@ void SoundManger::PlayBgm(std::string id, bool loop)
 void SoundManger::PlayBgm(sf::SoundBuffer& buffer, bool loop)
 {
 	bgm.stop();
-	bgm.setVolume(bgmVolume);
+	SetBgmVolume(bgmVolume);
 	bgm.setLoop(loop);
 	bgm.setBuffer(buffer);
 	bgm.play();

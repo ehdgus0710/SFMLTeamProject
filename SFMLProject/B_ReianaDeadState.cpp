@@ -6,6 +6,7 @@
 #include "AwakeReiana.h"
 #include "ReianaUIHub.h"
 #include "Collider.h"
+#include "Rigidbody.h"
 
 B_ReianaDeadState::B_ReianaDeadState(B_ReianaFsm* fsm)
 	:B_ReianaBaseState(fsm, B_ReianaStateType::Dead)
@@ -35,7 +36,8 @@ void B_ReianaDeadState::SetAwakenReiana()
 	uiHub->SetAwakeReiana(awakeReiana);
 	awakeReiana->SetReianaUIHub(uiHub);
 	awakeReiana->SetPosition(b_reiana->GetPosition());
-	awakeReiana->GetCollider()->SetActive(false);
 	awakeReiana->Start();
+	awakeReiana->GetRigidbody()->SetActive(false);
+	awakeReiana->GetCollider()->SetActive(false);
 }
 

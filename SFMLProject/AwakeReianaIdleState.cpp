@@ -40,10 +40,6 @@ void AwakeReianaIdleState::Enter()
 	{
 		count = 1;
 	}
-	if (awakeReiana->GetCollider()->GetActive())
-	{
-		awakeReiana->GetCollider()->SetActive(true);
-	}
 }
 
 void AwakeReianaIdleState::Exit()

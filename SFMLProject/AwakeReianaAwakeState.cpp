@@ -22,7 +22,6 @@ void AwakeReianaAwakeState::Enter()
 	SoundManger::GetInstance().PlaySfx("Leiana_Awakening_Impact", false);
 	awakeTiem = 1.f;
 	awakeCurrentTime = 0.f;
-
 	awakeReiana->GetRigidbody()->SetActive(false);
 	awakeReiana->GetCollider()->SetActive(false);
 }

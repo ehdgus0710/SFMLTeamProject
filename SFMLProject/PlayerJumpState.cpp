@@ -2,16 +2,30 @@
 #include "PlayerJumpState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Animation.h"
 
 PlayerJumpState::PlayerJumpState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Jump)
 {
 	animationKeys.push_back("littleboneJump");
 	animationKeys.push_back("noheadlittleboneJump");
+	TEXTURE_MANAGER.Load("goldMeteorLandingSmoke", "graphics/boss/Rayanna/effects/goldMeteorLandingSmoke.png");
 }
 
 PlayerJumpState::~PlayerJumpState()
 {
+}
+
+void PlayerJumpState::CreateExtraEffet()
+{
+	AnimationGameObject* smoke = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("extraJumpSmoke"), LayerType::Effect);
+
+	smoke->SetPosition(player->GetPosition() + sf::Vector2f::down * 16.f);
+	smoke->GetAnimator()->AddAnimation(new Animation("animations/Effect/extraJumpSmoke.csv"), "extraJumpSmoke");
+	smoke->GetAnimator()->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, smoke), smoke->GetAnimator()->GetCurrentAnimation()->GetEndFrameCount());
+	smoke->SetScale(sf::Vector2f::one * 2.f);
+	smoke->GetAnimator()->Play();
+	smoke->Start();
 }
 
 void PlayerJumpState::Awake()
@@ -78,6 +92,7 @@ void PlayerJumpState::Update(float deltaTime)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
+		CreateExtraEffet();
 		return;
 	}
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::X))

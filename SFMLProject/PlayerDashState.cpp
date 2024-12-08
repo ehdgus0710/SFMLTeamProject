@@ -4,6 +4,8 @@
 #include "Animator.h"
 #include "Scene.h"
 #include "Camera.h"
+#include "Animation.h"
+#include "AnimationGameObject.h"
 
 
 PlayerDashState::PlayerDashState(PlayerFSM* fsm)
@@ -17,6 +19,7 @@ PlayerDashState::PlayerDashState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("littleboneDash");
 	animationKeys.push_back("noheadlittleboneDash");
+	TEXTURE_MANAGER.Load("MeteorGroundSmoke", "graphics/boss/Rayanna/effects/MeteorGroundSmoke.png");
 }
 
 PlayerDashState::~PlayerDashState()
@@ -40,6 +43,21 @@ void PlayerDashState::StartDash()
 	moveDirection = player->IsFlipX() ? -1.f : 1.f;
 	player->OnDash();
 	currentTime = 0.f;
+	CreateEffect();
+}
+
+void PlayerDashState::CreateEffect()
+{
+	AnimationGameObject* smoke = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("DashSmoke"), LayerType::Effect);
+
+	smoke->SetPosition(player->GetPosition() + (player->IsFlipX() ? sf::Vector2f::right * 32 : sf::Vector2f::left * 32));
+	smoke->GetAnimator()->AddAnimation(new Animation("animations/Effect/dashSmoke.csv"), "dashSmoke");
+	smoke->GetAnimator()->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, smoke), smoke->GetAnimator()->GetCurrentAnimation()->GetEndFrameCount());
+	smoke->GetAnimator()->Play();
+
+	if (player->IsFlipX())
+		smoke->OnFlipX();
+	smoke->Start();
 }
 
 void PlayerDashState::Start()

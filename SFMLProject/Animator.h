@@ -50,6 +50,8 @@ public:
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;
 
+	void Play(bool isRepeat = false, bool isUnscale = false);
+
 	std::unordered_map<std::string, Animation*> GetMap() { return animationMap; }
 public:
 	void Update(const float& deltaTime) override;

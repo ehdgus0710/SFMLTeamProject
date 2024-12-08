@@ -8,6 +8,9 @@ protected:
 	Rigidbody*		rigidbody;
 	float			horizontal;
 	bool			isLeftRun;
+
+private:
+	void CreateExtraEffet();
 public:
 	void Awake() override;
 	void Start() override;

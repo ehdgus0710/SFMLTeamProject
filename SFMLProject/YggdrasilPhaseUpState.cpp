@@ -25,7 +25,6 @@ void YggdrasilPhaseUpState::LowPos(float deltaTime)
 		DeadSound();
 		posMove = true;
 		deadTime = 0.f;
-
 	}
 }
 
@@ -33,7 +32,7 @@ void YggdrasilPhaseUpState::DeadSound()
 {
 	SoundManger::GetInstance().PlaySfx("ElderEnt_Down", false);
 	SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
-		SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
+		SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 100.f, 1.f);
 }
 
 void YggdrasilPhaseUpState::Enter()
@@ -41,7 +40,7 @@ void YggdrasilPhaseUpState::Enter()
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Dead_Roar", "AudioClip/Stage1/ElderEnt_Dead_Roar.wav");
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Down", "AudioClip/Stage1/ElderEnt_Down.wav");
 	SoundManger::GetInstance().PlaySfx("ElderEnt_Dead_Roar", false);
-
+	
 	posMove = false;
 	one = false;
 

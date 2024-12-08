@@ -6,6 +6,7 @@
 #include "Animation.h"
 #include "Camera.h"
 #include "IntroLandSmoke.h"
+#include "Collider.h"
 
 B_ReianaDashState::B_ReianaDashState(B_ReianaFsm* fsm)
 	: B_ReianaBaseState(fsm, B_ReianaStateType::Dash)
@@ -61,6 +62,7 @@ void B_ReianaDashState::Update(float deltaTime)
 		b_reiana->SetPosition({ b_reiana->GetPosition().x -500,b_reiana->GetPosition().y });
 		if(b_reiana->IsDead())
 		{
+			b_reiana->GetCollider()->SetActive(false);
 			fsm->ChangeState(B_ReianaStateType::BackStap);
 		}
 		else

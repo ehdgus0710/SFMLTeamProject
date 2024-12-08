@@ -2,7 +2,6 @@
 #include "YggdrasilBaseState.h"
 class Player;
 class yggdrasil;
-
 class YggdrasilPhaseUpState : public YggdrasilBaseState
 {
 protected:

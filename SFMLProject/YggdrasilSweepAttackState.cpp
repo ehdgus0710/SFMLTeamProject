@@ -242,15 +242,11 @@ void YggdrasilSweepAttackState::Enter()
 	}
 	lFirstPos = yggdrasil->GetLeftFistPos();
 	rFirstPos = yggdrasil->GetRightFistPos();
-
 }
 
 void YggdrasilSweepAttackState::Exit()
 {
 	YggdrasilBaseState::Exit();
-	attackBox1->OnDestory();
-	attackBox2->OnDestory();
-
 }
 
 void YggdrasilSweepAttackState::Update(float deltaTime)

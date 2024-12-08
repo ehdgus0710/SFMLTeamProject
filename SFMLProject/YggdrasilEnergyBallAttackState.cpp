@@ -130,8 +130,8 @@ void YggdrasilEnergyBallAttackState::CreateEffect()
 	Animation* animation(new Animation("animations/Enemy/Yggdrasil/Effects/P2EnergyCorpsExplosion.csv"));
 	effect->GetAnimator()->AddAnimation(animation, "P2EnergyCorpsExplosion");
 	effect->GetAnimator()->ChangeAnimation("P2EnergyCorpsExplosion");
-
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, effect), animation->GetEndFrameCount());
+
 	effect->SetPosition({ yggdrasilEnergyBallBig[attackCount]->GetPosition().x, 913.f });
 	effect->SetScale(sf::Vector2f::one * 3.f);
 
@@ -150,6 +150,7 @@ void YggdrasilEnergyBallAttackState::Start()
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_EnergyBomb_Ready", "AudioClip/Stage1/ElderEnt_EnergyBomb_Ready.wav");
 	SoundManger::GetInstance().PlaySfx("ElderEnt_EnergyBomb_Ready", false);
 	changeOn = false;
+	AnimationGameObject* effect = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new AnimationGameObject("AttackEffect"), LayerType::Effect);
 }
 
 void YggdrasilEnergyBallAttackState::Enter()
@@ -171,7 +172,6 @@ void YggdrasilEnergyBallAttackState::Enter()
 		shootDelay = 0.f;
 		for (int i = 0; i < maxAttackCount; ++i)
 		{
-
 			yggdrasilEnergyBallBig[i] = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilEnergyBallBig(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, "YggdrasilEnergyBallBig"), LayerType::EnemyBullet);
 			yggdrasilEnergyBallBig[i]->SetYggdrasil(yggdrasil);
 			yggdrasilEnergyBallBig[i]->SetPosition({ yggdrasil->GetYggdrasilMouth()->GetPosition() + sf::Vector2f::up * 50.f });
@@ -196,7 +196,6 @@ void YggdrasilEnergyBallAttackState::Enter()
 		shootDelay = 0.3f;
 
 	}
-
 }
 
 void YggdrasilEnergyBallAttackState::Exit()

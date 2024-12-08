@@ -59,7 +59,6 @@ void Yggdrasil::Start()
 	SoundManger::GetInstance().PlayBgm("Chapter1_Boss");
 	animator->ChangeAnimation("phase1Head", true);
 
-
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);
 	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad9);
@@ -100,8 +99,8 @@ void Yggdrasil::Start()
 	attackTime = 0;
 	attackDelay = 3.f;
 
-	phase1Hp = 100;
-	phase2Hp = 100;
+	phase1Hp = 10;
+	phase2Hp = 10;
 
 	currentStatus.hp = (float)phase1Hp;
 	currentStatus.maxHp = (float)phase1Hp;
@@ -112,6 +111,7 @@ void Yggdrasil::Start()
 	player = static_cast<Player*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player));
 
 	fsm.Start();
+	fsm.ChangeState(YggdrasilStateType::Idle);
 }
 
 void Yggdrasil::Update(const float& deltaTime)
@@ -177,6 +177,10 @@ void Yggdrasil::TakeDamage(const DamegeInfo& damage)
 		if (!phaseUp)
 		{
 			fsm.ChangeState(YggdrasilStateType::YggdrasilPhaseUp);
+			if (collider->GetActive()&&collider != nullptr)
+			{
+				collider->SetActive(false);
+			}
 			currentStatus.hp = (float)phase2Hp;
 			currentStatus.maxHp = (float)phase2Hp;
 			yggdrasilUIHub->ChangePhase();

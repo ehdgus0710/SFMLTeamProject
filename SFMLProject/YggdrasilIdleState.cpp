@@ -10,7 +10,7 @@
 
 void YggdrasilIdleState::Moves(float dt)
 {
-	
+
 }
 
 void YggdrasilIdleState::Awake()
@@ -22,7 +22,7 @@ void YggdrasilIdleState::Start()
 {
 	YggdrasilBaseState::Start();
 	changeOn = false;
-	
+
 	//yggdrasil = static_cast<Yggdrasil*>(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Yggdrasil", LayerType::Boss));
 
 }
@@ -42,6 +42,7 @@ void YggdrasilIdleState::Enter()
 		yggdrasil->SetAnimeBody("yggdrasilPhase2Body", false);
 		yggdrasil->SetAnimeHead("yggdrasilPhase2Head", false);
 		yggdrasil->SetAnimeMouth("yggdrasilPhase2Mouth", false);
+		yggdrasil->GetCollider()->SetActive(true);
 
 		hStartPos = yggdrasil->GetHeadPos();
 		hEndPos = { yggdrasil->GetHeadPos().x,  yggdrasil->GetPosition().y + 10.f };
@@ -92,14 +93,17 @@ void YggdrasilIdleState::Update(float deltaTime)
 		if (choiceAttack == 1)
 		{
 			fsm->ChangeState(YggdrasilStateType::FistAttack);
+			attackTime = 0.f;
 		}
 		if (choiceAttack == 2)
 		{
 			fsm->ChangeState(YggdrasilStateType::SweepAttack);
+			attackTime = 0.f;
 		}
 		if (choiceAttack == 3)
 		{
 			fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
+			attackTime = 0.f;
 		}
 	}
 	else
@@ -108,22 +112,22 @@ void YggdrasilIdleState::Update(float deltaTime)
 		{
 			choiceAttack = Utils::RandomRange(1, 4);
 			attackTime = 0;
-		}
-		if (choiceAttack == 1)
-		{
-			fsm->ChangeState(YggdrasilStateType::FistAttack);
-		}
-		else if (choiceAttack == 2)
-		{
-			fsm->ChangeState(YggdrasilStateType::SweepAttack);
-		}
-		else if (choiceAttack == 3)
-		{
-			fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
-		}
-		else if (choiceAttack == 4)
-		{
-			fsm->ChangeState(YggdrasilStateType::YggdrasilSpecialAttack);
+			if (choiceAttack == 1)
+			{
+				fsm->ChangeState(YggdrasilStateType::FistAttack);
+			}
+			else if (choiceAttack == 2)
+			{
+				fsm->ChangeState(YggdrasilStateType::SweepAttack);
+			}
+			else if (choiceAttack == 3)
+			{
+				fsm->ChangeState(YggdrasilStateType::EnergyBallAttack);
+			}
+			else if (choiceAttack == 4)
+			{
+				fsm->ChangeState(YggdrasilStateType::YggdrasilSpecialAttack);
+			}
 		}
 	}
 }

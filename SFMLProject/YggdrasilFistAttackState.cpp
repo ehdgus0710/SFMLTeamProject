@@ -91,6 +91,7 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 			isWait = true;
 		}
 	}
+
 }
 
 void YggdrasilFistAttackState::EndAttackWait(float deltaTime)

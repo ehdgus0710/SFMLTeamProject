@@ -2,6 +2,7 @@
 #include "AwakeReianaIdleState.h"
 #include "Animator.h"
 #include "Player.h"
+#include "Collider.h"
 
 AwakeReianaIdleState::AwakeReianaIdleState(AwakeReianaFsm* fsm)
 	: AwakeReianaBaseState(fsm, AwakeReianaStateType::Idle)
@@ -38,6 +39,10 @@ void AwakeReianaIdleState::Enter()
 	if (count == 5)
 	{
 		count = 1;
+	}
+	if (awakeReiana->GetCollider()->GetActive())
+	{
+		awakeReiana->GetCollider()->SetActive(true);
 	}
 }
 

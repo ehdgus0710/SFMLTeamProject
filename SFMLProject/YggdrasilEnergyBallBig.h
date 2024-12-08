@@ -8,6 +8,7 @@ class YggdrasilEnergyBallBig : public AnimationBullet
 {
 protected:
 	Player* player;
+	sf::Vector2f lastPos;
 
 public:
 	void Awake() override;

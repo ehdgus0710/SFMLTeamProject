@@ -88,7 +88,7 @@ void Camera::CameraShake(float deltaTime)
 
 void Camera::SetCameraShake(const sf::Vector2f shakeRange, MoveDirection moveType, float shakePower, float shakeTime)
 {
-	if (this->shakeTime - currentShakeTime > shakeTime || this->shakePower > shakePower)
+	if (this->shakeTime - currentShakeTime > shakeTime && this->shakePower > shakePower)
 		return;
 
 	this->shakeRange = shakeRange;

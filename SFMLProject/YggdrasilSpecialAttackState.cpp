@@ -8,6 +8,7 @@
 #include "Yggdrasil.h"
 #include "Player.h"
 #include "HitBoxObject.h"
+#include "Camera.h"
 void YggdrasilSpecialAttackState::ReadyAttack(float deltaTime)
 {
 	currentAttackTime += deltaTime;
@@ -32,6 +33,9 @@ void YggdrasilSpecialAttackState::StartSpecialAttack(float deltaTime)
 
 	if (currentAttackTime > attackTime)
 	{
+		SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
+		SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+			SetCameraShake({ 30.f, 20.f }, MoveDirection::Random, 1500.f, 1.f);
 		HitBoxOn();
 		isWait = true;
 		++attackCount;
@@ -102,7 +106,7 @@ void YggdrasilSpecialAttackState::HitBoxOn()
 {
 	CreateEffect();
 	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil, ColliderLayer::EnemyBullet, ColliderLayer::Player, false, (sf::Vector2f::right * 30.f)), LayerType::EnemyBullet);
-	attackBox->SetScale({ 2000.f,50.f });
+	attackBox->SetScale({ 3000.f,50.f });
 	attackBox->SetDamage(10);
 	attackBox->SetPosition({ 960.f, 913.f });
 	attackBox->UseLifeTime(0.2f);
@@ -120,6 +124,8 @@ void YggdrasilSpecialAttackState::Awake()
 void YggdrasilSpecialAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Roar_BothFistPowerSlam", "AudioClip/Stage1/ElderEnt_Roar_BothFistPowerSlam.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_FistSlam", "AudioClip/Stage1/ElderEnt_FistSlam.wav");
 	changeOn = false;
 }
 
@@ -152,6 +158,7 @@ void YggdrasilSpecialAttackState::Enter()
 
 	lFirstPos = yggdrasil->GetLeftFistPos();
 	rFirstPos = yggdrasil->GetRightFistPos();
+	SoundManger::GetInstance().PlaySfx("ElderEnt_Roar_BothFistPowerSlam", false);
 
 }
 

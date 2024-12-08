@@ -16,7 +16,6 @@
 
 void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector2f dir, float speed, float deltaTime)
 {
-
 	if (!yggdrasil->GetPhaseUp())
 	{
 		sf::Vector2f yggdrasilPos = yggdrasil->GetYggdrasilMouth()->GetPosition();
@@ -81,12 +80,13 @@ void YggdrasilEnergyBallAttackState::EnergyBallFire(sf::Vector2f pos, sf::Vector
 		look = player->GetPosition() - startPos;
 		look.Normalized();
 		yggdrasilEnergyBallBig[attackCount]->SetMoveDirection(look);
+		yggdrasilEnergyBallBig[attackCount]->SetDamage(15);
 		yggdrasilEnergyBallBig[attackCount]->Shoot();
-		bool ball = yggdrasilEnergyBallBig[attackCount]->IsActive();
-		if (ball == false)
-		{
-			CreateEffect();
-		}
+		//yggdrasilEnergyBallBig[attackCount]->AddStartHitEvent();
+		//if (ball == false)
+		//{
+		//	CreateEffect();
+		//}
 	}
 	else
 	{
@@ -147,6 +147,8 @@ void YggdrasilEnergyBallAttackState::Awake()
 void YggdrasilEnergyBallAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_EnergyBomb_Ready", "AudioClip/Stage1/ElderEnt_EnergyBomb_Ready.wav");
+	SoundManger::GetInstance().PlaySfx("ElderEnt_EnergyBomb_Ready", false);
 	changeOn = false;
 }
 
@@ -224,6 +226,7 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 		Enter();
 		changeOn = true;
 	}
+
 	if (attackCount < maxAttackCount)
 	{
 		if (!isShoot)
@@ -231,9 +234,6 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 			currentFirstAttack += deltaTime;
 			if (currentFirstAttack > firstAttackDelay)
 			{
-				//float radi = atan2f(startPos.y - player->GetPosition().y, startPos.x - player->GetPosition().x);
-				//float degr = (radi * 180 / Utils::PI) + 90;
-				//look = 노멀라이즈 어디있는데 ㅋㅋㅋㅋ;
 				isShoot = true;
 				EnergyBallFire(startPos, look, speed, deltaTime);
 				currentFirstAttack = 0.f;
@@ -246,7 +246,9 @@ void YggdrasilEnergyBallAttackState::Update(float deltaTime)
 		{
 			if (attackCount == maxAttackCount - (maxAttackCount - attackCount))
 			{
+				SoundManger::GetInstance().PlaySfx("ElderEnt_EnergyBomb_Ready", false);
 				isShoot = false;
+				shootTime = 0.f;
 			}
 		}
 	}

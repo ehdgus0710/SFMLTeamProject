@@ -24,8 +24,10 @@ protected:
 	float recoveryDelay;
 
 	bool posMove;
+	bool one;
 public:
 	void LowPos(float deltaTime);
+	void DeadSound();
 public:
 	// void Awake() override;
 	// void Start() override;

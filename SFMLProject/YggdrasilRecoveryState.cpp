@@ -5,12 +5,14 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "GameManager.h"
+#include "Camera.h"
 
 #include "Yggdrasil.h"
 #include "Player.h"
 
 void YggdrasilRecoveryState::FirstPos(float deltaTime)
 {
+
 	deadTime += deltaTime;
 	yggdrasil->SetRotation(Utils::Lerp(-45, 0, deadTime / deadDelay));
 	yggdrasil->SetHeadRota(Utils::Lerp(-45, 0, deadTime / deadDelay));
@@ -24,28 +26,39 @@ void YggdrasilRecoveryState::FirstPos(float deltaTime)
 		yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, deadTime / endDelay));
 		yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, deadTime / endDelay));
 		yggdrasil->SetPhaseUp(true);
-		if (deadTime >= endDelay)
-		{
-			fsm->ChangeState(YggdrasilStateType::Idle);
-			deadTime = 0.f;
-		}
 	}
+}
+
+void YggdrasilRecoveryState::Start()
+{
+	YggdrasilBaseState::Start();
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Up 1", "AudioClip/Stage1/ElderEnt_Up 1.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Groggy_Recovery", "AudioClip/Stage1/ElderEnt_Groggy_Recovery.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Roar", "AudioClip/Stage1/ElderEnt_Roar.wav");
+	SoundManger::GetInstance().PlaySfx("ElderEnt_Up 1", false);
 }
 
 void YggdrasilRecoveryState::Enter()
 {
-	PosMove = false;
+	YggdrasilBaseState::Enter();
 
+	PosMove = false;
+	oneSound = false;
+
+	deadTime = 0.f;
+	soundStartTime = 0.f;
+	endTime = 0.f;
+	deadDelay = 3.f;
 	deadDelay = 3.f;
 	recoveryDelay = 4.f;
-	endDelay = 7.f;
+	endDelay = 11.f;
 
 	bStartPos = yggdrasil->GetPosition();
 	bEndPos = { 960.f, 400.f };
 	hStartPos = yggdrasil->GetHeadPos();
-	hEndPos = { yggdrasil->GetPosition().x + 150.f, yggdrasil->GetPosition().y - 350.f};
+	hEndPos = { yggdrasil->GetPosition().x + 150.f, yggdrasil->GetPosition().y - 350.f };
 	mStartPos = yggdrasil->GetMouthPos();
-	mEndPos = { yggdrasil->GetPosition().x + 200.f, yggdrasil->GetPosition().y - 50.f};
+	mEndPos = { yggdrasil->GetPosition().x + 200.f, yggdrasil->GetPosition().y - 50.f };
 	lStartPos = yggdrasil->GetLeftFistPos();
 	lEndPos = { yggdrasil->GetPosition().x + 900.f, yggdrasil->GetPosition().y };
 	rStartPos = yggdrasil->GetRightFistPos();
@@ -60,20 +73,37 @@ void YggdrasilRecoveryState::Enter()
 		yggdrasil->SetAnimeLeftHand("phase2HandLeftIdle", false);
 		yggdrasil->SetAnimeRightHand("phase2HandRightIdle", false);
 	}
-	deadTime = 0.f;
-	deadDelay = 3.f;
 }
 
 void YggdrasilRecoveryState::Exit()
 {
+	YggdrasilBaseState::Exit();
 
 }
 
 void YggdrasilRecoveryState::Update(float deltaTime)
 {
+	soundStartTime += deltaTime;
+	endTime += deltaTime;
 	if (!PosMove)
 	{
 		FirstPos(deltaTime);
+	}
+
+	if (soundStartTime >= recoveryDelay && !oneSound)
+	{
+		SoundManger::GetInstance().PlaySfx("ElderEnt_Roar", false);
+		SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+			SetCameraShake({ 30.f, 30.f }, MoveDirection::Random, 2000.f, 7.f);
+		soundStartTime = 0.f;
+		oneSound = true;
+	}
+
+	if (endTime >= endDelay)
+	{
+		fsm->ChangeState(YggdrasilStateType::Idle);
+		endTime = 0.f;
+		deadTime = 0.f;
 	}
 
 }

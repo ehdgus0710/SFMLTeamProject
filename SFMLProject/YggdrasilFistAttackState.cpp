@@ -51,9 +51,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
-			// 첫번째 매개 인자 흔들릴 범위, 흔들릴 방향, 흔들릴 쎄기, 시간 
-			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->SetCameraShake({ 10.f,10.f }, MoveDirection::Random, 1000.f, 2.5f);
-
+			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+				SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
 			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateLeftEffect();
@@ -80,7 +79,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
-			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->SetCameraShake({ 10.f,10.f }, MoveDirection::Random, 1000.f, 2.5f);
+			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+				SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
 			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateRightEffect();

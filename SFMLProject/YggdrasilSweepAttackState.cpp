@@ -10,6 +10,7 @@
 #include "HitBoxObject.h"
 #include "YggdrasilLeftHand.h"
 #include "YggdrasilRightHand.h"
+#include "Camera.h"
 
 void YggdrasilSweepAttackState::ReadyAttack(float deltaTime)
 {
@@ -36,6 +37,8 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	for (hitBoxOn1; hitBoxOn1 < 1; ++hitBoxOn1)
 	{
+		SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+			SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 500.f, attackTime);
 		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping_Ready", false);
 		attackBox1 = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
 		attackBox1->SetScale({ 400.f,400.f });
@@ -52,6 +55,7 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 
 	if (currentAttackTime >= readyFistTime)
 	{
+		attackBox1->OnDestory();
 		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping");
 		hitBoxOn1 = false;
 		switchFist = true;
@@ -73,6 +77,8 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	rEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	for (hitBoxOn2; hitBoxOn2 < 1; ++hitBoxOn2)
 	{
+		SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+			SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 500.f, attackTime);
 		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping_Ready", false);
 		attackBox2 = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilRightHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
 		attackBox2->SetScale({ 400.f,400.f });
@@ -89,6 +95,7 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 
 	if (currentAttackTime >= readyFistTime)
 	{
+		attackBox2->OnDestory();
 		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping");
 		hitBoxOn2 = false;
 		switchFist = true;
@@ -222,7 +229,7 @@ void YggdrasilSweepAttackState::Enter()
 		onAttack = true;
 
 		effectTime = 0.f;
-		effectDelay = 0.01f;
+		effectDelay = 0.05f;
 		currentAttackDelay = 0.f;
 		currentAttackTime = 0.f;
 		currentRecoveryTime = 0.f;
@@ -241,6 +248,9 @@ void YggdrasilSweepAttackState::Enter()
 void YggdrasilSweepAttackState::Exit()
 {
 	YggdrasilBaseState::Exit();
+	attackBox1->OnDestory();
+	attackBox2->OnDestory();
+
 }
 
 void YggdrasilSweepAttackState::Update(float deltaTime)

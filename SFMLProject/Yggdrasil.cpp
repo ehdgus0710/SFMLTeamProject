@@ -78,14 +78,14 @@ void Yggdrasil::Start()
 	yggdrasilMouth->GetCollider()->SetScale({ 100.f,100.f });
 	yggdrasilMouth->GetRigidbody()->SetActive(false);
 
-	yggdrasilLeftHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilLeftHand("yggdrasilLeftHand"), LayerType::Boss);
+	yggdrasilLeftHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilLeftHand("yggdrasilLeftHand"), LayerType::EnemyBullet);
 	yggdrasilLeftHand->SetYggdrasil(this);
 	yggdrasilLeftHand->SetPosition({ GetPosition().x + 700.f, GetPosition().y + 250.f });
 	yggdrasilLeftHand->Awake();
 	yggdrasilLeftHand->GetCollider()->SetScale({ 150.f,150.f });
 	yggdrasilLeftHand->GetRigidbody()->SetActive(false);
 
-	yggdrasilRightHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilRightHand("YggdrasilRightHand"), LayerType::Boss);
+	yggdrasilRightHand = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new YggdrasilRightHand("YggdrasilRightHand"), LayerType::EnemyBullet);
 	yggdrasilRightHand->SetYggdrasil(this);
 	yggdrasilRightHand->SetPosition({ GetPosition().x - 700.f, GetPosition().y + 250.f });
 	yggdrasilRightHand->Awake();

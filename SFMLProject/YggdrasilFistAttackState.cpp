@@ -10,6 +10,7 @@
 #include "HitBoxObject.h"
 #include "YggdrasilLeftHand.h"
 #include "YggdrasilRightHand.h"
+#include "Camera.h"
 
 void YggdrasilFistAttackState::ReadyFist(float deltaTime)
 {
@@ -50,6 +51,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+				SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
 			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateLeftEffect();
@@ -76,6 +79,8 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 
 		if (currentAttackTime >= attackTime)
 		{
+			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
+				SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
 			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateRightEffect();

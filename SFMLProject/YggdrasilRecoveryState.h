@@ -19,16 +19,19 @@ protected:
 
 	float speed;
 	float deadTime;
+	float soundStartTime;
+	float endTime;
 	float deadDelay;
 	float recoveryDelay;
 	float endDelay;
 
 	bool PosMove;
+	bool oneSound;
 public:
 	void FirstPos(float deltaTime);
 public:
 	// void Awake() override;
-	// void Start() override;
+	void Start() override;
 
 	void Enter() override;
 	void Exit() override;

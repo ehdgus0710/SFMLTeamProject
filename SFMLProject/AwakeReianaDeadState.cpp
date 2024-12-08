@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "ReianaUIHub.h"
 #include "Collider.h"
+#include "DoorObject.h"
 
 AwakeReianaDeadState::AwakeReianaDeadState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::Dead)
@@ -48,7 +49,11 @@ void AwakeReianaDeadState::DeleteEffect()
 void AwakeReianaDeadState::OnDead()
 {
 	awakeReiana->SetActive(false);
-	//awakeReiana->GetReianaUIHub()->SetActive(false);
+	awakeReiana->GetReianaUIHub()->OnDeadReiana();
+
+	DoorObject* clearDoor = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new DoorObject("KeyF", SceneIds::TitleScene, "ClearDoor"), LayerType::BackGround_Forward);
+	clearDoor->SetPosition({ 960.f, 650.f });
+	clearDoor->Start();
 }
 
 

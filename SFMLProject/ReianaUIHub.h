@@ -26,12 +26,13 @@ private:
 	AwakeReiana*		awakeReiana;
 
 public:
-
 	void ChangeReianaAHP(float currentHp, float maxHp);
 	void ChangeReianaBHP(float currentHp, float maxHp);
 	void ChangeAwakenReianaHP(float currentHp, float maxHp);
 	void ChangePhase();
 	void SetAwakeReiana(AwakeReiana* reiana) { awakeReiana = reiana; }
+
+	void OnDeadReiana();
 public:
 	// void SetPosition(const sf::Vector2f& pos) override;
 	void Start() override;

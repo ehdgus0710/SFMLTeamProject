@@ -124,6 +124,9 @@ void PlayerJumpAttackState::OnEndAttack()
 
 void PlayerJumpAttackState::OnCreateHitBox()
 {
+	if (attackBox)
+		attackBox->OnDestory();
+
 	attackBox = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(player, ColliderLayer::PlayerBullet, ColliderLayer::Boss, true, (sf::Vector2f::right * 30.f)), LayerType::PlayerBullet);
 	attackBox->SetScale({ 50.f,50.f });
 

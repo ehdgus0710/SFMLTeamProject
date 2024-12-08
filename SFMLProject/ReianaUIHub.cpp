@@ -127,3 +127,16 @@ void ReianaUIHub::ChangePhase()
 	nameText->SetPosition({ 955.f, 50.f });
 	tribeText->SetPosition({ 955.f, 117.5f });
 }
+
+void ReianaUIHub::OnDeadReiana()
+{
+	topBackSprite->OnDestory();
+	bottomBackSprite->OnDestory();
+	frontHpBarSprite->OnDestory();
+	reianaAHPBar->OnDestory();
+	reianaBHPBar->OnDestory();
+	awakenReianaHPBar->OnDestory();
+	nameText->OnDestory();
+	tribeText->OnDestory();
+	OnDestory();
+}

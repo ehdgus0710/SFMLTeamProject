@@ -10,6 +10,7 @@ PlayerJumpState::PlayerJumpState(PlayerFSM* fsm)
 	animationKeys.push_back("littleboneJump");
 	animationKeys.push_back("noheadlittleboneJump");
 	TEXTURE_MANAGER.Load("goldMeteorLandingSmoke", "graphics/boss/Rayanna/effects/goldMeteorLandingSmoke.png");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("DefaultJump", "AudioClip/Skul/Default_Jump.wav");
 }
 
 PlayerJumpState::~PlayerJumpState()
@@ -48,6 +49,8 @@ void PlayerJumpState::Enter()
 	rigidbody->SetGround(false);
 	rigidbody->ResetDropSpeed();
 	rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -800.f });
+
+	SoundManger::GetInstance().PlaySfx("DefaultJump");
 }
 
 void PlayerJumpState::Exit()

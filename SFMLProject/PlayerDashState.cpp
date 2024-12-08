@@ -20,6 +20,7 @@ PlayerDashState::PlayerDashState(PlayerFSM* fsm)
 	animationKeys.push_back("littleboneDash");
 	animationKeys.push_back("noheadlittleboneDash");
 	TEXTURE_MANAGER.Load("MeteorGroundSmoke", "graphics/boss/Rayanna/effects/MeteorGroundSmoke.png");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("DefaultDash", "AudioClip/Skul/Default_Dash.wav");
 }
 
 PlayerDashState::~PlayerDashState()
@@ -58,6 +59,8 @@ void PlayerDashState::CreateEffect()
 	if (player->IsFlipX())
 		smoke->OnFlipX();
 	smoke->Start();
+
+	SoundManger::GetInstance().PlaySfx("DefaultDash");
 }
 
 void PlayerDashState::Start()

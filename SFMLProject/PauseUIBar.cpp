@@ -20,10 +20,16 @@ PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
 	, endGameButton(nullptr)
 	, mouseObject(nullptr)
 	, settingUIBar(nullptr)
-
+	, backgroundRect(nullptr)
 {
 	prevTimeScale = TimeManager::GetInstance().GetTimeScale();
 	InputManager::GetInstance().BindKey(sf::Keyboard::Escape);
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIOpen", "AudioClip/UI/UI_Open.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIClose", "AudioClip/UI/UI_Close.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIMenuMove", "AudioClip/UI/UI_MenuMove.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIMenuClose", "AudioClip/UI/UI_MenuClose.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("UIMenuOpen", "AudioClip/UI/UI_MenuOpen.wav");
 }
 
 void PauseUIBar::OffUIBar()
@@ -48,6 +54,7 @@ void PauseUIBar::OnSettingBar()
 		button->SetActive(false);
 		button->GetCollider()->SetActive(false);
 	}
+	SoundManger::GetInstance().PlaySfx("UIMenuOpen");
 }
 
 void PauseUIBar::OffSettingBar()
@@ -58,6 +65,7 @@ void PauseUIBar::OffSettingBar()
 	{
 		button->SetActive(true);
 	}
+	SoundManger::GetInstance().PlaySfx("UIMenuClose");
 }
 
 void PauseUIBar::OnEndGame()
@@ -65,12 +73,17 @@ void PauseUIBar::OnEndGame()
 	WindowManager::GetInstance().GetRenderWindow()->close();
 }
 
+void PauseUIBar::OnPlayUIMoveSound()
+{
+	SoundManger::GetInstance().PlaySfx("UIMenuMove");
+}
+
 void PauseUIBar::CreateUIObject()
 {
 	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
 
 	backgroundRect = currentScene->AddGameObject(new BackgroundColorBox(), LayerType::UI);
-	backgroundRect->SetColor(sf::Color::Black - sf::Color(0, 0, 0, 80.f));
+	backgroundRect->SetColor(sf::Color::Black - sf::Color(0, 0, 0, 80));
 	backgroundRect->SetScale({ 3000.f, 2000.f });
 	backgroundRect->Start();
 
@@ -91,6 +104,7 @@ void PauseUIBar::CreateUIObject()
 	goBackButton->GetCollider()->SetOffsetPosition({ 0.f , 7.5f });
 	goBackButton->Start();
 	goBackButton->SetButtonClickEvent(std::bind(&PauseUIBar::OffUIBar, this));
+	goBackButton->SetCollsionEnterEvent(std::bind(&PauseUIBar::OnPlayUIMoveSound, this));
 
 	newGameButton = currentScene->AddGameObject(new TextButton("NameFont", "NewGameButton", 30, { 98 , 73, 59, 255 }, { 174,151,133,255 }), LayerType::UI);
 	newGameButton->SetString(L"새 게임");
@@ -100,6 +114,7 @@ void PauseUIBar::CreateUIObject()
 	newGameButton->GetCollider()->SetOffsetPosition({ 0.f , 7.5f });
 	newGameButton->Start();
 	newGameButton->SetButtonClickEvent(std::bind(&PauseUIBar::OnNewGame, this));
+	newGameButton->SetCollsionEnterEvent(std::bind(&PauseUIBar::OnPlayUIMoveSound, this));
 
 	controllerButton = currentScene->AddGameObject(new TextButton("NameFont", "ControllerButton", 30, { 98 , 73, 59, 255 }, { 174,151,133,255 }), LayerType::UI);
 	controllerButton->SetString(L"컨트롤");
@@ -109,6 +124,7 @@ void PauseUIBar::CreateUIObject()
 	controllerButton->GetCollider()->SetOffsetPosition({ 0.f , 7.5f });
 	controllerButton->Start();
 	controllerButton->SetButtonClickEvent(std::bind(&PauseUIBar::OnControllerBar, this));
+	controllerButton->SetCollsionEnterEvent(std::bind(&PauseUIBar::OnPlayUIMoveSound, this));
 
 	settingButton = currentScene->AddGameObject(new TextButton("NameFont", "SettingButton", 30, { 98 , 73, 59, 255 }, { 174,151,133,255 }), LayerType::UI);
 	settingButton->SetString(L"설정");
@@ -118,6 +134,7 @@ void PauseUIBar::CreateUIObject()
 	settingButton->GetCollider()->SetOffsetPosition({ 0.f , 7.5f });
 	settingButton->Start();
 	settingButton->SetButtonClickEvent(std::bind(&PauseUIBar::OnSettingBar, this));
+	settingButton->SetCollsionEnterEvent(std::bind(&PauseUIBar::OnPlayUIMoveSound, this));
 
 
 	endGameButton = currentScene->AddGameObject(new TextButton("NameFont", "EndGameButton", 30, { 98 , 73, 59, 255 }, { 174,151,133,255 }), LayerType::UI);
@@ -128,6 +145,7 @@ void PauseUIBar::CreateUIObject()
 	endGameButton->GetCollider()->SetOffsetPosition({ 0.f , 7.5f });
 	endGameButton->Start();
 	endGameButton->SetButtonClickEvent(std::bind(&PauseUIBar::OnEndGame, this));
+	endGameButton->SetCollsionEnterEvent(std::bind(&PauseUIBar::OnPlayUIMoveSound, this));
 
 	mouseObject = currentScene->AddGameObject(new MouseObject(), LayerType::UI);
 	mouseObject->Start();
@@ -167,6 +185,7 @@ void PauseUIBar::SetActive(const bool active)
 		this->active = active;
 		SetChildActive(active);
 		settingUIBar->SetActive(false);
+		SoundManger::GetInstance().PlaySfx("UIOpen");
 	}
 	else
 	{
@@ -177,8 +196,12 @@ void PauseUIBar::SetActive(const bool active)
 		else
 		{
 			InputManager::GetInstance().SetInputable(active);
-			TimeManager::GetInstance().SetTimeScale(prevTimeScale);
 
+			if (TimeManager::GetInstance().GetTimeScale() == 0.f)
+				SoundManger::GetInstance().PlaySfx("UIClose");
+
+			TimeManager::GetInstance().SetTimeScale(prevTimeScale);
+	
 			this->active = active;
 			SetChildActive(active);
 		}

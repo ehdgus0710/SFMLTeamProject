@@ -45,8 +45,10 @@ Player::Player(const std::string& name)
 	animator->LoadCsv("animators/littlebone.csv");
 	animator->LoadCsv("animators/noheadlittlebone.csv");
 
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad7);
-	InputManager::GetInstance().BindKey(sf::Keyboard::Numpad8);
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkullGet", "AudioClip/Skul/183_Skull_Get_a_v1.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkullAttackHit1", "AudioClip/Skul/Skul_Hit 1.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkullAttackHit2", "AudioClip/Skul/Skul_Hit 2.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkullAttackHit3", "AudioClip/Skul/Skul_Hit 3.wav");
 }
 
 Player::~Player()
@@ -60,13 +62,11 @@ void Player::TakeDamage(const DamegeInfo& damage)
 
 	currentStatus.hp -= damage.damege;
 
-
-
 	if (currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
-		/*isDead = true;
-		fsm.ChangeState(PlayerStateType::Dead);*/
+		isDead = true;
+		fsm.ChangeState(PlayerStateType::Dead);
 	}
 	else
 	{
@@ -118,9 +118,22 @@ void Player::OnThrowHead()
 
 void Player::OnGetHead()
 {
+	SoundManger::GetInstance().PlaySfx("SkullGet");
 	head->SetActive(false);
 	isNoneHead = false;
 	fsm.GetCurrentState()->SetChangeAnimationKey(0);
+}
+
+void Player::OnAttackHitSound(GameObject* object)
+{
+	int random = Utils::RandomRange(0, 2);
+
+	if(random == 0)
+		SoundManger::GetInstance().PlaySfx("SkullAttackHit1");
+	else if (random == 1)
+		SoundManger::GetInstance().PlaySfx("SkullAttackHit2");
+	else
+		SoundManger::GetInstance().PlaySfx("SkullAttackHit3");
 }
 
 void Player::OnSkill1CoolTime()
@@ -295,6 +308,12 @@ void Player::FixedUpdate(const float& deltaTime)
 void Player::LateUpdate(const float& deltaTime)
 {
 	fsm.LateUpdate(deltaTime);
+}
+
+void Player::Render(sf::RenderWindow& renderWindow)
+{
+	if(!isDead)
+		AnimationGameObject::Render(renderWindow);
 }
 
 void Player::OnCollisionEnter(Collider* target)

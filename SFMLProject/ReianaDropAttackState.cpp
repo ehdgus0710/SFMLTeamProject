@@ -22,6 +22,7 @@ void ReianaDropAttackState::Wait(float deltaTime)
 
 	if (currentWaitTime >= waitTime)
 	{
+		SoundManger::GetInstance().PlaySfx("Leiana_DarkMeteor_Impact");
 		action = true;
 		OnCreateHitBox();
 	}

@@ -5,7 +5,7 @@
 class ReianaDeadState : public ReianaBaseState
 {
 protected:
-
+	bool onDead = false;
 public:
 	void Enter() override;
 public:

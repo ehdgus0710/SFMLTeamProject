@@ -123,7 +123,7 @@ void B_ReianaIdleState::changeState(float dt)
 			}
 			break;
 		case B_ReianaStateType::Dead:
-			fsm->ChangeState(B_ReianaStateType::Dead);
+			fsm->ChangeState(B_ReianaStateType::Dash);
 			break;
 		case B_ReianaStateType::End:
 			break;

@@ -122,6 +122,8 @@ void Scene::Exit()
 	ResourcesManager<sf::Texture>::GetInstance().UnloadAll();
 	ResourcesManager<sf::Font>::GetInstance().UnloadAll();
 	ResourcesManager<sf::SoundBuffer>::GetInstance().UnloadAll();
+	SoundManger::GetInstance().StopAllSfx();
+	SoundManger::GetInstance().StopBgm();
 }
 
 void Scene::Update(float deltaTime)

@@ -9,6 +9,7 @@
 PlayerSkill1State::PlayerSkill1State(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Skill1)
 {
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkulThrowing", "AudioClip/Skul/Skul_SkullThrowing.wav");
 }
 
 PlayerSkill1State::~PlayerSkill1State()
@@ -54,6 +55,8 @@ void PlayerSkill1State::Enter()
 	Animation* animation = animator->GetCurrentAnimation();
 	animation->SetAnimationStartEvent(std::bind(&PlayerSkill1State::OnThrowHead, this), 1);
 	animation->SetAnimationStartEvent(std::bind(&PlayerSkill1State::OnEndAniamtion, this), animation->GetEndFrameCount());
+
+	SoundManger::GetInstance().PlaySfx("SkulThrowing");
 
 	player->GetRigidbody()->SetActive(false);
 }

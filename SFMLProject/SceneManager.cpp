@@ -10,6 +10,8 @@
 #include "Stage2.h"
 #include "Stage3.h"
 
+#include "ImguiManger.h"
+
 void SceneManager::Init()
 {
 	sceneVec.push_back(new SceneDev1());
@@ -26,7 +28,7 @@ void SceneManager::Init()
 	}
 
 	currentScene = startScene;
-	currentScene = SceneIds::Stage3;
+	currentScene = SceneIds::TitleScene;
 	sceneVec[(int)currentScene]->Enter();
 }
 
@@ -43,6 +45,7 @@ void SceneManager::Release()
 
 void SceneManager::ChangeScene(SceneIds id)
 {
+	ImguiManger::GetInstance().Reset();
 	sceneVec[(int)currentScene]->Exit();
 	TimeManager::GetInstance().SetTimeScale(1.f);
 	currentScene = id;

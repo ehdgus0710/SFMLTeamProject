@@ -1,0 +1,7 @@
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+goldMeteorLandingSmoke,extraJumpSmoke,0,,,,,
+,,,,,,,
+,128,31,0,0,128,31,0.05
+,128,31,128,0,128,31,0.05
+,128,31,256,0,128,31,0.05
+,128,31,384,0,128,31,0.05

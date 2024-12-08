@@ -24,6 +24,7 @@ void AwakeReianaDimensionState::CreateDimension()
 	dimension->SetRotation((float)Utils::RandomRange(1, 180));
 	dimension->Awake();
 	dimension->Start();
+	SoundManger::GetInstance().PlaySfx("Leiana_DimensionPierce_Impact", false);
 }
 
 void AwakeReianaDimensionState::Awake()

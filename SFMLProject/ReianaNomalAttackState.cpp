@@ -38,18 +38,23 @@ void ReianaNomalAttackState::Attack(float deltaTime)
 	{
 		if (rush2)
 		{
+			SoundManger::GetInstance().PlaySfx("Leiana_DimensionPierce_Sign");
+
 			animator->ChangeAnimation("rushC", false);
 			rush3 = true;
 			OnCreateHitBox();
 		}
 		else if (rush1)
 		{
+			SoundManger::GetInstance().PlaySfx("Leiana_DimensionPierce_Sign");
 			animator->ChangeAnimation("rushB", false);
 			rush2 = true;
 			OnCreateHitBox();
 		}
 		else if (!rush1)
 		{
+			SoundManger::GetInstance().PlaySfx("Leiana_DimensionPierce_Sign");
+
 			animator->ChangeAnimation("rushA", false);
 			rush1 = true;
 			OnCreateHitBox();
@@ -95,6 +100,7 @@ void ReianaNomalAttackState::Wait(float deltaTime)
 				meteorGroundSmoke->OnFlipX();
 			}
 		}
+		SoundManger::GetInstance().PlaySfx("Leiana_FootStep", false);
 		meteorGroundSmoke->SetPosition(reiana->GetPosition() + (meteorGroundSmoke->IsFlipX() ? smokePos : -smokePos));
 	}
 	if (!rush3)

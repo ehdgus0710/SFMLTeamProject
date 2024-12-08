@@ -22,6 +22,8 @@ PlayerJumpAttackState::PlayerJumpAttackState(PlayerFSM* fsm)
 	damageInfo.owner = player;
 	damageInfo.knockbackVelocity = { 30.f,0.f };
 	damageInfo.hitDirection = sf::Vector2f::down;
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkulJumpAtk", "AudioClip/Skul/Skul_Jump_Atk.wav");
 }
 
 PlayerJumpAttackState::~PlayerJumpAttackState()
@@ -127,6 +129,9 @@ void PlayerJumpAttackState::OnCreateHitBox()
 
 	attackBox->SetDamage(damageInfo);
 	attackBox->AddStartHitEvent(std::bind(&PlayerJumpAttackState::CreateEffect, this, std::placeholders::_1));
+	attackBox->AddStartHitEvent(std::bind(&Player::OnAttackHitSound, player, std::placeholders::_1));
+
+	SoundManger::GetInstance().PlaySfx("SkulJumpAtk");
 }
 
 void PlayerJumpAttackState::OnDestoryHitBox()

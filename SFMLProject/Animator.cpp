@@ -166,6 +166,14 @@ sf::FloatRect Animator::GetGlobalBounds() const
 	return  sprite->getGlobalBounds();
 }
 
+void Animator::Play(bool isRepeat, bool isUnscale)
+{
+	isPlaying = true;
+	currentAnimation->SetRepeat(isRepeat);
+	currentAnimation->Play(animationSpeed, isRepeat);
+	currentAnimation->SetUnScaleUpdate(isUnscale);
+}
+
 void Animator::Update(const float& deltaTime)
 {
 	if(isPlaying)

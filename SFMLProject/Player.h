@@ -51,12 +51,14 @@ public:
 	void OnDownJump();
 	void OnThrowHead();
 	void OnGetHead();
+	void OnAttackHitSound(GameObject* object);
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }
 
 	PlayerFSM& GetFSM() { return fsm; }
 	SkullType GetSkullType() { return skullType; }
+	Head* GetHead() { return head; }
 public:
 	void OnSkill1CoolTime();
 	void OnSkill2CoolTime();
@@ -93,6 +95,7 @@ public:
 	void Update(const float& deltaTime) override;
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;
+	void Render(sf::RenderWindow& renderWindow) override;
 
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;

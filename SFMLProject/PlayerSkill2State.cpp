@@ -9,6 +9,7 @@
 PlayerSkill2State::PlayerSkill2State(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Skill2)
 {
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkulReborn", "AudioClip/Skul/Skul_Reborn.wav");
 }
 
 PlayerSkill2State::~PlayerSkill2State()
@@ -33,6 +34,7 @@ void PlayerSkill2State::Enter()
 	player->SetPosition(player->GetHeadPosition() + 23.5f * sf::Vector2f::up);
 	player->OnSkill2CoolTime();
 	player->OnGetHead();
+	SoundManger::GetInstance().PlaySfx("SkulReborn");
 }
 
 void PlayerSkill2State::Exit()

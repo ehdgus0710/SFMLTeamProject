@@ -69,6 +69,11 @@ void SettingUIBar::SetChildActive(const bool active)
 	}
 }
 
+void SettingUIBar::OnPlayUIMoveSound()
+{
+	SoundManger::GetInstance().PlaySfx("UIMenuMove");
+}
+
 void SettingUIBar::CreateTotalSoundUI(Scene* currentScene)
 {
 	totalSoundScroller = currentScene->AddGameObject(new ScrollButtonUI(MoveType::LeftRight, "OptionsArrow", "TotalSoundScroller"), LayerType::UI);
@@ -78,6 +83,7 @@ void SettingUIBar::CreateTotalSoundUI(Scene* currentScene)
 	totalSoundScroller->SetChangeValueEvent(std::bind(&SettingUIBar::OnSetTotalSound, this, std::placeholders::_1));
 	totalSoundScroller->SetButtonClickEnterEvent(std::bind(&SettingUIBar::OnCollisionEnterTotalSoundUI, this));
 	totalSoundScroller->SetButtonClickEndEvent(std::bind(&SettingUIBar::OnCollisionEndTotalSoundUI, this));
+	totalSoundScroller->SetButtonClickEnterEvent(std::bind(&SettingUIBar::OnPlayUIMoveSound, this));
 	totalSoundScroller->SetOrigin(Origins::MiddleCenter);
 	totalSoundScroller->Start();
 	objects.push_back(totalSoundScroller);
@@ -101,6 +107,7 @@ void SettingUIBar::CreateBGMSoundUI(Scene* currentScene)
 	bgmSoundScroller->SetChangeValueEvent(std::bind(&SettingUIBar::OnSetBgmSound, this, std::placeholders::_1));
 	bgmSoundScroller->SetButtonClickEnterEvent(std::bind(&SettingUIBar::OnCollisionEnterBGMSoundUI, this));
 	bgmSoundScroller->SetButtonClickEndEvent(std::bind(&SettingUIBar::OnCollisionEndBGMSoundUI, this));
+	bgmSoundScroller->SetButtonClickEnterEvent(std::bind(&SettingUIBar::OnPlayUIMoveSound, this));
 	objects.push_back(bgmSoundScroller);
 
 	bgmSoundText = currentScene->AddGameObject(new UITextGameObject("NameFont", "BgmSoundText", 30, defalutColor), LayerType::UI);
@@ -123,6 +130,7 @@ void SettingUIBar::CreateEffectSoundUI(Scene* currentScene)
 	effectSoundScroller->SetChangeValueEvent(std::bind(&SettingUIBar::OnSetEffectSound, this, std::placeholders::_1));
 	effectSoundScroller->SetButtonClickEnterEvent(std::bind(&SettingUIBar::OnCollisionEnterEffectSoundUI, this));
 	effectSoundScroller->SetButtonClickEndEvent(std::bind(&SettingUIBar::OnCollisionEndEffectSoundUI, this));
+	effectSoundScroller->SetButtonClickEnterEvent(std::bind(&SettingUIBar::OnPlayUIMoveSound, this));
 	objects.push_back(effectSoundScroller);
 	// effectSoundScroller->SetButtonClickEvent(std::bind(&PauseUIBar::OnControllerBar, this));
 

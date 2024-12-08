@@ -160,6 +160,20 @@ void Head::OnCollisionEnd(Collider* target)
 	}
 }
 
+void Head::DeadThrowHead()
+{
+	SetActive(true);
+	SetPosition(player->GetPosition());
+	collider->SetActive(false);
+	rigidBody->SetActive(false);
+
+	if (player->IsFlipX() && scale.x > 0.f || !player->IsFlipX() && scale.x < 0.f)
+	{
+		scale.x = scale.x * -1.f;
+	}
+	currentTime = 0.f;
+}
+
 void Head::ThrowHead()
 {
 	isThrow = true;

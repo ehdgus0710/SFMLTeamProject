@@ -15,6 +15,7 @@ protected:
 
 private:
 	void StartDash();
+	void CreateEffect();
 
 public:
 	void Start() override;

@@ -25,6 +25,12 @@ void TextButton::OnCollisionEnter(Collider* target)
 {
 	textColor = changeColor;
 	text.setFillColor(textColor);
+
+	for (auto& enterEvent : buttonCollsionEnterEvents)
+	{
+		if (enterEvent)
+			enterEvent();
+	}
 }
 
 void TextButton::OnCollisionStay(Collider* target)
@@ -43,4 +49,10 @@ void TextButton::OnCollisionEnd(Collider* target)
 {
 	textColor = defalutColor;
 	text.setFillColor(textColor);
+
+	for (auto& endEvent : buttonCollsionEndClickEvents)
+	{
+		if (endEvent)
+			endEvent();
+	}
 }

@@ -28,6 +28,7 @@ private:
 private:
 	void CreateUIObject();
 	void SetChildActive(const bool active);
+	void OnPlayUIMoveSound();
 
 	void CreateTotalSoundUI(Scene* currentScene);
 	void CreateBGMSoundUI(Scene* currentScene);

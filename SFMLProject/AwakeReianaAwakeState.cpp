@@ -16,6 +16,8 @@ void AwakeReianaAwakeState::Enter()
 {
 	AwakeReianaBaseState::Enter();
 	animator->ChangeAnimation("dead", false);
+	SoundManger::GetInstance().PlayBgm("Chapter2_Boss_Awaken", true);
+	SoundManger::GetInstance().PlaySfx("Leiana_Awakening_Impact", false);
 	awakeTiem = 1.f;
 	awakeCurrentTime = 0.f;
 

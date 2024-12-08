@@ -2,6 +2,8 @@
 #include "AwakeReianaAwakeState.h"
 #include "Animator.h"
 #include "Animation.h"
+#include "Rigidbody.h"
+#include "Collider.h"
 
 AwakeReianaAwakeState::AwakeReianaAwakeState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::Dead)
@@ -21,6 +23,8 @@ void AwakeReianaAwakeState::Enter()
 	awakeTiem = 1.f;
 	awakeCurrentTime = 0.f;
 
+	awakeReiana->GetRigidbody()->SetActive(false);
+	awakeReiana->GetCollider()->SetActive(false);
 }
 void AwakeReianaAwakeState::Update(float deltaTime)
 {
@@ -29,6 +33,8 @@ void AwakeReianaAwakeState::Update(float deltaTime)
 	if (awakeTiem < awakeCurrentTime)
 	{
 		fsm->ChangeState(AwakeReianaStateType::Idle);
+		awakeReiana->GetRigidbody()->SetActive(true);
+		awakeReiana->GetCollider()->SetActive(true);
 	}
 }
 

@@ -44,7 +44,7 @@ void Reiana::TakeDamage(const DamegeInfo& damage)
 
 void Reiana::OnDead()
 {
-	// fsm.ChangeState(ReianaStateType::Dead);
+	fsm.ChangeState(ReianaStateType::Dead);
 }
 
 void Reiana::Awake()
@@ -73,14 +73,6 @@ void Reiana::Update(const float& deltaTime)
 {
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Q))
-	{
-		fsm.ChangeState(ReianaStateType::Rising);
-	}
-	if (currentStatus.hp <= 0)
-	{
-		fsm.ChangeState(ReianaStateType::Dead);
-	}
 }
 
 void Reiana::FixedUpdate(const float& deltaTime)

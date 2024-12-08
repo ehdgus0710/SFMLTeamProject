@@ -54,7 +54,6 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
 				SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
-			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateLeftEffect();
 			attackBox->OnDestory();
 			hitBoxOn = false;
@@ -82,7 +81,6 @@ void YggdrasilFistAttackState::StartAttack(float deltaTime)
 			SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
 				SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 			SoundManger::GetInstance().PlaySfx("ElderEnt_FistSlam", false);
-			SoundManger::GetInstance().SetSfxVolume(100.f);
 			CreateRightEffect();
 			attackBox->OnDestory();
 			hitBoxOn = false;

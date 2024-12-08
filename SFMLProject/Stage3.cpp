@@ -8,6 +8,7 @@
 Stage3::Stage3()
 	: Scene(SceneIds::Stage3)
 	, pauseUIBar(nullptr)
+	, isChangeScene(false)
 {
 	savePath = "Stage3.json";
 	loadPath = "Stage3.json";
@@ -149,6 +150,15 @@ void Stage3::LoadResources()
 
 }
 
+void Stage3::SetChangeScene(SceneIds id)
+{
+	if (isChangeScene)
+		return;
+
+	changeSceneIds = id;
+	isChangeScene = true;
+}
+
 void Stage3::Init()
 {
 	TEXTURE_MANAGER.Load("LittleBone_NonHead", "graphics/skul/LittleBone_NonHead.png");
@@ -214,7 +224,7 @@ void Stage3::Enter()
 	
 	Player* testPlayer = AddGameObject(new Player("Player"), LayerType::Player);
 	testPlayer->Awake();
-	testPlayer->SetPosition({ 0, -500.f });
+	testPlayer->SetPosition({ 960, 500.f });
 	testPlayer->GetCollider()->SetScale({ 30.f,30.f });
 
 	
@@ -258,6 +268,12 @@ void Stage3::Update(float dt)
 	if (GameManager::GetInstance().IsChangeScene())
 	{
 		SceneManager::GetInstance().ChangeScene(SceneIds::Stage1);
+	}
+
+	if (isChangeScene)
+	{
+		isChangeScene = false;
+		SceneManager::GetInstance().ChangeScene(changeSceneIds);
 	}
 }
 

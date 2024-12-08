@@ -83,6 +83,8 @@ public:
 	bool GetPhaseUp() { return phaseUp; }
 
 	void SetChangeHpAction(std::function<void(float, float)> action) { changeHpAction = action; }
+
+	YggdrasilUIHub* GetYggdrasilUIHub() { return yggdrasilUIHub; }
 public:
 	Yggdrasil(const std::string& name = "Player");
 	virtual ~Yggdrasil();

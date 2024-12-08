@@ -41,6 +41,17 @@ void YggdrasilUIHub::ChangePhase()
 	nameText->SetPosition({ 960.f, 45.f });
 	tribeText->SetPosition({ 960.f, 120.f });
 }
+void YggdrasilUIHub::OnDeadYggdrasil()
+{
+	topBackSprite->OnDestory();
+	bottomBackSprite->OnDestory();
+	frontHpBarSprite->OnDestory();
+	hpBar->OnDestory();
+	nameText->OnDestory();
+	tribeText->OnDestory();
+
+	OnDestory();
+}
 void YggdrasilUIHub::SetPosition(const sf::Vector2f& pos)
 {
 	UISpriteGameObject::SetPosition(pos);

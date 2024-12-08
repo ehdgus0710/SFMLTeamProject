@@ -30,7 +30,7 @@ void GameManager::GameStartInit()
 {
 }
 
-void GameManager::PlayerDead()
+void GameManager::OnRestart()
 {
 	isRestart = true;
 }

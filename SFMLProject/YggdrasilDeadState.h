@@ -20,6 +20,8 @@ protected:
 	float speed;
 	float deadTime;
 	float deadDelay;
+
+	bool deadEnd;
 public:
 	// void Awake() override;
 	// void Start() override;

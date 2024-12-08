@@ -25,6 +25,9 @@ protected:
 	bool									isFreeView;
 
 public:
+	virtual void SetChangeScene(SceneIds id);
+
+public:
 	sf::Vector2f ScreenToWorld(sf::Vector2i screenPos);
 	sf::Vector2i WorldToScreen(sf::Vector2f screenPos);
 	sf::Vector2f ScreenToFreeViewWorld(sf::Vector2i screenPos);

@@ -8,6 +8,8 @@
 #include "Animation.h"
 #include "Collider.h"
 #include "Stage1.h"
+#include "Stage2.h"
+#include "Stage3.h"
 
 DoorObject::DoorObject(const std::string& keyTextureID, SceneIds changeSceneId, const std::string& name)
 	: AnimationGameObject(name)
@@ -15,6 +17,9 @@ DoorObject::DoorObject(const std::string& keyTextureID, SceneIds changeSceneId, 
 	, interactionKeySprite(nullptr)
 	, changeSceneIds(changeSceneId)
 {
+	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);
+	TEXTURE_MANAGER.Load("KeyF", "graphics/UI/Key/F.png");
+
 	ResourcesManager<sf::Texture>::GetInstance().Load("Bossidle", "graphics/objects/bossidle.png", true);
 
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Door);
@@ -24,8 +29,10 @@ DoorObject::DoorObject(const std::string& keyTextureID, SceneIds changeSceneId, 
 	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
 	interactionText = currentScene->AddGameObject(new UITextGameObject("NameFont", name + "Text", 30), LayerType::Effect);
 	interactionText->SetString(L"들어가기");
+	interactionText->Start();
 
 	interactionKeySprite = currentScene->AddGameObject(new UISpriteGameObject(keyTextureID, name + "Sprite"), LayerType::Effect);
+	interactionKeySprite->Start();
 
 	textPosition = sf::Vector2f::down * 260.f;
 	keyPosition = sf::Vector2f::down * 260.f + sf::Vector2f::left * 100.f;
@@ -109,10 +116,7 @@ void DoorObject::OnCollisionStay(Collider* target)
 	{
 		if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::F))
 		{
-			Stage1* stage1 = dynamic_cast<Stage1*>(SceneManager::GetInstance().GetCurrentScene());
-
-			if (stage1)
-				stage1->SetChangeScene(changeSceneIds);
+			SceneManager::GetInstance().GetCurrentScene()->SetChangeScene(changeSceneIds);
 		}
 	}
 }

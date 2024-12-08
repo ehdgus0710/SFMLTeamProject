@@ -20,6 +20,7 @@ private:
 public:
 	void ChangeHP(float currentHp, float maxHp);
 	void ChangePhase();
+	void OnDeadYggdrasil();
 public:
 	void SetPosition(const sf::Vector2f& pos) override;
 	void Start() override;

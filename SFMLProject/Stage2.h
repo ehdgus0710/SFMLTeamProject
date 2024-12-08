@@ -16,9 +16,12 @@ private:
 	Rectangle	currentCameraLimitRect;
 	PauseUIBar* pauseUIBar;
 
+	SceneIds	changeSceneIds;
+	bool		isChangeScene;
 public:
 	void CollisitionCheck();
 	void LoadResources();
+	void SetChangeScene(SceneIds id) override;
 
 public:
 	void Init() override;

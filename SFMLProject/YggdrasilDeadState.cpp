@@ -7,6 +7,8 @@
 
 #include "Yggdrasil.h"
 #include "Player.h"
+#include "YggdrasilUIHub.h"
+#include "DoorObject.h"
 
 void YggdrasilDeadState::Enter()
 {
@@ -36,7 +38,7 @@ void YggdrasilDeadState::Enter()
 
 void YggdrasilDeadState::Exit()
 {
-
+	
 }
 
 void YggdrasilDeadState::Update(float deltaTime)
@@ -50,6 +52,19 @@ void YggdrasilDeadState::Update(float deltaTime)
 	yggdrasil->SetMouthPos(sf::Vector2f::Lerp(mStartPos, mEndPos, deadTime / deadDelay));
 	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, deadTime / deadDelay));
 	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, deadTime / deadDelay));
+
+	if (!deadEnd && deadTime > deadDelay)
+	{
+		deadEnd = true;
+		yggdrasil->GetCollider()->SetActive(false);
+		yggdrasil->GetYggdrasilUIHub()->OnDeadYggdrasil();
+
+		ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Door, ColliderLayer::Player);
+		GameManager::GetInstance().OnRestart();
+		DoorObject* clearDoor = SCENE_MANAGER.GetCurrentScene()->AddGameObject(new DoorObject("KeyF", SceneIds::Stage1, "ClearDoor"), LayerType::BackGround_Forward);
+		clearDoor->SetPosition({ 960.f, 650.f });
+		clearDoor->Start();
+	}
 }
 
 void YggdrasilDeadState::FixedUpdate(float fixedDeltaTime)
@@ -58,5 +73,6 @@ void YggdrasilDeadState::FixedUpdate(float fixedDeltaTime)
 
 YggdrasilDeadState::YggdrasilDeadState(YggdrasilFSM* fsm)
 	: YggdrasilBaseState(fsm, YggdrasilStateType::Dead)
+	, deadEnd(false)
 {
 }

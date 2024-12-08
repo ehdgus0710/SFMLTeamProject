@@ -19,7 +19,7 @@ void PlayerDeadState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	GameManager::GetInstance().PlayerDead();
+	GameManager::GetInstance().OnRestart();
 	TimeManager::GetInstance().SetTimeScale(0.1f);
 
 	head = player->GetHead();

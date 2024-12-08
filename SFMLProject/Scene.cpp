@@ -406,6 +406,10 @@ int Scene::FindGameObjectAll(const std::string& name, std::vector<GameObject*>& 
 }
 
 
+void Scene::SetChangeScene(SceneIds id)
+{
+}
+
 sf::Vector2f Scene::ScreenToWorld(sf::Vector2i screenPos)
 {
 	return WindowManager::GetInstance().GetRenderWindow()->mapPixelToCoords(screenPos, mainCamera->GetView());

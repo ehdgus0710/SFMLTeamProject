@@ -17,7 +17,7 @@ private:
 public:
 	void Reset();
 	void GameStartInit();
-	void PlayerDead();
+	void OnRestart();
 	void OnChangeScene();
 	bool IsChangeScene() { return isChangeScene; }
 

@@ -11,10 +11,9 @@ AwakenDeadDelete::AwakenDeadDelete(const std::string& name)
 {
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDeadEnd.csv");
 	animator->AddAnimation(animation, "AwakenDeadEnd");
-	SetScale({ 2.f,2.f });
+	SetScale({ 5.f,3.f });
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
-
 void AwakenDeadDelete::Start()
 {
 	AnimationGameObject::Start();

@@ -12,7 +12,7 @@ AwakenDeadCreate::AwakenDeadCreate(const std::string& name)
 	SoundManger::GetInstance().PlaySfx("Leiana_Awaken_Dead", false);
 	Animation* animation = new Animation("animations/Enemy/Rayanna/Effects/AwakenDeadStart.csv");
 	animator->AddAnimation(animation, "AwakenDeadStart");
-	SetScale({ 2.f,2.f });
+	SetScale({ 5.f,3.f });
 	animation->SetAnimationEndEvent(std::bind(&GameObject::OnDestory, this), animation->GetEndFrameCount());
 }
 

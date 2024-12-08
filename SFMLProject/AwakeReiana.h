@@ -15,6 +15,7 @@ protected:
 	Player* player;
 	ReianaUIHub* reianaUIHub;
 
+	bool			dead = false;
 	bool			isHit = false;
 	int				count;
 

@@ -20,8 +20,8 @@ B_Reiana::B_Reiana(const std::string& name)
 	animator->LoadCsv("animators/rayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
-	currentStatus.hp = 150;
-	currentStatus.maxHp = 150;
+	currentStatus.hp = 100;
+	currentStatus.maxHp = 100;
 
 	// animator->CreateAnimation("B_ReianaIdle", "B_ReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }

@@ -20,8 +20,8 @@ AwakeReiana::AwakeReiana(const std::string& name)
 	animator->LoadCsv("animators/awakenRayanna.csv");
 	animator->ChangeAnimation("meteorAttack", false);
 
-	currentStatus.hp = 10;
-	currentStatus.maxHp = 10;
+	currentStatus.hp = 100;
+	currentStatus.maxHp = 100;
 	// animator->CreateAnimation("AwakeReianaIdle", "AwakeReianaIdle", { 150, 192 }, 1, 0.1f, true);
 }
 
@@ -33,10 +33,11 @@ void AwakeReiana::TakeDamage(const DamegeInfo& damage)
 {
 	currentStatus.hp -= damage.damege;
 
-	if (currentStatus.hp <= 0.f)
+	if (!dead&&currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
 		OnDead();
+		dead = true;
 	}
 
 	if (changeHpAction != nullptr)

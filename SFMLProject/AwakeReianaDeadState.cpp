@@ -7,6 +7,7 @@
 #include "AwakenDeadDelete.h"
 #include "Scene.h"
 #include "ReianaUIHub.h"
+#include "Collider.h"
 
 AwakeReianaDeadState::AwakeReianaDeadState(AwakeReianaFsm* fsm)
 	:AwakeReianaBaseState(fsm, AwakeReianaStateType::Dead)
@@ -29,7 +30,7 @@ void AwakeReianaDeadState::Enter()
 	awakenDeadCreate->Start();
 	int effectEndFream = awakenDeadCreate->GetAnimator()->GetCurrentAnimation()->GetFrameInfo().size() - 1;
 	awakenDeadCreate->GetAnimator()->GetCurrentAnimation()->SetAnimationEndEvent(std::bind(&AwakeReianaDeadState::DeleteEffect, this), effectEndFream);
-	
+	awakeReiana->GetCollider()->SetActive(false);
 }
 
 void AwakeReianaDeadState::DeleteEffect()

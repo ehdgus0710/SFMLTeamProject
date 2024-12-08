@@ -55,7 +55,8 @@ void Yggdrasil::Awake()
 void Yggdrasil::Start()
 {
 	AnimationGameObject::Start();
-
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Chapter1_Boss", "AudioClip/Stage1/Chapter1_Boss.wav");
+	SoundManger::GetInstance().PlayBgm("Chapter1_Boss");
 	animator->ChangeAnimation("phase1Head", true);
 
 
@@ -99,8 +100,8 @@ void Yggdrasil::Start()
 	attackTime = 0;
 	attackDelay = 3.f;
 
-	phase1Hp = 1000;
-	phase2Hp = 1000;
+	phase1Hp = 100;
+	phase2Hp = 100;
 
 	currentStatus.hp = (float)phase1Hp;
 	currentStatus.maxHp = (float)phase1Hp;
@@ -116,10 +117,10 @@ void Yggdrasil::Start()
 void Yggdrasil::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
-	/*if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	if (currentStatus.hp <= 0)
 	{
 		phaseUp = true;
-	}*/
+	}
 	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
 	{
 		fsm.ChangeState(YggdrasilStateType::Dead);
@@ -175,10 +176,14 @@ void Yggdrasil::TakeDamage(const DamegeInfo& damage)
 
 		if (!phaseUp)
 		{
-			phaseUp = true;
+			fsm.ChangeState(YggdrasilStateType::YggdrasilPhaseUp);
 			currentStatus.hp = (float)phase2Hp;
 			currentStatus.maxHp = (float)phase2Hp;
 			yggdrasilUIHub->ChangePhase();
+		}
+		else
+		{
+			fsm.ChangeState(YggdrasilStateType::Dead);
 		}
 	}
 

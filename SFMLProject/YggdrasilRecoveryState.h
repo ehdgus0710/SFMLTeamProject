@@ -3,7 +3,7 @@
 class Player;
 class yggdrasil;
 
-class YggdrasilPhaseUpState : public YggdrasilBaseState
+class YggdrasilRecoveryState : public YggdrasilBaseState
 {
 protected:
 	sf::Vector2f lStartPos;
@@ -19,13 +19,13 @@ protected:
 
 	float speed;
 	float deadTime;
-	float recoveryTime;
 	float deadDelay;
 	float recoveryDelay;
+	float endDelay;
 
-	bool posMove;
+	bool PosMove;
 public:
-	void LowPos(float deltaTime);
+	void FirstPos(float deltaTime);
 public:
 	// void Awake() override;
 	// void Start() override;
@@ -35,7 +35,6 @@ public:
 	void Update(float deltaTime) override;
 	void FixedUpdate(float fixedDeltaTime) override;
 public:
-	YggdrasilPhaseUpState(YggdrasilFSM* fsm);
-	~YggdrasilPhaseUpState() = default;
+	YggdrasilRecoveryState(YggdrasilFSM* fsm);
+	~YggdrasilRecoveryState() = default;
 };
-

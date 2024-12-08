@@ -34,8 +34,9 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 	currentAttackTime += deltaTime;
 	lStartPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
 	lEndPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
-	for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
+	for (hitBoxOn1; hitBoxOn1 < 1; ++hitBoxOn1)
 	{
+		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping_Ready", false);
 		attackBox1 = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilLeftHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
 		attackBox1->SetScale({ 400.f,400.f });
 		attackBox1->SetDamage(10);
@@ -45,12 +46,14 @@ void YggdrasilSweepAttackState::StartLeftAttack(float deltaTime)
 
 	if (currentAttackTime >= attackTime - 0.5f)
 	{
+		SoundManger::GetInstance().StopAllSfx();
 		attackBox1->OnDestory();
 	}
 
 	if (currentAttackTime >= readyFistTime)
 	{
-		hitBoxOn = false;
+		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping");
+		hitBoxOn1 = false;
 		switchFist = true;
 		++attackCount;
 		currentAttackTime = 0.f;
@@ -68,8 +71,9 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 	currentAttackTime += deltaTime;
 	rStartPos = { yggdrasil->GetPosition().x - 2000.f, 800.f };
 	rEndPos = { yggdrasil->GetPosition().x + 2000.f, 800.f };
-	for (hitBoxOn; hitBoxOn < 1; ++hitBoxOn)
+	for (hitBoxOn2; hitBoxOn2 < 1; ++hitBoxOn2)
 	{
+		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping_Ready", false);
 		attackBox2 = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new HitBoxObject(yggdrasil->GetYggdrasilRightHand(), ColliderLayer::Boss, ColliderLayer::Player, true, (sf::Vector2f::right * 30.f)), LayerType::Boss);
 		attackBox2->SetScale({ 400.f,400.f });
 		attackBox2->SetDamage(10);
@@ -79,12 +83,14 @@ void YggdrasilSweepAttackState::StartRightAttack(float deltaTime)
 
 	if (currentAttackTime >= attackTime - 0.5f)
 	{
+		SoundManger::GetInstance().StopAllSfx();
 		attackBox2->OnDestory();
 	}
 
 	if (currentAttackTime >= readyFistTime)
 	{
-		hitBoxOn = false;
+		SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping");
+		hitBoxOn2 = false;
 		switchFist = true;
 		++attackCount;
 		currentAttackTime = 0.f;
@@ -156,13 +162,19 @@ void YggdrasilSweepAttackState::Awake()
 void YggdrasilSweepAttackState::Start()
 {
 	YggdrasilBaseState::Start();
+	
 	changeOn = false;
 }
 
 void YggdrasilSweepAttackState::Enter()
 {
 	YggdrasilBaseState::Enter();
+	SoundManger::GetInstance().PlaySfx("ElderEnt_Sweeping_Roar");
 	
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Sweeping_Roar", "AudioClip/Stage1/ElderEnt_Sweeping_Roar.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Sweeping_Ready", "AudioClip/Stage1/ElderEnt_Sweeping_Ready (Unused).wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("ElderEnt_Sweeping", "AudioClip/Stage1/ElderEnt_Sweeping.wav");
+
 	if (!yggdrasil->GetPhaseUp())
 	{
 		yggdrasil->SetAnimeLeftHand("phase1HandLeftSweep", false);
@@ -171,6 +183,8 @@ void YggdrasilSweepAttackState::Enter()
 		attackCount = 0;
 		whatFist = Utils::RandomRange(1, 2);
 
+		hitBoxOn1 = false;
+		hitBoxOn2 = false;
 		readyAttack = false;
 		isAttack = false;
 		isRecovery = false;
@@ -198,6 +212,8 @@ void YggdrasilSweepAttackState::Enter()
 		attackCount = 0;
 		whatFist = Utils::RandomRange(1, 2);
 
+		hitBoxOn1 = false;
+		hitBoxOn2 = false;
 		readyAttack = false;
 		isAttack = false;
 		isRecovery = false;
@@ -213,7 +229,7 @@ void YggdrasilSweepAttackState::Enter()
 		readyFistDelay = 0.f;
 
 		attackDelay = 1.f;
-		attackTime = 0.5f;
+		attackTime = 1.f;
 		recoveryTime = 0.5f;
 		readyFistTime = 2.f;
 	}

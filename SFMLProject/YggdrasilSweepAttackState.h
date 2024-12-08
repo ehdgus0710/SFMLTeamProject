@@ -41,7 +41,8 @@ class YggdrasilSweepAttackState : public YggdrasilBaseState
 	bool		switchFist;
 
 	bool		isAttackWait;
-	bool		hitBoxOn;
+	bool		hitBoxOn1;
+	bool		hitBoxOn2;
 	bool		changeOn;
 
 private:

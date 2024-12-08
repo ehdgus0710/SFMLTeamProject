@@ -382,6 +382,9 @@
     <ClCompile Include="YggdrasilLeftHand.cpp" />
     <ClCompile Include="YggdrasilHead.cpp" />
     <ClCompile Include="YggdrasilPhaseUpState.cpp" />
+    <ClCompile Include="YggdrasilRecoveryState.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="YggdrasilRightHand.cpp" />
     <ClCompile Include="YggdrasilSpecialAttackState.cpp" />
     <ClCompile Include="YggdrasilSweepAttackState.cpp" />
@@ -607,6 +610,9 @@
     <ClInclude Include="YggdrasilLeftHand.h" />
     <ClInclude Include="YggdrasilHead.h" />
     <ClInclude Include="YggdrasilPhaseUpState.h" />
+    <ClInclude Include="YggdrasilRecoveryState.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="YggdrasilRightHand.h" />
     <ClInclude Include="YggdrasilSpecialAttackState.h" />
     <ClInclude Include="YggdrasilSweepAttackState.h" />

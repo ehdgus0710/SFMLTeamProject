@@ -8,8 +8,34 @@
 #include "Yggdrasil.h"
 #include "Player.h"
 
+void YggdrasilPhaseUpState::LowPos(float deltaTime)
+{
+	deadTime += deltaTime;
+	yggdrasil->SetRotation(Utils::Lerp(0, -45, deadTime / deadDelay));
+	yggdrasil->SetHeadRota(Utils::Lerp(0, -45, deadTime / deadDelay));
+	yggdrasil->SetMouthRota(Utils::Lerp(0, -45, deadTime / deadDelay));
+	yggdrasil->SetPosition(sf::Vector2f::Lerp(bStartPos, bEndPos, deadTime / deadDelay));
+	yggdrasil->SetHeadPos(sf::Vector2f::Lerp(hStartPos, hEndPos, deadTime / deadDelay));
+	yggdrasil->SetMouthPos(sf::Vector2f::Lerp(mStartPos, mEndPos, deadTime / deadDelay));
+	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, deadTime / deadDelay));
+	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, deadTime / deadDelay));
+	if (deadTime >= recoveryDelay)
+	{
+		posMove = true;
+		deadDelay = 0.f;
+	}
+}
+
 void YggdrasilPhaseUpState::Enter()
 {
+	posMove = false;
+
+	deadTime = 0.f;
+	recoveryTime = 0.f;
+
+	deadDelay = 3.f;
+	recoveryDelay = 4.f;
+
 	lStartPos = yggdrasil->GetLeftFistPos();
 	lEndPos = { yggdrasil->GetLeftFistPos().x, 800.f };
 	rStartPos = yggdrasil->GetRightFistPos();
@@ -41,15 +67,17 @@ void YggdrasilPhaseUpState::Exit()
 
 void YggdrasilPhaseUpState::Update(float deltaTime)
 {
-	deadTime += deltaTime;
-	yggdrasil->SetRotation(Utils::Lerp(0, -45, deadTime / deadDelay));
-	yggdrasil->SetHeadRota(Utils::Lerp(0, -45, deadTime / deadDelay));
-	yggdrasil->SetMouthRota(Utils::Lerp(0, -45, deadTime / deadDelay));
-	yggdrasil->SetPosition(sf::Vector2f::Lerp(bStartPos, bEndPos, deadTime / deadDelay));
-	yggdrasil->SetHeadPos(sf::Vector2f::Lerp(hStartPos, hEndPos, deadTime / deadDelay));
-	yggdrasil->SetMouthPos(sf::Vector2f::Lerp(mStartPos, mEndPos, deadTime / deadDelay));
-	yggdrasil->SetLeftFistPos(sf::Vector2f::Lerp(lStartPos, lEndPos, deadTime / deadDelay));
-	yggdrasil->SetRightFistPos(sf::Vector2f::Lerp(rStartPos, rEndPos, deadTime / deadDelay));
+	if (!posMove);
+	{
+		LowPos(deltaTime);
+	}
+
+	if (posMove)
+	{
+		fsm->ChangeState(YggdrasilStateType::YggdrasilRecovery);
+	}
+
+
 }
 
 void YggdrasilPhaseUpState::FixedUpdate(float fixedDeltaTime)
@@ -57,6 +85,6 @@ void YggdrasilPhaseUpState::FixedUpdate(float fixedDeltaTime)
 }
 
 YggdrasilPhaseUpState::YggdrasilPhaseUpState(YggdrasilFSM* fsm)
-	: YggdrasilBaseState(fsm, YggdrasilStateType::Dead)
+	: YggdrasilBaseState(fsm, YggdrasilStateType::YggdrasilPhaseUp)
 {
 }

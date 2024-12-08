@@ -4,8 +4,6 @@
 
 class AwakeReianaDeadState : public AwakeReianaBaseState
 {
-protected:
-
 public:
 	void Enter() override;
 	void OnDead();

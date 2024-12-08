@@ -11,6 +11,7 @@ PlayerDeadState::PlayerDeadState(PlayerFSM* fsm)
 	, currentTime(0.f)
 	, deadStateTime(1.f)
 	, headRotationTime(2.5f)
+	, head(nullptr)
 {
 }
 

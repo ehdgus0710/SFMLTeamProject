@@ -12,13 +12,15 @@ PlayerAttackState::PlayerAttackState(PlayerFSM* fsm)
 	animationKeys.push_back("littleboneAttack");
 	animationKeys.push_back("noheadlittleboneAttack");
 
-
 	damageInfo.damege = 10.f;
 	damageInfo.useKnockback = true;
 	damageInfo.knockbackDuration = 0.2f;
 	damageInfo.owner = player;
 	damageInfo.knockbackVelocity = { 30.f,0.f };
 	damageInfo.hitDirection = sf::Vector2f::down;
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkulAtk1", "AudioClip/Skul/Skul_Atk 1.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SkulAtk2", "AudioClip/Skul/Skul_Atk 2.wav");
 }
 
 PlayerAttackState::~PlayerAttackState()
@@ -214,7 +216,13 @@ void PlayerAttackState::OnCreateHitBox()
 	attackBox->SetDamage(damageInfo);
 
 	attackBox->AddStartHitEvent(std::bind(&PlayerAttackState::CreateEffect, this, std::placeholders::_1));
+	attackBox->AddStartHitEvent(std::bind(&Player::OnAttackHitSound, player, std::placeholders::_1));
 	attackBox->Start();
+
+	if(currentAttackCount == 1)
+		SoundManger::GetInstance().PlaySfx("SkulAtk1");
+	else
+		SoundManger::GetInstance().PlaySfx("SkulAtk2");
 }
 
 void PlayerAttackState::OnDestoryHitBox()

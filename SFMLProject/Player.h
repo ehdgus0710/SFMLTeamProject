@@ -51,6 +51,7 @@ public:
 	void OnDownJump();
 	void OnThrowHead();
 	void OnGetHead();
+	void OnAttackHitSound(GameObject* object);
 
 	void SetMoveDirection(float direction) { moveDirectionX = direction; }
 	const float& GetMoveDirection() { return moveDirectionX; }

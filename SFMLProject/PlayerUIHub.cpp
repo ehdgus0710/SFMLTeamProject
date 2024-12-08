@@ -112,6 +112,7 @@ void PlayerUIHub::Start()
 	TEXTURE_MANAGER.Load("SkullThrow", "graphics/UI/PlayerUI/skull_throw.png");
 	TEXTURE_MANAGER.Load("Rebone", "graphics/UI/PlayerUI/rebone.png");
 	TEXTURE_MANAGER.Load("PlayerHealthBar", "graphics/UI/PlayerUI/Player_HealthBar.png");
+	ResourcesManager<sf::Font>::GetInstance().Load("Status1", "fonts/NotoSans-Bold.ttf", true);
 
 	
 
@@ -122,18 +123,18 @@ void PlayerUIHub::Start()
 	playerSimbolUI->SetPosition({ 100.f, 925.f });
 	playerSimbolUI->SetScale({ 2.5f,2.5f });
 
-	hpText = scene->AddGameObject(new UITextGameObject("Status", "hpText", 30), LayerType::UI);
-	maxHPText = scene->AddGameObject(new UITextGameObject("Status", "maxHpText", 30), LayerType::UI);
+	hpText = scene->AddGameObject(new UITextGameObject("Status1", "hpText", 30), LayerType::UI);
+	maxHPText = scene->AddGameObject(new UITextGameObject("Status1", "maxHpText", 30), LayerType::UI);
 
-	hpSlashText = scene->AddGameObject(new UITextGameObject("Status", "maxHpText", 30), LayerType::UI);
+	hpSlashText = scene->AddGameObject(new UITextGameObject("Status1", "maxHpText", 30), LayerType::UI);
 
 	maxHPText->SetString(std::to_string((int)player->GetCurrentHP()));
 	hpText->SetString(std::to_string((int)player->GetCurrentHP()));
 	hpSlashText->SetString("/");
 
-	hpText->SetPosition({ 300.f, 1005.f });
-	maxHPText->SetPosition({ 450.f, 1005.f });
-	hpSlashText->SetPosition({ 375.f, 1005.f });
+	hpText->SetPosition({ 330.f, 1010.f });
+	maxHPText->SetPosition({ 420.f, 1010.f });
+	hpSlashText->SetPosition({ 375.f, 1010.f });
 
 	playerHpBar = scene->AddGameObject(new HpBarUI("PlayerHealthBar", "PlayerHPBar"), LayerType::UI);
 	playerHpBar->SetOrigin(Origins::MiddleLeft);

@@ -32,7 +32,7 @@ void YggdrasilPhaseUpState::DeadSound()
 {
 	SoundManger::GetInstance().PlaySfx("ElderEnt_Down", false);
 	SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
-		SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 100.f, 1.f);
+		SetCameraShake({ 15.f, 10.f }, MoveDirection::Random, 1000.f, 1.f);
 }
 
 void YggdrasilPhaseUpState::Enter()
@@ -76,7 +76,6 @@ void YggdrasilPhaseUpState::Enter()
 
 void YggdrasilPhaseUpState::Exit()
 {
-
 }
 
 void YggdrasilPhaseUpState::Update(float deltaTime)

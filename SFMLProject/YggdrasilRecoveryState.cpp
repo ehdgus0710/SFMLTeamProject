@@ -78,7 +78,7 @@ void YggdrasilRecoveryState::Enter()
 void YggdrasilRecoveryState::Exit()
 {
 	YggdrasilBaseState::Exit();
-
+	yggdrasil->OnEndPhaseUp();
 }
 
 void YggdrasilRecoveryState::Update(float deltaTime)
@@ -94,7 +94,7 @@ void YggdrasilRecoveryState::Update(float deltaTime)
 	{
 		SoundManger::GetInstance().PlaySfx("ElderEnt_Roar", false);
 		SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->
-			SetCameraShake({ 30.f, 30.f }, MoveDirection::Random, 2000.f, 7.f);
+			SetCameraShake({ 20.f, 20.f }, MoveDirection::Random, 2000.f, 5.f);
 		soundStartTime = 0.f;
 		oneSound = true;
 	}

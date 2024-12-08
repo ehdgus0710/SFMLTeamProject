@@ -99,8 +99,8 @@ void Yggdrasil::Start()
 	attackTime = 0;
 	attackDelay = 3.f;
 
-	phase1Hp = 10;
-	phase2Hp = 10;
+	phase1Hp = 100;
+	phase2Hp = 100;
 
 	currentStatus.hp = (float)phase1Hp;
 	currentStatus.maxHp = (float)phase1Hp;
@@ -117,18 +117,6 @@ void Yggdrasil::Start()
 void Yggdrasil::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
-	if (currentStatus.hp <= 0)
-	{
-		phaseUp = true;
-	}
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad7))
-	{
-		fsm.ChangeState(YggdrasilStateType::Dead);
-	}
-	//if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Numpad9))
-	//{
-	//	fsm.ChangeState(YggdrasilStateType::EnergyBallAttack);
-	//}
 	fsm.Update(deltaTime);
 }
 
@@ -171,19 +159,13 @@ void Yggdrasil::TakeDamage(const DamegeInfo& damage)
 	if (currentStatus.hp <= 0.f)
 	{
 		currentStatus.hp = 0.f;
-		/*isDead = true;
-		fsm.ChangeState(PlayerStateType::Dead);*/
-
 		if (!phaseUp)
 		{
 			fsm.ChangeState(YggdrasilStateType::YggdrasilPhaseUp);
-			if (collider->GetActive()&&collider != nullptr)
+			if (collider->GetActive()&& collider != nullptr)
 			{
 				collider->SetActive(false);
 			}
-			currentStatus.hp = (float)phase2Hp;
-			currentStatus.maxHp = (float)phase2Hp;
-			yggdrasilUIHub->ChangePhase();
 		}
 		else
 		{
@@ -262,6 +244,13 @@ void Yggdrasil::SetLeftFistRota(float rota)
 void Yggdrasil::SetRightFistRota(float rota)
 {
 	yggdrasilRightHand->SetRotation(rota);
+}
+
+void Yggdrasil::OnEndPhaseUp()
+{
+	currentStatus.hp = (float)phase2Hp;
+	currentStatus.maxHp = (float)phase2Hp;
+	yggdrasilUIHub->ChangePhase();
 }
 
 void Yggdrasil::OnCollisionEnter(Collider* target)

@@ -65,6 +65,8 @@ public:
 	void SetLeftFistRota(float rota);
 	void SetRightFistRota(float rota);
 
+	void OnEndPhaseUp();
+
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
 	void OnCollisionEnd(Collider* target) override;

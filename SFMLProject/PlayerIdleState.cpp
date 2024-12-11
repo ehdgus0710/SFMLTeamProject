@@ -39,19 +39,19 @@ void PlayerIdleState::Update(float deltaTime)
 {
 	horizontal = player->GetMoveDirection();
 
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left) &&
-		InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove) &&
+		KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
 	{
 		horizontal = 0.f;
 	}
-	else if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
 	{
 		if (horizontal != -1.f)
 			player->OnFlipX();
 		horizontal = -1.f;
 		fsm->ChangeState(PlayerStateType::Run);
 	}
-	else if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
 	{
 		if (horizontal != 1.f)
 			player->OnFlipX();
@@ -62,14 +62,14 @@ void PlayerIdleState::Update(float deltaTime)
 		horizontal = 0.f;
 	player->SetMoveDirection(horizontal);
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::X))
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Attack))
 	{
 		fsm->ChangeState(PlayerStateType::Attack);
 	}
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C))
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Jump))
 	{
-		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Down))
+		if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Down))
 			player->OnDownJump();
 		else if (player->GetCurrentJumpCount() > 0)
 		{
@@ -79,7 +79,7 @@ void PlayerIdleState::Update(float deltaTime)
 
 	
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Dash) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}

@@ -74,15 +74,15 @@ void PlayerJumpAttackState::Update(float deltaTime)
 		return;
 	}
 
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
 	{
 		horizontal = -1.f;
 	}
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
 	{
 		horizontal = 1.f;
 	}
-	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::X))
+	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Attack))
 		sequenceAttack = true;
 
 	player->SetMoveDirection(horizontal);

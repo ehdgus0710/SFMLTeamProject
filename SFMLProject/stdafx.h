@@ -49,3 +49,7 @@ using json = nlohmann::json;
 #include "Entity.h"
 
 #include "SaveData.h"
+
+#include "ContantsEnumTypes.h"
+
+#include "KeyActionManager.h"

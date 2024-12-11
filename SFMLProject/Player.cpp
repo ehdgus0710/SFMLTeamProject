@@ -260,13 +260,13 @@ void Player::Update(const float& deltaTime)
 			isSkll2CoolTime = false;
 	}
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::A))
+	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Skill1))
 	{
 		if(!isSkll1CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill1 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
 			fsm.ChangeState(PlayerStateType::Skill1);
 	}
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::S) && head->IsActive())
+	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Skill2) && head->IsActive())
 	{
 		if (!isSkll2CoolTime && fsm.GetCurrentStateType() != PlayerStateType::Skill2 && fsm.GetCurrentStateType() != PlayerStateType::Dead)
 			fsm.ChangeState(PlayerStateType::Skill2);

@@ -48,7 +48,7 @@ void PlayerSkill2State::Exit()
 
 void PlayerSkill2State::Update(float deltaTime)
 {
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Z))
+	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Dash))
 	{
 		player->GetRigidbody()->SetActive(true);
 		player->GetRigidbody()->ResetDropSpeed();

@@ -933,6 +933,9 @@
     <ClCompile Include="YggdrasilRecoveryState.cpp">
       <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
     </ClCompile>
+    <ClCompile Include="KeyActionManager.cpp">
+      <Filter>Contants\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1606,6 +1609,12 @@
     </ClInclude>
     <ClInclude Include="YggdrasilRecoveryState.h">
       <Filter>Contants\Object\Yggdrasil\YggdrasilState</Filter>
+    </ClInclude>
+    <ClInclude Include="ContantsEnumTypes.h">
+      <Filter>Contants</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyActionManager.h">
+      <Filter>Contants\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

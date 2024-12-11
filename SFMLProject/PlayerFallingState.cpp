@@ -70,7 +70,7 @@ void PlayerFallingState::Update(float deltaTime)
 		player->SetCurrentJumpCount(player->GetJumpCount());
 	}
 
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::C) && player->GetCurrentJumpCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Jump) && player->GetCurrentJumpCount() > 0)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
@@ -81,12 +81,12 @@ void PlayerFallingState::Update(float deltaTime)
 		player->OnFlipX();
 	}
 
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z) && player->GetCurrentDashCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Dash) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
 
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::X))
+	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Attack))
 	{
 		fsm->ChangeState(PlayerStateType::JumpAttack);
 		return;

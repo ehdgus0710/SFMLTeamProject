@@ -73,11 +73,21 @@ void InputManager::UpDownCheck()
 	mouseUpDownStateVector.clear();
 }
 
+void InputManager::DefaultKeyBind()
+{
+	BindKey(sf::Keyboard::F2);
+	BindKey(sf::Keyboard::F3);
+	BindKey(sf::Keyboard::F4);
+
+	BindMouseButton(sf::Mouse::Left);
+	BindMouseButton(sf::Mouse::Right);
+}
+
 void InputManager::Init()
 {
 	isInputable = false;
 
-	AxisInfo infoHorizontal;
+	/*AxisInfo infoHorizontal;
 	infoHorizontal.axis = Axis::Horizontal;
 	infoHorizontal.AddKey(true, sf::Keyboard::D);
 	infoHorizontal.AddKey(true, sf::Keyboard::Right);
@@ -91,35 +101,9 @@ void InputManager::Init()
 	infoVertical.AddKey(true, sf::Keyboard::Down);
 	infoVertical.AddKey(false, sf::Keyboard::W);
 	infoVertical.AddKey(false, sf::Keyboard::Up);
-	axisInfoMap.insert({ Axis::Vertical, infoVertical });
+	axisInfoMap.insert({ Axis::Vertical, infoVertical });*/
 
-	AxisInfo infoJump;
-	infoJump.axis = Axis::Jump;
-	infoJump.AddKey(true, sf::Keyboard::Space);
-	infoJump.sensi = 7.f;
-	axisInfoMap.insert({ Axis::Jump, infoJump });
-
-	BindKey(sf::Keyboard::Up);
-	BindKey(sf::Keyboard::Down);
-	BindKey(sf::Keyboard::Right);
-	BindKey(sf::Keyboard::Left);
-	BindKey(sf::Keyboard::Space);
-	BindKey(sf::Keyboard::LShift);
-
-	BindKey(sf::Keyboard::Z);
-	BindKey(sf::Keyboard::X);
-	BindKey(sf::Keyboard::C);
-
-	BindKey(sf::Keyboard::A);
-	BindKey(sf::Keyboard::S);
-
-	BindKey(sf::Keyboard::F11);
-	BindKey(sf::Keyboard::F3);
-	BindKey(sf::Keyboard::F2);
-	BindKey(sf::Keyboard::F4);
-
-	BindMouseButton(sf::Mouse::Left);
-	BindMouseButton(sf::Mouse::Right);
+	DefaultKeyBind();
 }
 
 void InputManager::UpdateEvent(const sf::Event* ev)
@@ -167,9 +151,12 @@ void InputManager::UpdateEvent(const sf::Event* ev)
 		break;
 	}
 
-	if(ev->type == sf::Event::KeyPressed && (ev->key.code > sf::Keyboard::Key::Unknown && ev->key.code < sf::Keyboard::Key::KeyCount) 
+	if (ev->type == sf::Event::KeyPressed && (ev->key.code > sf::Keyboard::Key::Unknown && ev->key.code < sf::Keyboard::Key::KeyCount)
 		|| (ev->key.code >= sf::Mouse::Button::Left && ev->key.code < sf::Mouse::Button::ButtonCount))
-	isInput = true;
+	{
+		isInput = true;
+		inputKeyCode = ev->key.code;
+	}
 }
 
 void InputManager::Update(float deltaTime)

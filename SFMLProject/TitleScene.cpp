@@ -34,10 +34,12 @@ TitleScene::~TitleScene()
 void TitleScene::Init()
 {
 	Scene::Init();
+	KeyActionManager::GetInstance().Init();
 }
 
 void TitleScene::Enter()
 {
+	KeyActionManager::GetInstance().LoadCSV();
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Adventurer", "AudioClip/Title/Adventurer.wav");
 
 	ResourcesManager<sf::Font>::GetInstance().Load("NameFont", "fonts/D2Coding.ttc", true);

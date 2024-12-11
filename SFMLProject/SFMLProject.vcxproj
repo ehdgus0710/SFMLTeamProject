@@ -197,11 +197,13 @@
     <ClCompile Include="B_ReianaThreeSwordState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
+    <ClCompile Include="ControllerUIBar.cpp" />
     <ClCompile Include="Dimension.cpp" />
     <ClCompile Include="DoorObject.cpp" />
     <ClCompile Include="HpBarUI.cpp" />
     <ClCompile Include="IntroLandSmoke.cpp" />
     <ClCompile Include="KeyActionManager.cpp" />
+    <ClCompile Include="KeyActionUI.cpp" />
     <ClCompile Include="Knife.cpp" />
     <ClCompile Include="MenuGUI.cpp" />
     <ClCompile Include="MeteorGroundSmoke.cpp" />
@@ -440,11 +442,13 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="ContantsEnumTypes.h" />
+    <ClInclude Include="ControllerUIBar.h" />
     <ClInclude Include="Dimension.h" />
     <ClInclude Include="DoorObject.h" />
     <ClInclude Include="HpBarUI.h" />
     <ClInclude Include="IntroLandSmoke.h" />
     <ClInclude Include="KeyActionManager.h" />
+    <ClInclude Include="KeyActionUI.h" />
     <ClInclude Include="Knife.h" />
     <ClInclude Include="MenuGUI.h" />
     <ClInclude Include="MeteorGroundSmoke.h" />

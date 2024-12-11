@@ -4,18 +4,23 @@ class KeyActionManager : public Singleton<KeyActionManager>
 {
 	friend Singleton<KeyActionManager>;
 private:
-	std::unordered_map<KeyActionType, sf::Keyboard::Key> mappingKeyActionMaps;
+	std::unordered_map<ActionKeyType, sf::Keyboard::Key>		mappingActionKeyMaps;
+	std::unordered_map<ActionKeyType, std::function<void(sf::Keyboard::Key)>>	changeActionKeyEventMaps;
 	std::string filePath;
 
-public:
-	bool ChangeKeyAction(const KeyActionType& actionType, const sf::Keyboard::Key& changeKey);
-	void ResetKeyAction();
+private:
+	void InitEventMap();
 
-	bool GetKey(const KeyActionType& actionType);
-	bool GetKeyDown(const KeyActionType& actionType);
-	bool GetKeyPressed(const KeyActionType& actionType);
-	bool GetKeyUp(const KeyActionType& actionType);
-	bool GetKeyNone(const KeyActionType& actionType);
+public:
+	bool ChangeActionKey(const ActionKeyType& actionType, const sf::Keyboard::Key& changeKey);
+	void SetChangeActionKeyEvent(const ActionKeyType& actionType, std::function<void(sf::Keyboard::Key)> changeEvent);
+	void ResetActionKey();
+
+	bool GetKey(const ActionKeyType& actionType);
+	bool GetKeyDown(const ActionKeyType& actionType);
+	bool GetKeyPressed(const ActionKeyType& actionType);
+	bool GetKeyUp(const ActionKeyType& actionType);
+	bool GetKeyNone(const ActionKeyType& actionType);
 
 public:
 	void Init();

@@ -39,6 +39,8 @@ private:
 	std::vector<sf::Keyboard::Key>					keyUpDownStateVector;
 	std::vector<sf::Mouse::Button>					mouseUpDownStateVector;
 	sf::Vector2i									mousePosition;
+
+	sf::Keyboard::Key								inputKeyCode;
 	bool											isInputable;
 	bool											isInput;
 
@@ -47,8 +49,11 @@ public:
 	bool BindMouseButton(const sf::Mouse::Button& mouseButton);
 
 	void UpDownCheck();
+	void DefaultKeyBind();
 
 	const sf::Vector2i GetMousePosition() const;
+	sf::Keyboard::Key GetInputKeyCode() { return inputKeyCode; }
+	bool GetInputKey() { return isInput; }
 
 public:
 	void Init();
@@ -67,7 +72,6 @@ public:
 	bool GetKeyUp(const sf::Mouse::Button& button);
 	bool GetKeyNone(const sf::Mouse::Button& button);
 
-	bool GetInputKey() { return isInput; }
 
 	float GetAxisRaw(Axis axis);
 	float GetAxis(Axis axis);

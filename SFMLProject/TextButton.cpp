@@ -15,6 +15,22 @@ TextButton::TextButton(const std::string& textId, const std::string& name, unsig
 }
 
 
+void TextButton::OnCollisionEnterChangeColor()
+{
+	textColor = changeColor;
+	text.setFillColor(textColor);
+}
+
+void TextButton::OnCollisionStayChangeColor()
+{
+}
+
+void TextButton::OnCollisionEndChangeColor()
+{
+	textColor = defalutColor;
+	text.setFillColor(textColor);
+}
+
 void TextButton::SetChangeColor(const sf::Color& color)
 {
 	defalutColor = textColor;
@@ -23,8 +39,7 @@ void TextButton::SetChangeColor(const sf::Color& color)
 
 void TextButton::OnCollisionEnter(Collider* target)
 {
-	textColor = changeColor;
-	text.setFillColor(textColor);
+	OnCollisionEnterChangeColor();
 
 	for (auto& enterEvent : buttonCollsionEnterEvents)
 	{
@@ -47,8 +62,7 @@ void TextButton::OnCollisionStay(Collider* target)
 
 void TextButton::OnCollisionEnd(Collider* target)
 {
-	textColor = defalutColor;
-	text.setFillColor(textColor);
+	OnCollisionEndChangeColor();
 
 	for (auto& endEvent : buttonCollsionEndClickEvents)
 	{

@@ -39,19 +39,19 @@ void PlayerIdleState::Update(float deltaTime)
 {
 	horizontal = player->GetMoveDirection();
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove) &&
-		KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove) &&
+		KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		horizontal = 0.f;
 	}
-	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove))
 	{
 		if (horizontal != -1.f)
 			player->OnFlipX();
 		horizontal = -1.f;
 		fsm->ChangeState(PlayerStateType::Run);
 	}
-	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		if (horizontal != 1.f)
 			player->OnFlipX();
@@ -62,14 +62,14 @@ void PlayerIdleState::Update(float deltaTime)
 		horizontal = 0.f;
 	player->SetMoveDirection(horizontal);
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Attack))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::Attack))
 	{
 		fsm->ChangeState(PlayerStateType::Attack);
 	}
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Jump))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::Jump))
 	{
-		if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Down))
+		if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::Down))
 			player->OnDownJump();
 		else if (player->GetCurrentJumpCount() > 0)
 		{
@@ -79,7 +79,7 @@ void PlayerIdleState::Update(float deltaTime)
 
 	
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Dash) && player->GetCurrentDashCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::Dash) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}

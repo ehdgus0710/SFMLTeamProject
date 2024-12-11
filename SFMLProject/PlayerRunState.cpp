@@ -46,7 +46,7 @@ void PlayerRunState::Update(float deltaTime)
 {
 	InputMove();
 
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Jump) && player->GetCurrentJumpCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Jump) && player->GetCurrentJumpCount() > 0)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
@@ -54,7 +54,7 @@ void PlayerRunState::Update(float deltaTime)
 	}
 
 
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Attack))
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Attack))
 	{
 		fsm->ChangeState(PlayerStateType::Attack);
 		return;
@@ -69,7 +69,7 @@ void PlayerRunState::Update(float deltaTime)
 		}
 	}
 
-	if (KeyActionManager::GetInstance().GetKeyUp(KeyActionType::Dash) && player->GetCurrentDashCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyUp(ActionKeyType::Dash) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 	}
@@ -84,22 +84,22 @@ void PlayerRunState::InputMove()
 {
 	horizontal = player->GetMoveDirection();
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove) &&
-		KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove) &&
+		KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		fsm->ChangeState(PlayerStateType::Idle);
 		return;
 	}
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove))
 	{
 		horizontal = -1.f;
 	}
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		horizontal = 1.f;
 	}
 
-	if (KeyActionManager::GetInstance().GetKeyNone(KeyActionType::LeftMove) && KeyActionManager::GetInstance().GetKeyNone(KeyActionType::RightMove))
+	if (KeyActionManager::GetInstance().GetKeyNone(ActionKeyType::LeftMove) && KeyActionManager::GetInstance().GetKeyNone(ActionKeyType::RightMove))
 	{
 		fsm->ChangeState(PlayerStateType::Idle);
 		return;
@@ -113,7 +113,7 @@ void PlayerRunState::InputMove()
 
 void PlayerRunState::InputJump()
 {
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Jump) && player->GetCurrentJumpCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Jump) && player->GetCurrentJumpCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Jump);
 	}

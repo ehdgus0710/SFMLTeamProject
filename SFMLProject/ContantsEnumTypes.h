@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum class KeyActionType
+enum class ActionKeyType
 {
 	LeftMove,
 	RightMove,

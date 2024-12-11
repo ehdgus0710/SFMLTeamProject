@@ -68,16 +68,16 @@ void PlayerJumpState::Update(float deltaTime)
 	}
 	horizontal = player->GetMoveDirection();
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove) &&
-		KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove) &&
+		KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		horizontal = 0.f;
 	}
-	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove))
 	{
 		horizontal = -1.f;
 	}
-	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		horizontal = 1.f;
 	}
@@ -85,20 +85,20 @@ void PlayerJumpState::Update(float deltaTime)
 		horizontal = 0.f;
 	player->SetMoveDirection(horizontal);
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Dash) && player->GetCurrentDashCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::Dash) && player->GetCurrentDashCount() > 0)
 	{
 		fsm->ChangeState(PlayerStateType::Dash);
 		return;
 	}
 
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Jump) && player->GetCurrentJumpCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Jump) && player->GetCurrentJumpCount() > 0)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);
 		CreateExtraEffet();
 		return;
 	}
-	if (KeyActionManager::GetInstance().GetKeyUp(KeyActionType::Attack))
+	if (KeyActionManager::GetInstance().GetKeyUp(ActionKeyType::Attack))
 	{
 		fsm->ChangeState(PlayerStateType::JumpAttack);
 		return;

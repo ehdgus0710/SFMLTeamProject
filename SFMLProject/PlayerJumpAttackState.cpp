@@ -74,15 +74,15 @@ void PlayerJumpAttackState::Update(float deltaTime)
 		return;
 	}
 
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove))
 	{
 		horizontal = -1.f;
 	}
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		horizontal = 1.f;
 	}
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::Attack))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::Attack))
 		sequenceAttack = true;
 
 	player->SetMoveDirection(horizontal);

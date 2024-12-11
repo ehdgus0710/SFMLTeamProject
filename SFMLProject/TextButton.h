@@ -7,6 +7,11 @@ protected:
 	sf::Color defalutColor;
 	sf::Color changeColor;
 
+protected:
+	virtual void OnCollisionEnterChangeColor();
+	virtual void OnCollisionStayChangeColor();
+	virtual void OnCollisionEndChangeColor();
+
 public:
 	void SetChangeColor(const sf::Color& color);
 

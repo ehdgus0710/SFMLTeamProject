@@ -29,12 +29,12 @@ PlayerDashState::~PlayerDashState()
 
 void PlayerDashState::StartDash()
 {
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove))
 	{
 		if (!player->IsFlipX())
 			player->OnFlipX();
 	}
-	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		if (player->IsFlipX())
 			player->OnFlipX();
@@ -90,7 +90,7 @@ void PlayerDashState::Update(float deltaTime)
 {
  	PlayerBaseState::Update(deltaTime);
 
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Dash))
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Dash))
 		isExtraDash = true;
 
 	currentTime += deltaTime;
@@ -109,7 +109,7 @@ void PlayerDashState::Update(float deltaTime)
 		}
 	}
 
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Jump) && player->GetCurrentJumpCount() > 0)
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Jump) && player->GetCurrentJumpCount() > 0)
 	{
 		player->SetCurrentJumpCount(player->GetCurrentJumpCount() - 1);
 		fsm->ChangeState(PlayerStateType::Jump);

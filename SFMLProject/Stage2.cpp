@@ -134,6 +134,7 @@ void Stage2::Init()
 
 void Stage2::Enter()
 {
+	KeyActionManager::GetInstance().LoadCSV();
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
 	LoadResources();

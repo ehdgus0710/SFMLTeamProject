@@ -61,7 +61,7 @@ void PlayerAttackState::Exit()
 
 void PlayerAttackState::Update(float deltaTime)
 {
-	if (KeyActionManager::GetInstance().GetKeyDown(KeyActionType::Attack))
+	if (KeyActionManager::GetInstance().GetKeyDown(ActionKeyType::Attack))
 	{
 		sequenceAttack = true;
 	}
@@ -142,7 +142,7 @@ void PlayerAttackState::ClearAttackEvent()
 
 void PlayerAttackState::MoveAttack()
 {
-	if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::LeftMove))
+	if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::LeftMove))
 	{
 		if (!player->IsFlipX())
 			player->OnFlipX();
@@ -150,7 +150,7 @@ void PlayerAttackState::MoveAttack()
 		rigidbody->SetVelocity(sf::Vector2f::left * attackMoveSpeed);
 	
 	}
-	else if (KeyActionManager::GetInstance().GetKeyPressed(KeyActionType::RightMove))
+	else if (KeyActionManager::GetInstance().GetKeyPressed(ActionKeyType::RightMove))
 	{
 		if (player->IsFlipX())
 			player->OnFlipX();

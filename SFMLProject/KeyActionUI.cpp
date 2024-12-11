@@ -37,6 +37,7 @@ void KeyActionUI::ChangeAction(const sf::Keyboard::Key& chageKey)
 
 void KeyActionUI::OnChangeKeyName(const sf::Keyboard::Key& chageKey)
 {
+	// 키 관리 오브젝트 제작 및 키 이름 반환해주는 static 함수 제작하기
 	SetString("A");
 }
 

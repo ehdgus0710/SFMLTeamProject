@@ -13,7 +13,6 @@ enum class ActionKeyType
 	ChangeSkul,
 	Item,
 	Down,
-
 	end
 };
 
@@ -156,3 +155,5 @@ enum class SkullType
 	Spear,
 	End
 };
+
+

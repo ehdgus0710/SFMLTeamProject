@@ -8,6 +8,7 @@
 #include "Collider.h"
 #include "SettingUIBar.h"
 #include "BackgroundColorBox.h"
+#include "ControllerUIBar.h"
 
 
 PauseUIBar::PauseUIBar(const std::string& texId, const std::string& name)
@@ -43,6 +44,14 @@ void PauseUIBar::OnNewGame()
 
 void PauseUIBar::OnControllerBar()
 {
+	controllerUIBar->SetActive(true);
+
+	for (auto& button : buttons)
+	{
+		button->SetActive(false);
+		button->GetCollider()->SetActive(false);
+	}
+	SoundManger::GetInstance().PlaySfx("UIMenuOpen");
 }
 
 void PauseUIBar::OnSettingBar()
@@ -60,6 +69,17 @@ void PauseUIBar::OnSettingBar()
 void PauseUIBar::OffSettingBar()
 {
 	settingUIBar->SetActive(false);
+
+	for (auto& button : buttons)
+	{
+		button->SetActive(true);
+	}
+	SoundManger::GetInstance().PlaySfx("UIMenuClose");
+}
+
+void PauseUIBar::OffControllerBar()
+{
+	controllerUIBar->SetActive(false);
 
 	for (auto& button : buttons)
 	{
@@ -155,6 +175,10 @@ void PauseUIBar::CreateUIObject()
 	settingUIBar->SetScale({ 3.f,3.f });
 	settingUIBar->SetReturnClickEvent(std::bind(&PauseUIBar::OffSettingBar, this));
 
+	controllerUIBar = currentScene->AddGameObject(new ControllerUIBar("OptionsFrame", "ControllerUIBar"), LayerType::UI);
+	controllerUIBar->SetPosition({ 960.f, 550.f });
+	controllerUIBar->SetScale({ 3.f,3.f });
+
 	buttons.push_back(goBackButton);
 	buttons.push_back(controllerButton);
 	buttons.push_back(newGameButton);
@@ -185,6 +209,8 @@ void PauseUIBar::SetActive(const bool active)
 		this->active = active;
 		SetChildActive(active);
 		settingUIBar->SetActive(false);
+		controllerUIBar->SetActive(false);
+
 		SoundManger::GetInstance().PlaySfx("UIOpen");
 	}
 	else
@@ -192,6 +218,10 @@ void PauseUIBar::SetActive(const bool active)
 		if (settingUIBar->IsActive())
 		{
 			OffSettingBar();
+		}
+		else if (controllerUIBar->IsActive())
+		{
+			OffControllerBar();
 		}
 		else
 		{
@@ -217,5 +247,6 @@ void PauseUIBar::Start()
 	pauseText->sortingOrder = 10;
 
 	settingUIBar->SetActive(false);
+	controllerUIBar->SetActive(false);
 	SetActive(false);
 }

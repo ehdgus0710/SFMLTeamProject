@@ -6,6 +6,7 @@ class TextButton;
 class MouseObject;
 class SettingUIBar;
 class BackgroundColorBox;
+class ControllerUIBar;
 
 class PauseUIBar : public UISpriteGameObject
 {
@@ -20,7 +21,7 @@ private:
 	TextButton*					endGameButton;
 	MouseObject*				mouseObject;
 	BackgroundColorBox*			backgroundRect;
-
+	ControllerUIBar*			controllerUIBar;
 	std::vector<TextButton*>	buttons;
 	float						prevTimeScale;
 
@@ -30,6 +31,7 @@ private:
 	void OnControllerBar();
 	void OnSettingBar();
 	void OffSettingBar();
+	void OffControllerBar();
 	void OnEndGame();
 	void OnPlayUIMoveSound();
 

@@ -2,12 +2,14 @@
 
 #include "UISpriteGameObject.h"
 
+class KeyActionUI;
+
 class ControllerUIBar : public UISpriteGameObject
 {
 private:
-	/*std::unordered_map<>
-	TextButton* goBackButton;*/
+	std::vector<KeyActionUI*> keyActionUIVector;
 private:
+	void CreateActionKeyUI();
 
 public:
 	void SetActive(const bool active) override;

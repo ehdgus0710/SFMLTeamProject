@@ -14,6 +14,8 @@ void KeyActionManager::Init()
 {
 	InitEventMap();
 	LoadCSV();
+
+	ChangeActionKey(ActionKeyType::Attack, sf::Keyboard::A);
 }
 
 void KeyActionManager::Relaese()

@@ -22,7 +22,8 @@ KeyActionUI::KeyActionUI(const std::string& actionName, const ActionKeyType& act
 	actionText.setFillColor(textColor);
 	actionText.setString(actionName);
 	actionText.setCharacterSize(textSize);
-	actionKeyPosition = sf::Vector2f::left * 200.f;
+
+;	actionKeyPosition = sf::Vector2f::left * 200.f;
 
 	KeyActionManager::GetInstance().SetChangeActionKeyEvent(actionKeyType, std::bind(&KeyActionUI::OnChangeKeyName, this, std::placeholders::_1));
 }
@@ -67,6 +68,7 @@ void KeyActionUI::OnCollisionEndChangeColor()
 void KeyActionUI::Start()
 {
 	TextButton::Start();
+	actionText.setFont(*text.getFont());
 	actionText.setFillColor(textColor);
 }
 

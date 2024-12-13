@@ -13,6 +13,8 @@ ControllerUIBar::ControllerUIBar(const std::string& texId, const std::string& na
 void ControllerUIBar::CreateActionKeyUI()
 {
 	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
+	
+	sf::Vector2f createPosition = { 920.f, 200.f };
 	for (int i = 0; i < (int)ActionKeyType::end; ++i)
 	{
 		switch ((ActionKeyType)i)
@@ -53,7 +55,9 @@ void ControllerUIBar::CreateActionKeyUI()
 			break;
 		}
 
-
+		keyActionUIVector[i]->sortingOrder = 5;
+		keyActionUIVector[i]->SetScale({ 3.f,3.f });
+		keyActionUIVector[i]->SetPosition({ createPosition.x + (i / 2 == 0 ? -200.f : 200.f) ,createPosition.y + (i % ((int)ActionKeyType::end / 2)) * 100.f });
 		keyActionUIVector[i]->Start();
 	}
 }

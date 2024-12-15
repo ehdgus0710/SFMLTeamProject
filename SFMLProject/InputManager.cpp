@@ -151,11 +151,15 @@ void InputManager::UpdateEvent(const sf::Event* ev)
 		break;
 	}
 
-	if (ev->type == sf::Event::KeyPressed && (ev->key.code > sf::Keyboard::Key::Unknown && ev->key.code < sf::Keyboard::Key::KeyCount)
-		|| (ev->key.code >= sf::Mouse::Button::Left && ev->key.code < sf::Mouse::Button::ButtonCount))
+	if (ev->type == sf::Event::KeyPressed && (ev->key.code > sf::Keyboard::Key::Unknown && ev->key.code < sf::Keyboard::Key::KeyCount))
 	{
 		isInput = true;
 		inputKeyCode = ev->key.code;
+	}
+	else if (ev->key.code >= sf::Mouse::Button::Left && ev->key.code < sf::Mouse::Button::ButtonCount)
+	{
+		isInput = true;
+		inputKeyCode = sf::Keyboard::Key::Unknown;
 	}
 }
 

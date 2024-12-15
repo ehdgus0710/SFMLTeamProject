@@ -5,16 +5,20 @@ class KeyActionUI : public TextButton
 private:
 	sf::Text		actionText;
 	sf::Vector2f	actionKeyPosition;
+	sf::Vector2f	colliderScale;
 	ActionKeyType	actionKeyType;
 	bool			isOnInputChangeKey;
+
+private:
+	void OnInputKey();
+
 public:
 	void ChangeAction(const sf::Keyboard::Key& chageKey);
 	void OnChangeKeyName(const sf::Keyboard::Key& chageKey);
-	void OnInputKey();
 	void OnCollisionEnterChangeColor() override;
-	void OnCollisionStayChangeColor() override;
 	void OnCollisionEndChangeColor() override;
 
+	void OnResetActionKeyName();
 public:
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetOrigin(Origins preset) override;

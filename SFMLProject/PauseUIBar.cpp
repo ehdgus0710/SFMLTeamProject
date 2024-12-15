@@ -178,6 +178,7 @@ void PauseUIBar::CreateUIObject()
 	controllerUIBar = currentScene->AddGameObject(new ControllerUIBar("OptionsFrame", "ControllerUIBar"), LayerType::UI);
 	controllerUIBar->SetPosition({ 960.f, 550.f });
 	controllerUIBar->SetScale({ 3.f,3.f });
+	controllerUIBar->SetReturnClickEvent(std::bind(&PauseUIBar::OffControllerBar, this));
 
 	buttons.push_back(goBackButton);
 	buttons.push_back(controllerButton);

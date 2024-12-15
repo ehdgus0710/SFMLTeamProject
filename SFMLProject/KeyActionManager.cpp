@@ -14,8 +14,6 @@ void KeyActionManager::Init()
 {
 	InitEventMap();
 	LoadCSV();
-
-	ChangeActionKey(ActionKeyType::Attack, sf::Keyboard::A);
 }
 
 void KeyActionManager::Relaese()
@@ -155,7 +153,8 @@ void KeyActionManager::ResetActionKey()
 			break;
 		}
 	}
-	
+
+	SaveCSV();
 }
 
 bool KeyActionManager::GetKey(const ActionKeyType& actionType)
@@ -181,6 +180,15 @@ bool KeyActionManager::GetKeyUp(const ActionKeyType& actionType)
 bool KeyActionManager::GetKeyNone(const ActionKeyType& actionType)
 {
 	return InputManager::GetInstance().GetKeyNone(mappingActionKeyMaps[actionType]);
+}
+
+const sf::Keyboard::Key KeyActionManager::GetActionKey(const ActionKeyType& actionType)
+{
+	auto iter = mappingActionKeyMaps.find(actionType);
+	if (iter == mappingActionKeyMaps.end())
+		return sf::Keyboard::Unknown;
+
+	return iter->second;
 }
 
 bool KeyActionManager::SaveCSV()

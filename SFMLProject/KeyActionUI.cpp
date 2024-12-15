@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "KeyActionUI.h"
+#include "Collider.h"
 
 KeyActionUI::KeyActionUI(const std::string& actionName, const ActionKeyType& actionKey, const std::string& textId, const std::string& name, unsigned int textSize, const sf::Color& textColor)
 	: TextButton(textId, name, textSize, textColor)
@@ -11,6 +12,7 @@ KeyActionUI::KeyActionUI(const std::string& actionName, const ActionKeyType& act
 	actionText.setCharacterSize(textSize);
 	actionKeyPosition = sf::Vector2f::left * 200.f;
 
+	OnResetActionKeyName();
 	KeyActionManager::GetInstance().SetChangeActionKeyEvent(actionKeyType, std::bind(&KeyActionUI::OnChangeKeyName, this, std::placeholders::_1));
 }
 
@@ -23,11 +25,13 @@ KeyActionUI::KeyActionUI(const std::string& actionName, const ActionKeyType& act
 	actionText.setString(actionName);
 	actionText.setCharacterSize(textSize);
 
+	buttonClickEvents.push_back(std::bind(&KeyActionUI::OnInputKey, this));
+
+	OnResetActionKeyName();
 ;	actionKeyPosition = sf::Vector2f::left * 200.f;
 
 	KeyActionManager::GetInstance().SetChangeActionKeyEvent(actionKeyType, std::bind(&KeyActionUI::OnChangeKeyName, this, std::placeholders::_1));
 }
-
 void KeyActionUI::ChangeAction(const sf::Keyboard::Key& chageKey)
 {
 	if (chageKey == sf::Keyboard::Escape)
@@ -38,8 +42,9 @@ void KeyActionUI::ChangeAction(const sf::Keyboard::Key& chageKey)
 
 void KeyActionUI::OnChangeKeyName(const sf::Keyboard::Key& chageKey)
 {
-	auto name = sf::Keyboard::getDescription((sf::Keyboard::Scancode)chageKey);
+	auto name = sf::Keyboard::getDescription(sf::Keyboard::delocalize(KeyActionManager::GetInstance().GetActionKey(actionKeyType)));
 	SetString(name.toAnsiString());
+	SetColliderSize(colliderScale);
 }
 
 void KeyActionUI::OnInputKey()
@@ -54,10 +59,6 @@ void KeyActionUI::OnCollisionEnterChangeColor()
 	actionText.setFillColor(textColor);
 }
 
-void KeyActionUI::OnCollisionStayChangeColor()
-{
-}
-
 void KeyActionUI::OnCollisionEndChangeColor()
 {
 	textColor = defalutColor;
@@ -65,11 +66,21 @@ void KeyActionUI::OnCollisionEndChangeColor()
 	actionText.setFillColor(textColor);
 }
 
+void KeyActionUI::OnResetActionKeyName()
+{
+	auto name = sf::Keyboard::getDescription(sf::Keyboard::delocalize(KeyActionManager::GetInstance().GetActionKey(actionKeyType)));
+	SetString(name.toAnsiString());
+	SetColliderSize(colliderScale);
+}
+
 void KeyActionUI::Start()
 {
 	TextButton::Start();
 	actionText.setFont(*text.getFont());
 	actionText.setFillColor(textColor);
+	colliderScale = sf::Vector2f::one * 50.f + sf::Vector2f::right * 400.f;
+	SetColliderSize(colliderScale);
+	collider->SetOffsetPosition(sf::Vector2f::left * 100.f + sf::Vector2f::down * 15.f);
 }
 
 void KeyActionUI::Update(const float& deltaTime)
@@ -78,7 +89,10 @@ void KeyActionUI::Update(const float& deltaTime)
 	{
 		if (InputManager::GetInstance().GetInputKey())
 		{
-			ChangeAction(InputManager::GetInstance().GetInputKeyCode());
+			const auto& key = InputManager::GetInstance().GetInputKeyCode();
+			if(key != sf::Keyboard::Key::Unknown && key != sf::Keyboard::Key::Escape)
+				ChangeAction(key);
+
 			isOnInputChangeKey = false;
 		}
 	}
@@ -106,4 +120,5 @@ void KeyActionUI::Render(sf::RenderWindow& window)
 {
 	window.draw(text);
 	window.draw(actionText);
+	collider->Render(window);
 }
